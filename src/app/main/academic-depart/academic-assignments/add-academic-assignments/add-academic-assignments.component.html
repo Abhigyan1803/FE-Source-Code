@@ -1,0 +1,51 @@
+<div class="mat-new">
+    <h4 class="card-heading">
+        <button mat-icon-button (click)="goBack()">
+            <mat-icon>chevron_left</mat-icon>
+        </button>
+        Academic Department <span class="sub-menu1"> > Assignments <span class="sub-menu1"> > {{term}} > {{paper}} > {{assTitle}}</span></span>
+    </h4>
+</div>
+<mat-card>
+    <div class="top-br">
+        <form [formGroup]="addassignmentForm">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="position">Assignment<span class="required">*</span></label>
+                    <input id="assignment" type="text" class="form-control" formControlName="assignment" maxlength="100"
+                        placeholder="Assignment">
+                    <span class="validation_msg"
+                        *ngIf="f.assignment.errors && f.assignment.errors.required && isError">Please Enter
+                        Assignment</span>
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <label for="position">Question<span class="required">*</span></label>
+                <ckeditor formControlName="question" (change)="onChange($event)"
+                    (mouseover)="mouseEvent($event,'mouseover')" (mouseout)="mouseEvent($event,'mouseout')"
+                    (click)="mouseEvent($event,'click')"></ckeditor>
+                <span class="validation_msg" *ngIf="f.question.errors && f.question.errors.required && isError">Please
+                    Enter Question</span>
+
+            </div>
+            <div class="row">
+
+            <div class="form-group col">
+                <label class="form-label">File Upload</label>
+                  <input type="file" #inputFile accept=".pdf,.doc,.docx" (change)="upload1($event, i)" id="image">
+                  <span class="note">Max File Size 200 MB. (Only pdf and doc format.)</span>
+                  
+              </div>
+              <div class="form-group col-md-6">
+                <label for="lastSubmissionDate">Last Date Of Submission<span class="required">*</span></label>
+                <input id="lastSubmissionDate" type="date" class="form-control" formControlName="lastSubmissionDate"  >
+                <span class="validation_msg"
+                    *ngIf="f.lastSubmissionDate.errors && f.lastSubmissionDate.errors.required && isError">Please Enter
+                  Last Date of Submission</span>
+            </div>
+            </div>
+            <button mat-raised-button (click)="addAssignment()">ADD</button>
+        </form>
+    </div>
+</mat-card>

@@ -1,0 +1,812 @@
+<div style="width: 100%;float:left;background: url(white.png); padding-bottom: 60px;">
+    <div style="margin-top: 30px;" class="container-fluid">
+
+        <h4>{{name}}</h4>
+        <div *ngIf="org == 'ima'">
+            <mat-card style="margin: 0px !important;">
+                <div class="">
+                    <img src="assets/img/org.jpg" class="under-construction-img" alt="">
+                </div>
+            </mat-card>
+
+        </div>
+
+        <!-- TRG TEAM ORG CHART -->
+
+        <div *ngIf="org === 'trg-team'" class="org-chrt">
+            <mat-card style="margin: 0px !important;">
+                <!-- <div class="conta-box" style="margin: 0px auto 0;width: 1000px;display: table;">
+                    <ul>
+                        <span class="photu"><img src="assets/img/id.png" class="org_img"></span>
+                        <li class="director">
+                            <a href="javascript:void(0)"> <b>BRIG TRG</b> <br> </a>
+                        </li>
+
+                        <div class="space"></div>
+                        <span class="photu"><img src="assets/img/id.png" class="org_img "></span>
+                        <li class="director">
+                            <a href="javascript:void(0)"><b>COL GS (TRG)</b> <br></a>
+                        </li>
+                    </ul>
+                    <div class="space-parent">
+                        <div class="space2"></div>
+                        <div class="space3"></div>
+                    </div>
+                    <ul class="two-sec">
+                        <div class="left_new">
+                            <span class="photu"><img src="assets/img/id.png" class="org_img "></span>
+                            <li class="director">
+                                <a href="javascript:void(0)"><b> GSO-2 (TRG)</b> <br> </a>
+                            </li>
+                            <div class="verticle">
+                                <div class="spaceverti"></div>
+                            </div>
+                            <span class="photu"><img src="assets/img/id.png" class="org_img "></span>
+                            <li class="director sing">
+                                <a href="javascript:void(0)"><b>O2 x demo Coy</b> <br> </a>
+                            </li>
+                            <div class="verticle">
+                                <div class="spaceverti"></div>
+                            </div>
+                            <span class="photu"><img src="assets/img/id.png" class="org_img "></span>
+                            <li class="director sing">
+                                <a href="javascript:void(0)"><b>METHOD SEC </b> <br> </a>
+                            </li>
+                            <div class="verticle">
+                                <div class="spaceverti"></div>
+                            </div>
+                            <span class="photu"><img src="assets/img/id.png" class="org_img "></span>
+                            <li class="director sing">
+                                <a href="javascript:void(0)"> <b>TAC SEC</b> <br> </a>
+                            </li>
+                            <div class="verticle">
+                                <div class="spaceverti"></div>
+                            </div>
+                        </div>
+                        <div class="right_new">
+
+                            <span class="photu"><img src="assets/img/id.png" class="org_img "></span>
+                            <li class="director">
+                                <a href="javascript:void(0)"><b>GSO-1 (TRG)</b> <br> </a>
+                            </li>
+                            <div class="verticle_right">
+                                <div class="spacevertir"></div>
+                            </div>
+                            <span class="photu"><img src="assets/img/id.png" class="org_img "></span>
+                            <li class="director">
+                                <a href="javascript:void(0)"><b>GSO-2 </b> (ASSEMENT) <br> </a>
+                            </li>
+                            <div class="verticle_right">
+                                <div class="spacevertir"></div>
+                            </div>
+                            <span class="photu"><img src="assets/img/id.png" class="org_img "></span>
+                            <li class="director">
+                                <a href="javascript:void(0)"><b>GSO-2 (PGME) </b> <br> </a>
+                            </li>
+                            <div class="verticle_right">
+                                <div class="spacevertir"></div>
+                            </div>
+
+                            <span class="photu"><img src="assets/img/id.png" class="org_img "></span>
+                            <li class="director">
+                                <a href="javascript:void(0)"><b>O2 x LO, Afghan</b> <br> </a>
+                            </li>
+
+                            <div class="verticle_right">
+                                <div class="spacevertir"></div>
+                            </div>
+                        </div>
+                    </ul>
+                    <div class="align">
+                        <div class="top_border">
+                            <div class="space4"></div>
+                            <div class="space5"></div>
+                        </div>
+                        <ul class="three">
+                            <li>
+                                <div class="space"></div>
+
+                                <span class="photu"><img src="assets/img/id.png" class="org_img "></span>
+                                <div class="director">
+                                    <a href="javascript:void(0)"><b>PT SEC</b> <br><span>PTO</span> <br> </a>
+                                    <a class="top-bod" href="javascript:void(0)">APTO <br> </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="space"></div>
+                                <span class="photu"><img src="assets/img/id.png" class="org_img "></span>
+                                <div class="director">
+                                    <a href="javascript:void(0)"><b>WT SEC</b> <br><span>WTO</span> <br> </a>
+                                    <a class="top-bod" href="javascript:void(0)">AWTO <br></a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="space"></div>
+                                <span class="photu" style=" z-index: 999 !important;"><img src="assets/img/id.png"
+                                        class="org_img "></span>
+                                <div class="director last-of" style="z-index: 9;position: relative;">
+                                    <a href="javascript:void(0)"><b>EQTN SEC</b> </a>
+                                    <a href="javascript:void(0)"><b>EQTN OFFICER</b> <br> </a>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="three">
+                            <li>
+                                <div class="space-adv-cell"></div>
+                                <div class="paraa">
+                                    <div class="ert-sa"></div>
+                                </div>
+                                <span class="photu"><img src="assets/img/id.png" class="org_img "></span>
+                                <div class="director">
+                                    <a href="javascript:void(0)"><b>Adventure Cell (OIC)</b> <br> </a>
+                                </div>
+
+
+                            </li>
+                            <li>
+                                <div class="space" style="background: #fff !important;"></div>
+                                <div class="paraa">
+                                    <div class="ert-sa2"></div>
+                                </div>
+                                <span class="photu"><img src="assets/img/id.png" class="org_img "></span>
+                                <div class="director singiii">
+                                    <a href="javascript:void(0)"><b>FE SEC</b> <br> </a>
+                                </div>
+
+                            </li>
+                            <li>
+                                <div class="space" style="background: #fff !important;"></div>
+                                <div class="paraa">
+                                    <div class="ert-sa2"></div>
+                                </div>
+                                <span class="photu"><img src="assets/img/id.png" class="org_img "></span>
+                                <div class="director singiii">
+                                    <a href="javascript:void(0)"><b>FC SEC </b> <br> </a>
+                                </div>
+
+                            </li>
+                            <li>
+                                <div class="space" style="background: #fff !important;"></div>
+                                <div class="paraa">
+                                    <div class="ert-sa2"></div>
+                                </div>
+                                <div class="paraa">
+                                    <div class="ert-sa3"></div>
+                                </div>
+                                <span class="photu"><img src="assets/img/id.png" class="org_img "></span>
+                                <div class="director singiii">
+                                    <a href="javascript:void(0)"><b>SIG SEC </b> <br></a>
+                                </div>
+
+
+                            </li>
+
+                        </ul>
+                    </div>
+                </div> -->
+
+
+
+                <div class="conta-box" style="margin: 0px auto 0;width: 1000px;display: table;">
+                    <ul>
+                        <span class="photu"><img [src]="brigTrg.image" (error)="noImg($event)" class="org_img"></span>
+                        <li class="director">
+                            <a href="javascript:void(0)"> <b>BRIG TRG</b> <br> <span> {{brigTrg?.rank || '-'}} {{brigTrg?.name ||
+                                    '-'}}</span></a>
+                        </li>
+                
+                        <div class="space"></div>
+                        <span class="photu"><img [src]="colgsTrg.image" (error)="noImg($event)" class="org_img "></span>
+                        <li class="director">
+                            <a href="javascript:void(0)"><b>COL GS (TRG)</b> <br> <span>{{colgsTrg?.rank || '-'}} {{colgsTrg?.name ||
+                                    '-'}} </span></a>
+                        </li>
+                    </ul>
+                    <div class="space-parent">
+                        <div class="space2"></div>
+                        <div class="space3"></div>
+                    </div>
+                    <ul class="two-sec">
+                        <div class="left_new">
+                            <span class="photu"><img [src]="gso2trg.image" (error)="noImg($event)" class="org_img "></span>
+                            <li class="director">
+                                <a href="javascript:void(0)"><b> GSO-2 (TRG)</b> <br> <span> {{gso2trg?.rank || '-'}} {{gso2trg?.name ||
+                                        '-'}}</span></a>
+                            </li>
+                            <div class="verticle">
+                                <div class="spaceverti"></div>
+                            </div>
+                            <span class="photu"><img [src]="_2xdemocoy.image" (error)="noImg($event)" class="org_img "></span>
+                            <li class="director sing">
+                                <a href="javascript:void(0)"><b>O2 x demo Coy</b> <br> <span> {{_2xdemocoy?.rank || '-'}}
+                                        {{_2xdemocoy?.name || '-'}}</span> </a>
+                            </li>
+                            <div class="verticle">
+                                <div class="spaceverti"></div>
+                            </div>
+                            <span class="photu"><img [src]="methodsec.image" (error)="noImg($event)" class="org_img "></span>
+                            <li class="director sing">
+                                <a href="javascript:void(0)"><b>METHOD SEC </b> <br> <span>{{methodsec?.rank || '-'}} {{methodsec?.name
+                                        || '-'}}</span></a>
+                            </li>
+                            <div class="verticle">
+                                <div class="spaceverti"></div>
+                            </div>
+                            <span class="photu"><img [src]="tac.image" (error)="noImg($event)" class="org_img "></span>
+                            <li class="director sing">
+                                <a href="javascript:void(0)"> <b>TAC SEC</b> <br> <span>{{tac?.rank || '-'}} {{tac?.name ||
+                                        '-'}}</span></a>
+                            </li>
+                            <div class="verticle">
+                                <div class="spaceverti"></div>
+                            </div>
+                        </div>
+                        <div class="right_new">
+                
+                            <span class="photu"><img [src]="gso1trg.image" (error)="noImg($event)" class="org_img "></span>
+                            <li class="director">
+                                <a href="javascript:void(0)"><b>GSO-1 (TRG)</b> <br> <span> {{gso1trg?.rank || '-'}} {{gso1trg?.name ||
+                                        '-'}}</span></a>
+                            </li>
+                            <div class="verticle_right">
+                                <div class="spacevertir"></div>
+                            </div>
+                            <span class="photu"><img [src]="gso2assmt.image" (error)="noImg($event)" class="org_img "></span>
+                            <li class="director">
+                                <a href="javascript:void(0)"><b>GSO-2 </b> (ASSEMENT) <br> <span> {{gso2assmt?.rank || '-'}}
+                                        {{gso2assmt?.name || '-'}}</span></a>
+                            </li>
+                            <div class="verticle_right">
+                                <div class="spacevertir"></div>
+                            </div>
+                            <span class="photu"><img [src]="gso2pgme.image" (error)="noImg($event)" class="org_img "></span>
+                            <li class="director">
+                                <a href="javascript:void(0)"><b>GSO-2 (PGME) </b> <br> <span> {{gso2pgme?.rank || '-'}} {{gso2pgme?.name
+                                        || '-'}}</span></a>
+                            </li>
+                            <div class="verticle_right">
+                                <div class="spacevertir"></div>
+                            </div>
+                
+                            <span class="photu"><img [src]="_2xloafghan.image" (error)="noImg($event)" class="org_img "></span>
+                            <li class="director">
+                                <a href="javascript:void(0)"><b>O2 x LO, Afghan</b> <br> <span> {{_2xloafghan?.rank || '-'}}
+                                        {{_2xloafghan?.name || '-'}}</span></a>
+                            </li>
+                
+                            <div class="verticle_right">
+                                <div class="spacevertir"></div>
+                            </div>
+                        </div>
+                    </ul>
+                    <div class="align">
+                        <div class="top_border">
+                            <div class="space4"></div>
+                            <div class="space5"></div>
+                        </div>
+                        <ul class="three">
+                            <li>
+                                <div class="space"></div>
+                
+                                <span class="photu"><img [src]="pto.image" (error)="noImg($event)" class="org_img "></span>
+                                <div class="director">
+                                    <a href="javascript:void(0)"><b>PT SEC</b> <br><span>PTO</span> <br> <span>{{pto?.rank || '-'}}
+                                            {{pto?.name || '-'}}</span> </a>
+                                    <a class="top-bod" href="javascript:void(0)">APTO <br> <span>{{apto?.rank || '-'}} {{apto?.name ||
+                                            '-'}}</span> </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="space"></div>
+                                <span class="photu"><img [src]="wto.image" (error)="noImg($event)" class="org_img "></span>
+                                <div class="director">
+                                    <a href="javascript:void(0)"><b>WT SEC</b> <br><span>WTO</span> <br> <span> {{wto?.rank || '-'}}
+                                            {{wto?.name || '-'}}</span> </a>
+                                    <a class="top-bod" href="javascript:void(0)">AWTO <br> <span>{{awto?.rank || '-'}} {{awto?.name ||
+                                            '-'}}</span> </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="space"></div>
+                                <span class="photu" style=" z-index: 999 !important;"><img [src]="_2xdemocoy.image"
+                                        (error)="noImg($event)" class="org_img "></span>
+                                <div class="director last-of" style="z-index: 9;position: relative;">
+                                    <a href="javascript:void(0)"><b>EQTN SEC</b> </a>
+                                    <a href="javascript:void(0)"><b>EQTN OFFICER</b> <br> <span>{{eqtn?.rank || '-'}} {{eqtn?.name ||
+                                            '-'}}</span> </a>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="three">
+                            <li>
+                                <div class="space"></div>
+                                <div class="paraa">
+                                    <div class="ert-sa"></div>
+                                </div>
+                                <span class="photu"><img [src]="adventureCell.image" (error)="noImg($event)" class="org_img "></span>
+                                <div class="director">
+                                    <a href="javascript:void(0)"><b>Adventure Cell (OIC)</b> <br> <span> {{adventureCell?.rank || '-'}}
+                                            {{adventureCell?.name || '-'}}</span></a>
+                                </div>
+                
+                
+                            </li>
+                            <li>
+                                <div class="space" style="background: #fff !important;"></div>
+                                <div class="paraa">
+                                    <div class="ert-sa2"></div>
+                                </div>
+                                <span class="photu"><img [src]="fe.image" (error)="noImg($event)" class="org_img "></span>
+                                <div class="director singiii">
+                                    <a href="javascript:void(0)"><b>FE SEC</b> <br> <span>{{fe?.rank || '-'}} {{fe?.name || '-'}}</span>
+                                    </a>
+                                </div>
+                
+                            </li>
+                            <li>
+                                <div class="space" style="background: #fff !important;"></div>
+                                <div class="paraa">
+                                    <div class="ert-sa2"></div>
+                                </div>
+                                <span class="photu"><img [src]="fc.image" (error)="noImg($event)" class="org_img "></span>
+                                <div class="director singiii">
+                                    <a href="javascript:void(0)"><b>FC SEC </b> <br> <span>{{fc?.rank || '-'}} {{fc?.name || '-'}}
+                                        </span> </a>
+                                </div>
+                
+                            </li>
+                            <li>
+                                <div class="space" style="background: #fff !important;"></div>
+                                <div class="paraa">
+                                    <div class="ert-sa2"></div>
+                                </div>
+                                <div class="paraa">
+                                    <div class="ert-sa3"></div>
+                                </div>
+                                <span class="photu"><img [src]="sig.image" (error)="noImg($event)" class="org_img "></span>
+                                <div class="director singiii">
+                                    <a href="javascript:void(0)"><b>SIG SEC </b> <br><span>{{sig?.rank || '-'}} {{sig?.name ||
+                                            '-'}}</span></a>
+                                </div>
+                
+                
+                            </li>
+                
+                        </ul>
+                    </div>
+                </div>
+
+
+
+
+
+
+                <br>
+            </mat-card>
+        </div>
+
+
+        <!-- TRG BATTALION ORG CHART -->
+
+        <div *ngIf="org === 'trg-battalion'">
+            <mat-card style="margin: 0px !important;">
+           
+                <div class="col-md-2">
+                    <label for="battalion">Battalion</label>
+                    <select id="battalion" class="form-control" [(ngModel)]="bn" (change)="getTRGBattalionOrgChart($event.target.value)" >
+                        <option value="" selected hidden disabled>Select</option>
+                        <option *ngFor="let b of battalions" [value]="b.id">{{b.shortName}} Bn</option>
+                    </select>
+                </div>
+
+                <div class="conta-box" style="margin: 0px auto 0;width: 100%;display: table;">
+                    <ul>
+                        <span class="photu"><img (error)="noImg($event)" [src]="bnCdr.image" class="org_img"></span>
+                        <li class="director">
+                            <a href="javascript:void(0)">BN Cdr <br> <span>{{bnCdr.name}}</span></a>
+                        </li>
+                
+                        <div class="space" style="height: 85px !important;"></div>
+                        <div class="dev">
+                            <div class="inerr">
+                                <span class="photu"><img (error)="noImg($event)" [src]="aq.image" class="org_img"></span>
+                                <li class="director">
+                                    <a href="javascript:void(0)">AQ <br> <span>{{aq.name}}</span></a>
+                                </li>
+                            </div>
+                        </div>
+                    </ul>
+                    <div class="space" style="height: 85px !important;"></div>
+                    <div class="align">
+                        <div class="top_border trg-top"></div>
+                
+                        <ul class="three">
+                            <li>
+                                <div class="space"></div>
+                                <span class="photu"><img (error)="noImg($event)" [src]="coyCmdrs[0]?.image" class="org_img"></span>
+                                <div class="director">
+                                    <a href="#">{{c1 || "-"}} Cdr<br> <span>
+                                            {{coyCmdrs[0]?.name || "-"}}</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="space"></div>
+                                <span class="photu"><img (error)="noImg($event)" [src]="coyCmdrs[1]?.image" class="org_img"></span>
+                                <div class="director">
+                                    <a href="#">{{c2 || "-"}} Cdr<br> <span>
+                                            {{coyCmdrs[1]?.name || "-"}}</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="space"></div>
+                                <span class="photu"><img (error)="noImg($event)" [src]="coyCmdrs[2]?.image" class="org_img"></span>
+                                <div class="director">
+                                    <a href="#">{{c3 || "-"}} Cdr<br> <span>
+                                            {{coyCmdrs[2]?.name || "-"}}</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="space"></div>
+                                <span class="photu"><img (error)="noImg($event)" [src]="coyCmdrs[3]?.image" class="org_img"></span>
+                                <div class="director">
+                                    <a href="#">{{c4 || "-"}} Cdr<br> <span>
+                                            {{coyCmdrs[3]?.name || "-"}}</span></a>
+                                </div>
+                            </li>
+                        </ul>
+                
+                    </div>
+                </div>
+
+
+
+
+                <!-- <div class="conta-box" style="margin: 0px auto 0;width: 100%;display: table;">
+                    <ul>
+                        <span class="photu"><img src="assets/img/id.png" class="org_img"></span>
+                        <li class="director">
+                            <a href="javascript:void(0)">BN Cdr <br> </a>
+                        </li>
+                        <div class="space" style="height: 250px !important;"></div>
+                        <div class="top-border-aqline"></div>
+                        <div class="dev aq">
+                            <div class="inerr">
+                                <span class="photu"><img src="assets/img/id.png" class="org_img"></span>
+                                <li class="director">
+                                    <a href="javascript:void(0)">AQ <br> </a>
+                                </li>
+                            </div>
+                        </div>
+                    </ul>
+
+                    <div class="align">
+
+                        <ul class="">
+                            <li>
+                                <div class="space"></div>
+                                <span class="photu"><img src="assets/img/id.png" class="org_img"></span>
+                                <div class="director">
+                                    <a href="#">Coy Cdr<br> </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="space"></div>
+                                <span class="photu"><img src="assets/img/id.png" class="org_img"></span>
+                                <div class="director">
+                                    <a href="#">Ptn Cdr<br> </a>
+                                </div>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                </div> -->
+
+            </mat-card>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- GS BRANCH ORG CHART -->
+
+        <div *ngIf="org === 'gs-branch'">
+
+                    <mat-card style="margin: 0px !important;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12" style="margin-bottom: 50px;">
+                            <div class="conta-box" style="margin: 0px auto 0;width: 100%;display: table;">
+                                <ul>
+                                    <span class="photu"><img [src]="bgs.image" (error)="noImg($event)" class="org_img"></span>
+                                    <li class="director">
+                                        <a href="javascript:void(0)">BGS<br> <span>({{bgs?.gsRank || '-'}} {{bgs?.name || '-'}}
+                                                {{bgs?.award ||
+                                                ''}})</span> <br> <span>
+                                                <!-- Since Jan 2020 -->
+                                            </span></a>
+                                    </li>
+                
+                                    <div class="space" style="height: 100px !important;"></div>
+                                    <div class="dev">
+                                    </div>
+                                </ul>
+                
+                                <div class="align">
+                                    <div class="top_border trg-top">
+                
+                                    </div>
+                
+                                    <ul class="three">
+                                        <li>
+                                            <div class="space"></div>
+                                            <span class="photu"><img [src]="colgs.image" (error)="noImg($event)" class="org_img"></span>
+                                            <div class="director" style="height: 125px;">
+                                                <a href="javascript:void(0)">COL GS <br> <span> ({{colgs?.gsRank || '-'}} {{colgs?.name
+                                                        || '-'}}
+                                                        {{colgs?.award || '-'}})</span> <br>
+                                                    <!-- <span> Since Feb 2019 </span> <br> <span>Reliver Posted </span> -->
+                                                </a>
+                                            </div>
+                
+                                        </li>
+                                        <li>
+                                            <div class="space"></div>
+                                            <span class="photu"><img [src]="oicit.image" (error)="noImg($event)" class="org_img"></span>
+                                            <div class="director singiii">
+                                                <a href="javascript:void(0)">OIC IT <span> ({{oicit?.gsRank || '-'}} {{oicit?.name ||
+                                                        '-'}}
+                                                        {{oicit?.award || ''}})</span> <br>
+                                                    <!-- <span> Since Aug 2020</span> -->
+                                                </a>
+                                            </div>
+                
+                                        </li>
+                                        <li>
+                                            <div class="space"></div>
+                                            <span class="photu"><img [src]="securityOfficer.image" (error)="noImg($event)"
+                                                    class="org_img"></span>
+                                            <div class="director singiii">
+                                                <a href="javascript:void(0)">SECURITY OFFR <br> <span> ({{securityOfficer?.gsRank ||
+                                                        '-'}}
+                                                        {{securityOfficer?.name || '-'}} {{securityOfficer?.award || ''}})</span> <br>
+                                                    <!-- <span>COL 152 Inf BN
+                                                        (TA) (SIKH) </span> <br> <span>
+                                                        Unit arr Since Sep 2018
+                                                    </span>  -->
+                                                </a>
+                                            </div>
+                
+                                        </li>
+                                        <li>
+                                            <div class="space"></div>
+                                            <span class="photu"><img [src]="pro.image" (error)="noImg($event)" class="org_img"></span>
+                                            <div class="director singiii">
+                                                <a href="javascript:void(0)">PRO <br> <span> ({{pro?.gsRank || '-'}} {{pro?.name ||
+                                                        '-'}} {{pro?.award ||
+                                                        ''}})</span> <br>
+                                                    <!-- <span> Since Oct 2020 </span> -->
+                                                </a>
+                                            </div>
+                
+                                        </li>
+                                    </ul>
+                                </div>
+                
+                                <div class="space" style="position: relative; left: -418px;"> </div>
+                                <div class="align">
+                                    <div class="top_border trg-top">
+                
+                                    </div>
+                                    <ul class="three">
+                                        <li>
+                                            <div class="space"></div>
+                                            <span class="photu"><img [src]="gso1coord.image" (error)="noImg($event)"
+                                                    class="org_img"></span>
+                                            <div class="director singiii">
+                                                <a href="javascript:void(0)">GSO-1 (COORD) <br> <span> ({{gso1coord?.gsRank || '-'}}
+                                                        {{gso1coord?.name ||
+                                                        '-'}} {{gso1coord?.award || ''}})</span> <br>
+                                                    <!-- <span>
+                                                        Since Oct 2020
+                                                    </span> -->
+                                                </a>
+                                            </div>
+                
+                                        </li>
+                                        <li>
+                                            <div class="space"></div>
+                                            <span class="photu"><img [src]="gso1sd.image" (error)="noImg($event)"
+                                                    class="org_img"></span>
+                                            <div class="director singiii">
+                                                <a href="javascript:void(0)">GSO-1 (SD & Security) & OIC POP <br> <span>
+                                                        ({{gso1sd?.gsRank || '-'}}
+                                                        {{gso1sd?.name || '-'}} {{gso1sd?.award || ''}})</span> <br>
+                                                    <!-- <span>
+                                                        Since Oct 2020
+                                                    </span> -->
+                                                </a>
+                                            </div>
+                
+                                        </li>
+                                        <li>
+                                            <div class="space"></div>
+                                            <span class="photu"><img [src]="gso1int.image" (error)="noImg($event)"
+                                                    class="org_img"></span>
+                                            <div class="director singiii">
+                                                <a href="javascript:void(0)">GSO-1 (INT) OIC Printing Press & OIC COVID Cell <br> <span>
+                                                        ({{gso1int?.gsRank || '-'}} {{gso1int?.name || '-'}}
+                                                        {{gso1int?.award || ''}})</span> <br>
+                                                    <!-- <span>
+                                                        Since Oct 2020
+                                                    </span> -->
+                                                </a>
+                                            </div>
+                
+                                        </li>
+                                        <li>
+                                            <div class="space"></div>
+                                            <span class="photu"><img [src]="gso2stats.image" (error)="noImg($event)"
+                                                    class="org_img"></span>
+                                            <div class="director singiii">
+                                                <a href="javascript:void(0)">GSO-2 (STATS)<br> <span> ({{gso2stats?.gsRank || '-'}}
+                                                        {{gso2stats?.name
+                                                        || '-'}}
+                                                        {{gso2stats?.award || ''}})</span> <br>
+                                                    <!-- <span>
+                                                        Since Oct 2020
+                                                    </span> -->
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                
+                    </div>
+                </div>
+
+
+                <!-- <div class="col-md-12" style="margin-bottom: 50px;">
+                    <div class="conta-box" style="margin: 0px auto 0;width: 100%;display: table;">
+                        <ul>
+                            <span class="photu"><img src="assets/img/id.png"  class="org_img"></span>
+                            <li class="director">
+                                <a href="javascript:void(0)">BGS<br> </a>
+                            </li>
+
+                            <div class="space" style="height: 250px !important;"></div>
+                            <div class="dev">
+                            </div>
+                        </ul>
+
+                        <div class="align">
+                            <div class="top_border_gs ">
+
+                            </div>
+
+                            <ul class="three">
+                                <li>
+                                    <div class="space"></div>
+                                    <span class="photu"><img src="assets/img/id.png" class="org_img"></span>
+                                    <div class="director singiii">
+                                        <a href="javascript:void(0)">COL GS </a>
+                                    </div>
+
+
+                                </li>
+                                <li>
+                                    <div class="space"></div>
+                                    <span class="photu"><img src="assets/img/id.png" 
+                                            class="org_img"></span>
+                                    <div class="director singiii">
+                                        <a href="javascript:void(0)">OIC IT </a>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="space"></div>
+                                    <span class="photu"><img src="assets/img/id.png" 
+                                            class="org_img"></span>
+                                    <div class="director singiii">
+                                        <a href="javascript:void(0)">SECURITY OFFR <br> </a>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="space"></div>
+                                    <span class="photu"><img src="assets/img/id.png" 
+                                            class="org_img"></span>
+                                    <div class="director singiii">
+                                        <a href="javascript:void(0)">PRO <br></a>
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="space" style="position: relative; left: -418px; z-index: -1;"> </div>
+                        <div class="align">
+                            <div class="top_border_gs">
+
+                            </div>
+                            <ul class="three">
+                                <li>
+                                    <div class="space-l2"></div>
+                                    <span class="photu"><img src="assets/img/id.png" 
+                                            class="org_img"></span>
+                                    <div class="director singiii">
+                                        <a href="javascript:void(0)">GSO-1 (COORD) <br></a>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="space"></div>
+                                    <span class="photu"><img src="assets/img/id.png" 
+                                            class="org_img"></span>
+                                    <div class="director singiii">
+                                        <a href="javascript:void(0)">GSO-1 (SD & Security) & OIC POP <br> </a>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="space"></div>
+                                    <span class="photu"><img src="assets/img/id.png" 
+                                            class="org_img"></span>
+                                    <div class="director singiii">
+                                        <a href="javascript:void(0)">GSO-1 (INT) OIC Printing Press & OIC COVID Cell
+                                            <br></a>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="space"></div>
+                                    <span class="photu"><img src="assets/img/id.png" 
+                                            class="org_img"></span>
+                                    <div class="director singiii">
+                                        <a href="javascript:void(0)">GSO-2 (STATS)<br></a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+ -->
+
+
+
+            </mat-card>
+
+
+
+
+
+        </div>
+
+
+
+
+    </div>
+
+</div>
+
+
+<!-- <div class="foot">
+    <footer class="footer pp-fot" id="foot-id">
+        <p class="footer-copy">© Copyright 2021 Indian Mililtary Academy All rights reserved.</p>
+    </footer>
+</div> -->

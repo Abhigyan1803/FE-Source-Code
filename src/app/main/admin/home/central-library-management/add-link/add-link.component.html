@@ -1,0 +1,49 @@
+
+<div class="mat-new">
+      
+        
+        <h4 class="card-heading"> 
+            <button mat-icon-button (click)="goBack()" ><mat-icon>chevron_left</mat-icon> </button> Home <span class="sub-menu1">> Central Library > {{pTitle}}</span> </h4>
+  </div>
+  <mat-card>
+    <div class="top-br">
+      <form [formGroup]="addLinkForm">     
+       
+        <div class="row">     
+          <div class="form-group col-md-6">
+            <label for="title">Tab Name<span class="required">*</span></label>
+            <select type="text" id="title" class="form-control" placeholder="Tab Name" required formControlName="name">
+              <option value="" selected hidden disabled>Select</option>
+              <option *ngFor="let name of tabNames" [value]="name">{{name}} </option>
+            </select>
+            <span  class="validation_msg"  *ngIf="f.name.errors && f.name.errors.required && isError" >Please Select Name</span>
+          </div>   
+               
+          <div class="form-group col-md-6">
+            <label for="title">Link<span class="required">*</span></label>
+            <input type="text" id="title" class="form-control"  maxlength="250"
+             placeholder="http or https" required formControlName="url">
+            <span  class="validation_msg"  *ngIf="f.url.errors && f.url.errors.required && isError" >Please Enter URL</span>
+            <span  class="validation_msg"  *ngIf="isWrongUrl" >Please Enter correct URL</span>
+
+          </div>   
+        </div>
+         <div class="row" > 
+          <div class="form-group col-md-6">       
+            <label for="status" class="form-label">Status <span class="required">*</span></label>
+              <select name="" id="status" class="form-control" required formControlName="status" >
+                <option value="" disabled selected hidden >Select</option>
+                <option value="1">Active</option>
+                <option value="0">Inactive</option>
+              </select>
+              <span  class="validation_msg"  *ngIf="f.status.touched && f.status.invalid" >*Please Select Status</span>
+            </div>     
+        </div>
+        
+        
+        <button mat-raised-button *ngIf="!id" (click)="addCentralLIbraryLink()" >Add URL</button>
+        <button mat-raised-button *ngIf="id" (click)="updateCentralLibraryLink()" >Update URL</button>
+  
+      </form>
+    </div>
+  </mat-card>

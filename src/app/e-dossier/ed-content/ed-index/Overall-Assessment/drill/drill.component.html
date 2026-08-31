@@ -1,0 +1,358 @@
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="mat-heading">
+        <div id="top-bar" class="">
+          <h2>
+            <button mat-icon-button (click)="goBack()">
+              <mat-icon>chevron_left</mat-icon>
+          </button>
+          <span class="sub-menu1">
+            E-Dossier > Overall Assessment > DRILL</span></h2>
+      </div>
+      </div>
+        <div class="drill mb-5">
+            
+            <div class="mat-card mat-focus-indicator">
+              <form class="ng-untouched ng-pristine ng-invalid">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="rank">Ima No.</label>
+                            <input placeholder="No" formcontrolname="" disabled id="drillcadetServiceId" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                        </div>
+                    </div>	
+                    <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="rank">Term</label>
+                          <input placeholder="Term"  type="text" disabled id="drillcadettermname" class="form-control ng-untouched ng-pristine ng-invalid">
+                        </div>
+                      </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="rank">Rank</label>
+                            <input placeholder="Rank" formcontrolname="" disabled id="drillcadetRank" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="rank">Name</label>
+                            <input placeholder="Name" formcontrolname="" disabled id="drillcadetName" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="rank">Bn</label>
+                            <input placeholder="Bn" formcontrolname="" disabled id="drillbattalionName" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="rank">Coy</label>
+                            <input placeholder="Coy" formcontrolname="" disabled id="drillcompanyName" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                        </div>
+                    </div>
+                    
+                </div>
+              </form>
+              <mat-card *ngIf="Campmark1.length==0" style=" margin: auto; width: 100%;text-align: center;padding-top: 80px;">
+                <img src="assets/img/empty-no-data.png" >
+              </mat-card>
+           
+            <form [formGroup]="drillForm">
+            
+
+              <div formArrayName="dRILLSubjectResult" *ngIf="this.termid==1 || this.termid == 2 || this.termid == 3">
+              <div class="ng-star-inserted"  *ngIf="TermFetch == 1" >
+                    <div class="mat-new mb-4">
+                        <h4 class="card-heading">1ST TERM & 2ND TECH (KHALI HATH)</h4>
+                    </div>
+                </div>
+                
+                <table   *ngIf="TermFetch == 1" class="tg">
+                <thead>
+                  <tr>
+                    <th class="tg-kln5" colspan="8">TESTS/MKS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="tg-kln5">S NO</td>
+                    <td class="tg-kln5">SUBJECT</td>
+                    <td class="tg-kln5">MAX MKS</td>
+                    <td class="tg-kln5">M1</td>
+                    <td class="tg-kln5">M2</td>
+                    <td class="tg-kln5">C1</td>
+                    <td class="tg-kln5">C2</td>
+                   
+                  
+                    <td class="tg-kln5">GRADING</td>
+                  </tr>
+
+                   <tr *ngFor="let mr of getCSubjectRes.controls;let i=index">
+                                    <ng-container [formGroupName]="i">
+                                        <td> {{i+1}} </td>
+                                        <!-- <td> {{mr.value.termSession}}</td> -->
+                                          
+                                        <td> {{mr.value.subjectName}} </td>  
+                                        <td> <b>{{mr.value.totalMarks}}</b> </td>
+                                        <td>
+                                          <input min="0"  oninput="this.value = 
+                                  !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                                              formControlName="m1ObtainedMarks" class="form-control"
+                                              (focus)="onFocusEvent($event.target.value,mr.controls.totalMarks.value)"
+                                              on-focusout="onChange($event.target.value,mr.controls.totalMarks.value,i)"
+                                              maxlength="2" (keypress)="keyPress($event)" disabled>
+                                        </td>
+                                        <td>
+                                          <input min="0"  oninput="this.value = 
+                                  !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                                              formControlName="m2ObtainedMarks" class="form-control"
+                                              (focus)="onFocusEvent($event.target.value,mr.controls.totalMarks.value)"
+                                              on-focusout="onChange($event.target.value,mr.controls.totalMarks.value,i)"
+                                              maxlength="2" (keypress)="keyPress($event)" disabled>
+                                        </td>
+                                         
+                                       <td>
+                                          <input min="0"  oninput="this.value = 
+                                  !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                                              formControlName="c1ObtainedMarks" class="form-control"
+                                              (focus)="onFocusEvent($event.target.value,mr.controls.totalMarks.value)"
+                                              on-focusout="onChange($event.target.value,mr.controls.totalMarks.value,i)"
+                                              maxlength="2" (keypress)="keyPress($event)" disabled>
+                                      </td>
+                                      <td>
+                                        <input min="0" oninput="this.value = 
+                                !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                                            formControlName="c2ObtainedMarks" class="form-control"
+                                            (focus)="onFocusEvent($event.target.value,mr.controls.totalMarks.value)"
+                                            on-focusout="onChange($event.target.value,mr.controls.totalMarks.value,i)"
+                                            maxlength="2" (keypress)="keyPress($event)" disabled >
+                                      </td>
+                                    
+                                        <!-- <td>{{mr.value.m2ObtainedMarks}}</td> -->
+                                      
+                                      
+
+
+                                       <td><input class="form-control"
+                                        formControlName="remarks"  disabled   ></td>
+                                    </ng-container>
+                    </tr>
+                
+                  <tr >
+                    <td class="tg-baqh" colspan="2"><b>Total</b></td>
+                    <td class="tg-baqh"><b>{{updatetotalmarks}}</b></td>
+                    <td class="tg-0lax">{{totalObtainedm1marks}}</td>
+                    <td class="tg-0lax">{{totalObtainedm2marks}}</td>
+                    <td class="tg-0lax">{{totalObtainedc1marks}}</td>
+                    <td class="tg-0lax">{{totalObtainedc2marks}}</td>
+                    <td class="tg-0lax">{{remarks}}</td>
+                  </tr> 
+                </tbody>
+                </table>
+              </div>
+              <div formArrayName="dRILLSubjectResult2" *ngIf="this.termid == 2 || this.termid == 3" >
+                <div class="ng-star-inserted mt-3"  *ngIf="TermFetch == 1 && TermFetch == 2 " >
+                    <div class="mat-new mb-4">
+                        <h4 class="card-heading">2ND TERM & 3RD TECH (RIFLE DRILL)</h4>
+                    </div>
+                </div>
+                <table  *ngIf="TermFetch == 1 && TermFetch1 == 2 "  class="tg">
+                <thead>
+                  <tr>
+                    <th class="tg-kln5" colspan="8">TESTS/MKS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="tg-kln5">S NO</td>
+                    <td class="tg-kln5">SUBJECT</td>
+                    <td class="tg-kln5">MAX MKS</td>
+                    <td class="tg-kln5">M1</td>
+                    <td class="tg-kln5">M2</td>
+                    <td class="tg-kln5">C1</td>
+                    <td class="tg-kln5">C2</td>
+                 
+                  
+                    <td class="tg-kln5">GRADING</td>
+                  </tr>
+
+                   <tr *ngFor="let mr of getCSubjectRes2.controls;let i=index">
+                                    <ng-container [formGroupName]="i">
+                                        <td> {{i+1}} </td>
+                                        <!-- <td> {{mr.value.termSession}}</td> -->
+                                          
+                                        <td> {{mr.value.subjectName}} </td>  
+                                        <td> <b>{{mr.value.totalMarks}}</b> </td>
+                                        <td>
+                                          <input min="0" disabled oninput="this.value = 
+                                  !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                                              formControlName="m1ObtainedMarks" class="form-control"
+                                              (focus)="onFocusEvent($event.target.value,mr.controls.totalMarks.value)"
+                                              on-focusout="onChange($event.target.value,mr.controls.totalMarks.value,i)"
+                                              maxlength="2" (keypress)="keyPress($event)">
+                                        </td>
+                                        <td>
+                                          <input min="0" disabled oninput="this.value = 
+                                  !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                                              formControlName="m2ObtainedMarks" class="form-control"
+                                              (focus)="onFocusEvent($event.target.value,mr.controls.totalMarks.value)"
+                                              on-focusout="onChange($event.target.value,mr.controls.totalMarks.value,i)"
+                                              maxlength="2" (keypress)="keyPress($event)">
+                                        </td>
+                                       <td>
+                                          <input min="0" disabled oninput="this.value = 
+                                  !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                                              formControlName="c1ObtainedMarks" class="form-control"
+                                              (focus)="onFocusEvent($event.target.value,mr.controls.totalMarks.value)"
+                                              on-focusout="onChange($event.target.value,mr.controls.totalMarks.value,i)"
+                                              maxlength="2" (keypress)="keyPress($event)">
+                                      </td>
+                                      <td>
+                                        <input min="0" disabled oninput="this.value = 
+                                !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                                            formControlName="c2ObtainedMarks" class="form-control"
+                                            (focus)="onFocusEvent($event.target.value,mr.controls.totalMarks.value)"
+                                            on-focusout="onChange($event.target.value,mr.controls.totalMarks.value,i)"
+                                            maxlength="2" (keypress)="keyPress($event)">
+                                      </td>
+                                    
+                                       
+                                        <!-- <td>{{mr.value.m2ObtainedMarks}}</td> -->
+                                      
+                                      
+
+
+                                       <td><input class="form-control" disabled
+                                        formControlName="remarks"    ></td>
+                                    </ng-container>
+                    </tr>
+                
+                  <tr >
+                    <td class="tg-baqh" colspan="2"><b>Total</b></td>
+                    <td class="tg-baqh"><b>{{updatetotalmarks1}}</b></td>
+                    <td class="tg-0lax">{{totalObtainedm1marks1}}</td>
+                    <td class="tg-0lax">{{totalObtainedm2marks1}}</td>
+                    <td class="tg-0lax">{{totalObtainedc1marks1}}</td>
+                    <td class="tg-0lax">{{totalObtainedc2marks1}}</td>                   
+                    <td class="tg-0lax">{{remarks}}</td>
+                  </tr> 
+                </tbody>
+                </table>
+              </div>
+                <!-- <div formArrayName="dRILLSubjectResult3" >
+                <div class="ng-star-inserted mt-3">
+                    <div class="mat-new mb-4">
+                        <h4 class="card-heading">3RD TERM (DAT)</h4>
+                    </div>
+                </div>
+                <table class="tg">
+                <thead>
+                  <tr>
+                    <th class="tg-kln5" colspan="8">TESTS/MKS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="tg-kln5">S NO</td>
+                    <td class="tg-kln5">SUBJECT</td>
+                    <td class="tg-kln5">MAX MKS</td>
+                    <td class="tg-kln5">C1</td>
+                    <td class="tg-kln5">C2</td>
+                    <td class="tg-kln5">M1</td>
+                    <td class="tg-kln5">M2</td>
+                  
+                    <td class="tg-kln5">GRADING</td>
+                  </tr>
+
+                   <tr *ngFor="let mr of getCSubjectRes3.controls;let i=index">
+                                    <ng-container [formGroupName]="i">
+                                        <td> {{i+1}} </td>
+
+                                          
+                                        <td> {{mr.value.subjectName}} </td>  
+                                        <td> <b>{{mr.value.totalMarks}}</b> </td>
+                                          
+                                       <td>
+                                          <input min="0" disabled oninput="this.value = 
+                                  !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                                              formControlName="c1ObtainedMarks" class="form-control"
+                                              (focus)="onFocusEvent($event.target.value,mr.controls.totalMarks.value)"
+                                              on-focusout="onChange($event.target.value,mr.controls.totalMarks.value,i)"
+                                              maxlength="2" (keypress)="keyPress($event)">
+                                      </td>
+                                      <td>
+                                        <input min="0" disabled oninput="this.value = 
+                                !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                                            formControlName="c2ObtainedMarks" class="form-control"
+                                            (focus)="onFocusEvent($event.target.value,mr.controls.totalMarks.value)"
+                                            on-focusout="onChange($event.target.value,mr.controls.totalMarks.value,i)"
+                                            maxlength="2" (keypress)="keyPress($event)">
+                                      </td>
+                                      <td>
+                                        <input min="0" disabled oninput="this.value = 
+                                !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                                            formControlName="m1ObtainedMarks" class="form-control"
+                                            (focus)="onFocusEvent($event.target.value,mr.controls.totalMarks.value)"
+                                            on-focusout="onChange($event.target.value,mr.controls.totalMarks.value,i)"
+                                            maxlength="2" (keypress)="keyPress($event)">
+                                      </td>
+                                      <td>
+                                        <input min="0" disabled oninput="this.value = 
+                                !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                                            formControlName="m2ObtainedMarks" class="form-control"
+                                            (focus)="onFocusEvent($event.target.value,mr.controls.totalMarks.value)"
+                                            on-focusout="onChange($event.target.value,mr.controls.totalMarks.value,i)"
+                                            maxlength="2" (keypress)="keyPress($event)">
+                                      </td>
+                                       
+                                  
+
+                                       <td><input class="form-control" disabled
+                                        formControlName="remarks"    ></td>
+                                    </ng-container>
+                    </tr>
+                
+                  <tr >
+                    <td class="tg-baqh" colspan="2"><b>Total</b></td>
+                    <td class="tg-baqh"><b>{{updatetotalmarks2}}</b></td>
+                    <td class="tg-0lax">{{totalObtainedc1marks2}}</td>
+                    <td class="tg-0lax">{{totalObtainedc2marks2}}</td>
+                    <td class="tg-0lax">{{totalObtainedm1marks2}}</td>
+                    <td class="tg-0lax">{{totalObtainedm2marks2}}</td>
+                    <td class="tg-0lax">{{remarks}}</td>
+                  </tr> 
+                </tbody>
+                </table>
+                </div>     -->
+
+                <div *ngIf="this.termid==3" >    
+
+
+                  <div class="ng-star-inserted mt-3">
+                    <div class="mat-new mb-4">
+                        <h4 class="card-heading">3RD TERM (DAT)</h4>
+                    </div>
+                </div>
+                <ol class="mt-3">
+                  <form [formGroup]="DRILLDATFORM">
+                    <li class="mb-3">Achievements to incl appt of Cane Orderly, Nishan Toli, Rashtriya Dhwaj Toli & Winner of Motivation Badge in Drill.</li>
+                    <li>To endorse participation in Continuity Drill, Samman Toli, Wreath Laying Gd.
+                        <ol class="mt-3" type="a">
+                            <li class="mb-3 pl-4"><input type="text" class="form-control" formControlName="a"></li>
+                            <li class="mb-3 pl-4"><input type="text" class="form-control" formControlName="b"></li>
+                            <li class="mb-3 pl-4"><input type="text" class="form-control" formControlName="c"></li>
+                            <li class="mb-3 pl-4"><input type="text" class="form-control" formControlName="d"></li>
+                            <li class="mb-3 pl-4"><input type="text" class="form-control" formControlName="e"></li>
+                        </ol>
+                    </li>
+                    <button mat-raised-button class="pull-right" type="submit" (click)="onSubmit()">Submit</button>
+                  </form>
+                </ol>
+                </div>
+               
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

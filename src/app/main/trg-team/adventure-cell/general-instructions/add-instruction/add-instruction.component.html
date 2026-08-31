@@ -1,0 +1,75 @@
+<div class="mat-new">
+    <h4 class="card-heading"><button mat-icon-button (click)="goBack()" ><mat-icon>chevron_left</mat-icon> </button> Adventure Cell <span class="sub-menu1"> > General Instruction > {{pTitle}} </span>
+        <span class="sub-menu1"> </span>
+    </h4>
+</div>
+<mat-card>
+    <div class="top-br">
+        <form [formGroup]="addInstructionForm" >
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="form-label">Instruction Name <span class="char-count" > ({{nameLength}}/100) </span> <span class="required">*</span></label>
+                    <input type="text"  (input)="charCount($event,'docName')" formControlName="docName" maxlength="100" placeholder="Instruction Name (Maximum 100 Characters)" class="form-control">
+                    <span class="validation_msg" *ngIf="f.docName.errors && f.docName.errors.required && isError" >Instruction Name is required</span>   
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="form-label">Adventure Cell Type <span class="required">*</span></label>
+                    <select name="" id="" class="form-control" formControlName="acType" >
+                        <option value="" selected disabled hidden >Adventure Cell Type</option>
+                        <option *ngFor="let actype of adventureCellTypes"  [value]="actype.id">{{actype.type}} </option>
+                    </select>
+                    <span class="validation_msg" *ngIf="f.acType.errors && f.acType.errors.required && isError" >Adventure Cell Type is required</span>   
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="form-label">Season Term <span class="required">*</span></label>
+                    <select name="" id="" formControlName="term" class="form-control" >
+                        <option value="" selected disabled hidden >Season Term</option>
+                        <option *ngFor="let term of seasonTerms" [value]="term.id">{{term.name}} </option>
+                    </select>
+                    <span class="validation_msg" *ngIf="f.term.errors && f.term.errors.required && isError" >Season Term is required</span>   
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="form-label">Year<span class="required">*</span></label>
+                    <input type="text" type="number" [min]="currentYear"  class="form-control" maxlength="4" formControlName="year" placeholder="Year">
+                    <span class="validation_msg" *ngIf="f.year.errors && f.year.errors.required && isError" >Year is required</span>   
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label class="form-label">Description<span class="char-count" > ({{descLength}}/500) </span> <span class="required">*</span></label>
+                    <textarea class="form-control"  (input)="charCount($event,'description')" id="message" formControlName="description" maxlength="500" placeholder="Description (Maximum 500 Characters)"></textarea>
+                    <span class="validation_msg" *ngIf="f.description.errors && f.description.errors.required && isError" >Description is required</span>   
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Document<span class="required">*</span></label>    
+                <input type="file" #inputFile accept=".pdf,.doc,.docx" (change)="onSelectDoc($event)" id="image">
+                <mat-icon *ngIf="docUrl" (click)="openDoc(docUrl)"  class="document_icon">description</mat-icon>
+                <span class="note">Max File Size 50 MB. (Only pdf and doc format.)</span>
+                <span class="validation_msg" *ngIf="!isDoc" >Document is required</span>
+            </div>
+
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="form-label">Status <span class="required">*</span></label>
+                    <select class="form-control" formControlName="status">
+                        <option value="" selected hidden disabled>Status</option>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+                    <span class="validation_msg" *ngIf="f.status.errors && f.status.errors.required && isError" >Status is required</span>   
+                </div>
+            </div>
+
+            <button *ngIf="pTitle == 'Add Instruction'" mat-raised-button (click)="addInstruction()"  >Add Instruction</button>
+            <button *ngIf="pTitle == 'View Instruction'" mat-raised-button (click)="updateInstruction()"  >Update Instruction</button>
+
+        </form>
+    </div>
+</mat-card>

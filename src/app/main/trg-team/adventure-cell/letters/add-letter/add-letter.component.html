@@ -1,0 +1,63 @@
+
+<div class="mat-new">
+    <h4 class="card-heading"><button mat-icon-button (click)="goBack()" ><mat-icon>chevron_left</mat-icon> </button> Adventure Cell <span class="sub-menu1"> > Letters > {{pTitle}} </span>
+        <span class="sub-menu1"> </span>
+    </h4>
+</div>
+<mat-card>
+    <div class="top-br">
+        <form [formGroup]="addLetterForm" >
+            <div class="row">
+
+                <div class="form-group col-md-6">
+                    <label class="form-label">Name<span class="char-count" > ({{nameLength}}/100) </span> <span class="required">*</span></label>
+                    <input type="text" (input)="charCount($event,'name')" formControlName="name" maxlength="100" placeholder="Name (Maximum 100 Characters)" class="form-control">
+                    <span class="validation_msg" *ngIf="f.name.errors && f.name.errors.required && isError" >Name is required</span>   
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="form-label">Adventure Cell Type <span class="required">*</span></label>
+                    <select type="text" formControlName="acType" class="form-control">
+                        <option value="" selected hidden disabled>Adventure Cell Type</option>
+                        <option *ngFor="let a of adventureCellTypes" [value]="a.id">{{a.type}} </option>
+                    </select>
+                    <span class="validation_msg" *ngIf="f.acType.errors && f.acType.errors.required && isError" >Adventure Cell Type is required</span>   
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label class="form-label">Description <span class="char-count" > ({{descLength}}/500) </span><span class="required">*</span></label>
+                    <textarea class="form-control"  (input)="charCount($event,'description')" id="message" formControlName="description" maxlength="500" placeholder="Description (Maximum 500 Characters)"></textarea>
+                    <span class="validation_msg" *ngIf="f.description.errors && f.description.errors.required && isError" >Description is required</span>   
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Document<span class="required">*</span></label>
+                <input type="file" #inputFile   (input)="charCount($event,'description')" accept=".pdf,.doc,.docx" (change)="onSelectDoc($event)" id="image">
+                <a href="javascript:void(0)" *ngIf="docUrl" (click)="openDoc(docUrl)" ><mat-icon  class="document_icon">description</mat-icon></a> 
+                <span class="note">Max File Size 50 MB. (Only pdf and doc format.)</span>
+                <span class="validation_msg" *ngIf="!isDoc" >Document is required</span>
+            </div>
+
+ 
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="form-label">Status<span class="required">*</span></label>
+                    <select class="form-control" formControlName="status">
+                        <option value="" selected hidden disabled>Status</option>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+                    <span class="validation_msg" *ngIf="f.status.errors && f.status.errors.required && isError" >Status is required</span>   
+                </div>
+            </div>
+
+            <button *ngIf="pTitle == 'Add Letter'" mat-raised-button (click)="addLetter()"  >Add Letter</button>
+            <button *ngIf="pTitle == 'View Letter'" mat-raised-button (click)="updateLetter()"  >Update Letter</button>
+
+        </form>
+    </div>
+</mat-card>

@@ -1,0 +1,78 @@
+.btn-set {
+    display: flex;
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
+    justify-content: space-between;
+  }
+  .example-container {
+    float: left;
+    width: 100%;
+  }
+  .btn-set input{margin-right: 15px;}
+  // mat-card {
+  //   margin-top: 20px;
+  //   min-height: 555px;
+  // }
+  .mt-20 {
+    float: left;
+    width: 100%;
+  }
+  .syllabus-card{
+    background-color: transparent;
+    border: none;
+  }
+
+  .head{
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    color: #bb9450;
+    background: #e1e3de;
+    padding: 10px 15px;
+    border-radius: 3px;
+    font-weight: 600;
+  }
+
+  .question{
+      display: flex;
+    // background: rgb(214, 214, 214);
+
+  }
+  .aero-icon.mat-icon{
+    margin: 10px 10px 10px 10px;
+    padding: 10px 10px 10px 10px;
+  }
+
+  .note{
+    font-size: 15px;
+    color: black;
+  }
+
+  
+  .active-paper{
+    background:#bb9450;
+    color: white;
+  }
+  // .nav-item .nav-link.active{
+  //   background:#bb9450;
+  //   color: white;
+  // }
+
+  a:hover{
+    color:brown;
+  }
+
+  li{
+    border-radius: 0.2rem;
+  }
+  .paper-name{
+    color: #bb9450;
+  }
+  .asgnmt{
+    color: #721a0c;
+  }
+  // nav.navbar{
+  //   background:black !important;
+  // }

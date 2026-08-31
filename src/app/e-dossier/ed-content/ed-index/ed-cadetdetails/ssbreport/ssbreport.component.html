@@ -1,0 +1,190 @@
+<div class="container-fluid">
+    <div class="mat-heading">
+        <div id="top-bar" class="">
+          <h2>
+            <button mat-icon-button (click)="goBack()">
+              <mat-icon>chevron_left</mat-icon>
+            </button>
+            <span class="sub-menu1">
+             E-Dossier > Assessment > SSB-Report</span></h2>
+      </div>
+      </div>
+      <div class="mat-card mat-focus-indicator">
+      <div class="service-id mb-2 mx-0">
+        <!-- <div class="input_id col-md-6">
+            <b> Service Id :</b> <input type="text" disabled id="clubServiceID" class="form-control mt-2">
+        </div>
+        <div class="input_id col-md-6">
+            <b> Name :</b> <input type="text" disabled id="clubName" class="form-control mt-2">
+        </div> -->
+        <form class="ng-untouched ng-pristine ng-invalid">
+          <div class="row">
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="rank">Ima No.</label>
+                <input placeholder="No"  type="text" disabled id="ssbID" class="form-control ng-untouched ng-pristine ng-invalid">
+              </div>
+            </div>  
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="rank">Rank</label>
+                <input placeholder="Rank"  type="text" disabled id="ssbRk" class="form-control ng-untouched ng-pristine ng-invalid">
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="rank">Name</label>
+                <input placeholder="Name"  type="text" disabled id="ssbName" class="form-control ng-untouched ng-pristine ng-invalid">
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="rank">Term</label>
+                <input placeholder="Term"  type="text" disabled id="ssbTermName" class="form-control ng-untouched ng-pristine ng-invalid">
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="rank">Bn</label>
+                <input placeholder="Bn"  type="text" disabled id="ssbBn" class="form-control ng-untouched ng-pristine ng-invalid">
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="rank">Coy</label>
+                <input placeholder="Coy"  type="text" disabled id="ssbComp" class="form-control ng-untouched ng-pristine ng-invalid">
+              </div>
+            </div>
+            
+          </div>
+        </form>
+      </div>
+      </div>
+      <div class="mat-card mat-focus-indicator">
+      <div class="main-row">
+        <!-- <div class="box-shadow">
+            <h4 class="card-heading">
+                <span class="sub-menu1"> SSB</span>
+            </h4>
+        </div> -->
+        <form [formGroup]="ssbreportForm">
+
+            <div class="mat-card">
+                <h4 class="red-heading">Traits</h4>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="rank">Positive<span class="required">*</span></label>
+                            <textarea class="form-control" formControlName="positiveTraits" 
+                            [ngClass]="{ 'is-invalid': submitted && f.positiveTraits.errors }"></textarea>
+                            <span class="val_msg" *ngIf="f.positiveTraits.errors && f.positiveTraits.errors.required && isError" >Please Enter Positive</span>
+                          
+                            <!-- <div *ngIf="submitted && f.positiveTraits.errors" class="invalid-feedback">
+                              <div *ngIf="f.positiveTraits.errors.required">Email is required</div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="rank">Negative<span class="required">*</span></label>
+                            <textarea class="form-control" formControlName="negativeTraits"></textarea>
+                            <span class="val_msg" *ngIf="f.negativeTraits.errors && f.negativeTraits.errors.required && isError" >Please Enter Negative</span>
+                          </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="mat-card">
+                <table class="tg sports">
+                    <thead>
+                        <tr>
+                            <th class="tg-0lax">OS</th>
+                            <th class="tg-0lax">WAA</th>
+                            <th class="tg-0lax">AA</th>
+                            <th class="tg-0lax">JAA</th>
+                            <th class="tg-0lax">HA</th>
+                            <th class="tg-0lax">LA</th>
+                            <th class="tg-0lax">JBA</th>
+                            <th class="tg-0lax">BA</th>
+                            <th class="tg-0lax">WBA</th>
+                            <th class="tg-0lax">POOR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="tg-0lax"><input type="radio" formControlName="avgResult"  name="avgResult" checked="true"  value="OS" (change)="onChange($event)"></td>
+                            <td class="tg-0lax"><input type="radio"  formControlName="avgResult" name="avgResult"  value="WAA" (change)="onChange($event)"></td>
+                            <td class="tg-0lax"><input type="radio"  formControlName="avgResult" name="avgResult" value="AA" (change)="onChange($event)"></td>
+                            <td class="tg-0lax"><input type="radio"  formControlName="avgResult" name="avgResult" value="JAA" (change)="onChange($event)"></td>
+                            <td class="tg-0lax"><input type="radio"  formControlName="avgResult" name="avgResult" value="HA" (change)="onChange($event)"></td>
+                            <td class="tg-0lax"><input type="radio"  formControlName="avgResult" name="avgResult" value="LA" (change)="onChange($event)"></td>
+                            <td class="tg-0lax"><input type="radio"  formControlName="avgResult" name="avgResult" value="JBA" (change)="onChange($event)"></td>
+                            <td class="tg-0lax"><input type="radio"  formControlName="avgResult" name="avgResult" value="BA" (change)="onChange($event)"></td>
+                            <td class="tg-0lax"><input type="radio"  formControlName="avgResult" name="avgResult" value="WBA" (change)="onChange($event)"></td>
+                            <td class="tg-0lax"><input type="radio"  formControlName="avgResult" name="avgResult" value="POOR" (change)="onChange($event)"></td>
+                        </tr>
+                    </tbody>
+                    <span class="val_msg" *ngIf="f.avgResult.errors && f.avgResult.errors.required && isError" >Please Select AVERAGE RESULT</span>
+                          
+                </table>
+                <p class="txt-cc"><b>Note: </b> OS - OUTSTANDING, WAA - WAY ABOVE AVERAGE, AA - ABOVE AVERAGE, JAA - JUST ABOVE AVERAGE, HA - HIGH AVERAGE, LA - LOW AVERAGE, JBA - JUST BELOW AVERAGE, BA - BELOW AVERAGE, WBA - WAY BELOW AVERAGE</p>
+            </div>
+            <div class="mat-card">
+                <h4 class="red-heading">DETAILS OF PABT </h4>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="rank">Location<span class="required">*</span></label>
+                            <input type="text" formControlName="location" class="form-control">
+                            <span class="val_msg" *ngIf="f.location.errors && f.location.errors.required && isError" >Please Enter Location</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="rank">Date<span class="required">*</span></label>
+                            <input type="date" id="date" formControlName="date" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="rank">Result<span class="required">*</span></label>
+                            <textarea class="form-control" formControlName="result"></textarea>
+                            <span class="val_msg" *ngIf="f.result.errors && f.result.errors.required && isError" >Please Enter Result</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <h4 class="red-heading main-red-heading">NDA/ ACC REPORT</h4>
+            <div class="mat-card">
+                <h4 class="red-heading">Highlights</h4>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="rank">Achievements/ Strong Points  <span class="required">*</span></label>
+                            <textarea class="form-control" formControlName="achivements"></textarea>
+                            <span class="val_msg" *ngIf="f.achivements.errors && f.achivements.errors.required && isError" >Please Enter Achievements</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="rank">Weakness<span class="required">*</span></label>
+                            <textarea class="form-control" formControlName="weakness"></textarea>
+                            <span class="val_msg" *ngIf="f.weakness.errors && f.weakness.errors.required && isError" >Please Enter Weakness</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+        <button mat-raised-button class="pull-right" type="submit" (click)="onSubmit()">Submit</button>
+        <!-- <button mat-raised-button type="submit" *ngIf='id!=0' (click)="onUpdate()">Update</button> -->
+
+      </div>
+      </div>
+</div>

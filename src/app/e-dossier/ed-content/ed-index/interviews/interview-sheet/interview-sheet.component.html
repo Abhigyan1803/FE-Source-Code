@@ -1,0 +1,151 @@
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="mat-heading">
+        <div id="top-bar" class="">
+          <h2 class="backbtn">
+            <button mat-icon-button (click)="goBack()">
+              <mat-icon>chevron_left</mat-icon>
+            </button> E-Dossier <span class="sub-menu1">
+            > Interviews > INTERVIEW SHEET</span></h2>
+      </div>
+      </div>
+        
+        <div class="interview-sheet">
+            <div class="mat-card mat-focus-indicator">
+                <!-- <div class="ng-star-inserted">
+                    <div class="mat-new">
+                        <h4 class="card-heading">INTERVIEW SHEET</h4>
+                    </div>
+                </div> -->
+                <form class="ng-untouched ng-pristine ng-invalid">
+                    <div class="row">
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="rank">IMA No.</label>
+                          <input placeholder="No"  type="text" disabled id="IcadetServiceId" class="form-control ng-untouched ng-pristine ng-invalid">
+                        </div>
+                      </div>  
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="rank">Rank</label>
+                          <input placeholder="Rank"  type="text" disabled id="IcadetRank" class="form-control ng-untouched ng-pristine ng-invalid">
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="rank">Name</label>
+                          <input placeholder="Name"  type="text" disabled id="IcadetName" class="form-control ng-untouched ng-pristine ng-invalid">
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="rank">Term</label>
+                          <input placeholder="Term"  type="text" disabled id="ItermName" class="form-control ng-untouched ng-pristine ng-invalid">
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="rank">Bn</label>
+                          <input placeholder="Bn"  type="text" disabled id="IbattalionName" class="form-control ng-untouched ng-pristine ng-invalid">
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="rank">Coy</label>
+                          <input placeholder="Coy"  type="text" disabled id="IcompanyName" class="form-control ng-untouched ng-pristine ng-invalid">
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </form>
+                <table class="tg">
+                <thead>
+                  <tr>
+                    <th class="tg-9fba" rowspan="2"><span style="font-weight:700;font-style:normal;text-decoration:none;color:#000">Date</span></th>
+                    <th class="tg-719i"><span style="font-weight:700;font-style:normal;text-decoration:none;color:#000">Details</span></th>
+                    <th class="tg-54o0" rowspan="2">GC Initials with date</th>
+                    <th class="tg-9fba" rowspan="2"><span style="font-weight:700;font-style:normal;text-decoration:none;color:#000">Action</span></th>
+                  </tr>
+                  <tr>
+                      <th class="tg-54o0">
+                          INITIAL INTERVIEW : PL CDR
+                      </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr [formGroup]="interviewFormI">
+                    
+                    <td class="tg-0lax"><input type="date" max="{{maxDate}}" required formControlName="appdate" class="form-control"></td>
+
+                    <td class="tg-0lax"><span style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">1.</span>	<span style="font-weight:700;font-style:normal;text-decoration:underline;color:#000;background-color:transparent">Appearance, Bg and  Comn Skills</span><span class="mb-2" style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent"> :</span><br><textarea  placeholder="" maxlength="1500"
+                        formControlName="appearence" (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true" class="form-control ng-untouched ng-pristine ng-invalid mt-2" rows="5"></textarea></td>
+                    <td class="tg-0lax"><input type="text" formControlName="appGcInitialsWithDate" disabled class="form-control"></td>
+                    <td class="tg-0lax text-center"><button class="btn btn-color" (click)="addClubsubmitI('appearence')">Submit</button></td>
+                  </tr>
+
+
+                  <tr [formGroup]="interviewFormII">
+                       <td class="tg-0lax"><input type="date" max="{{maxDate}}" formControlName="famDate" class="form-control"></td> 
+                     <td class="tg-0lax"><span style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">2.</span>	<span style="font-weight:700;font-style:normal;text-decoration:underline;color:#000;background-color:transparent">Family Background</span><span class="mb-2" style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent"> :<br><textarea  placeholder="" maxlength="1500"
+                        formControlName="familyback" (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true" class="form-control ng-untouched ng-pristine ng-invalid mt-2" rows="5"></textarea></span></td>
+                     <td class="tg-0lax"><input type="text" formControlName="famiGcInitialsWithDate" disabled class="form-control"></td>
+                    <td class="tg-0lax text-center"><button class="btn btn-color" (click)="addClubsubmitI('familyback')">Submit</button></td>
+                  </tr>
+
+
+                  <tr [formGroup]="interviewFormIII">
+                       <td class="tg-0lax"><input type="date" max="{{maxDate}}" formControlName="workDate" class="form-control"></td>  
+                     <td class="tg-0lax"><span style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">3.</span>	<span style="font-weight:700;font-style:normal;text-decoration:underline;color:#000;background-color:transparent">Work Experience (if any</span><span class="mb-2" style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">):</span><br><textarea  placeholder="" maxlength="1500"
+                        formControlName="workExp" (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true" class="mt-2 form-control ng-untouched ng-pristine ng-invalid" rows="5"></textarea></td>
+                     <td class="tg-0lax"><input type="text" formControlName="workGcInitialsWithDate" disabled class="form-control"></td>
+                    <td class="tg-0lax text-center"><button class="btn btn-color" (click)="addClubsubmitI('workExp')">Submit</button></td>
+                  </tr>
+
+
+                  <tr [formGroup]="interviewFormIV">
+                      <td class="tg-0lax"><input type="date" max="{{maxDate}}" formControlName="iniDate" class="form-control"></td>
+                      <td class="tg-0lax"><span style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">4.</span>	<span style="font-weight:700;font-style:normal;text-decoration:underline;color:#000;background-color:transparent">Initial Assessment</span><span class="mb-2" style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">:<textarea  placeholder="" maxlength="1500"
+                        formControlName="initialAss" (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true" class="mt-2 form-control ng-untouched ng-pristine ng-invalid" rows="5"></textarea></span>
+                      </td>
+                       <td class="tg-0lax"><input type="text" formControlName="iniGcInitialsWithDate" disabled class="form-control"></td>
+                    <td class="tg-0lax text-center"><button class="btn btn-color" (click)="addClubsubmitI('initialAss')">Submit</button></td>
+                      </tr>
+
+
+                      <tr [formGroup]="interviewFormV">
+                       <td class="tg-0lax"><input type="date" max="{{maxDate}}" formControlName="misDate" class="form-control"></td>
+                      <td class="tg-0lax"><span style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">5.</span>	<span style="font-weight:700;font-style:normal;text-decoration:underline;color:#000;background-color:transparent">Misc/Other Relevant Info</span><span class="mb-2" style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">:<br><textarea  placeholder="" maxlength="1500"
+                        formControlName="misc" (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true" class="mt-2 form-control ng-untouched ng-pristine ng-invalid" rows="5"></textarea></span>
+                      </td>	
+                       <td class="tg-0lax"><input type="text" formControlName="misGcInitialsWithDate" disabled class="form-control"></td>
+                    <td class="tg-0lax text-center"><button class="btn btn-color" (click)="addClubsubmitI('misc')">Submit</button></td>
+                      </tr>
+
+
+                      <tr [formGroup]="interviewFormVI">
+                          <td class="tg-0lax"><input type="date" max="{{maxDate}}" formControlName="anyDate" class="form-control"></td>
+                          <td class="tg-0lax"><span style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">6.</span>	<span style="font-weight:700;font-style:normal;text-decoration:underline;color:#000;background-color:transparent">Any Pts From the GC</span><span class="mb-2" style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">:<br><textarea  placeholder="" maxlength="1500"
+                            formControlName="anyPts" (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true" class="mt-2 form-control ng-untouched ng-pristine ng-invalid" rows="5"></textarea></span>
+                          </td>
+                       <td class="tg-0lax"><input type="text" formControlName="anyGcInitialsWithDate" disabled class="form-control"></td>
+                    <td class="tg-0lax text-center"><button class="btn btn-color" (click)="addClubsubmitI('anyPts')">Submit</button></td>
+                      </tr>
+
+                      
+                      <tr [formGroup]="interviewFormVII">
+                      <td class="tg-0lax"><input type="date" max="{{maxDate}}" formControlName="ihavDate" class="form-control"></td>	
+                      <td class="tg-0lax"><span style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">7.</span>	<span class="mb-2" style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">I have explained the trg curriculum, SOPs &amp;TrgInstrs being followed at IMA: <br><textarea  placeholder="" maxlength="1500"
+                        formControlName="iHaveExp" (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true" class="form-control ng-untouched ng-pristine ng-invalid mt-2" rows="5"></textarea></span></td>
+                    <td class="tg-0lax"><input type="text" formControlName="ihavGcInitialsWithDate" disabled class="form-control"></td>
+                    <td class="tg-0lax text-center"><button class="btn btn-color" (click)="addClubsubmitI('iHaveExp')">Submit</button></td>
+
+                  </tr>
+                </tbody>
+                </table>
+                <!-- <div class="text-right">
+                  <button class="btn btn-color mt-2" (click)="addClubsubmitI()">Submit</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

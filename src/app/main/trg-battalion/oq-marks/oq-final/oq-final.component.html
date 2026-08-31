@@ -1,0 +1,312 @@
+
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="mat-heading">
+        <div id="top-bar" class="">
+            <h2>TRG BATTALION <span class="sub-menu1">
+              > OQ Final MARKS > {{term}}</span></h2>
+        </div>
+      </div>
+      <div class="academics">
+        <div class="mat-card mat-focus-indicator">
+          
+          <form class="ng-untouched ng-pristine ng-invalid">
+            <div class="row">
+              <div class="form-group col-md-3">
+                <label for="battalion">Battalion</label>
+                <select id="battalion" name="battalion" (change)="battalionSelected($event.target.value)" class="form-control">
+                  <option value="0" selected>Select</option>
+                  <option *ngFor="let b of battalionList" [value]="b.shortName"> {{b.shortName}}</option>
+                </select>
+              </div>
+              <div class="form-group col-md-3">
+                <label for="company">Company</label>
+                <select id="company" class="form-control" name="company"  (change)="companySelected($event.target.value)">
+                  <option value="0" selected>Select</option>
+                  <option *ngFor="let c of companyList" [value]="c.name"> {{c.name}}</option>
+                </select>
+              </div>
+  
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="rank">Search</label>
+                  <input placeholder="IMA No." formcontrolname="" type="text" name="serviceid" [(ngModel)]="serviceid" (keyup)="serviceSearch($event.target.value)"
+                    class="form-control ng-untouched ng-pristine ng-invalid">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <label>&nbsp;</label>
+                <button type="button" mat-raised-button (click)="edSearch()">Search</button>
+                <!-- <button mat-raised-button (click)="clearSearch()" >Clear</button> -->
+              </div>
+            </div>
+          </form>
+  
+          <form  class="oq-matrix-form">
+            <table class="tg">
+              <thead>
+                <tr>
+                  <th class="tg-qnnc" rowspan="3">S. No.</th>
+                  <th class="tg-qnnc" rowspan="3">IMA No.</th>
+                  <th class="tg-qnnc" rowspan="3">Course</th>
+                  <th class="tg-qnnc" rowspan="3">Name</th>
+                  <th class="tg-qnnc" rowspan="3">Rank</th>
+                  <th class="tg-qnnc" rowspan="3">Bn/Coy</th>
+                  <th class="tg-qnnc" colspan="42">Subjects</th>
+  
+                </tr>
+                <tr>
+                  <th class="tg-qnnc" colspan="11">Pl Cdr</th>
+                  <th class="tg-qnnc" colspan="11">Coy Cdr</th>
+                  <th class="tg-qnnc" colspan="11">Bn Cdr</th>
+                </tr>
+                <tr>
+                  <th colspan="1" style="width: 11%;" *ngFor="let subject of leaderShipSubject" class="tg-qnnc">{{subject.subjectName}}<br>Marks
+                    ({{subject.totalMarksPlCdr}})</th>
+  
+                  <th class="tg-qnnc" rowspan="3">Total<br>Marks
+                    (140)</th>
+                  <th colspan="1" style="width: 11%;" *ngFor="let subject of leaderShipSubject" class="tg-qnnc">{{subject.subjectName}}<br>Marks
+                    ({{subject.totalMarksCoyCdr}})</th>
+  
+                  <th class="tg-qnnc" rowspan="3">Total<br>Marks
+                    (90)</th>
+                  <th colspan="1" style="width: 11%;" *ngFor="let subject of leaderShipSubject" class="tg-qnnc">{{subject.subjectName}}<br>Marks
+                    ({{subject.totalMarksBnCdr}})</th>
+  
+                  <th class="tg-qnnc" rowspan="3">Total<br>Marks
+                    (70)</th>
+                </tr>
+              
+  
+              </thead>
+              <tbody>
+  
+                <tr *ngFor="let leadership of oqMarksList; let leadershipIndex = index">
+                  <td class="tg-c3ow">{{ leadershipIndex + 1}}</td>
+                  <td class="tg-c3ow">{{ leadership.serviceId }}</td>
+                  <td class="tg-0pky">{{ leadership.course }}</td>
+                  <td class="tg-c3ow">{{ leadership.name }}</td>
+                  <!-- <td class="tg-0pky">{{ leadership.nationality }}</td> -->
+                  <td class="tg-c3ow">
+                    <p  *ngIf="leadership.nationality=='India'">GC</p>
+                    <p  *ngIf="leadership.nationality !='India'">FGC</p>
+                  </td>
+                  <td class="tg-c3ow">{{leadership.battalian}}/{{ leadership.company}}</td>
+                  <td class="tg-c3ow"  *ngFor="let leadershipSubject of leadership.oqMarksResult.oqSubjectResult; let leadershipSubjectIndex = index">
+                    <div class="d-flex">
+                      <ng-container>
+                        <input type="text" class="form-control d-inline" value="{{leadershipSubject.obtainedMarksPlCdr}}"
+                          (focus)="onFocusEvent1($event.target.value,leadershipIndex)"
+                          min="0" (keypress)="keyPress($event)"
+                          on-focusout="onChange1($event,$event.target.value, leadershipSubject.totalMarksPlCdr, leadershipSubject.subjectId, leadershipIndex, leadershipSubjectIndex)">
+                      </ng-container>
+                      
+                    </div>
+                  </td>
+  
+                  
+                  <td class="tg-0pky">
+                    <input type="text" class="form-control" disabled id="{{leadershipIndex}}"
+                      value="{{ leadership.oqMarksResult.obtainedMarksPlCdr }}">
+                  </td>
+  
+                  <td class="tg-c3ow"  *ngFor="let leadershipSubject of leadership.oqMarksResult.oqSubjectResult; let leadershipSubjectIndex = index">
+                    <div class="d-flex">
+                  <ng-container>
+                    <input type="text" class="form-control d-inline" value="{{leadershipSubject.obtainedMarksCoyCdr}}"
+                      (focus)="onFocusEvent2($event.target.value,leadershipIndex)"
+                      min="0" (keypress)="keyPress($event)"
+                      on-focusout="onChange2($event,$event.target.value, leadershipSubject.totalMarksCoyCdr, leadershipSubject.subjectId, leadershipIndex, leadershipSubjectIndex)">
+                  </ng-container>
+                    </div>
+                  </td>
+  
+                  <td class="tg-0pky">
+                    <input type="text" class="form-control" disabled id="obtotal_{{leadershipIndex}}"
+                      value="{{ leadership.oqMarksResult.obtainedMarksCoyCdr }}">
+                  </td>
+  
+                  <td class="tg-c3ow"  *ngFor="let leadershipSubject of leadership.oqMarksResult.oqSubjectResult; let leadershipSubjectIndex = index">
+                    <div class="d-flex">
+                      <ng-container>
+                        <input type="text" class="form-control d-inline" value="{{leadershipSubject.obtainedMarksBnCdr}}"
+                          (focus)="onFocusEvent3($event.target.value,leadershipIndex)"
+                          min="0" (keypress)="keyPress($event)"
+                          on-focusout="onChange3($event,$event.target.value, leadershipSubject.totalMarksBnCdr, leadershipSubject.subjectId, leadershipIndex, leadershipSubjectIndex)">
+                      </ng-container>
+                    </div>
+                  </td>
+  
+                  <td class="tg-0pky">
+                    <input type="text" class="form-control" disabled id="Bntotal_{{leadershipIndex}}"
+                      value="{{ leadership.oqMarksResult.obtainedMarksBnCdr }}">
+                  </td>
+  
+  
+                  <div *ngIf="!leadership.oqMarksResult">
+                    <div *ngFor="let size of leaderShipSubject;let ser=index;">
+                      <td class="tg-c3ow">
+                        <input type="text" class="form-control" formControlName="obtainedMarks">
+                      </td>
+                      <td *ngIf="ser+1 == leaderShipSubject.length" class="tg-c3ow">{{obtainedTotalMarks}}</td>
+                    </div>
+                  </div>
+                </tr>
+  
+                <tr>
+                  <td class="mat-cell" style="text-align: center;" *ngIf="! oqMarksList?.length" colspan="39"><div >No Record Found</div></td>
+               </tr>
+  
+              </tbody>
+            </table>
+          </form>
+          <div class="">
+            <mat-paginator #myPaginator [length]="resultsLength" [pageIndex]="currentPage" [pageSize]="pageSize"
+            [pageSizeOptions]="[50]" (page)="pageChanged($event)" aria-label="Select page" showFirstLastButtons>
+          </mat-paginator>
+  
+          </div>
+          <div class="btn-sec mt-3 text-right">
+            <button type="button" disabled mat-raised-button (click)="openPopup()" *ngIf="! oqMarksList?.length">Preview</button>
+            <button type="button" mat-raised-button (click)="openPopup()" *ngIf="oqMarksList?.length > 0">Preview</button>
+            <!-- ////dshsj -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable custom-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Review</h5>
+        </div>
+        <div class="modal-body">
+          <table class="tg">
+            <thead>
+              <tr>
+                <th class="tg-qnnc" rowspan="3">S. No.</th>
+                <th class="tg-qnnc" rowspan="3">IMA No.</th>
+                <th class="tg-qnnc" rowspan="3">Course</th>
+                <th class="tg-qnnc" rowspan="3">Name</th>
+                <th class="tg-qnnc" rowspan="3">Rank</th>
+                <th class="tg-qnnc" rowspan="3">Bn/Coy</th>
+                <th class="tg-qnnc" colspan="42">Subjects</th>
+  
+              </tr>
+              <tr>
+                <th class="tg-qnnc" colspan="11">Pl Cdr</th>
+                <th class="tg-qnnc" colspan="11">Coy Cdr</th>
+                <th class="tg-qnnc" colspan="11">Bn Cdr</th>
+              </tr>
+              <tr>
+                <th colspan="1" style="width: 11%;" *ngFor="let subject of leaderShipSubject" class="tg-qnnc">{{subject.subjectName}}<br>Marks
+                  ({{subject.totalMarksPlCdr}})</th>
+
+                <th class="tg-qnnc" rowspan="3">Total<br>Marks
+                  (140)</th>
+                <th colspan="1" style="width: 11%;" *ngFor="let subject of leaderShipSubject" class="tg-qnnc">{{subject.subjectName}}<br>Marks
+                  ({{subject.totalMarksCoyCdr}})</th>
+
+                <th class="tg-qnnc" rowspan="3">Total<br>Marks
+                  (90)</th>
+                <th colspan="1" style="width: 11%;" *ngFor="let subject of leaderShipSubject" class="tg-qnnc">{{subject.subjectName}}<br>Marks
+                  ({{subject.totalMarksBnCdr}})</th>
+
+                <th class="tg-qnnc" rowspan="3">Total<br>Marks
+                  (70)</th>
+              </tr>
+            
+  
+            </thead>
+            <tbody>
+  
+              <tr *ngFor="let leadership of oqMarksList; let leadershipIndex = index">
+                <td class="tg-c3ow">{{ leadershipIndex + 1}}</td>
+                <td class="tg-c3ow">{{ leadership.serviceId }}</td>
+                <td class="tg-0pky">{{ leadership.course }}</td>
+                <td class="tg-c3ow">{{ leadership.name }}</td>
+                <!-- <td class="tg-0pky">{{ leadership.nationality }}</td> -->
+                <td class="tg-c3ow">
+                  <p  *ngIf="leadership.nationality=='India'">GC</p>
+                  <p  *ngIf="leadership.nationality !='India'">FGC</p>
+                </td>
+                <td class="tg-c3ow">{{leadership.battalian}}/{{ leadership.company}}</td>
+                <td class="tg-c3ow"  *ngFor="let leadershipSubject of leadership.oqMarksResult.oqSubjectResult; let leadershipSubjectIndex = index">
+                  <div class="d-flex">
+                    <ng-container>
+                      <input type="text" class="form-control d-inline" disabled value="{{leadershipSubject.obtainedMarksPlCdr}}"
+                        (focus)="onFocusEvent1($event.target.value,leadershipIndex)"
+                        min="0" (keypress)="keyPress($event)"
+                        on-focusout="onChange1($event.target.value, leadershipSubject.totalMarksPlCdr, leadershipSubject.subjectId, leadershipIndex, leadershipSubjectIndex)">
+                    </ng-container>
+                    
+                  </div>
+                </td>
+  
+                
+                <td class="tg-0pky">
+                  <input type="text" class="form-control" disabled id="{{leadershipIndex}}"
+                    value="{{ leadership.oqMarksResult.obtainedMarksPlCdr }}">
+                </td>
+  
+                <td class="tg-c3ow"  *ngFor="let leadershipSubject of leadership.oqMarksResult.oqSubjectResult; let leadershipSubjectIndex = index">
+                  <div class="d-flex">
+                <ng-container>
+                  <input type="text" class="form-control d-inline" disabled value="{{leadershipSubject.obtainedMarksCoyCdr}}"
+                    (focus)="onFocusEvent2($event.target.value,leadershipIndex)"
+                    min="0" (keypress)="keyPress($event)"
+                    on-focusout="onChange2($event.target.value, leadershipSubject.totalMarksCoyCdr, leadershipSubject.subjectId, leadershipIndex, leadershipSubjectIndex)">
+                </ng-container>
+                  </div>
+                </td>
+  
+                <td class="tg-0pky">
+                  <input type="text" class="form-control" disabled id="obtotal_{{leadershipIndex}}"
+                    value="{{ leadership.oqMarksResult.obtainedMarksCoyCdr }}">
+                </td>
+  
+                <td class="tg-c3ow"  *ngFor="let leadershipSubject of leadership.oqMarksResult.oqSubjectResult; let leadershipSubjectIndex = index">
+                  <div class="d-flex">
+                    <ng-container>
+                      <input type="text" class="form-control d-inline" disabled value="{{leadershipSubject.obtainedMarksBnCdr}}"
+                        (focus)="onFocusEvent3($event.target.value,leadershipIndex)"
+                        min="0" (keypress)="keyPress($event)"
+                        on-focusout="onChange3($event.target.value, leadershipSubject.totalMarksBnCdr, leadershipSubject.subjectId, leadershipIndex, leadershipSubjectIndex)">
+                    </ng-container>
+                  </div>
+                </td>
+  
+                <td class="tg-0pky">
+                  <input type="text" class="form-control" disabled id="Bntotal_{{leadershipIndex}}"
+                    value="{{ leadership.oqMarksResult.obtainedMarksBnCdr }}">
+                </td>
+  
+  
+                <div *ngIf="!leadership.oqMarksResult">
+                  <div *ngFor="let size of leaderShipSubject;let ser=index;">
+                    <td class="tg-c3ow">
+                      <input type="text" class="form-control" formControlName="obtainedMarks">
+                    </td>
+                    <td *ngIf="ser+1 == leaderShipSubject.length" class="tg-c3ow">{{obtainedTotalMarks}}</td>
+                  </div>
+                </div>
+              </tr>
+              <tr>
+                <td class="mat-cell" style="text-align: center;" *ngIf="! oqMarksList?.length" colspan="39"><div >No Record Found</div></td>
+             </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button mat-raised-button type="button" class="btn-dark" (click)="closePopup()">Back</button>
+          <button type="button" mat-raised-button (click)="confirm()">Submit</button>
+  
+        </div>
+      </div>
+    </div>
+  </div>

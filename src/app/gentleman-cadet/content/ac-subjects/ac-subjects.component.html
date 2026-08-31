@@ -1,0 +1,63 @@
+<div class="mt-20">
+    <!-- <div class="mat-new">
+        <h4 class="card-heading">Academic Subjects </h4>
+    </div> -->
+
+    <mat-drawer-container class="example-container" autosize>
+        
+        <mat-drawer #drawer opened class="example-sidenav" mode="side" class="sidbar">
+
+   
+            <mat-nav-list >
+                <mat-list-item *ngFor="let item of componentsList;let i=index"  routerLinkActive="active-link" >
+
+                    <a *ngIf="item.type == 'link'" class="gene-relative" mat-ripple routerLinkActive="active-link"
+                     href="javascript:void(0)" [routerLink]="[item.link]" >
+                           <div class="link-name">
+                            {{item.name}}
+                           </div>
+                    </a>
+                
+                    <mat-divider></mat-divider>
+
+
+                </mat-list-item>
+
+            </mat-nav-list>
+
+
+
+
+        </mat-drawer>
+        <!-- <div class="example-sidenav-content">
+            <button mat-icon-button (click)="drawer.toggle()">
+                <mat-icon *ngIf="drawer.opened">
+                    navigate_before
+                </mat-icon>
+                <mat-icon *ngIf="!drawer.opened">
+                    navigate_next
+                </mat-icon>
+            </button>
+        </div> -->
+        <div class="mat-new">
+            <!-- <div class="example-sidenav-content"> -->
+                
+                <h4 class="card-heading">
+                    <button mat-icon-button (click)="drawer.toggle()">
+                        <mat-icon >
+                            menu
+                        </mat-icon>
+                    </button>
+                    Academic Subjects </h4>
+
+            <!-- </div> -->
+        </div> 
+            <div>
+                <router-outlet></router-outlet>
+            </div>
+        
+    </mat-drawer-container>
+
+
+    <!-- <mat-card></mat-card> -->
+</div>

@@ -1,0 +1,59 @@
+<div class="mat-new">
+    <h4 class="card-heading"><button mat-icon-button (click)="goBack()" ><mat-icon>chevron_left</mat-icon> </button> Adventure Cell <span class="sub-menu1"> > Transport Demand > {{title}} </span>
+        <span class="sub-menu1"> </span>
+    </h4>
+</div>
+<mat-card>
+    <div class="top-br">
+        <form [formGroup]="addTransportForm">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="form-label">Transport Name <span class="char-count" > ({{nameLength}}/100) </span>  <span class="required">*</span></label>
+                    <input type="text" (input)="charCount($event,'name')" formControlName="name" maxlength="100" placeholder="Transport Name"
+                        class="form-control">
+                    <span class="validation_msg" *ngIf="f.name.errors && f.name.errors.required && isError">Transport Name is
+                        required</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label class="form-label">Description <span class="char-count" > ({{descLength}}/500) </span>  <span class="required">*</span></label>
+                    <textarea class="form-control" id="message"  (input)="charCount($event,'description')" formControlName="description" maxlength="500"
+                        placeholder="Description (Maximum 500 Characters)"></textarea>
+                    <span class="validation_msg" *ngIf="f.description.errors && f.description.errors.required && isError">Description  is
+                        required</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label class="form-label">Document <span class="required">*</span></label>
+                    <input type="file" #inputFile accept=".pdf,.doc,.docx" (change)="onSelectDoc($event)" id="image">
+                    <mat-icon class="document_icon" *ngIf="docUrl" (click)="openDoc(docUrl)">description</mat-icon>
+                    <span class="note">Max File Size 5 MB. (Only pdf and doc format.)</span>
+                    <span class="validation_msg" *ngIf="!isDoc" >Document is required</span>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="form-label">Status<span class="required">*</span></label>
+                    <select class="form-control" formControlName="status">
+                        <option value="" selected hidden disabled>Status</option>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+                    <span class="validation_msg" *ngIf="f.status.errors && f.status.errors.required && isError" >Status is required</span>   
+                </div>
+            </div>
+
+            <button *ngIf="title == 'Add Transport Demand'" mat-raised-button (click)="submit()"
+                >Add Transport Demand</button>
+            <button *ngIf="title == 'View Transport Demand'" mat-raised-button (click)="updateTransport()"
+                >Update Transport Demand</button>
+
+        </form>
+    </div>
+</mat-card>

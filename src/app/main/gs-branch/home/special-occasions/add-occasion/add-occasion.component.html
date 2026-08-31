@@ -1,0 +1,136 @@
+<div class="mat-new">
+    <h4 class="card-heading">
+        <button mat-icon-button (click)="goBack()">
+            <mat-icon>chevron_left</mat-icon>
+        </button> Home <span class="sub-menu1"> > Special Occasions </span> <span class="sub-menu1"> >
+            {{pTitle}}</span>
+    </h4>
+</div>
+<mat-card>
+    <div class="top-br">
+        <form [formGroup]="addOccasionForm">
+
+            <div class="row">
+
+                <div class="form-group col-md-6">
+                    <label for="officerRank">Rank<span class="required">*</span></label>
+                    <input id="officerRank" type="text" class="form-control" maxlength="100"
+                        formControlName="officerRank" placeholder="Officer's Rank">
+                    <span class="validation_msg"
+                        *ngIf="f.officerRank.errors && f.officerRank.errors.required && isError">Please Enter
+                        Rank</span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="officerName">Name<span class="required">*</span></label>
+                    <input id="officerName" type="text" class="form-control" maxlength="100"
+                        formControlName="officerName" placeholder="Officer's Name">
+                    <span class="validation_msg"
+                        *ngIf="f.officerName.errors && f.officerName.errors.required && isError">Please Enter
+                        Name</span>
+                </div>
+                </div>
+
+            <div class="row">
+
+                <div class="form-group col-md-6">
+                    <label for="department">Department<span class="required">*</span></label>
+                    <input id="department" type="text" class="form-control" maxlength="100" formControlName="department"
+                        placeholder="Officer's Department Name">
+                    <span class="validation_msg" *ngIf="f.department.errors && f.department.errors.required && isError">Please Enter
+                       Department Name</span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="officerDOB">DOB of Officer<span class="required">*</span></label>
+                    <input id="officerDOB" type="date" class="form-control" formControlName="officerDOB"  (change)="officerDOBSelected($event)" max="{{Date}}">
+                    <span class="validation_msg"
+                        *ngIf="f.officerDOB.errors && f.officerDOB.errors.required && isError">Please Enter
+                        Date of Birth of Officer</span>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="form-group col-md-6">
+                    <label for="spouseName">Spouse Name</label>
+                    <input id="spouseName" type="text" class="form-control" maxlength="100" formControlName="spouseName"
+                        placeholder="Please Add Mr. or Mrs. before Name">
+                    <!-- <span class="validation_msg" *ngIf="f.spouseName.errors && f.spouseName.errors.required && isError">Please
+                        Enter Email Address</span> -->
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="relation">Relation</label>
+                    <select id="relation" type="text" class="form-control" formControlName="relation">
+                        <option value="" selected hidden disabled>Select</option>
+                        <option *ngFor="let r of relations" [value]="r">{{r}} </option>
+                    </select>
+                    <!-- <span class="validation_msg"
+                        *ngIf="f.relation.errors && f.relation.errors.required && isError">Please Enter Country
+                        Code</span> -->
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <!-- 
+
+      marriageAnniversary: [''],
+
+      spouseDOB: [''],
+      
+      status: ['', Validators.required]
+
+ -->
+                <div class="form-group col-md-6">
+                    <label for="spouseDOB">DOB of Spouse</label>
+                    <input id="spouseDOB" type="date" class="form-control" formControlName="spouseDOB" (change)="spouseDOBSelected($event)" max="{{Date}}">
+                    <!-- <span class="validation_msg"
+                        *ngIf="f.spouseDOB.errors && f.spouseDOB.errors.required && isError">Please Enter
+                        Date of Birth of Officer</span> -->
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="mariageDate">Marriage Date</label>
+                    <input id="mariageDate" type="date" class="form-control" formControlName="marriageAnniversary" (change)="mariageDateSelected($event)">
+                    <!-- <span class="validation_msg"
+                                        *ngIf="f.spouseDOB.errors && f.spouseDOB.errors.required && isError">Please Enter
+                                        Date of Birth of Officer</span> -->
+                </div>
+                
+
+            </div>
+
+
+
+
+            <div class="row">
+             
+
+                <div class="form-group col-md-6">
+                    <label for="status" class="form-label">Status <span class="required">*</span></label>
+                    <select name="" id="status" class="form-control"  formControlName="status">
+                        <option value="" disabled selected hidden>Select</option>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+                    <span class="validation_msg" *ngIf="f.status.errors && f.status.errors.required && isError">*Please Select Status</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="icNumber">IC Number<span class="required">*</span></label>
+                    <input id="icNumber" type="text" class="form-control" maxlength="100"
+                        formControlName="icNumber" placeholder="IC Number">
+                    <span class="validation_msg"
+                        *ngIf="f.icNumber.errors && f.icNumber.errors.required && isError">Please Enter
+                        IC Number</span>
+                </div>
+            </div>
+
+            <button mat-raised-button *ngIf="!id" (click)="addSpecialOccasion()">Add</button>
+            <button mat-raised-button *ngIf="id" (click)="updateSpecialOccasion()">Update</button>
+
+        </form>
+    </div>
+</mat-card>

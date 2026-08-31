@@ -1,0 +1,176 @@
+
+
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="mat-heading">
+        <div id="top-bar" class="">
+            <h2>TRG TEAM <span class="sub-menu1">
+              > OQ EQTN > {{term}} > {{termType}}</span></h2>
+        </div>
+      </div>
+        <div class="academics">
+            <div class="mat-card mat-focus-indicator">
+                <form class="ng-untouched ng-pristine ng-invalid">
+                  <div class="row">
+                    <div class="form-group col-md-3">
+                      <label for="battalion">Battalion</label>
+                      <select name="battalion" (change)="battalionSelected($event.target.value)" class="form-control">
+                        <option value="0" selected>Select</option>
+                        <option *ngFor="let b of battalionList" [value]="b.shortName"> {{b.shortName}}</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <label for="company">Company</label>
+                      <select  name="company" class="form-control" (change)="companySelected($event.target.value)">
+                        <option value="0" selected>Select</option>
+                        <option *ngFor="let c of companyList" [value]="c.name"> {{c.name}}</option>
+                      </select>
+                    </div>
+        
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label for="rank">Search</label>
+                        <input placeholder="IMA NO." [(ngModel)]="serviceid" name="serviceid" type="text" (keyup)="serviceSearch($event.target.value)"
+                          class="form-control ng-untouched ng-pristine ng-invalid">
+                      </div>
+                    </div>
+                    <div class="col-md-3 " style="margin-top: 29px;">
+                      <button type="button" mat-raised-button (click)="edSearch()">Search</button>
+                      <!-- <button mat-raised-button (click)="clearSearch()">Clear</button> -->
+                    </div>
+                  </div>
+                </form>
+                  <form  class="oq-matrix-form">
+                    <table class="tg">
+                    <thead>
+                      <tr>
+                        <th class="tg-qnnc" rowspan="3">S. No.</th>
+                        <th class="tg-qnnc" rowspan="3">IMA No.</th>
+                        <th class="tg-qnnc" rowspan="3">Course</th>
+                        <th class="tg-qnnc" rowspan="3">Name</th>
+                        <th class="tg-qnnc" rowspan="3">Rank</th>
+                        <th class="tg-qnnc" colspan="9">OQ EQTN</th>
+                      </tr>
+                      <tr>
+                        <th class="tg-qnnc">Total Mark <br> (10) </th>
+                        <!-- <th class="tg-qnnc">Remarks</th> -->
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let oqEqtn of oqEqtnList; let oqEqtnIndex = index">
+                        <td class="tg-c3ow">{{ oqEqtnIndex + 1}}</td>
+                              <td class="tg-c3ow">{{ oqEqtn.serviceId }}</td>
+                              <td class="tg-0pky">{{ oqEqtn.course }}</td>
+                              <td class="tg-c3ow">{{ oqEqtn.name }}</td>
+                              <td class="tg-c3ow">
+                                <p  *ngIf="oqEqtn.nationality=='India'">GC</p>
+                                <p  *ngIf="oqEqtn.nationality !='India'">FGC</p>
+                              </td>
+  
+                              <td class="tg-c3ow"  >
+                                <div class="d-flex">
+                                  <ng-container
+                                    >
+                                    <input type="text" class="form-control d-inline" value="{{oqEqtn.oqEqtnResult.obtainedMarks}}"
+                                     
+                                      min="0" (keypress)="keyPress($event)"
+                                      on-focusout="onChange($event,$event.target.value, oqEqtnIndex)">
+                                  </ng-container>
+                                </div>
+                              </td>
+  
+                              <!-- <td class="tg-0pky">
+                                <div class="d-flex">
+                                  <ng-container
+                                    >
+                                    <input type="text" class="form-control d-inline" value="{{oqEqtn.oqEqtnResult.remark}}"
+                                    on-focusout="onChange1($event.target.value, oqEqtnIndex)">
+                                  </ng-container>
+                                </div>
+                              </td> -->
+                      </tr>
+                      <tr  *ngIf="!oqEqtnList?.length">
+                        <td class="mat-cell" style="text-align: center;" colspan="13"><div>No Record Found</div></td>
+                     </tr>
+                    </tbody>
+                </table>
+                </form>
+                <mat-paginator #myPaginator [length]="resultsLength" [pageIndex]="currentPage" [pageSize]="pageSize"
+                      [pageSizeOptions]="[50]" (page)="pageChanged($event)" aria-label="Select page" showFirstLastButtons>
+                  </mat-paginator>
+                  <div class="btn-sec mt-3 text-right">
+                      <button type="button" mat-raised-button (click)="openPopup()" [disabled]="!oqEqtnList?.length">Preview</button>
+                      <!-- ////dshsj -->
+                  </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  
+  
+  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable custom-lg" role="document">
+      <div class="modal-content p-3">
+        <div class="modal-header">
+          <h3 class="modal-title">Review</h3>
+        </div>
+        <div class="modal-body">
+          <table class="tg">
+            <thead>
+              <tr>
+                <th class="tg-qnnc" rowspan="3">S. No.</th>
+                <th class="tg-qnnc" rowspan="3">IMA No.</th>
+                <th class="tg-qnnc" rowspan="3">Course</th>
+                <th class="tg-qnnc" rowspan="3">Name</th>
+                <th class="tg-qnnc" rowspan="3">Rank</th>
+                <th class="tg-qnnc" colspan="9">Remarks</th>
+              </tr>
+              <tr>
+                <th class="tg-qnnc">Total Mark <br> (10)</th>
+                <!-- <th class="tg-qnnc">Remarks</th> -->
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let oqEqtn of oqEqtnList; let oqEqtnIndex = index">
+                <td class="tg-c3ow">{{ oqEqtnIndex + 1}}</td>
+                      <td class="tg-c3ow">{{ oqEqtn.serviceId }}</td>
+                      <td class="tg-0pky">{{ oqEqtn.course }}</td>
+                      <td class="tg-c3ow">{{ oqEqtn.name }}</td>
+                      <td class="tg-c3ow">
+                        <p  *ngIf="oqEqtn.nationality=='India'">GC</p>
+                        <p  *ngIf="oqEqtn.nationality !='India'">FGC</p>
+                      </td>
+  
+                      <td class="tg-c3ow"  >
+                        <div class="d-flex">
+                          <ng-container>
+                            <input type="text" disabled class="form-control d-inline" value="{{oqEqtn.oqEqtnResult.obtainedMarks}}"
+                              min="0" (keypress)="keyPress($event)"
+                              on-focusout="onChange($event.target.value, oqEqtnIndex)">
+                          </ng-container>
+                        </div>
+                      </td>
+  
+                      <!-- <td class="tg-0pky">
+                        <ng-container>
+                          <input type="text" disabled class="form-control d-inline" value="{{oqEqtn.oqEqtnResult.remark}}"
+                            min="0" (keypress)="keyPress($event)"
+                            on-focusout="onChange($event.target.value, oqEqtnIndex)">
+                        </ng-container>
+                      </td> -->
+              </tr>
+            
+            </tbody>
+        </table>
+        </div>
+        <div class="modal-footer">
+          <button mat-raised-button type="button" class="btn-dark" (click)="closePopup()">Back</button>
+          <button type="button" mat-raised-button (click)="confirm()">Submit</button>
+  
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,72 @@
+<div class="maincontent">
+    <div class="container-fluid mt-20">
+  
+      <div class="mat-new">
+        <h4 class="card-heading"> Punishments </h4>
+      </div>
+  
+      
+      <div >
+          
+
+        <mat-card>
+            <div *ngIf="!punishmentsList.length" class="text-center" >
+                <h4>No Punishments Awarded.</h4>
+            </div>
+
+            <table *ngIf="punishmentsList.length" class="table" >
+                <thead>
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th>Date</th>
+                        <th>Offence</th>
+                        <th>Total Punishments</th>
+                        <th>Punishment Awarded</th>
+                        <th>Awarded By</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of punishmentsList; let i=index" >
+                        <td> {{i+1}} </td>
+                        <td> {{p.date | date:'dd MMM yyyy'}} </td>
+                        <td> {{p.offence}} </td>
+                        <td> {{p.points}} </td>
+                        <td> {{p.punshmentAwarded}} </td>
+                        <td> {{p.awardedBy}} </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" class="text-right"> <h4>Total</h4> </td>
+                        <td>  <h4>{{totalPoints}}</h4> </td>
+                    </tr>
+                </tfoot>
+            </table>
+
+
+
+
+
+        </mat-card>
+
+
+  
+      </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      <!-- <mat-paginator #syllabusPaginator [pageSizeOptions]="[10,20,50,100]" showFirstLastButtons></mat-paginator> -->
+  
+  
+  </div>
+  
+  </div>
+    

@@ -1,0 +1,289 @@
+<header>
+    <div class="middle-bar bg-white">
+        <div class="container-fluid">
+
+            <div class="middle-area">
+                <div class="service-list">
+
+                    <div class="ima1">
+                        <a href="javascript:void(0)" [routerLink]="['/pages']"
+                            style="text-decoration: none !important;">
+                            <div class="demo-11">
+                                <img src="assets/img/logo_red.png" width="80px" height="80px">
+                                <h4 class="title"> Indian <br> Military <br> academy</h4>
+                            </div>
+                        </a>
+
+                    </div>
+                    <div class="ima2-logo">
+                        <div class="logo-header hidden-xs-clas">
+                            <a style="pointer-events: none" href="javascript:void(0)">Learning Management System</a>
+                        </div>
+                    </div>
+                    <div class="ima3 demo1">
+
+                        <p class="site-button" *ngIf='!isLoggedIn'>
+                            <button class="site-button" style="outline: none;" mat-button [matMenuTriggerFor]="menu"><i
+                                    class="fa fa-user"></i>Login</button>
+                            <mat-menu #menu="matMenu">
+                                <button style="outline: none;" mat-menu-item (click)="sendToLogin('admin')"> Admin </button>
+                                <button style="outline: none;" mat-menu-item (click)="sendToLogin('gc')"> GC </button>
+                            </mat-menu>
+                        </p>
+
+                        <p class="site-button" *ngIf='isLoggedIn'>
+                            <button class="site-button" style="outline: none;" mat-button  [matMenuTriggerFor]="menuLoggdin"><i class="fa fa-user"></i>{{userDetails.name}}</button>
+                            <mat-menu #menuLoggdin="matMenu">
+                                <button style="outline: none;" mat-menu-item  (click)="goToDashboard()"> 
+                                    <mat-icon>dashboard</mat-icon>
+                                    Dashboard 
+                                </button>
+                                <button style="outline: none;" mat-menu-item (click)="logout()"> 
+                                    <mat-icon>logout</mat-icon> Logout 
+                                </button>
+                            </mat-menu>
+                        </p>
+
+                        <!-- <p [routerLink]="['/session/loginV2']" class="site-button">
+                            <span class=""><span><i class="fa fa-user"></i></span>Login</span>
+                        </p> -->
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-nav navbar-collapse  justify-content-start" id="navbarNavDropdown">
+        <div class="container-fluid">
+            <div class="row123">
+                <div class="logo-header fot-tab">
+                    <a href="index.html">Learning Management System</a>
+                </div>
+                <ul class="nav nav-tabs" id="main-menu">
+                    <li [routerLinkActive]="['active']">
+                        <a href="javascript:void(0);" [routerLink]="['/pages/home']">Home</a>
+                    </li>
+                    <li [routerLinkActive]="['active']">
+                        <a href="javascript:void(0);">About us<i class="fa fa-chevron-down"></i></a>
+                        <ul class="sub-menu">
+                            <li [routerLinkActive]="['active']"><a href="javascript:void(0);"
+                                    [routerLink]="['/pages/about']">About</a></li>
+                            <!-- <li [routerLinkActive]="['active']"><a href="javascript:;">Organisation<i class="fa fa-chevron-down"></i></a> -->
+                            <li class="ss-menu" [routerLinkActive]="['active']"><a
+                                    href="shop-product-details.html">Organisation
+                                    <i class="fa fa-chevron-right"></i> </a>
+                                <ul class="submenu-second">
+                                    <li [routerLinkActive]="['active']"><a href="javascript:void(0);"
+                                            [routerLink]="['/pages/org-chart']" [queryParams]="{org:'ima'}">IMA</a></li>
+                                    <li [routerLinkActive]="['active']"><a href="javascript:void(0);"
+                                            [routerLink]="['/pages/org-chart']" [queryParams]="{org:'trg-team'}">TRG
+                                            Team </a></li>
+                                    <li [routerLinkActive]="['active']"><a href="javascript:void(0);"
+                                            [routerLink]="['/pages/org-chart']"
+                                            [queryParams]="{org:'trg-battalion'}">TRG Battalion</a></li>
+                                    <li [routerLinkActive]="['active']"><a href="javascript:void(0);"
+                                            [routerLink]="['/pages/org-chart']" [queryParams]="{org:'gs-branch'}">GS
+                                            Branch</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li [routerLinkActive]="['active']">
+                        <a href="javascript:;">Hall of fame<i class="fa fa-chevron-down"></i></a>
+                        <ul class="sub-menu">
+                            <!-- <li [routerLinkActive]="['active']"><a>Daily programme</a></li> -->
+                            <li [routerLinkActive]="['active']"
+                                [routerLink]="['/pages/hall-of-fame/gallantry-awardees']"><a
+                                    href="javascript:void(0);">Gallantry Awards</a></li>
+                            <!-- <li [routerLinkActive]="['active']"><a href="javascript:void(0);">GC awards </a></li>
+                            <li [routerLinkActive]="['active']"><a href="javascript:void(0);">FGC alumni</a></li> -->
+
+                        </ul>
+                    </li>
+                    <li [routerLinkActive]="['active']">
+                        <a href="javascript:;">TRG Calender<i class="fa fa-chevron-down"></i></a>
+                        <ul class="sub-menu">
+                            <!-- <li [routerLinkActive]="['active']"><a>Daily programme</a></li> -->
+                            <!-- <li [routerLinkActive]="['active']" [routerLink]="['/pages/daily-pgmes']"><a
+                                    href="javascript:void(0);">Daily PGMEs</a></li> -->
+                            <li [routerLinkActive]="['active']" [routerLink]="['/pages/pgmes']"><a
+                                    href="javascript:void(0);">Weekly PGMEs</a></li>
+                            <li [routerLinkActive]="['active']"><a href="javascript:void(0);"
+                                    style="white-space: nowrap;"
+                                    [routerLink]="['/pages/forcast-of-trg-events']">Forecast of TRG events </a></li>
+                        </ul>
+                    </li>
+                    <li [routerLinkActive]="['active']">
+                        <a href="javascript:;">Central Library<i class="fa fa-chevron-down"></i></a>
+                        <ul class="sub-menu">
+                            <li><a href="javascript:void(0)" [routerLink]="['/pages/reading-list']">IMA Recommended
+                                    Reading List</a></li>
+                            <!-- <li *ngIf="!centralLibraryLinks.length"><a href="javascript:void(0)">No Data Available</a></li> -->
+                            <li *ngFor="let lib of centralLibraryLinks">
+                                <a href="javascript:void(0)" (click)="visitCentralLbrary(lib)">
+                                    {{lib.tabName}}</a>
+                            </li>
+                            <li><a href="javascript:void(0)" [routerLink]="['/pages/e-book-list']">E-Book</a></li>
+
+                        </ul>
+                    </li>
+                    <li [routerLinkActive]="['active']">
+                        <a href="javascript:void(0)" (click)="goToCMS()">CMS</a>
+                    </li>
+                    <li [routerLinkActive]="['active']"><a href="javascript:void(0);"
+                            [routerLink]="['/pages/cyberpolicy']">Cyber Policy
+                            <!-- <i class="fa fa-chevron-down"></i> -->
+                        </a>
+                        <!-- <ul class="sub-menu">
+                        <li *ngIf="!cyberPolicies.length"><a href="javascript:void(0)">No Data Available</a></li>
+                        <li *ngFor="let c of cyberPolicies"><a href="javascript:void(0)"
+                                (click)="openCyberPolicy(c)">{{c.tabName}}</a></li>
+                    </ul> -->
+                    </li>
+                    <li [routerLinkActive]="['active']">
+                        <a href="javascript:;" [routerLink]="['/pages/ima-blog']">IMA Blog </a>
+                    </li>
+                    <!-- <li [routerLinkActive]="['active']">
+                    <a href="javascript:;">Organisation<i
+                        class="fa fa-chevron-down"></i></a>
+                        <ul class="sub-menu">
+                            <li [routerLinkActive]="['active']"><a href="javascript:void(0);" [routerLink]="['/pages/org-chart']" [queryParams]="{org:'ima'}" >IMA</a></li>
+                            <li [routerLinkActive]="['active']"><a href="javascript:void(0);" [routerLink]="['/pages/org-chart']"  [queryParams]="{org:'trg-team'}" >TRG Team </a></li>
+                            <li [routerLinkActive]="['active']"><a href="javascript:void(0);" [routerLink]="['/pages/org-chart']"  [queryParams]="{org:'trg-battalion'}">TRG Battalion</a></li>
+                            <li [routerLinkActive]="['active']"><a href="javascript:void(0);" [routerLink]="['/pages/org-chart']"  [queryParams]="{org:'gs-branch'}">GS Branch</a></li>
+                        </ul>
+                </li> -->
+                    <!-- <li [routerLinkActive]="['active']">
+                    <a href="javascript:void(0)" >Media</a>
+                </li> -->
+                    <li [routerLinkActive]="['active']">
+                        <a href="javascript:void(0);" [routerLink]="['/pages/greybook']">Grey Book</a>
+                    </li>
+                    <li><a href="javascript:void(0)" (click)="sendToLogin('delayDashboard')"> Delay Dashboard </a> </li>
+
+
+                </ul>
+                <div class="tog_cls" id="main-menu-btn">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- <div class="d-md-block d-lg-none">
+    <img src="assets/img/80288819.webp" width="100%">
+</div> -->
+<div>
+    <router-outlet></router-outlet>
+
+</div>
+
+
+
+
+<!-- <div style="position: relative;width: 100%;float: left;"> -->
+<div class="foot">
+    <footer class="footer pp-fot" id="foot-id" style="position: relative;">
+        <p class="footer-copy">© Copyright {{ test | date: "yyyy" }} Indian Mililtary Academy All rights reserved. <span>Version:- 1.8</span></p>
+        
+    </footer>
+</div>
+<!-- </div> -->
+
+
+
+<!-- <header>
+    <div class="middle-bar bg-white">
+        <div class="container">
+
+            <div class="middle-area">
+                <div class="service-list">
+
+                    <div class="ima1">
+                        <div class="demo-11">
+                            <img src="assets/img/logo_red.png" width="80px" height="80px">
+                            <h4 class="title"> Indian <br> Military <br> academy</h4>
+                        </div>
+                    </div>
+                    <div class="ima2-logo">
+                        <div class="logo-header hidden-xs-clas">
+                            <a href="javascript:void(0)">Learning Management System</a>
+                        </div>
+                    </div>
+                    <div class="ima3 demo1">
+                        <a (click)="loginAdmin()" class="site-button"><span class="blink"><span>
+                                    <i class="fa fa-user"></i></span>Login</span></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-nav navbar-collapse  justify-content-start" id="navbarNavDropdown">
+        <div class="container">
+            <div class="logo-header d-md-block d-lg-none">
+                <a href="index.html">Learning Management System</a>
+            </div>
+            <ul class="nav">
+                <li>
+                    <a href="javascript:void(0);" [routerLink]="['/pages/home']"  style="padding-left: 0px;">Home</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" [routerLink]="['/pages/greybook']">Grey Book</a>
+                </li>
+                <li>
+                    <a href="javascript:;">Hall of fame</a>
+                </li>
+                <li>
+                    <a href="javascript:;">Training Calender<i class="fa fa-chevron-down"></i></a>
+                    <ul class="sub-menu">
+                        <li><a >Daily programme</a></li>
+                        <li><a >Weekly programme</a></li>
+                        <li><a href="javascript:void(0);" [routerLink]="['/pages/forcast-of-trg-events']">Forecast of events </a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:;">Central Library<i class="fa fa-chevron-down"></i></a>
+                    <ul class="sub-menu">
+                        <li *ngIf="!centralLibraryLinks.length" ><a href="javascript:void(0)" >No Data Available</a></li>
+                        <li *ngFor="let lib of centralLibraryLinks" ><a href="javascript:void(0)" (click)="visitCentralLbrary(lib)" >{{lib.tabName}}</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" (click)="goToCMS()" >CMS</a>
+                </li>
+                <li><a href="javascript:;">Cyber Policy<i class="fa fa-chevron-down"></i></a>
+                    <ul class="sub-menu">
+                        <li *ngIf="!cyberPolicies.length" ><a href="javascript:void(0)" >No Data Available</a></li>
+                        <li *ngFor="let c of cyberPolicies" ><a href="javascript:void(0)" (click)="openCyberPolicy(c)" >{{c.tabName}}</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:;">IMA Blog </a>
+                </li>
+                <li>
+                    <a href="javascript:;">Podcast</a>
+                </li>
+            </ul>
+            <div class="toggle hidden-lg-clas">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div>
+    <router-outlet></router-outlet>
+</div>
+
+
+
+
+    <br><br>
+    <footer class="footer" >
+        <p class="footer-copy">© Copyright 2021 Indian Mililtary Academy All rights reserved.</p>
+    </footer> -->

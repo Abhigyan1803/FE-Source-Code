@@ -1,0 +1,69 @@
+<div class="mat-new">
+    <h4 class="card-heading">
+      <button mat-icon-button (click)="goBack()" ><mat-icon>chevron_left</mat-icon> </button>
+      GS Branch <span class="sub-menu1"> > SOP <span class="sub-menu1"> > {{pageTitle}}</span></span>
+    </h4>
+  </div>
+  <mat-card>
+    <div class="top-br">
+      <form [formGroup]="addAcademyParadeStateForm">
+  
+        <div class="row">
+            <div class="form-group col-md-6">
+               <label for="position">Letter no.<span class="required">*</span></label>
+               <input id="name" type="text" class="form-control" maxlength="100" formControlName="letterNo"
+               placeholder="Letter no.">
+                <span class="validation_msg"
+                    *ngIf="f.letterNo.errors && f.letterNo.errors.required && isError">Please Enter letterNo</span>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="scheduleDate">scheduleDate<span class="required">*</span></label>
+                <input id="scheduleDate" type="date" class="form-control" formControlName="scheduleDate" (change)="sopDAte($event)">
+                <span class="validation_msg"
+                *ngIf="f.scheduleDate.errors && f.scheduleDate.errors.required && isError">Please Enter scheduleDate</span>
+  
+            </div>
+
+        </div> 
+
+      
+        
+        <div class="row">
+            <div class="form-group col-md-6">
+               <label for="position">subject<span class="required">*</span></label>
+               <input id="name" type="text" class="form-control" maxlength="100" formControlName="subject"
+               placeholder="subject">
+                <span class="validation_msg"
+                    *ngIf="f.subject.errors && f.subject.errors.required && isError">Please Enter subject</span>
+            </div>
+        </div> 
+
+     
+
+        <div class="form-group">
+          <label class="form-label">Document<span class="required">*</span></label>
+            <input type="file" #inputFile accept=".pdf,.doc,.docx" (change)="onSelectDoc($event)" id="image">
+            <mat-icon *ngIf="docUrl" class="document_icon" (click)="openDoc(docUrl)" >description</mat-icon>
+            <span class="note">Max File Size 200 MB. (Only pdf and doc format.)</span>
+            <span class="validation_msg" *ngIf="!isDoc && isError" >Document is required</span>  
+        </div>
+  
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="status">Status<span class="required" >*</span></label>
+            <select name="" id="" class="form-control " formControlName="status">
+              <option value="" disabled selected hidden>Status</option>
+              <option value="1">Active</option>
+              <option value="0">Inactive</option>
+            </select>
+            <span class="validation_msg" *ngIf="f.status.errors && f.status.errors.required && isError" >Status is required</span> 
+          </div>
+        </div>
+  
+        <button mat-raised-button *ngIf="pageTitle=='Add Sop'" (click)="addDemoCoy()">Add Sop</button>
+        <button mat-raised-button *ngIf="pageTitle=='View Sop'" (click)="updateDemoCoy()">Update Sop</button>
+  
+      </form>
+    </div>
+  </mat-card>

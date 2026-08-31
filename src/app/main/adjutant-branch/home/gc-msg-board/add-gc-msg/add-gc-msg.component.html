@@ -1,0 +1,121 @@
+<div class="mat-new">
+    <h4 class="card-heading"> <button mat-icon-button (click)="goBack()" > <mat-icon>chevron_left</mat-icon>  </button> Home <span class="sub-menu1"> > GC MSG </span> <span class="sub-menu1"> > {{pageName}}</span> </h4>
+  </div>
+  
+  <mat-card>
+    <div class="top-br">
+      <form [formGroup]="addProgramForm"  >
+        
+        <div class="row">
+
+          <!-- <div class="form-group col-md-6" >
+            <label for="date">Date <span class="required">*</span></label>
+            <input id="date" #scheduleDate  type="date" [min]="minDate"  class="form-control"
+             (change)="onSelectDate($event)" >
+          </div> -->
+      
+        </div>
+  
+        <!-- <div class="row">
+          <div class="form-group col-md-3">
+            <label for="hours">Start Hours<span class="required">*</span></label>
+            <select type="date" id="hours" #startHours class="form-control" 
+              (change)="startHoursSelected($event)">
+              <option value="" selected disabled hidden>--</option>
+              <option *ngFor="let h of hours" [value]="h" [disabled]="min_s_hrs>h">{{h}}</option>
+            </select>
+           
+          </div>
+          <div class="form-group col-md-3">
+            <label for="minutes">Start Minutes<span class="required">*</span></label>
+            <select id="minutes" #startMinutes class="form-control" 
+              (change)="startMinutesSelected($event)">
+              <option value="" selected disabled hidden>--</option>
+              <option *ngFor="let m of minutes" [value]="m" [disabled]="min_s_mnts>m">{{m}} </option>
+            </select>
+            
+          </div>
+        
+        
+          <div class="form-group col-md-3">
+            <label for="hours">End Hours<span class="required">*</span></label>
+            <select type="date" #endHours id="hours" class="form-control" 
+              (change)="endHoursSelected($event)">
+              <option value="" selected disabled hidden>--</option>
+              <option *ngFor="let h of hours" [value]="h" [disabled]="min_e_hrs>h">{{h}}</option>
+            </select>
+           
+          </div>
+          <div class="form-group col-md-3">
+            <label for="minutes">End Minutes<span class="required">*</span></label>
+            <select id="minutes" #endMinutes class="form-control" 
+              (change)="endMinutesSelected($event)">
+              <option value="" selected disabled hidden>--</option>
+              <option *ngFor="let m of minutes" [value]="m" [disabled]="min_e_mnts>m">{{m}} </option>
+            </select>
+          </div>
+        
+        </div> -->
+  
+  
+  
+        <div class="row">
+          
+          <div class="form-group col-md-6">
+            <label for="title">Title <span class="char-count" >   ({{titleLength}}/100)  </span> <span class="required">*</span></label>
+            <input type="text" id="title" class="form-control"  maxlength="100" placeholder="Maximum 100 Characters"  formControlName="title" (input)="charCount($event,'title')">
+            <!-- <span class="validation_msg" *ngIf="f.title.touched && f.title.invalid" >*Please Enter Title</span>  -->
+            <!-- <span class="validation_msg" *ngIf="f.username.errors && f.username.errors.required && isError" >Login Id is required</span> -->
+          </div>
+          <!-- <div class="form-group col-md-6">
+            <label for="description">description</label>
+            <textarea matInput placeholder="Maximum 1500 Characters" class="form-control"  (input)="charCount($event)" maxlength="1500" formControlName="description"></textarea>
+          </div> -->
+        </div>
+  
+        <div class="row">
+          <div class="form-group col-md-12">
+     <label for="awards">Description <span class="char-count"> ({{descLength}}/1500) </span> <span class="required">*</span> </label>
+     <!-- <input type="text" id="awards" class="form-control"  maxlength="100" formControlName="awards" placeholder="Awards"> -->
+     <textarea matInput placeholder="Maximum 1500 Characters" class="form-control"  (input)="charCount($event,'description')"
+      maxlength="1500" formControlName="description"></textarea>
+
+     <span class="val_msg" *ngIf="f.description.errors && f.description.errors.required && isError" >*Please Enter history</span>
+
+      </div>
+ </div> 
+
+        <!-- <div class="row">
+          <div class="form-group col-md-12">
+            <textarea class="form-control" id="message" placeholder="Schedule"  formControlName="schedule"></textarea>
+          </div>
+        </div> -->
+        <div class="form-group">
+            <label class="form-label">Document<span class="required">*</span></label>
+              <input type="file" #inputFile accept=".pdf,.doc,.docx" (change)="onSelectDoc($event)" id="image">
+              <mat-icon *ngIf="docUrl" class="document_icon" (click)="openDoc(docUrl)" >description</mat-icon>
+              <span class="note">Max File Size 200 MB. (Only pdf and doc format.)</span>
+              <span class="validation_msg" *ngIf="!isDoc" >Document is required</span>
+          </div>
+  
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="status">Status<span class="required" >*</span></label>
+              <select name="" id="" class="form-control " formControlName="status">
+                <option value="" disabled selected hidden>Status</option>
+                <option value="1">Active</option>
+                <option value="0">Inactive</option>
+              </select>
+              <!-- <span class="validation_msg" *ngIf="f.status.errors && f.status.errors.required && isError" >Status is required</span>  -->
+            </div>
+          </div>
+  
+
+        
+        <button  mat-raised-button *ngIf="!id" (click)="addProgram()"  >Add GC</button>
+        <button  mat-raised-button *ngIf="id" (click)="updateProgram()"  >Update GC</button> 
+       
+  
+      </form>
+    </div>
+  </mat-card>

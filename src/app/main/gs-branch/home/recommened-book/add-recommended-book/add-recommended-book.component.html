@@ -1,0 +1,72 @@
+<div class="mat-new">
+    <h4 class="card-heading">
+        <button mat-icon-button (click)="goBack()">
+            <mat-icon>chevron_left</mat-icon>
+        </button> Home <span class="sub-menu1"> > IMA Recommended Reading List </span> <span class="sub-menu1"> >
+            {{pTitle}}</span>
+    </h4>
+</div>
+<mat-card>
+    <div class="top-br">
+        <form [formGroup]="addRecommendedForm">
+
+            <div class="row">
+
+                <div class="form-group col-md-6">
+                    <label for="authorName">AuthorName<span class="required">*</span></label>
+                    <input id="authorName" type="text" class="form-control" maxlength="100" formControlName="authorName"
+                        placeholder="authorName">
+                    <span class="validation_msg"
+                        *ngIf="f.authorName.errors && f.authorName.errors.required && isError">Please Enter AuthorName</span>
+            
+                </div>
+                </div>
+            <div class="row">
+
+                <div class="form-group col-md-6">
+                    <label for="userRank">BookName<span class="required">*</span></label>
+                    <input id="userRank" type="text" class="form-control" maxlength="100" formControlName="bookName"
+                        placeholder="BookName">
+                    <span class="validation_msg"
+                        *ngIf="f.bookName.errors && f.bookName.errors.required && isError">Please Enter BookName</span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="bookGenre">BookGenre<span class="required">*</span></label>
+                    <input id="bookGenre" type="text" class="form-control" maxlength="100" formControlName="bookGenre"
+                        placeholder="BookGenre">
+                    <span class="validation_msg" *ngIf="f.bookGenre.errors && f.bookGenre.errors.required && isError">Please Enter
+                        bookGenre</span>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-12">
+           <label for="description">Description <span class="char-count" >   ({{descLength}}/1500)  </span> <span class="required">*</span></label>
+           <!-- <input type="text" id="awards" class="form-control"  maxlength="100" formControlName="awards" placeholder="Awards"> -->
+           <textarea matInput placeholder="Maximum 1500 Characters" class="form-control"  (input)="charCount($event)" maxlength="1500" formControlName="description"></textarea>
+           <span class="val_msg" *ngIf="f.description.errors && f.description.errors.required && isError" >*Please Enter description</span>
+
+            </div>
+       </div> 
+
+                      
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="status" class="form-label">Status <span class="required">*</span></label>
+                    <select name="" id="status" class="form-control" required formControlName="status">
+                        <option value="" disabled selected hidden>Select</option>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+                    <span class="validation_msg" *ngIf="f.status.errors && f.status.errors.required && isError" >Status is required</span> 
+                </div>
+            </div>
+
+            <button mat-raised-button *ngIf="!id" (click)="addRecommendedBook()">Add Recommended List</button>
+            <button mat-raised-button *ngIf="id" (click)="updateRecommendedBook()">Update Recommended List</button>
+
+        </form>
+    </div>
+</mat-card>

@@ -1,0 +1,227 @@
+<div>
+    <div class="mat-new">
+        <h4 class="card-heading" *ngIf="mnc=='add'"> Add Drill Marks <span class="sub-menu1"> </span>
+        </h4>
+        <h4 class="card-heading" *ngIf="mnc=='update'">Edit Drill Marks <span class="sub-menu1"> </span>
+        </h4>
+
+    </div>
+    <mat-card>
+        <form [formGroup]="drillForm">
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label class="form-label">IMA No. </label>
+                    <input type="text" formControlName="serviceId" disabled maxlength="100" class="form-control">
+                </div>
+               
+                <div class="form-group col-md-4">
+                    <label class="form-label">Name </label>
+                    <input type="text" formControlName="username" disabled maxlength="100" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="form-label">Term </label>
+                    <input type="text" formControlName="term" disabled maxlength="100" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label class="form-label">Batallion </label>
+                    <input type="text" formControlName="battalian" disabled maxlength="100" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="form-label">CoY </label>
+                    <input type="text" formControlName="company" disabled maxlength="100" class="form-control">
+
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="form-label">Course </label>
+                    <input type="text" formControlName="course" disabled maxlength="100" class="form-control">
+                </div>
+            </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label class="form-label"> Cleared-in </label>
+                        <!-- (change)="termChange($event.target.value)" -->
+                        <select id="term" type="text" class="form-control" 
+                        
+                    placeholder="Term">
+                    <option value="" selected hidden disabled >Select</option>
+                    <option>M1</option>
+                    <option>M2</option>
+                    <option>C1</option>
+                    <option>C2</option>
+                </select>
+                    </div>
+                </div>
+                
+                
+            
+
+                <!-- <div class="row">
+                <div class="form-group col-md-4">
+                    <label class="form-label">Attempt</label>
+                    <select placeholder="" class="form-control"  (change)="attemptChange($event.target.value)" formControlName="attempt">
+                        <option value="M-1">M-1</option>
+                        <option value="M-2">M-2</option>
+                        <option value="M-3">M-3</option>
+                        <option value="M-4">M-4</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="form-label">Grading </label>
+                    <input type="text" formControlName="grading"  maxlength="100" class="form-control">
+                </div>
+            </div> -->
+            <br>
+            <div class="row1 row234">
+                <div class="example-container" *ngIf="mnc=='add'">
+                    <div class="example-table-container" class="col-md-12">
+                        <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                            <ng-container matColumnDef="id">
+                                <th mat-header-cell *matHeaderCellDef> No. </th>
+                                <td mat-cell *matCellDef="let element;let i = index;">
+                                    {{i+1}}
+                                </td>
+                                <td mat-footer-cell *matFooterCellDef> </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="subjectName">
+                                <th mat-header-cell *matHeaderCellDef> Subject </th>
+                                <td mat-cell *matCellDef="let element"> {{element.subjectName}} </td>
+                                <td mat-footer-cell *matFooterCellDef> Total </td>
+
+                            </ng-container>
+
+                            <ng-container matColumnDef="totalMarks">
+                                <th mat-header-cell *matHeaderCellDef> Total Marks </th>
+                                <td mat-cell *matCellDef="let element"> {{element.totalMark}} </td>
+                                <td mat-footer-cell *matFooterCellDef>
+                                    {{getTotal()}}
+                                </td>
+
+                            </ng-container>
+
+
+                            <ng-container matColumnDef="MarksObtained">
+                                <th mat-header-cell *matHeaderCellDef> Marks Obtained </th>
+                                <td mat-cell *matCellDef="let element;let i = index; ">
+                                    <input formControlName="subject"  min="0" oninput="this.value = 
+                                    !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null" (change)="getMarks(i,$event.target.value)"
+                                        class="form-control" (focus)="onFocusEvent($event.target.value)"
+                                        on-focusout="onChange($event.target.value,element.totalMark)" maxlength="2"
+                                        (keypress)="keyPress($event)">
+                                </td>
+
+                                <td mat-footer-cell *matFooterCellDef>
+                                    {{totalmarkst}}
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            <tr mat-footer-row *matFooterRowDef="displayedColumns" class="example-first-footer-row">
+                            </tr>
+
+                        </table> -->
+                        <div formArrayName="dRILLSubjectResult"  class="tab-newcls">
+                            <table  style="margin-left: 0px;
+                            width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <td>No.</td>
+                                        <td>Subject</td>
+                                        <td>Total Marks</td>
+                                        <td>Obtained Marks</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let mr of getCSubjectRes1.controls;let i=index">
+                                        <ng-container [formGroupName]="i">
+                                            <td> {{i+1}} </td>
+                                            <td> {{mr.value.subjectName}} </td>
+                                            <td> {{mr.value.totalMarks}} </td>
+                                            <td>
+                                                <input  min="0" oninput="this.value = 
+                                                !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null" formControlName="obtainedMarks"  class="form-control"
+                                                    (focus)="onFocusEvent($event.target.value)"
+                                                    on-focusout="onChange($event.target.value,mr.value.totalMarks,i)" maxlength="2"
+                                                    (keypress)="keyPress($event)">
+                                            </td>
+                                        </ng-container>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td></td>
+                                        <td>Total</td>
+                                        <td>{{getTotal()}}</td>
+                                        <td>{{totalmarkst}}</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div formArrayName="dRILLSubjectResult" *ngIf="mnc=='update'" class="col-md-12">
+                    <table style="margin-left: 0px;
+                    width: 100%;width: 100%;border: 1px solid #ccc;box-shadow: 3px 3px 3px #ccc;">
+                        <thead>
+                            <tr>
+                                <td>No.</td>
+                                <td>Subject</td>
+                                <td>Total Marks</td>
+                                <td>Obtained Marks</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let mr of getCSubjectRes.controls;let i=index">
+                                <ng-container [formGroupName]="i">
+                                    <td> {{i+1}} </td>
+                                    <td> {{mr.value.subjectName}} </td>
+                                    <td> {{mr.value.totalMarks}} </td>
+
+                                    <td>
+                                        <input  min="0" oninput="this.value = 
+                                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null" formControlName="obtainedMarks"  class="form-control"
+                                            (focus)="onFocusEvent($event.target.value,mr.controls.totalMarks.value)"
+                                            on-focusout="onChange($event.target.value,mr.controls.totalMarks.value,i)" maxlength="2"
+                                            (keypress)="keyPress($event)">
+                                    </td>
+                                </ng-container>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td>Total</td>
+                                <td>{{updatetotalmarks}}</td>
+                                <td>{{totalmarkst}}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+                <div class="form-group col-md-12 remarkdiv">
+                    <label class="form-label">Remarks </label>
+                    <textarea matInput placeholder="" formControlName="remarks" class="form-control textarea-33"
+                        maxlength="1500"></textarea>
+                    <div *ngIf="mnc=='add'" class="form-group col-md-2 submitbutton">
+                        <button mat-raised-button (click)="submit()">Submit</button>
+                    </div>
+                    <div *ngIf="mnc=='update'" class="form-group col-md-2 submitbutton"
+                        >
+                        <button mat-raised-button (click)="confirm()">CONFIRM</button>
+                    </div>
+                    <!-- <div *ngIf="mnc=='update'" class="form-group col-md-2" style="float: right;margin: 9px;">
+                        <button mat-raised-button (click)="toggleDisable()">EDIT</button>
+                    </div> -->
+                </div>
+            
+
+        </form>
+
+
+    </mat-card>
+</div>

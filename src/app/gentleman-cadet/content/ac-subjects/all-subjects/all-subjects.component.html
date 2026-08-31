@@ -1,0 +1,462 @@
+<!-- <mat-toolbar class="subjects-toolbar" > -->
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="">
+    <a class="navbar-brand "> <strong><span class="subj" >Subject. : </span><span class="paper-name">{{subject}}</span></strong> </a>
+  </div>
+  <div>
+    <mat-form-field class="gc-form">
+      <mat-select [(value)]="selected" class="gc-select" (selectionChange)="onTermChange($event)">
+        <mat-option  value="s">Select Term</mat-option>
+        <mat-option [value]="term.id" *ngFor="let term of termData">
+          {{term.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLinkActive="active-paper">
+        <button style="outline: none;" mat-button [matMenuTriggerFor]="paper1">
+          Paper 1 <mat-icon>expand_more</mat-icon>
+        </button>
+        <mat-menu #paper1="matMenu">
+          <a href="javascript:void(0)" mat-menu-item
+            [routerLink]="['/gc/content/ac-subjects/subjects/Paper 1/Military History']">
+            <button style="outline: none;" mat-button>
+              Military History
+            </button>
+          </a>
+          <a href="javascript:void(0)" mat-menu-item
+            [routerLink]="['/gc/content/ac-subjects/subjects/Paper 1/Military Geography']">
+            <button style="outline: none;" mat-button>Military Geography</button>
+          </a>
+        </mat-menu>
+
+
+      </li>
+      <li class="nav-item" routerLinkActive="active-paper">
+        <button style="outline: none;" mat-button [matMenuTriggerFor]="paper2">Paper 2 <mat-icon>expand_more</mat-icon>
+          </button>
+        <mat-menu #paper2="matMenu">
+          <a href="javascript:void(0)" mat-menu-item [routerLink]="['/gc/content/ac-subjects/subjects/Paper 2/CAIR']">
+            <button style="outline: none;" mat-button>CAIR</button>
+          </a>
+          <a href="javascript:void(0)" mat-menu-item [routerLink]="['/gc/content/ac-subjects/subjects/Paper 2/BS']">
+            <button style="outline: none;" mat-button>BS</button>
+          </a>
+        </mat-menu>
+      </li>
+      <li class="nav-item" routerLinkActive="active-paper">
+        <button style="outline: none;" mat-button [matMenuTriggerFor]="paper3">Paper 3 <mat-icon>expand_more</mat-icon>
+        </button>
+        <mat-menu #paper3="matMenu">
+          <a href="javascript:void(0)" mat-menu-item
+            [routerLink]="['/gc/content/ac-subjects/subjects/Paper 3/Science and Warfare']">
+            <button style="outline: none;" mat-button>Science & Warfare</button>
+          </a>
+        </mat-menu>
+      </li>
+      <li class="nav-item" routerLinkActive="active-paper">
+        <button style="outline: none;" mat-button [matMenuTriggerFor]="paper4">Paper 4 <mat-icon>expand_more</mat-icon>
+        </button>
+        <mat-menu #paper4="matMenu">
+          <a href="javascript:void(0)" mat-menu-item [routerLink]="['/gc/content/ac-subjects/subjects/Paper 4/SWT']">
+            <button style="outline: none;" mat-button>SWT</button>
+          </a>
+        </mat-menu>
+
+      </li>
+      <li class="nav-item" routerLinkActive="active-paper">
+
+        <button style="outline: none;" mat-button [matMenuTriggerFor]="paper5">Paper 5 <mat-icon>expand_more</mat-icon>
+        </button>
+        <mat-menu #paper5="matMenu">
+          <a href="javascript:void(0)" mat-menu-item [routerLink]="['/gc/content/ac-subjects/subjects/Paper 5/ECS']">
+            <button style="outline: none;" mat-button>ECS</button>
+          </a>
+        </mat-menu>
+
+
+
+      </li>
+      <li class="nav-item" routerLinkActive="active-paper">
+        <button style="outline: none;" mat-button [matMenuTriggerFor]="paper6">Paper 6 <mat-icon>expand_more</mat-icon>
+        </button>
+        <mat-menu #paper6="matMenu">
+
+          <a href="javascript:void(0)" mat-menu-item [routerLink]="['/gc/content/ac-subjects/subjects/Paper 6/IT']">
+            <button style="outline: none;" mat-button>IT</button>
+
+          </a>
+        </mat-menu>
+
+      </li>
+
+    </ul>
+
+  </div>
+
+  <!-- 
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+     -->
+
+
+
+</nav>
+
+<!-- <nav class="navbar navbar-inverse">
+    
+    <ul class="nav navbar-nav" >
+      <li class="nav-item" routerLinkActive="active-paper" >
+        <button mat-button [matMenuTriggerFor]="paper1">Paper 1</button>
+      <mat-menu #paper1="matMenu">
+          <a href="javascript:void(0)" mat-menu-item
+              [routerLink]="['/gc/content/ac-subjects/subjects/Paper 1/Military History']">
+              <button mat-button>Military History</button>
+          </a>
+          <a href="javascript:void(0)" mat-menu-item
+              [routerLink]="['/gc/content/ac-subjects/subjects/Paper 1/Military Geography']">
+              <button mat-button>Military Geography</button>
+          </a>
+      </mat-menu>
+      </li>
+      <li class="nav-item" routerLinkActive="active-paper" >
+        <button mat-button [matMenuTriggerFor]="paper2">Paper 2</button>
+        <mat-menu #paper2="matMenu">
+            <a href="javascript:void(0)" mat-menu-item [routerLink]="['/gc/content/ac-subjects/subjects/Paper 2/CAIR']">
+                <button mat-button>CAIR</button>
+            </a>
+            <a href="javascript:void(0)" mat-menu-item [routerLink]="['/gc/content/ac-subjects/subjects/Paper 2/BS']">
+                <button mat-button>BS</button>
+            </a>
+        </mat-menu>
+    
+      </li>
+      <li class="nav-item" routerLinkActive="active-paper" >
+        <button mat-button [matMenuTriggerFor]="paper3">Paper 3</button>
+      <mat-menu #paper3="matMenu">
+          <a href="javascript:void(0)" mat-menu-item
+              [routerLink]="['/gc/content/ac-subjects/subjects/Paper 3/Science and Warfare']">
+              <button mat-button>Science & Warfare</button>
+          </a>
+      </mat-menu>
+      </li>
+      <li class="nav-item" routerLinkActive="active-paper" >
+        <button mat-button [matMenuTriggerFor]="paper4">Paper 4</button>
+        <mat-menu #paper4="matMenu">
+            <a href="javascript:void(0)" mat-menu-item [routerLink]="['/gc/content/ac-subjects/subjects/Paper 4/SWT']">
+                <button mat-button>SWT</button>
+            </a>
+        </mat-menu>
+      </li>
+      <li class="nav-item" routerLinkActive="active-paper" >
+        <button mat-button [matMenuTriggerFor]="paper5">Paper 5</button>
+        <mat-menu #paper5="matMenu">
+            <a href="javascript:void(0)" mat-menu-item [routerLink]="['/gc/content/ac-subjects/subjects/Paper 5/ECS']">
+                <button mat-button>ECS</button>
+            </a>
+        </mat-menu>
+    
+      </li>
+      <li class="nav-item" routerLinkActive="active-paper" >
+        <button mat-button [matMenuTriggerFor]="paper6">Paper 6</button>
+        <mat-menu #paper6="matMenu">
+            <a href="javascript:void(0)" mat-menu-item [routerLink]="['/gc/content/ac-subjects/subjects/Paper 6/IT']">
+                <button mat-button>IT</button>
+    
+            </a>
+        </mat-menu>
+      </li>
+  
+    </ul>
+  </nav> -->
+
+
+
+<!-- <button mat-button [matMenuTriggerFor]="paper1">Paper 1</button>
+    <mat-menu #paper1="matMenu">
+        <a href="javascript:void(0)" mat-menu-item
+            [routerLink]="['/gc/content/ac-subjects/subjects/Paper 1/Military History']">
+            <button mat-button>Military History</button>
+        </a>
+        <a href="javascript:void(0)" mat-menu-item
+            [routerLink]="['/gc/content/ac-subjects/subjects/Paper 1/Military Geography']">
+            <button mat-button>Military Geography</button>
+        </a>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="paper2">Paper 2</button>
+    <mat-menu #paper2="matMenu">
+        <a href="javascript:void(0)" mat-menu-item [routerLink]="['/gc/content/ac-subjects/subjects/Paper 2/CAIR']">
+            <button mat-button>CAIR</button>
+        </a>
+        <a href="javascript:void(0)" mat-menu-item [routerLink]="['/gc/content/ac-subjects/subjects/Paper 2/BS']">
+            <button mat-button>BS</button>
+        </a>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="paper3">Paper 3</button>
+    <mat-menu #paper3="matMenu">
+        <a href="javascript:void(0)" mat-menu-item
+            [routerLink]="['/gc/content/ac-subjects/subjects/Paper 3/Science and Warfare']">
+            <button mat-button>Science & Warfare</button>
+        </a>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="paper4">Paper 4</button>
+    <mat-menu #paper4="matMenu">
+        <a href="javascript:void(0)" mat-menu-item [routerLink]="['/gc/content/ac-subjects/subjects/Paper 4/SWT']">
+            <button mat-button>SWT</button>
+        </a>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="paper5">Paper 5</button>
+    <mat-menu #paper5="matMenu">
+        <a href="javascript:void(0)" mat-menu-item [routerLink]="['/gc/content/ac-subjects/subjects/Paper 5/ECS']">
+            <button mat-button>ECS</button>
+        </a>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="paper6">Paper 6</button>
+    <mat-menu #paper6="matMenu">
+        <a href="javascript:void(0)" mat-menu-item [routerLink]="['/gc/content/ac-subjects/subjects/Paper 6/IT']">
+            <button mat-button>IT</button>
+
+        </a>
+    </mat-menu> -->
+
+
+
+
+<!-- </mat-toolbar> -->
+
+<!-- <div class="head" >
+  <span> Subjects </span> >
+  <span>{{paper}}</span> > 
+  <span>{{subject}}</span>
+</div> -->
+<mat-card *ngIf="!topics.length">
+  <div class="text-center">
+    <img src="assets\img\no_data_available.png" alt="">
+  </div>
+</mat-card>
+<ng-container *ngIf="topics.length">
+  <div *ngFor="let topic of topics;let i=index" class="m-2">
+
+    <mat-accordion *ngFor="let t of topic.termTopic;let j=index">
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <!-- Self aware panel -->
+            <h4>
+              {{t.topicName}}
+            </h4>
+          </mat-panel-title>
+          <mat-panel-description>
+            <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+
+        <mat-accordion>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <!-- Self aware panel -->
+                <h4>Learning Outcome</h4>
+              </mat-panel-title>
+              <mat-panel-description>
+                <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div>
+              <p [innerHTML]="t.learningOutcomes"></p>
+            </div>
+            <!-- <p>I'm visible because I am open</p> -->
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <!-- Self aware panel -->
+                <h4>Required Reading</h4>
+              </mat-panel-title>
+              <mat-panel-description>
+                <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div>
+              <p [innerHTML]="t.requiredReading"></p>
+            </div>
+            <!-- <p>I'm visible because I am open</p> -->
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <!-- Self aware panel -->
+                <h4>Bonus Reading</h4>
+              </mat-panel-title>
+              <mat-panel-description>
+                <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div>
+              <p [innerHTML]="t.bonesReading"></p>
+            </div>
+            <!-- <p>I'm visible because I am open</p> -->
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <!-- Self aware panel -->
+                <h4>Notes</h4>
+              </mat-panel-title>
+              <mat-panel-description>
+                <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
+              
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div class="row notes">
+              <div class="card col-md-2 notes-card" *ngFor="let note of t.notesList">
+                <div class="card-header" > {{note.notesName}} </div>
+                <div class="card-body text-center" >
+                  <a  href="javascript:void(0)" (click)="openDoc(note.notesUrl)" >
+                    <mat-icon >
+                      visibility
+                    </mat-icon>
+                  </a>
+                </div>
+              </div>  
+            </div>
+            <!-- <div>
+              <p> {{t.notesName|| "-"}} </p>
+              <a *ngIf="t.notesUrl" href="javascript:void(0)" (click)="openDoc(t.notesUrl)">
+                <mat-icon> description </mat-icon>
+              </a>
+            </div> -->
+          </mat-expansion-panel>
+
+          <mat-expansion-panel *ngIf="!gcRoleId">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <!-- Self aware panel -->
+                <h4>Instructor Notes</h4>
+              </mat-panel-title>
+              <mat-panel-description>
+                <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div>
+              <p [innerHTML]="t.instruction"></p>
+            </div>
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <!-- Self aware panel -->
+                <h4>Question Bank</h4>
+              </mat-panel-title>
+              <mat-panel-description>
+                <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="notes" >
+              <div class="card col-md-2 notes-card" *ngFor="let qb of topic.questionBank" >
+                <div class="card-header" > {{qb.questionBankName}} </div>
+                <div class="card-body text-center" >
+                  <a href="javascript:void(0)" (click)="openDoc(qb.queBankurl)" >
+                    <mat-icon>
+                      visibility
+                    </mat-icon>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <!-- Self aware panel -->
+                <h4>Previous Term Papers</h4>
+              </mat-panel-title>
+              <mat-panel-description>
+                <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="notes" >
+              <div class="card col-md-2 notes-card" *ngFor="let paper of topic.previousTermPaper" >
+                <div class="card-header" > {{paper.previousTermPaper}} </div>
+                <div class="card-body" >
+                  <a href="javascript:void(0)" (click)="openDoc(paper.url)" >
+                    <mat-icon>
+                      visibility
+                    </mat-icon>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </mat-expansion-panel>
+
+
+        </mat-accordion>
+
+
+
+
+
+
+
+
+
+
+      </mat-expansion-panel>
+    </mat-accordion>
+
+
+
+  </div>
+
+</ng-container>

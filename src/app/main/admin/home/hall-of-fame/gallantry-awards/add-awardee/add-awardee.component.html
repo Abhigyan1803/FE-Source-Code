@@ -1,0 +1,119 @@
+<div class="mat-new">
+    <h4 class="card-heading">
+        <button mat-icon-button (click)="goBack()">
+            <mat-icon>chevron_left</mat-icon>
+        </button> Home <span class="sub-menu1"> > Hall of Fame > Gallantry Awardees</span> <span class="sub-menu1"> >
+            {{pageName}}</span>
+    </h4>
+</div>
+<mat-card>
+    <div class="top-br">
+        <form [formGroup]="addHallOfFameForm">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="officerRank">Officer's Rank<span class="required">*</span></label>
+                    <input id="officerRank" class="form-control" formControlName="officerRank"
+                        placeholder="Officer's Rank" maxlength="150">
+                    <span class="validation_msg" *ngIf="f.officerRank.errors && isError">Please Enter Officer's
+                        Rank</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="officerName">Officer's Name<span class="required">*</span></label>
+                    <input id="officerName" class="form-control" formControlName="officerName"
+                        placeholder="Officer's Name" maxlength="150">
+                    <span class="validation_msg" *ngIf="f.officerName.errors && isError">Please Enter Officer's
+                        Name</span>
+                </div>
+            </div>
+
+            <div class="row">
+            
+                <div class="form-group col-md-6">
+                    <label for="officerRegiment">Officer's Unit<span class="required">*</span></label>
+                    <input id="officerRegiment" class="form-control" formControlName="officerRegiment" placeholder="Officer's Unit"
+                        maxlength="150">
+                    <span class="validation_msg" *ngIf="f.officerRegiment.errors && isError">Please Enter Officer's
+                        Unit</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="officerBattalion">Officer's Battalion<span class="required">*</span></label>
+                    
+                    <select id="officerBattalion" class="form-control" formControlName="officerBattalion">
+                        <option value="" selected hidden disabled>Select</option>
+                        <option *ngFor="let b of battalions" [value]="b.shortName">{{b.shortName}} Bn</option>
+                    </select>
+                    <span class="validation_msg" *ngIf="f.officerBattalion.errors && isError">Please Select Officer's Battalion</span>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <!-- 
+                  recognition: ['', Validators.required],
+                  description: ['', Validators.required],
+            
+                  status: ['1', Validators.required],
+                  image: ['']
+                             -->
+            
+                <div class="form-group col-md-6">
+                    <label for="awardMedal">Awards/Medals</label>
+                    <select id="awardMedal" class="form-control" formControlName="awardMedal">
+                        <option value="" selected hidden disabled>Select</option>
+                        <option *ngFor="let a of awards" [value]="a">{{a}} </option>
+                    </select>
+                    <span class="validation_msg" *ngIf="f.awardMedal.errors && isError">Please Enter Officer's
+                        Regiment</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="yearAwarded">Year</label>
+                    <input id="yearAwarded"  class="form-control" formControlName="yearAwarded" 
+                    placeholder="Year When Officer Got Awarded" (keypress)="onlyNum($event)" maxlength="4">
+                    <span class="validation_msg" *ngIf="f.yearAwarded.errors && isError">Please Enter Officer's
+                                        Year</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="recognition">Recognition</label>
+                    <input id="recognition" class="form-control" formControlName="recognition" placeholder="Recognition"
+                        maxlength="150">
+                    <span class="validation_msg" *ngIf="f.recognition.errors && isError">Please Write Something</span>
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="title">Description <span class="char-count"> ({{descLength}}/3000) </span> <span
+                            class="required">*</span></label>
+                    <textarea class="form-control" maxlength="3000" placeholder="Maximum 3000 Characters" required
+                        formControlName="description" (input)="charCount($event)"></textarea>
+                    <span class="validation_msg" *ngIf="f.description.errors && isError">Please Write Some
+                        Description</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Image (Optional)</label>
+                <input #file type="file" accept="image/*" (change)="onSelectImage($event)" id="image">
+                <span class="size_info">Max Image Size {{sharedService.fileSize}} MB. (Image size must be 200px * 150px)</span>
+                <div *ngIf="previewImg" class="preview_image"> <img [src]="previewImg" alt=""></div>
+            </div>
+
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="status" class="form-label">Status <span class="required">*</span></label>
+                    <select name="" id="status" class="form-control" required formControlName="status">
+                        <option value="" disabled selected hidden>Select</option>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+                    <span class="validation_msg" *ngIf="f.status.touched && f.status.invalid">*Please Select
+                        Status</span>
+                </div>
+            </div>
+
+            <button mat-raised-button *ngIf="!id" (click)="addHallOfFame()">Add</button>
+            <button mat-raised-button *ngIf="id" (click)="updateHallOfFame()">Update</button>
+
+        </form>
+    </div>
+</mat-card>

@@ -1,0 +1,117 @@
+<div class="mat-new">
+    <h4 class="card-heading"> Home <span class="sub-menu1"> > IMA Recommended Reading List </span> </h4>
+
+</div>
+
+<mat-card>
+   
+
+    <div class="d-flex btn-set">
+        <div class="search">
+            <input class="search_input" (input)="applyFilter($event)" placeholder="Search ..." #input>
+        </div>
+        <button mat-raised-button (click)="addRecommendedbook()" class="add-btton">
+            <mat-icon>add</mat-icon> Add
+        </button>
+    </div>
+
+    <!-- <div class="gene-card-content pad-t-none">
+        <div class="table-responsive">
+            <table class="table table-hover table-middle th-fw-light mb-0">
+                <thead>
+                    <tr>
+                        <th>P.</th>
+                        <th>Image</th>
+                        <th>Date & Time</th>
+                        <th>Event Name</th>
+                        <th>Status</th>
+                        <th>View</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let e of eventsList; let i = index">
+                        <td> {{i+1}} </td>
+                        <td><img [src]="e.image" (error)="noImg($event)" width="50" height="50"
+                                class="img-fluid img-circle" alt="User Image"></td>
+                        <td>{{e.eventDate | date:'d MMM, y, HHmm'}}</td>
+                        <td>{{e.title}} </td>
+                        <td>
+                            <mat-slide-toggle [checked]="e.status == 1" (change)="changeEventStatus($event, e.id)">
+                            </mat-slide-toggle>
+                        </td>
+                        <td class="act-btn"> <a href="javascript:void(0)">
+                                <mat-icon (click)="viewEvent(e)">visibility</mat-icon>
+                            </a> </td>
+                </tbody>
+            </table>
+        </div>
+    </div> -->
+
+    <div class="example-container ">
+        <div class="example-table-container">
+            <table mat-table [dataSource]="dataSource" (matSortChange)="sortData($event)" matSort>
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="number">
+                    <th mat-header-cell *matHeaderCellDef>S.No.</th>
+                    <td mat-cell *matCellDef="let element;let i = index;">
+                        {{i +1 + (myPaginator.pageIndex * myPaginator.pageSize)}} </td>
+                </ng-container>
+
+                <!-- Rank Column -->
+                <ng-container matColumnDef="bookName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Book Name  </th>
+                    <td mat-cell *matCellDef="let element"> {{element.bookName}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="bookGenre">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Book Genre </th>
+                    <td mat-cell *matCellDef="let element"> {{element.bookGenre}} </td>
+                </ng-container>
+
+                <!-- Email Column -->
+                <ng-container matColumnDef="description">
+                    <th mat-header-cell *matHeaderCellDef>Description</th>
+                    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="authorName" >
+                    <th mat-header-cell *matHeaderCellDef  mat-sort-header>Author </th>
+                    <td mat-cell *matCellDef="let element">{{element.authorName}}</td>
+                </ng-container>
+
+              
+                <!-- Status Column -->
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef> Status </th>
+                    <td mat-cell *matCellDef="let element">
+                        <mat-slide-toggle [checked]="element.status == 1"
+                            (change)="changeRecommendedbookStatus($event,element)">
+                        </mat-slide-toggle>
+                    </td>
+                </ng-container>
+
+
+                <!-- Action Column -->
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef> Action </th>
+                    <td class="act-btn" mat-cell *matCellDef="let element"> <a href="javascript:void(0)"
+                            (click)="viewRecommendedbook(element)">
+                            <mat-icon>visibility</mat-icon>
+                        </a> </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" style="text-align: center;" colspan="10">No Record Found</td>
+                </tr>
+            </table>
+        </div>
+
+        <mat-paginator #myPaginator [pageSizeOptions]="[10,20,50,100]" showFirstLastButtons></mat-paginator>
+    </div>
+
+
+</mat-card>

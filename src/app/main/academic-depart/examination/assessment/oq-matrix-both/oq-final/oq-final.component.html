@@ -1,0 +1,217 @@
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="mat-new">
+        <h4 class="card-heading">Examination <span class="sub-menu1">> Assessment > {{term}} > OQ MATRIX > Final-Term</span></h4>
+      </div>
+      <div class="academics">
+        <div class="mat-card mat-focus-indicator">
+          <form class="ng-untouched ng-pristine ng-invalid">
+            <div class="row">
+              <div class="form-group col-md-3">
+                <label for="battalion">Battalion</label>
+                <select id="battalion" name="battalion" (change)="battalionSelected($event.target.value)" class="form-control">
+                  <option value="0" selected>Select</option>
+                  <option *ngFor="let b of battalionList" [value]="b.shortName"> {{b.shortName}}</option>
+                </select>
+              </div>
+              <div class="form-group col-md-3">
+                <label for="company">Company</label>
+                <select id="company" class="form-control" name="company"  (change)="companySelected($event.target.value)">
+                  <option value="0" selected>Select</option>
+                  <option *ngFor="let c of companyList" [value]="c.name"> {{c.name}}</option>
+                </select>
+              </div>
+  
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="rank">Search</label>
+                  <input placeholder="Search" formcontrolname="" type="text" name="serviceid" [(ngModel)]="serviceid" (keyup)="serviceSearch($event.target.value)"
+                    class="form-control ng-untouched ng-pristine ng-invalid">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <label>&nbsp;</label>
+                <button type="button" mat-raised-button (click)="edSearch()">Search</button>
+                <!-- <button mat-raised-button (click)="clearSearch()" >Clear</button> -->
+              </div>
+            </div>
+          </form>
+          <form class="oq-matrix-form">
+            <table class="tg mb-2">
+              <thead>
+                <tr>
+                  <th class="tg-qnnc" rowspan="3">S. No.</th>
+                  <th class="tg-qnnc" rowspan="3">IMA No.</th>
+                  <th class="tg-qnnc" rowspan="3">Course</th>
+                  <th class="tg-qnnc" rowspan="3">Name</th>
+                  <th class="tg-qnnc" rowspan="3">Rank</th>
+                  <th class="tg-qnnc" rowspan="3">Bn/Coy</th>
+                  <th class="tg-qnnc" colspan="11">Subjects</th>
+                </tr>
+                <tr>
+                  <th colspan="1" *ngFor="let subject of oqMatrix" class="tg-qnnc">
+                    {{subject.subjectCategory}}</th>
+                    <th class="tg-qnnc" rowspan="3">Total<br>Marks
+                      (100)</th>
+  
+                </tr>
+                <tr>
+                  <th colspan="1" style="width: 11%;" *ngFor="let subject of oqMatrix" class="tg-qnnc">
+                    {{subject.subjectName}}<br>Marks
+                    ({{subject.totalMarks}})</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let leadership of oqCadetList; let leadershipIndex = index">
+                  <td class="tg-c3ow">{{ leadershipIndex + 1}}</td>
+                  <td class="tg-c3ow">{{ leadership.serviceId }}</td>
+                  <td class="tg-0pky">{{ leadership.course }}</td>
+                  <td class="tg-c3ow">{{ leadership.name }}</td>
+                  <!-- <td class="tg-0pky">{{ leadership.nationality }}</td> -->
+                  <td class="tg-c3ow">
+                    <p *ngIf="leadership.nationality=='India'">GC</p>
+                    <p *ngIf="leadership.nationality !='India'">FGC</p>
+                  </td>
+                  <td class="tg-c3ow">{{leadership.battalian}}/{{ leadership.company}}</td>
+                  <td class="tg-c3ow"
+                    *ngFor="let oqMatrix of leadership.academicOqMatrixResult.academicOqMatrixSubjectResult; let oqMatrixIndex = index">
+                    <div class="d-flex">
+                      <ng-container>
+                        <input type="text" class="form-control d-inline" value="{{oqMatrix.obtainedMarks}}"
+                          (focus)="onFocusEvent($event.target.value,leadershipIndex)" min="0"
+                          (keypress)="keyPress($event)"
+                          on-focusout="onChange($event,$event.target.value, oqMatrix.totalMarks, oqMatrix.subjectId, leadershipIndex, oqMatrixIndex)">
+                      </ng-container>
+                    </div>
+                  </td>
+  
+                  <td class="tg-0pky">
+                    <input type="text" class="form-control" disabled id="{{leadershipIndex}}"
+                      value="{{ leadership.academicOqMatrixResult.obtainedMarks }}">
+                  </td>
+  
+  
+  
+                  <div *ngIf="!leadership.academicOqMatrixResult">
+                    <div *ngFor="let size of oqMatrix;let ser=index;">
+                      <td class="tg-c3ow">
+                        <input type="text" class="form-control" formControlName="obtainedMarks">
+                      </td>
+                      <td *ngIf="ser+1 == oqMatrix.length" class="tg-c3ow">{{obtainedTotalMarks}}</td>
+                    </div>
+                  </div>
+                </tr>
+                <tr>
+                  <td class="mat-cell" style="text-align: center;" *ngIf="! oqCadetList?.length" colspan="14">
+                    <div>No Record Found</div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="">
+             
+            </div>
+          </form>
+          <mat-paginator #myPaginator [length]="resultsLength" [pageSizeOptions]="[50]" showFirstLastButtons>
+          </mat-paginator>
+          <div class="btn-sec mt-3 text-right  mb-3">
+            <button type="button" disabled mat-raised-button (click)="openPopup()" *ngIf="! oqCadetList?.length">Preview</button>
+            <button type="button" mat-raised-button (click)="openPopup()" *ngIf="oqCadetList?.length > 0">Preview</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable custom-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Review</h5>
+        </div>
+        <div class="modal-body">
+          <table class="tg">
+            <thead>
+              <tr>
+                <th class="tg-qnnc" rowspan="3">S. No.</th>
+                <th class="tg-qnnc" rowspan="3">IMA No.</th>
+                <th class="tg-qnnc" rowspan="3">Course</th>
+                <th class="tg-qnnc" rowspan="3">Name</th>
+                <th class="tg-qnnc" rowspan="3">Rank</th>
+                <th class="tg-qnnc" rowspan="3">Bn/Coy</th>
+                <th class="tg-qnnc" colspan="11">Subjects</th>
+              </tr>
+              <tr>
+                <th colspan="1" *ngFor="let subject of oqMatrix" class="tg-qnnc">
+                  {{subject.subjectCategory}}</th>
+                  <th class="tg-qnnc" rowspan="3">Total<br>Marks
+                    (100)</th>
+  
+              </tr>
+              <tr>
+                <th colspan="1" style="width: 11%;" *ngFor="let subject of oqMatrix" class="tg-qnnc">
+                  {{subject.subjectName}}<br>Marks
+                  ({{subject.totalMarks}})</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let leadership of oqCadetList; let leadershipIndex = index">
+                <td class="tg-c3ow">{{ leadershipIndex + 1}}</td>
+                <td class="tg-c3ow">{{ leadership.serviceId }}</td>
+                <td class="tg-0pky">{{ leadership.course }}</td>
+                <td class="tg-c3ow">{{ leadership.name }}</td>
+                <!-- <td class="tg-0pky">{{ leadership.nationality }}</td> -->
+                <td class="tg-c3ow">
+                  <p *ngIf="leadership.nationality=='India'">GC</p>
+                  <p *ngIf="leadership.nationality !='India'">FGC</p>
+                </td>
+                <td class="tg-c3ow">{{leadership.battalian}}/{{ leadership.company}}</td>
+                <td class="tg-c3ow"
+                  *ngFor="let oqMatrix of leadership.academicOqMatrixResult.academicOqMatrixSubjectResult; let oqMatrixIndex = index">
+                  <div class="d-flex">
+                    <ng-container>
+                      <input type="text" disabled class="form-control d-inline" value="{{oqMatrix.obtainedMarks}}"
+                        (focus)="onFocusEvent($event.target.value,leadershipIndex)" min="0" (keypress)="keyPress($event)"
+                        on-focusout="onChange($event.target.value, oqMatrix.totalMarks, oqMatrix.subjectId, leadershipIndex, oqMatrixIndex)">
+                    </ng-container>
+                  </div>
+                </td>
+  
+                <td class="tg-0pky">
+                  <input type="text" class="form-control" disabled id="{{leadershipIndex}}"
+                    value="{{ leadership.academicOqMatrixResult.obtainedMarks }}">
+                </td>
+  
+  
+  
+                <div *ngIf="!leadership.academicOqMatrixResult">
+                  <div *ngFor="let size of oqMatrix;let ser=index;">
+                    <td class="tg-c3ow">
+                      <input type="text" class="form-control" formControlName="obtainedMarks">
+                    </td>
+                    <td *ngIf="ser+1 == oqMatrix.length" class="tg-c3ow">{{obtainedTotalMarks}}</td>
+                  </div>
+                </div>
+              </tr>
+              <tr>
+                <td class="mat-cell" style="text-align: center;" *ngIf="! oqCadetList?.length" colspan="14">
+                  <div>No Record Found</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button mat-raised-button type="button" class="btn-dark" (click)="closePopup()">Back</button>
+          <button type="button" mat-raised-button (click)="confirm()">Submit</button>
+  
+        </div>
+      </div>
+    </div>
+  </div>

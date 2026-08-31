@@ -1,0 +1,117 @@
+<div class="mat-new">
+    <h4 class="card-heading">
+        <button mat-icon-button (click)="goBack()">
+            <mat-icon>chevron_left</mat-icon>
+        </button> Home <span class="sub-menu1"> > Greybook </span> <span class="sub-menu1"> >
+            {{pTitle}}</span>
+    </h4>
+</div>
+<mat-card>
+    <div class="top-br">
+        <form [formGroup]="addGreybookForm">
+
+            <div class="row">
+
+                <div class="form-group col-md-6">
+                    <label for="userRank">Rank<span class="required">*</span></label>
+                    <input id="userRank" type="text" class="form-control" maxlength="100" formControlName="userRank"
+                        placeholder="Officer's Rank">
+                    <span class="validation_msg"
+                        *ngIf="f.userRank.errors && f.userRank.errors.required && isError">Please Enter Rank</span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="name">Name<span class="required">*</span></label>
+                    <input id="name" type="text" class="form-control" maxlength="100" formControlName="name"
+                        placeholder="Officer's Name">
+                    <span class="validation_msg" *ngIf="f.name.errors && f.name.errors.required && isError">Please Enter
+                        Name</span>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="form-group col-md-6">
+                    <label for="email">Email</label>
+                    <input id="email" type="text" class="form-control" maxlength="100" formControlName="email"
+                        placeholder="For Ex. xyz@abc.com">
+                    <!-- <span class="validation_msg" *ngIf="f.email.errors && f.email.errors.required && isError">Please
+                        Enter Email Address</span>
+                        <span class="validation_msg" *ngIf="officialEmail.errors && officialEmail.errors.pattern">
+                            Official Email not valid.
+                        </span>  -->
+                    <!-- <span class="validation_msg" *ngIf="f.email.errors.email">Please Enter a Valid Email Address</span> -->
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="countryCode">Country Code<span class="required">*</span></label>
+                    <input id="countryCode" type="text" class="form-control" maxlength="3" formControlName="countryCode"
+                        placeholder="Numbers Only" (keypress)="onlyNum($event)">
+                    <span class="validation_msg"
+                        *ngIf="f.countryCode.errors && f.countryCode.errors.required && isError">Please Enter Country
+                        Code</span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="phoneNumber">Phone Number<span class="required">*</span></label>
+                    <input id="phoneNumber" type="text" class="form-control" maxlength="14" placeholder="Numbers Only"
+                        formControlName="phoneNumber" (keypress)="onlyNum($event)">
+                    <span class="validation_msg"
+                        *ngIf="f.phoneNumber.errors && f.phoneNumber.errors.required && isError">Please Enter Phone
+                        Number</span>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="form-group col-md-6">
+                    <label for="department">Department<span class="required">*</span></label>
+                    <input id="department" type="text" class="form-control" maxlength="100" formControlName="department"
+                        placeholder="Department">
+                    <span class="validation_msg"
+                        *ngIf="f.department.errors && f.department.errors.required && isError">Please Enter
+                        Department</span>
+                </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="post">Appt<span class="required">*</span></label>
+                        <input id="post" type="text" class="form-control" maxlength="100" formControlName="post" placeholder="Post">
+                        <span class="validation_msg" *ngIf="f.post.errors && f.post.errors.required && isError">Please Enter
+                            Post</span>
+                    </div>
+
+
+
+            
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="department">Address<span class="required">*</span></label>
+                    <textarea id="address" type="text" class="form-control" maxlength="100" formControlName="address"
+                        placeholder="Address"> </textarea>
+                    <span class="validation_msg" *ngIf="f.address.errors && f.address.errors.required && isError">Please Enter
+                        Department</span>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="status" class="form-label">Status <span class="required">*</span></label>
+                    <select name="" id="status" class="form-control" required formControlName="status">
+                        <option value="" disabled selected hidden>Select</option>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+                   
+                </div>
+            </div>
+
+            <button mat-raised-button *ngIf="!id" (click)="addGreybook()">Add</button>
+            <button mat-raised-button *ngIf="id" (click)="updateGreybook()">Update</button>
+
+        </form>
+    </div>
+</mat-card>

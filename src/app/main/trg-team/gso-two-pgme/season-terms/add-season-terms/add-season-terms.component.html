@@ -1,0 +1,66 @@
+<div class="mat-new">
+    <h4 class="card-heading"> <button mat-icon-button (click)="goBack()">
+            <mat-icon>chevron_left</mat-icon>
+        </button> GSO-2 PGME <span class="sub-menu1"> > Season Terms</span> <span class="sub-menu1"> > {{pageTitle}} </span>
+    </h4>
+</div>
+<mat-card>
+    <div class="top-br">
+        <form [formGroup]="addSeasonTermForm">
+
+            <div class="row">
+            
+                <div class="form-group col-md-6">
+                    <label for="seasonTerm">Season Term<span class="required">*</span></label>
+                    <select id="seasonTerm" class="form-control" formControlName="seasonTerm">
+                        <option value="" selected hidden disabled>Select</option>
+                        <option *ngFor="let t of seasonTerms" [value]="t.id">{{t.name}}</option>
+                    </select>
+                    <span class="validation_msg" *ngIf="f.seasonTerm.errors && f.seasonTerm.errors.required && isError">Please
+                        Select Season Term</span>
+                </div>
+            
+                <div class="form-group col-md-6">
+                    <label for="year">Year<span class="required">*</span></label>
+                    <input id="year" type="number" [min]="currentYear" class="form-control" formControlName="year">
+                    <span class="validation_msg" *ngIf="f.year.errors  && isError">Please Enter a Valid Year</span>
+                </div>
+            
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="start">Start Date of Season Term</label>
+                    <input type="date" id="start" [min]="minStartDate"  class="form-control" formControlName="startDate" (keydown)="noType()" (change)="onSelectStartDate($event)" >
+                    <span class="validation_msg" *ngIf="f.startDate.errors && f.startDate.errors.required && isError">Please
+                        Select Season Term Starting Date</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="end">Ending Date of Season Term</label>
+                    <input type="date" id="end"  [min]="minEndDte" class="form-control" formControlName="endDate" (keydown)="noType()" >
+                    <span class="validation_msg" *ngIf="f.startDate.errors && f.startDate.errors.required && isError">Please
+                        Select Season Term Ending Date</span>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="form-label"> Status <span class="required">*</span></label>
+                    <select class="form-control" formControlName="status">
+                        <option value="" selected hidden disabled>Status</option>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+                    <span class="validation_msg" *ngIf="f.status.errors && f.status.errors.required && isError">Status
+                        is required</span>
+                </div>
+            </div>
+
+            <button *ngIf="!id" mat-raised-button (click)="confirmAddSeasonTerm()">Add Season Term</button>
+            <button *ngIf="id" mat-raised-button (click)="updateDocument()">Update Season Term</button>
+
+        </form>  
+
+    </div>
+</mat-card>

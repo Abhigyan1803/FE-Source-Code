@@ -1,0 +1,466 @@
+<script>
+    /* When the user clicks on the button, 
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
+<script>
+    function sc(id) {
+        $('#' + id).click(function () {
+            $('#' + id + 's').toggleClass("main_new");
+        });
+    }
+</script>
+
+<header>
+    <div class="middle-bar bg-white">
+
+        <div class="container-fluid">
+
+            <div class="middle-area">
+                <div class="service-list">
+
+                    <div class="ima1">
+                        <a >
+                            <div class="demo-11">
+                                <img src="assets/img/logo_red.png" width="80px" height="80px">
+                                <h4 class="title"> Indian <br> Military <br> academy</h4>
+                            </div>
+                        </a>
+
+                    </div>
+                    <div class="ima2-logo">
+                        <div class="logo-header hidden-xs-clas">
+                            <a style="pointer-events: none;font-weight: 600;" >Learning
+                                Management System</a>
+                        </div>
+                    </div>
+
+                    <div class="ima3 demo1">
+                        
+                        <div class="dropdown">
+                            <button mat-button [matMenuTriggerFor]="menu" style="background: wheat;">
+                                <div>
+                                    <div class="txt-ii cadet-image">
+                                        <img width="70" height="70" class="img-circle" [src]="cadetDetails.profileImg" (error)="noImg($event)">
+                                    </div>
+                                    <div class="cadet-name" >
+                                        <h5>
+                                        {{cadetDetails.name || "Gentleman Cadet"}} 
+
+                                        </h5>
+                                        <!-- <i class="fa fa-chevron-down"></i>                                      -->
+                                    </div>
+
+                                </div>
+                            </button>
+
+                            <mat-menu #menu="matMenu">
+
+                                <div class="acc-info" style="width: 180px;" >
+                                    <div class="s-id" > <strong> {{cadetDetails.serviceId||"-"}} </strong></div>
+                                    <div >{{cadetDetails.termName||"-"}}</div>
+                                    <div >{{cadetDetails.termSession||"-"}}-{{cadetDetails.year||"-"}}</div>
+                                    <div >{{cadetDetails.battalian.shortName||"-"}} Bn</div>
+                                    <div >{{cadetDetails.company.name||"-"}}</div>
+
+                                </div>
+                                <button mat-menu-item  [routerLink]="['/pages']"  style="outline: none;">
+                                    <mat-icon>home</mat-icon> <b>Home</b>
+                                </button>
+                                <button mat-menu-item (click)="logout()" style="outline: none;">
+                                  <mat-icon>logout</mat-icon>  <b>Logout</b>
+                                </button>
+
+                            </mat-menu>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-nav navbar-collapse  justify-content-start" id="navbarNavDropdown">
+        <div class="container-fluid">
+            <div class="logo-header d-md-block d-lg-none">
+                <a href="index.html">Learning Management System</a>
+            </div>
+            <ul class="nav">
+                
+                <li class="commomn" routerLinkActive="active-menu">
+                    <a href="javascript:;" [routerLink]="['/gc/content/dashboard']">Dashboard</a>
+                </li>
+                <li class="commomn" routerLinkActive="active-menu">
+                    <a href="javascript:;">Subjects <i class="fa fa-chevron-down"></i></a>
+                    <ul class="sub-menu">
+                        <li><a href="javascript:void(0)" [routerLink]="['/gc/content/subjects']">Service Subjects</a>
+                        </li>
+                        <li><a href="javascript:void(0)"
+                                [routerLink]="['/gc/content/ac-subjects']">Academic
+                                Subjects </a></li>
+                    </ul>
+                </li>
+                <!-- <ul class="sub-menu">
+                        <li><a href="javascript:void(0)">Academic Subjects <i class="fa fa-chevron-down"></i>
+                                <ul class="sub-menu0">
+                                    <li><a href="javascript:void(0)">Subjects</a></li>
+                                    <li><a href="javascript:void(0)">Assignments <i class="fa fa-chevron-down"></i>
+                                            <ul class="sub-menu1">
+                                                <li>
+                                                    <a href="javascript:;">Paper 1 <i class="fa fa-chevron-down"></i>
+                                                        <ul class="sub-menu2">
+                                                            <li><a href="javascript:void(0)"
+                                                                    [routerLink]="['/gc/content/assignment/paper1','battle-history']">Battle
+                                                                    History</a></li>
+                                                            <li><a href="javascript:void(0)"
+                                                                    [routerLink]="['/gc/content/assignment/paper1','military-geography']">Military
+                                                                    Geography </a></li>
+                                                        </ul>
+                                                    </a>
+                                                </li>
+                                                <li><a href="javascript:;">Paper 2 <i class="fa fa-chevron-down"></i>
+                                                        <ul class="sub-menu2">
+                                                            <li><a href="javascript:void(0)"
+                                                                    [routerLink]="['/gc/content/assignment/paper2','cair']">CAIR</a>
+                                                            </li>
+                                                            <li><a href="javascript:void(0)"
+                                                                    [routerLink]="['/gc/content/assignment/paper2','bs']">BS
+                                                                </a></li>
+
+                                                        </ul>
+                                                    </a></li>
+                                                <li><a href="javascript:;">Paper 3 <i class="fa fa-chevron-down"></i>
+                                                        <ul class="sub-menu2">
+                                                            <li><a href="javascript:void(0)"
+                                                                    [routerLink]="['/gc/content/assignment/paper3','science-and-warfare']">Science
+                                                                    and Warfare</a></li>
+                                                        </ul>
+                                                    </a></li>
+                                                <li><a href="javascript:;">Paper 4 <i class="fa fa-chevron-down"></i>
+                                                        <ul class="sub-menu2">
+                                                            <li><a href="javascript:void(0)"
+                                                                    [routerLink]="['/gc/content/assignment/paper4','swt']">SWT</a>
+                                                            </li>
+                                                        </ul>
+                                                    </a></li>
+                                                <li><a href="javascript:;">Paper 5 <i class="fa fa-chevron-down"></i>
+                                                        <ul class="sub-menu2">
+                                                            <li><a href="javascript:void(0)"
+                                                                    [routerLink]="['/gc/content/assignment/paper5','ecs']">ECS</a>
+                                                            </li>
+                                                        </ul>
+                                                    </a></li>
+                                                <li><a href="javascript:;">Paper 6 <i class="fa fa-chevron-down"></i>
+                                                        <ul class="sub-menu2">
+                                                            <li><a href="javascript:void(0)"
+                                                                    [routerLink]="['/gc/content/assignment/paper6','it']">IT</a>
+                                                            </li>
+                                                        </ul>
+                                                    </a></li>
+                                            </ul>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </a></li>
+                        <li><a href="javascript:void(0)">
+                                Service Subjects <i class="fa fa-chevron-down"></i>
+                                <ul class="sub-menu0">
+                                    <li><a href="javascript:void(0)"
+                                            [routerLink]="['/gc/content/subjects','Service Subjects']">Study
+                                            Material</a></li>
+                                </ul>
+                            </a></li>
+                    </ul> -->
+
+
+                <li class="commomn" routerLinkActive="active-menu">
+                    <a href="javascript:;">Interviews<i class="fa fa-chevron-down"></i></a>
+                    <ul class="sub-menu">
+                        <li><a href="javascript:void(0)"
+                                [routerLink]="['/gc/content/Interviews','Interview Sheet']">Interview Sheet</a></li>
+                        <li><a href="javascript:void(0)"
+                                [routerLink]="['/gc/content/Interviews','Instructions for Interviews and Counselling']">Instructions
+                                for Interviews and Counselling</a>
+                        </li>
+                        <li><a href="javascript:void(0)"
+                                [routerLink]="['/gc/content/Interviews','Initial Interview']">Initial Interview</a></li>
+                        <li><a href="javascript:void(0)"
+                                [routerLink]="['/gc/content/Interviews','Begining Term Interview']">Begining Term
+                                Interview</a></li>
+                        <li><a href="javascript:void(0)"
+                                [routerLink]="['/gc/content/Interviews','Mid Term Interview']">Mid Term Interview</a>
+                        </li>
+                        <li><a href="javascript:void(0)"
+                                [routerLink]="['/gc/content/Interviews','Special Interview']">Special Interview</a></li>
+                    </ul>
+                </li>
+                <li class="commomn" routerLinkActive="active-menu">
+                    <a href="javascript:;">Syllabus <i class="fa fa-chevron-down"></i></a>
+                    <ul class="sub-menu">
+                        <li><a href="javascript:void(0)" [routerLink]="['/gc/content/syllabus']">Service Subjects</a>
+                        </li>
+                        <li><a href="javascript:void(0)" [routerLink]="['/gc/content/academic-syllabus']">Academic
+                                Subjects</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="commomn" routerLinkActive="active-menu">
+                    <a href="javascript:;">Entitlements<i class="fa fa-chevron-down"></i></a>
+                    <ul class="sub-menu">
+                        <li><a href="javascript:void(0)" [routerLink]="['/gc/content/entitlements','MES']">MES</a></li>
+                        <li><a href="javascript:void(0)"
+                                [routerLink]="['/gc/content/entitlements','Personal Kit Items']">Personal Kit Items </a>
+                        </li>
+                        <li><a href="javascript:void(0)" [routerLink]="['/gc/content/entitlements','IT']">IT</a></li>
+                        <li><a href="javascript:void(0)"
+                                [routerLink]="['/gc/content/entitlements','Additional Items']">Additional Items</a></li>
+                    </ul>
+
+                </li>
+                <li class="commomn" routerLinkActive="active-menu">
+                    <a href="javascript:;" [routerLink]="['/gc/content/ima-blog']">IMA Blogs</a>
+                </li>
+                <li class="commomn" routerLinkActive="active-menu">
+                    <a href="javascript:;">Clubs <i class="fa fa-chevron-down"></i> </a>
+                    <ul class="sub-menu">
+                        <li><a href="javascript:void(0)" [routerLink]="['/gc/content/club','Daywise Programme']">Daywise
+                                Programme</a></li>
+                        <li><a href="javascript:void(0)" [routerLink]="['/gc/content/club','GC Nominal Roll']">GC
+                                Nominal Role </a></li>
+                        <li><a href="javascript:void(0)" [routerLink]="['/gc/content/club','SOPs']">SOPs </a></li>
+                    </ul>
+                </li>
+                <li class="commomn" routerLinkActive="active-menu">
+                    <a href="javascript:;">Exam Schedule<i class="fa fa-chevron-down"></i></a>
+                    <ul class="sub-menu">
+                        <li><a href="javascript:void(0)" [routerLink]="['/gc/content/exam-shedule']">Service
+                                Subjects</a></li>
+                        <li><a href="javascript:void(0)" [routerLink]="['/gc/content/academic-exam-shedule']">Academic
+                                Subjects </a></li>
+
+                    </ul>
+                </li>
+                <li class="commomn" routerLinkActive="active-menu">
+                    <a href="javascript:;" [routerLink]="['/gc/content/punishments']">Punishments</a>
+                </li>
+                <li class="commomn" routerLinkActive="active-menu">
+                    <a href="javascript:;" [routerLink]="['/gc/content/adjutant-orders']">Adjutant Orders</a>
+                </li>
+            </ul>
+            <div class="toggle hidden-lg-clas">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- <div class="cccv container-fluid">
+    <div id="md-btm" class="row">
+        <div class="col-md-9">
+            <div class="dev">
+                <h4 class="diii" style="margin-bottom: 0px;">Daily Schedule</h4>
+                <p class="dats">Date: {{myDate | date:'dd MMM yyyy'}}</p>
+            </div>
+            <div id="center_section" class="container" style="">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="data_row aln_ls">
+                            <div class="col-md-12">
+                                                          </div>
+                        </div>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th>Time</th>
+                                    <th>Period</th>
+                                    <th>Subject</th>
+                                    <th>Type</th>
+                                    <th>Lesson</th>
+                                    <th>Instr</th>
+                                    <th>Place</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>0600-0700h</td>
+                                    <td>01</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>OTD Excuse</td>
+                                    <td>COL GS</td>
+                                    <td>Khetarpal Audi</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>0800-0900h</td>
+                                    <td>02</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>DCCI Opening Address</td>
+                                    <td>BRIG ADM</td>
+                                    <td>Khetarpal Audi</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>0900-0700h </td>
+                                    <td>03</td>
+                                    <td>MISC</td>
+                                    <td>-</td>
+                                    <td>PSOs Opening Address</td>
+                                    <td>HAD</td>
+                                    <td>Khetarpal Audi</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>0100-0200h</td>
+                                    <td>04</td>
+                                    <td>Games</td>
+                                    <td>-</td>
+                                    <td>GS Branch (0935-0955)</td>
+                                    <td>BRIG TRG</td>
+                                    <td>Khetarpal Audi</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>0300-0500h</td>
+                                    <td>05</td>
+                                    <td>MISC</td>
+                                    <td>-</td>
+                                    <td>ADM Branch (0955-1015)</td>
+                                    <td>BN AQ</td>
+                                    <td>Khetarpal Audi</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>0900-0400h</td>
+                                    <td>06</td>
+                                    <td>MISC</td>
+                                    <td>-</td>
+                                    <td>ACAD Branch (1035-1055)</td>
+                                    <td>PTO</td>
+                                    <td>Khetarpal Audi</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div id="accordion" class="acc-od">
+                <div class="card" id="one">
+                    <div class="card-header" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
+                        aria-controls="collapseExample">
+                        <a class="card-link">
+                            Upcoming Events
+                        </a>
+                        <i class="fa fa-chevron-right jkl" id="ones"></i>
+                    </div>
+                    <div id="collapseOne" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+                        <div class="card-body">
+                            <ul class="task_list">
+                                <li><a href="#">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
+                                        ligula eget dolor. Aenean m </a></li>
+                                <li><a href="#">Provide Space Control</a></li>
+                                <li><a href="#">Conduct Public Affairs Operations</a></li>
+                                <li><a href="#">Integrate Military Information </a></li>
+                                <li><a href="#">3 Conduct Soldier and Leader Engagement</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" (click)="collapse2.toggle()" [attr.aria-expanded]="!isCollapsed2"
+                        aria-controls="collapseExample">
+                        <a class="collapsed card-link">
+                            My Task
+                        </a>
+                        <i class="fa fa-chevron-right jkl" id=""></i>
+                    </div>
+                    <div #collapse2="ngbCollapse" [(ngbCollapse)]="isCollapsed2">
+                        <div class="card-body">
+                            <ul class="task_list">
+                                <li><a href="#">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
+                                        ligula eget dolor. Aenean m </a></li>
+                                <li><a href="#">Provide Space Control</a></li>
+                                <li><a href="#">Conduct Public Affairs Operations</a></li>
+                                <li><a href="#">Integrate Military Information </a></li>
+                                <li><a href="#">3 Conduct Soldier and Leader Engagement</a></li>
+                                <li><a href="#"> Prepare for Tactical Operations</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" (click)="collapse3.toggle()" [attr.aria-expanded]="!isCollapsed3"
+                        aria-controls="collapseExample">
+                        <a class="collapsed card-link">
+                            C / LEC
+                        </a>
+                        <i class="fa fa-chevron-right jkl" id=""></i>
+                    </div>
+                    <div #collapse3="ngbCollapse" [(ngbCollapse)]="isCollapsed3">
+                        <div class="card-body">
+                            <ul class="task_list">
+                                <li><a href="#">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
+                                        ligula eget dolor. Aenean m </a></li>
+                                <li><a href="#">Provide Space Control</a></li>
+                                <li><a href="#">Conduct Public Affairs Operations</a></li>
+                                <li><a href="#">Integrate Military Information </a></li>
+                                <li><a href="#">3 Conduct Soldier and Leader Engagement</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" class="card-header" (click)="collapse4.toggle()"
+                        [attr.aria-expanded]="!isCollapsed4" aria-controls="collapseExample">
+                        <a class="collapsed card-link">
+                            Counsellor
+                        </a>
+                        <i class="fa fa-chevron-right jkl" id=""></i>
+                    </div>
+                    <div id="collapsefour" #collapse4="ngbCollapse" [(ngbCollapse)]="isCollapsed4">
+                        <div class="card-body">
+                            <ul class="task_list">
+                                <li><a href="#">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
+                                        ligula eget dolor. Aenean m </a></li>
+                                <li><a href="#">Provide Space Control</a></li>
+                                <li><a href="#">Conduct Public Affairs Operations</a></li>
+                                <li><a href="#">Integrate Military Information </a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div> -->
+
+
+<router-outlet></router-outlet>
+
+<footer>
+    <p class="footer-copy">Copyright 2023 Indian Mililtary Academy All rights reserved.</p>
+</footer>

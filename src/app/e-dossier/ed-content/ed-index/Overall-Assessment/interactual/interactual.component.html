@@ -1,0 +1,378 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="mat-heading">
+      <div id="top-bar" class="">
+        <h2 class="backbtn"><button mat-icon-button (click)="goBack()">
+          <mat-icon>chevron_left</mat-icon>
+        </button>E-Dossier <span class="sub-menu1">
+          > Overall Assessment > INTELLECTUAL SKILLS DEVP</span></h2>
+    </div>
+    </div>
+    <div class="academics">
+      <div class="mat-card mat-focus-indicator">
+        <div class="service-id mb-2 mx-1 row">
+            
+          <form class="ng-untouched ng-pristine ng-invalid">
+            <div class="row">
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="rank">IMA No.</label>
+                  <input placeholder="No"  type="text" disabled id="interactualServiceID" class="form-control ng-untouched ng-pristine ng-invalid">
+                </div>
+              </div>  
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="rank">Rank</label>
+                  <input placeholder="Rank"  type="text" disabled id="interactualrank" class="form-control ng-untouched ng-pristine ng-invalid">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="rank">Name</label>
+                  <input placeholder="Name"  type="text" disabled id="interactualName" class="form-control ng-untouched ng-pristine ng-invalid">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="rank">Term</label>
+                  <input placeholder="Term"  type="text" disabled id="interactualtName" class="form-control ng-untouched ng-pristine ng-invalid">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="rank">Bn</label>
+                  <input placeholder="Bn"  type="text" disabled id="interactualBn" class="form-control ng-untouched ng-pristine ng-invalid">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="rank">Coy</label>
+                  <input placeholder="Coy"  type="text" disabled id="interactualComp" class="form-control ng-untouched ng-pristine ng-invalid">
+                </div>
+              </div>
+              
+            </div>
+          </form>
+      </div>
+        <!-- <div class="ng-star-inserted">
+          <div class="mat-new mb-4">
+            <h4 class="card-heading">ACADEMICS: INTELLECTUAL SKILLS DEVP</h4>
+          </div>
+        </div> -->
+        <div *ngIf="isShow">
+          <h2 class="msgCenter">Record not found</h2> 
+        </div>
+          <div *ngIf="isEnabled">
+
+            <form [formGroup]="interactualForm" >
+
+              <div *ngIf="this.termId==1 || this.termId == 2 || this.termId == 3">
+                <h3>I-Term</h3>
+                <table class="tg mb-3">
+                  <thead>
+                    <tr>
+                      <th class="tg-as14" rowspan="4">SUBJECTS</th>
+                      <th class="tg-as14" colspan="2">I TERM</th>
+                    </tr>
+                    <tr>
+                      <th class="tg-qnnc" colspan="2">Final Exam</th>
+                    </tr>
+                    <tr>
+                    <tr>
+                      <th class="tg-hbt2">Max Marks</th>
+                      <th class="tg-hbt2">Marks Obtained</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let mr of intellectualSkillsSubResult;let i=index">
+                      <td class="tg-c3ow">{{mr.subjectName}}</td>
+                      <td class="tg-c3ow">{{mr.finalTotalMarks}}</td> 
+                      <td class="tg-0pky"><input type="text" disabled class="form-control" value="{{mr.finalObtainedMarks}}"></td>
+      
+                      <!-- <td class="tg-0pky"><input min="0" oninput="this.value = 
+                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                                    formControlName="finalObtainedMarks" disabled class="form-control"
+                                    (focus)="onFocusEvent($event.target.value,mr.controls.totalMarks.value)"
+                                    on-focusout="onChange($event.target.value,mr.controls.totalMarks.value,i)"
+                                    maxlength="2" (keypress)="keyPress($event)"></td> -->
+                    </tr>
+                      <tr>
+                        <td class="tg-7btt"><b>Total</b></td>
+                        <td class="tg-7btt"><b>{{finalTotalMarks}}</b></td>
+                        <td class="tg-0pky"><input type="text" class="form-control" disabled value="{{finalObtainedMarks}}"></td>
+                      </tr>
+                      <!-- <button mat-raised-button type="button" class="btn-dark" (click)="confirm()">Submit</button> -->
+                  </tbody>
+                </table>
+              </div>
+              
+
+              <div *ngIf="this.termId == 2 && this.termId == 3">
+                <h3>II-Term</h3>
+                <table class="tg mt-4 mb-3">
+                  <thead>
+                    <tr>
+                      <th class="tg-as14" rowspan="4">SUBJECTS</th>
+                      <th class="tg-as14" colspan="4">II TERM</th>
+                    </tr>
+                    <tr>
+                      <th class="tg-qnnc" colspan="2">Mid Term Exam</th>
+                      <th class="tg-qnnc" colspan="2">Final Exam</th>
+                    </tr>
+                    <tr>
+                    <tr>
+                      <th class="tg-hbt2">Max Marks</th>
+                      <th class="tg-hbt2">Marks Obtained</th>
+                      <th class="tg-hbt2">Max Marks</th>
+                      <th class="tg-hbt2">Marks Obtained</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    
+                    <tr *ngFor="let mr of intellectualSkillsSubResult1;let i=index">
+                      <td class="tg-c3ow">{{mr.subjectName}}</td>
+                      <td class="tg-c3ow"></td>
+                      <td class="tg-0pky"><input type="text" disabled class="form-control"></td>
+                      <td class="tg-c3ow">{{mr.finalTotalMarks}}</td>
+                      <td class="tg-0pky"><input type="text" disabled class="form-control" value="{{mr.finalObtainedMarks}}"></td>
+                    </tr>
+                    
+                      <tr>
+                        <td class="tg-7btt">Total</td>
+                        <td class="tg-7btt">{{midTotalMarks1}}</td>
+                        <td class="tg-0pky"><input type="text" disabled class="form-control" disabled value="{{midObtainedMarks1}}"></td>
+                        <td class="tg-c3ow">{{finalTotalMarks1}}</td>
+                      <td class="tg-0pky"><input type="text" disabled class="form-control" disabled value="{{finalObtainedMarks1}}"></td>
+                      </tr> 
+                  </tbody>
+                </table>
+              </div>
+              
+              <div *ngIf="this.termId == 7 || this.termId == 3">
+                <h3>II-Tech</h3>
+                <table class="tg mt-4 mb-3">
+                  <thead>
+                    <tr>
+                      <th class="tg-as14" rowspan="4">SUBJECTS</th>
+                      <th class="tg-as14" colspan="4">II TECH</th>
+                    </tr>
+                    <tr>
+                      <th class="tg-qnnc" colspan="2">Mid Term Exam</th>
+                      <th class="tg-qnnc" colspan="2">Final Exam</th>
+                    </tr>
+                    <tr>
+                    <tr>
+                      <th class="tg-hbt2">Max Marks</th>
+                      <th class="tg-hbt2">Marks Obtained</th>
+                      <th class="tg-hbt2">Max Marks</th>
+                      <th class="tg-hbt2">Marks Obtained</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let mr of intellectualSkillsSubResult7;let i=index">
+                      <td class="tg-c3ow">{{mr.subjectName}}</td>
+                      <td class="tg-c3ow">{{mr.midTotalMarks}}</td>
+                      <td class="tg-0pky"><input type="text" disabled class="form-control" value="{{mr.midObtainedMarks}}" 
+                        on-focusout="onChange($event.target.value, i, 'midObtainedMarks')"></td>
+                      <td class="tg-c3ow">{{mr.finalTotalMarks}}</td>
+                      <td class="tg-0pky"><input type="text" disabled class="form-control" value="{{mr.finalObtainedMarks}}"
+                        on-focusout="onChange($event.target.value, i, 'finalObtainedMarks')"></td>
+                    </tr>
+                    
+                      <tr> 
+                        <td class="tg-7btt">Total</td>
+                        <td class="tg-7btt">{{midTotalMarks7}}</td>
+                        <td class="tg-0pky"><input type="text" disabled class="form-control" disabled value="{{midObtainedMarks7}}"></td>
+                        <td class="tg-c3ow">{{finalTotalMarks7}}</td>
+                      <td class="tg-0pky"><input type="text" disabled class="form-control" disabled value="{{finalObtainedMarks7}}"></td>
+                      </tr>
+                      <!-- <button mat-raised-button type="button" class="btn-dark" (click)="confirm()">Submit</button> -->
+                  </tbody>
+                </table>
+              </div>
+              
+              <div *ngIf="this.termId == 3">
+                <h3>III-Term</h3>
+                <table class="tg mt-4 mb-3"> 
+                  <thead>
+                    <tr>
+                      <th class="tg-as14" rowspan="4">SUBJECTS</th>
+                      <th class="tg-as14" colspan="2">III TERM</th>
+                    </tr>
+                    <tr>
+                      <th class="tg-qnnc" colspan="2">Final Exam</th>
+                    </tr>
+                    <tr>
+                    <tr>
+                      <th class="tg-hbt2">Max Marks</th>
+                      <th class="tg-hbt2">Marks Obtained</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let mr of intellectualSkillsSubResult2;let i=index">
+                      <td class="tg-c3ow">{{mr.subjectName}}</td>
+                      <td class="tg-c3ow">{{mr.finalTotalMarks}}</td>
+                      <td class="tg-0pky"><input type="text" disabled class="form-control"
+                        value="{{mr.finalObtainedMarks}}"></td>
+                    </tr>
+                   
+                      <tr> 
+                        <td class="tg-7btt">Total</td>
+                        <td class="tg-7btt">{{finalTotalMarks2}}</td>
+                        <td class="tg-0pky"><input type="text" class="form-control" disabled value="{{finalObtainedMarks2}}"></td>
+                      </tr>
+                  </tbody>
+                </table> 
+              </div>
+              
+
+              </form>
+              </div>
+        
+        
+          <!-- <table class="tg">
+            <thead>
+              <tr>
+                <th class="tg-as14" rowspan="3">SUBJECTS</th>
+                <th class="tg-as14" colspan="2">I TERM</th>
+                <th class="tg-qnnc" colspan="4">II TERM</th>
+                <th class="tg-qnnc" colspan="4">II TECH</th>
+                <th class="tg-qnnc" colspan="2">III Term</th>
+              </tr>
+              <tr>
+                <th class="tg-qnnc" colspan="2">Final Exam</th>
+                <th class="tg-qnnc" colspan="2">Mid Term Exam</th>
+                <th class="tg-qnnc" colspan="2">Final Exam</th>
+                <th class="tg-qnnc" colspan="2">Mid Term Exam</th>
+                <th class="tg-qnnc" colspan="2">Final Exam</th>
+                <th class="tg-qnnc" colspan="2">Final Exam</th>
+              </tr>
+              <tr>
+                <th class="tg-hbt2">Max Marks</th>
+                <th class="tg-hbt2">Marks Obtained</th>
+                <th class="tg-hbt2">Max Marks</th>
+                <th class="tg-hbt2">Marks Obtained</th>
+                <th class="tg-hbt2">Max Marks</th>
+                <th class="tg-hbt2">Marks Obtained</th>
+                <th class="tg-hbt2">Max Marks</th>
+                <th class="tg-hbt2">Marks Obtained</th>
+                <th class="tg-hbt2">Max Marks</th>
+                <th class="tg-hbt2">Marks Obtained</th>
+                <th class="tg-hbt2">Max Marks</th>
+                <th class="tg-hbt2">Marks Obtained</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="let mark of obj.intellectualSkillsSubResult">
+                <td class="tg-c3ow">Mil History &amp; Mil Thinking</td>
+                <td class="tg-c3ow">80</td>
+                <td class="tg-0pky"><input type="text" value="mark.finalObtainedMarks" class="form-control"
+                    formControlName="finalObtainedMarks"></td>
+                <td class="tg-c3ow">40</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">40</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">40</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">40</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">80</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+              </tr>
+              <tr>
+                <td class="tg-c3ow">CAIR, Area Cultural Studies &amp; Mil Mgt</td>
+                <td class="tg-c3ow">50</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">25</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">25</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">25</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">25</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">50</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+              </tr>
+              <tr>
+                <td class="tg-c3ow">Science &amp; Warfare (SAW)</td>
+                <td class="tg-c3ow">70</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">30</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">40</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">30</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">40</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">70</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+              </tr>
+              <tr>
+                <td class="tg-c3ow">Service Writing (SWT)</td>
+                <td class="tg-c3ow">25</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">10</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">15</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">10</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">15</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">25</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+              </tr>
+              <tr>
+                <td class="tg-c3ow">English Comn Skills (ECS)</td>
+                <td class="tg-c3ow">25</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">10</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">15</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">10</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">15</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">50</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+              </tr>
+              <tr>
+                <td class="tg-c3ow">IT</td>
+                <td class="tg-c3ow">50</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">25</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">25</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">25</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">25</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-c3ow">50</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+              </tr>
+              <tr>
+                <td class="tg-7btt">Total</td>
+                <td class="tg-7btt">300</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-7btt">140</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-7btt">160</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-7btt">140</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-7btt">160</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+                <td class="tg-7btt">300</td>
+                <td class="tg-0pky"><input type="text" class="form-control"></td>
+              </tr>
+            </tbody>
+          </table> -->
+      </div>
+    </div>
+  </div>
+</div>

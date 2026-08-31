@@ -1,0 +1,77 @@
+
+<div class="mt-20">
+
+    <mat-card>
+        
+        <div class="mat-new">
+            <h4 class="card-heading">
+                <button mat-icon-button (click)="goBack()">
+                    <mat-icon>chevron_left</mat-icon>
+                </button> Entitlements <span class="sub-menu1"> > {{type}} </span> <span class="sub-menu1"> >
+                    {{pTitle}}</span>
+            </h4>
+        </div>
+
+        <div class="top-br">
+            <form [formGroup]="addEntitlementForm">
+    
+                <div class="row">
+    
+                    <div class="form-group col-md-12">
+                        <label for="title">Title<span class="char-count" >({{titleLength}}/100)</span><span class="required">*</span></label>
+                        <input id="title" type="text" class="form-control" maxlength="100" formControlName="title"
+                            placeholder="Title" (input)="charCount($event,'title')"
+                            >
+                        <span class="validation_msg"
+                            *ngIf="f.title.errors && f.title.errors.required && isError">Please Enter Title</span>
+                    </div>
+    
+                   
+    
+                </div>
+    
+         
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label for="department">Address<span class="char-count" >({{addLength}}/500)</span><span class="required">*</span></label>
+                        <textarea id="address" type="text" class="form-control" maxlength="500" formControlName="address"
+                            placeholder="Address"(input)="charCount($event,'address')"> </textarea>
+                        <span class="validation_msg" *ngIf="f.address.errors && f.address.errors.required && isError">Please Enter
+                            Address</span>
+                    </div>
+                </div>
+    
+                
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label for="details">Details<span class="char-count" >({{detailength}}/500)</span><span class="required">*</span></label>
+                        <textarea id="details" type="text" class="form-control" maxlength="500" formControlName="details"
+                            placeholder="Details"(input)="charCount($event,'details')"> </textarea>
+                        <span class="validation_msg" *ngIf="f.details.errors && f.details.errors.required && isError">
+                            Please Enter Details</span>
+                    </div>
+                </div>
+    
+    
+    
+                <!-- <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="status" class="form-label">Status <span class="required">*</span></label>
+                        <select name="" id="status" class="form-control" required formControlName="status">
+                            <option value="" disabled selected hidden>Select</option>
+                            <option value="1">Active</option>
+                            <option value="0">Inactive</option>
+                        </select>
+                        <span class="validation_msg" *ngIf="f.post.errors && f.post.errors.required && isError">*Please
+                            Select
+                            Status</span>
+                    </div>
+                </div> -->
+    
+                <button mat-raised-button *ngIf="!id" (click)="addEntitlement()">Add</button>
+                <button mat-raised-button *ngIf="id" (click)="updateEntitlement()">Update</button>
+    
+            </form>
+        </div>
+    </mat-card>
+</div>

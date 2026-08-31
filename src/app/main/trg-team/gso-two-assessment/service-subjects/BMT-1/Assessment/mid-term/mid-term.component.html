@@ -1,0 +1,262 @@
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="mat-heading">
+        <div id="top-bar" class="">
+            <h2>TRG TEAM <span class="sub-menu1">
+              > GSO-2 > {{type}} > Service Subjects > BMT1 > Assessment > Mid Term</span>
+    <div class="pull-right" *ngIf="finalSubmissionDate"> Last Date for Marks Submission : {{finalSubmissionDate | date:'dd MMM yyyy'}} </div>
+            
+            </h2>
+        </div>
+      </div>
+        <div class="academics">
+            <div class="mat-card mat-focus-indicator">
+                <!-- <div class="ng-star-inserted">
+                    <div class="mat-new mb-4">
+                        <h4 class="card-heading">Service Subjects</h4>
+                    </div>
+                </div> -->
+                <form class="ng-untouched ng-pristine ng-invalid">
+                    <div class="row"> 
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label for="Battalion">Battalion</label>
+                          <select id="battalion" name="battalion" (change)="battalionSelected($event.target.value)"
+                          class="form-control">
+                          <option value="0" selected>Select</option>
+                          <option *ngFor="let b of battalionList" [value]="b.shortName"> {{b.shortName}}</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label for="Company">Company</label>
+                          <select class="custom-select" id="company" class="form-control" name="company"  (change)="companySelected($event.target.value)" >
+                            <!-- <option selected>Choose...</option> -->
+                            <option value="0" selected>Select</option>
+                            <option *ngFor="let c of companyList" [value]="c.name"> {{c.name}}</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="rank">Search</label>
+                            <input placeholder="Search by IMA No." [(ngModel)]="txt_ima" name="txt_ima"
+                                (change)="serviceSearch()"
+                                class="form-control">
+                        </div>
+                    </div>
+                      <div class="col-md-3 " style="margin-top: 29px;">
+                        <button type="button" mat-raised-button (click)="edSearch()">Search</button>
+                        <button  mat-raised-button (click)="clearSearch($event)" >Clear</button>
+
+                      </div>
+                    </div>
+                  </form>
+                  <form  class="oq-matrix-form">
+                    <table class="tg">
+                    <thead>
+                      <tr>
+                        <th class="tg-qnnc" rowspan="3">S. No.</th>
+                        <th class="tg-qnnc" rowspan="3">IMA No.</th>
+                        <th class="tg-qnnc" rowspan="3">Course</th>
+                        <th class="tg-qnnc" rowspan="3">Name</th>
+                        <th class="tg-qnnc" rowspan="3">Rank</th>
+                        <th class="tg-qnnc" rowspan="3">Bn/coy</th>
+                        <th class="tg-qnnc">Subject</th>
+                        <th class="tg-qnnc" rowspan="3">Remark</th>
+
+                      </tr>
+                      <tr>
+                        <th class="tg-qnnc">BMT - I <br> Total Marks <br>(100)</th>                        
+                      </tr>
+
+                      
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let leadership of runBackCadetList; let leadershipIndex = index">
+                        <td class="tg-c3ow">{{ leadershipIndex + 1}}</td>
+                              <td class="tg-c3ow">{{ leadership.serviceId }}</td>
+                              <td class="tg-0pky">{{ leadership.course }}</td>
+                              <td class="tg-c3ow">{{ leadership.name }}</td>
+                              <td class="tg-c3ow">
+                                <p  *ngIf="leadership.nationality=='India'">GC</p>
+                                <p  *ngIf="leadership.nationality !='India'">FGC</p>
+                              </td>
+                              <td class="tg-c3ow">{{ leadership.battalian }}/{{ leadership.company }}</td>
+                              
+                              <td class="tg-c3ow"  >
+                                <div class="d-flex">
+                                  <ng-container>
+                                    <input type="text" class="form-control d-inline" (keyup)="keyPress($event)" value="{{leadership.gSO2ServiceSubjectBMTResult.obtainedMarks}}"
+                                    [disabled]="!hasAccess"  min="0" oninput="this.value =  !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                                      (keyup)="onChange($event,$event.target.value, leadershipIndex)">
+                                  </ng-container>
+                                </div>
+                              </td>
+                              <!-- <td class="tg-c3ow">{{remark}}</td> -->
+                              <td class="tg-c3ow">
+                              <p *ngIf="!leadership.gSO2ServiceSubjectBMTResult.obtainedMarks==''">{{leadership.gSO2ServiceSubjectBMTResult.remarks}}</p>
+                              </td>
+                              
+                            
+                      </tr>
+                      <tr>
+                        <td class="mat-cell" style="text-align: center;" *ngIf="!runBackCadetList?.length" colspan="14">
+                          <div>No Record Found</div>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
+                </form>
+                <mat-paginator #myPaginator [length]="resultsLength" [pageIndex]="currentPage" [pageSize]="pageSize"
+                      [pageSizeOptions]="[30]" (page)="pageChanged($event)" aria-label="Select page" showFirstLastButtons>
+                  </mat-paginator>
+                  <div class="btn-sec mt-3 text-right">
+
+                    <button type="button" disabled mat-raised-button (click)="openPopup()" *ngIf="!runBackCadetList?.length">Preview</button>
+                    <button type="button" [disabled]="!hasAccess" mat-raised-button (click)="openPopup()" *ngIf="this.runBackCadetList?.length > 0">Preview</button>
+                       
+                  </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  
+  
+  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable custom-lg" role="document">
+      <div class="modal-content p-3">
+        <div class="modal-header">
+          <h5 class="modal-title">Review</h5>
+        </div>
+        <div class="modal-body">
+          <table class="tg">
+            <thead>
+              <tr>
+                <th class="tg-qnnc" rowspan="3">S. No.</th>
+                <th class="tg-qnnc" rowspan="3">IMA No.</th>
+                <th class="tg-qnnc" rowspan="3">Course</th>
+                <th class="tg-qnnc" rowspan="3">Name</th>
+                <th class="tg-qnnc" rowspan="3">Rank</th>
+                <th class="tg-qnnc" rowspan="3">Bn/coy</th>
+                <th class="tg-qnnc">Subject</th>
+                <th class="tg-qnnc" rowspan="3">Remark</th>
+
+              </tr>
+              <tr>
+                <th class="tg-qnnc">BMT - I <br> Total Marks <br>(100)</th>
+                <!-- <th class="tg-qnnc">Remarks</th> -->
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let leadership of runBackCadetList; let leadershipIndex = index">
+                <td class="tg-c3ow">{{ leadershipIndex + 1}}</td>
+                      <td class="tg-c3ow">{{ leadership.serviceId }}</td>
+                      <td class="tg-0pky">{{ leadership.course }}</td>
+                      <td class="tg-c3ow">{{ leadership.name }}</td>
+                      <td class="tg-c3ow">
+                        <p  *ngIf="leadership.nationality=='India'">GC</p>
+                        <p  *ngIf="leadership.nationality !='India'">FGC</p>
+                      </td>
+                      <td class="tg-c3ow">{{ leadership.battalian }}/{{ leadership.company }}</td>
+
+                      <td class="tg-c3ow"  >
+                        <div class="d-flex">
+                          <ng-container>  
+                            <input type="text" class="form-control d-inline" disabled value="{{leadership.gSO2ServiceSubjectBMTResult.obtainedMarks}}"
+                              min="0" oninput="this.value =  !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                              on-focusout="onChange($event,$event.target.value, leadershipIndex)">
+                          </ng-container>
+                        </div>
+                      </td>
+                      <td class="tg-c3ow">
+                        <p *ngIf="!leadership.gSO2ServiceSubjectBMTResult.obtainedMarks==''">{{leadership.gSO2ServiceSubjectBMTResult.remarks}}</p>
+                        </td>
+                    
+              </tr>
+            
+            </tbody>
+        </table>
+        </div>
+        <div class="modal-footer">
+          <button mat-raised-button type="button" class="btn-dark" (click)="closePopup()">Back</button>
+          <button type="button" mat-raised-button (click)="confirm()">Submit</button>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+<!-- <div class="mat-new">
+    <h4 class="card-heading"> GSO-2(Assessment) > {{term}} >Service Subject > BMT-1 > Assessment > Mid-Term </h4>
+</div>
+
+<mat-card>
+    <form [formGroup]="drillMarkForm">
+        <div class="row ima_clas">
+            <div class="form-group col-md-5">
+                <label class="form-label">IMA No. <span class="not_cls">(Please enter IMA number to fetch data)</span>
+                </label>
+                <div class="common_cls">
+                    <input type="text" maxlength="100" (change)="onChangesubmit($event.target.value)" value="" #player
+                        class="form-control">
+                    <button (click)="onSubmit()" mat-raised-button>Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label class="form-label">Ser.No </label>
+                <input type="text" formControlName="serialNo" disabled="!player" maxlength="100" class="form-control">
+            </div>
+            <div class="form-group col-md-3">
+                <label class="form-label">Batallion </label>
+                <input type="text" formControlName="battalian" disabled="!player" maxlength="100" class="form-control">
+            </div>
+            <div class="form-group col-md-3">
+                <label class="form-label">Name</label>
+                <input type="text" formControlName="username" disabled="!player" maxlength="100" class="form-control">
+            </div>
+            <div class="form-group col-md-3">
+                <label class="form-label">CoY. </label>
+                <input type="text" formControlName="company" disabled="!player" maxlength="100" class="form-control">
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label class="form-label">Term Season </label>
+                <input type="text" formControlName="termSession" disabled="!player" maxlength="100"
+                    class="form-control">
+
+            </div>
+
+            <div class="form-group col-md-3">
+                <label class="form-label">Year </label>
+                <input type="text" formControlName="year" disabled="!player" maxlength="100" class="form-control">
+
+            </div>
+
+            <div class="form-group col-md-3">
+                <label class="form-label">Course </label>
+                <input type="text" formControlName="course" disabled="!player" maxlength="100" class="form-control">
+            </div>
+            <div class="form-group col-md-3">
+                <label class="form-label">Term</label>
+                <input type="text" formControlName="term" disabled="!player" maxlength="100" class="form-control">
+            </div>
+
+        </div>
+      
+        <button mat-raised-button (click)="next()" [disabled]="drillMarkForm.invalid" class="next-button">Next</button>
+    </form>
+</mat-card> -->

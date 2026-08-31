@@ -1,0 +1,195 @@
+<div class="main-content" style="padding-bottom: 20px;overflow: hidden;">
+  <div class="container">
+    <div class="ng-star-inserted">
+        <div class="mat-new">
+          <h4 class="card-heading">Admin > <span class="sub-menu1">GC Term Update</span> </h4>
+        </div>
+      </div>
+    <div class="mat-card mat-focus-indicator">
+      <div class="filter">
+        <form class="ng-untouched ng-pristine ng-invalid">
+          <div class="row">
+              <div  class="form-group col-md-4">
+                  <label class="form-label"> Term </label>
+                  <select id="term" type="text" class="form-control" (change)="termChange($event.target.value)"
+                      placeholder="Term" >
+                      <!-- <option value="" selected hidden disabled>Select</option> -->
+                      <option *ngFor="let t of terms" [value]="t.id">{{t.name}} </option>
+                  </select>
+                  <!-- <span class="validation_msg" *ngIf="item.get('termId').hasError('required') && isError">Term
+                      is required</span>
+                  <span class="validation_msg" *ngIf="item.get('termId').hasError('pattern') && isError">
+                      Only alphanumeric is allowed</span> -->
+              </div>
+              <div class="form-group col-md-4">
+                  <label for="battalion">Battalion</label>
+                  <select id="battalion"  (change)="battalionSelected($event.target.value)" 
+                    class="form-control">
+                    <!-- <option value="" selected hidden disabled *ngIf='setbattalion'>Select</option> -->
+                    <option value="0" selected>Select</option>
+                    <option *ngFor="let b of battalionList" [value]="b.id"> {{b.shortName}} Bn</option>
+                  </select>
+                  <!-- <span class="val_msg" *ngIf="f.battalion.errors && f.battalion.errors.required && isError">*Please Select
+                    Battalion</span> -->
+                </div>
+                <div class="form-group col-md-4" >
+                  <label for="company">Company</label>
+                  <select id="company"  class="form-control"  (change)="companySelected($event.target.value)" >
+                    <!-- <option value="" selected hidden disabled>Select</option> -->
+                    <option value="0" selected >Select</option>
+                    <option *ngFor="let c of companyList" [value]="c.name"> {{c?.name || ''}}</option>
+                  </select>
+                  <!-- <span class="val_msg" *ngIf="f.company.errors && f.company.errors.required && isError">*Please Select
+                    Company</span> -->
+                </div>
+  
+             
+            
+              <div class="col-md-3 mb-3">
+                <button type="button" class="btn btn-danger"  (click)="termupdateSearch()">Search</button>
+              </div>
+            </div>
+          </form>
+          <table class="tg">
+          <thead>
+            <tr>
+              <th class="tg-1pqm"><input class="selectall"   (change)="checkAll($event)"  [(ngModel)]="ischeckedAll" type="checkbox" id="check1" name="option1" value="something"></th>
+              <th class="tg-t7dr"><span style="font-weight:bold">IMA No.</span></th>
+              <th class="tg-t7dr"><span style="font-weight:bold">Rank</span></th>
+              <th class="tg-t7dr"><span style="font-weight:bold">Name</span></th>
+              <th class="tg-t7dr"><span style="font-weight:bold">Bn/Coy</span></th>
+              <th class="tg-t7dr"><span style="font-weight:bold">Course</span></th>
+              <th class="tg-t7dr"><span style="font-weight:bold">Term</span></th>
+            </tr>
+          </thead>
+         
+              <tbody>
+                  <tr *ngFor="let i of edCadetList;let j = index;">
+                    <td class="tg-baqh"><input class="selectall" (change)="checkOne($event)" [(ngModel)]="i.ischecked" type="checkbox" id="check1" name="option1" value="{{i.id}}" ></td>
+                    <td class="tg-baqh">{{i.serviceId}}</td>
+                    <td class="tg-baqh">
+                      <a  *ngIf="i.nationality=='India'">GC</a>
+                      <a  *ngIf="i.nationality !='India'">FGC</a>
+                    </td>
+                    <td class="tg-baqh"><a>{{i.name}}</a></td>
+                    <td class="tg-baqh"><a>{{i.battalian}}-{{i.company}}</a></td>
+
+                    <td class="tg-baqh"><a>{{i.course}}</a></td>
+                    <td class="tg-baqh"><a>{{i.termName}}</a></td>
+        
+                  </tr>
+                 <tr  *ngIf="! edCadetList?.length">
+                    <td class="mat-cell" style="text-align: center;" colspan="7"><div>No Record Found</div></td>
+                 </tr>
+                </tbody>
+       
+          </table>
+          <div class="text-right mt-2">
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#updatetermModal" (click)="openPopup()">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+   <!-- <div class="modal" id="updatetermModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+           Modal Header 
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>-->
+
+          <!-- Modal body 
+          <div class="modal-body">
+            <div class="terms-data">
+              <p><b>No. of Candidate : 12 </b></p>
+              <p><b>Upgrade to term :</b></p>
+              <form class="ng-untouched ng-pristine ng-invalid">
+                <div class="form-group">
+                  <select class="custom-select" id="">
+                    <option selected>Select...</option>
+                    <option value="1">Term I</option>
+                    <option value="2">Term II</option>
+                    <option value="2">Tech II</option>
+                    <option value="3">Term III</option>
+                    <option value="3">Tech III</option>
+                  </select>
+                </div>
+                 <div class="text-right mt-2">
+                    <button type="button" class="btn btn-danger">Submit</button>
+                 </div>
+              </form>
+            </div>
+          </div>-->
+
+      <!--    <div class="modal" tabindex="-1" id="updatetermModal">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      <div class="terms-data">
+                          <p><b>No. of Candidate : 12 </b></p>
+                          <p><b>Upgrade to term :</b></p>
+                          <form class="ng-untouched ng-pristine ng-invalid">
+                            <div class="form-group">
+                              <select class="custom-select" id="">
+                                <option selected>Select...</option>
+                                <option value="1">Term I</option>
+                                <option value="2">Term II</option>
+                                <option value="2">Tech II</option>
+                                <option value="3">Term III</option>
+                                <option value="3">Tech III</option>
+                              </select>
+                            </div>
+                             <div class="text-right mt-2">
+                                <button type="button" class="btn btn-danger">Submit</button>
+                             </div>
+                          </form>
+                        </div>
+                  </div>
+               
+                </div>
+              </div>
+            </div>-->
+            <div class="modal termupdate-module" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content p-3">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Register User Admin</h5>
+                  </div>
+                  <div class="modal-body">
+                      <div class="terms-data">
+                          <p><b>No. of Candidate : {{count}} </b></p>
+                          <p><b>Upgrade to term :</b></p>
+                          <form class="ng-untouched ng-pristine ng-invalid">
+                            <div class="form-group">
+                             
+                              <select id="term2" type="text" class="form-control" (change)="termChange2($event.target.value)"
+                                  placeholder="Term">
+                                  <option value="" selected hidden disabled >Select</option>
+                                  <option *ngFor="let t of terms2" [value]="t.id">{{t.name}} </option>
+                                  
+                              </select>
+                            </div>
+                             <div class="text-right mt-2">
+                                <button type="button" class="btn btn-danger" (click)="UpdateTerm()">Submit</button>
+                             </div>
+                          </form>
+                        </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button mat-raised-button type="button" class="btn-dark" (click)="closePopup()">Close</button>
+                    
+            
+                  </div>
+                </div>
+              </div>
+            </div>
+
+      <!--  </div>
+      </div>
+    </div> -->
+  </div>

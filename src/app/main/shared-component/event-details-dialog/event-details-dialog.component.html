@@ -1,0 +1,47 @@
+<!-- <button class="event_close" mat-dialog-close><i class="fa fa-close"></i></button> -->
+
+
+
+<div class="demo23" *ngIf="data.type == 'event'">
+    <div class="event_cross">
+        <div class="set_fix">
+            <p class="event-heading">{{data.title}} </p>
+            <button class="event_close" mat-dialog-close>
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </div>
+    <ng-container *ngIf="data.details">
+        <img [src]="data.details.image">
+        <h4>{{data.details.title}}</h4>
+        <p class="time_class"> {{data.details.eventDate | date:'EE, d MMMM y' }}
+        <span *ngIf="isHrs || isMnts" > {{data.details.eventDate |  date:'HHmm'}} </span> </p>
+        <p>{{data.details.description}}</p>
+    </ng-container>
+</div>
+
+
+
+
+<div class="demo23" *ngIf="data.type == 'cyberPolicy'">
+
+    <div mat-dialog-title class="cyberPolicyHeader">
+        <div style="display: flex;">
+            <p >{{data.title}} </p>
+         
+            <button class="cyberpolicy_close" mat-dialog-close>
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <div mat-dialog-content >
+
+        <ng-container>
+            <ngx-doc-viewer [url]="data.url" viewer="google" disableContent="popout" googleCheckContentLoaded = true googleCheckInterval = 3000  
+            style="width:100%;height:120vh !important;"></ngx-doc-viewer>
+        </ng-container>
+    
+    </div>
+
+</div>

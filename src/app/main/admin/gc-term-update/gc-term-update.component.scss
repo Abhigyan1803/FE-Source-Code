@@ -1,0 +1,55 @@
+.filter {
+    min-height: 78vh;
+}
+.mat-card:not([class*=mat-elevation-z]) {
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+}
+.mat-new {
+    padding: 0!important;
+}
+.mat-new {
+    padding: 0.875rem 0 !important;
+}
+.mat-new h4.card-heading {
+    color: #bb9450;
+    background: #e1e3de;
+    text-align: left;
+    font-size: 16px;
+    padding: 10px 15;
+    border-radius: 5px;
+    letter-spacing: 0.5px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+  }
+ .mat-card {
+  margin: 1rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.4s ease 0s;
+    padding: 0.875rem 0.875rem !important;
+    background-color: #fff;
+}
+ .mat-card:hover {
+    box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+}
+.filter .btn-danger {
+    color: #fff;
+    background-color: #721a0c;
+    border-color: #721a0c;
+}
+.terms-data .btn-danger {
+    color: #fff;
+    background-color: #721a0c;
+    border-color: #721a0c;
+}
+.tg  {border-collapse:collapse;border-spacing:0;margin:0px auto;width: 100%;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:15px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:15px;word-break:normal;}
+.tg .tg-t7dr{background-color:#c6c4c4;text-align:center;vertical-align:middle;}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-1pqm{background-color:#c6c4c4;font-weight:bold;text-align:center;vertical-align:middle;}
+.termupdate-module .modal-dialog {
+    background-color: unset;
+}

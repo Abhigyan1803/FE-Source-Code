@@ -1,0 +1,129 @@
+<div style="width: 100%;float:left;background: url(white.png);    margin-bottom: 60px;">
+
+    <div  class="container" style="margin-top: 30px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Daily PGMEs</h4>
+                <p></p>
+
+                <!-- <mat-card>
+                    <div class="comming_soon">
+                        <img src="assets/img/page_under_construction.png" class="under-construction-img" alt="">
+                    </div>
+                </mat-card> -->
+
+                <form [formGroup]="pgmeForm" (ngSubmit)="getWeekPrograms()">
+
+                    <div class="filters form-group ">
+                        <div class="col-md-2" style="padding-left: 0px;">
+                            <label for="week">Date</label>
+                            <input type="date"  class="form-control" formControlName="dt">
+                        </div>
+                        <!-- <div class="col-md-2" style="padding-left: 0px;">
+                            <label for="week">Week</label>
+                            <select id="week" class="form-control" formControlName="weekId">
+                                <option value="" selected hidden disabled>Select</option>
+                                <option *ngFor="let w of weeks" [value]="w.id">{{w.name}} </option>
+                            </select>
+                        </div> -->
+                        <div class="col-md-2">
+                            <label for="battalion">Battalion</label>
+                            <select id="battalion" class="form-control" formControlName="battalianId">
+                                <option value="" selected hidden disabled>Select</option>
+                                <option *ngFor="let b of battalions" [value]="b.id">{{b.shortName}} Bn</option>
+                            </select>
+                        </div>
+                        <!-- <div class="col-md-2">
+                            <label for="seasonTerm">Season Term</label>
+                            <select id="seasonTerm" class="form-control" formControlName="termSeasonId">
+                                <option value="" selected hidden disabled>Select</option>
+                                <option *ngFor="let s of seasonTerms" [value]="s.id">{{s.name}} </option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="year">Year</label>
+                            <input type="number" class="form-control" formControlName="year">
+                        </div> -->
+
+                        <div class="col-md-2">
+                            <label for="term">Term</label>
+                            <select id="term" class="form-control" formControlName="termId">
+                                <option value="" selected hidden disabled>Select</option>
+                                <option *ngFor="let t of terms" [value]="t.id">{{t.name}} </option>
+                            </select>
+                        </div>
+
+                    <div class="submit-btn"  >
+                        <button mat-raised-button>
+                            Submit
+                        </button>
+                    </div>
+                       
+                    </div>
+
+
+                </form>
+
+                <mat-card *ngIf="!dataAvailable" style="margin-left: 0px; margin-right: 0px;">
+                    <img src="assets\img\empty-no-data.png" style="margin: 0 auto; display: table;">
+                </mat-card>
+
+                <mat-card *ngIf="dataAvailable" style="margin-left: 0px;margin-right: 0px;">
+                    <!-- <div class="week-head" style="display: flex; width: 50%;">
+                        <div class="week-two"></div>
+                        <div class="week-cls">
+                            <span class="wse">Week Start: </span>
+                            <span class="wd">{{weekStart | date:'dd MMM, y, EEEE'}}</span>
+                        </div>
+                        <span fxFlex></span>
+                        <div class="week-cls">
+                            <span class="wse">Week Ending: </span>
+                            <span class="wd">{{weekEnd | date:'dd MMM, y, EEEE'}}</span>
+                          
+                        </div>
+                    </div> -->
+
+                    <div class="daily-schedule" >
+                        <div>
+                          <div class="sch-dt" >
+                              <!-- <h5> Date: {{w.date | date:'dd MMM, y, EEEE'}}</h5> -->
+                            </div> 
+                            <div>
+                                <table class="table" >
+                                    <thead>
+                                        <th>Period</th>
+                                        <th>Start Time</th>
+                                        <th>End Time</th>
+                                        <th>Subject</th>
+                                        <th>Type</th>
+                                        <th>Lesson</th>
+                                        <th>Instructor</th>
+                                        <th>Place</th>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr  *ngFor="let d of daySchedule" >
+                                            <td>{{d.period}} </td>
+                                            <td>{{d.startTime}} </td>
+                                            <td>{{d.endTime}} </td>
+                                            <td>{{d.subject}} </td>
+                                            <td>{{d.type}} </td>
+                                            <td>{{d.lession}} </td>
+                                            <td>{{d.instructor}} </td>
+                                            <td>{{d.place}} </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </mat-card>
+
+            </div>
+        </div>
+        <br><br>
+    </div>
+
+</div>

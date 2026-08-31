@@ -1,0 +1,2206 @@
+<div class="mat-new">
+    <h4 class="card-heading">
+        <button mat-icon-button (click)="goBack()">
+            <mat-icon>chevron_left</mat-icon>
+        </button>
+        Record of Service <span class="sub-menu1"> > {{pTitle}} </span> <span class="sub-menu1"> </span>
+    </h4>
+</div>
+
+
+
+<mat-card>
+    <div class="top-br">
+
+        <mat-horizontal-stepper #stepper linear>
+            <mat-step label="Personal Information" [stepControl]="personalDetailsForm">
+
+                <form [formGroup]="personalDetailsForm">
+                    <div class="row border acc_doc ">
+
+                        <div class="edi_btn">
+                            <h3>Personal and Service Detail of Particulars Officers </h3>
+
+                            <!-- 
+                            <div class="act-btns" *ngIf="id">
+                                <button mat-icon-button class="edi" *ngIf="!editPersonalDetails" (click)="editPersonalDetails = true">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                                <button mat-icon-button class="clo" *ngIf="editPersonalDetails" (click)="editPersonalDetails = false">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                            </div> 
+                            -->
+
+                        </div>
+
+                        <div class="col-md-12 iner-bs">
+                            <div class="row per_cls">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label for="name">Name (In Capital Letters) <span
+                                                    class="required">*</span></label>
+                                            <input type="text" id="name" required maxlength="100" class="form-control"
+                                                [readonly]="!editPersonalDetails" formControlName="name"
+                                                placeholder="-">
+                                            <span class="invalid-input"
+                                                *ngIf="b['name'].errors && b['name'].errors.required && isError">This
+                                                Field is
+                                                Required</span>
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <label for="personalNumber">Personal Number<span
+                                                    class="required">*</span></label>
+                                            <input type="text" maxlength="100" id="personalNumber" required
+                                                class="form-control" [readonly]="!editPersonalDetails"
+                                                formControlName="personalNumber">
+                                            <span class="invalid-input"
+                                                *ngIf="b['personalNumber'].errors && b['personalNumber'].errors.required && isError">This
+                                                Field is
+                                                Required</span>
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="inner-section">
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <label for="rankName">Rank<span class="required">*</span></label>
+                                                <input type="text" id="rankName" maxlength="100"
+                                                    [readonly]="!editPersonalDetails" class="form-control"
+                                                    formControlName="rankName" placeholder="-">
+                                                <span class="invalid-input"
+                                                    *ngIf="b['rankName'].errors && b['rankName'].errors.required && isError">This
+                                                    Field is Required</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="form-group col-md-6">
+                                                <label for="substantiveDate">Substantive with date</label>
+                                                <input type="date" id="substantiveDate" [readonly]="!editPersonalDetails" class="form-control" [max]="today"
+                                                    formControlName="substantiveDate" placeholder="-">
+                                                <span class="invalid-input"
+                                                    *ngIf="b['substantiveDate'].errors && b['substantiveDate'].errors.required && isError">This
+                                                    Field is Required</span>
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <label for="actingDate">Acting with date</label>
+                                                <input type="date" id="actingDate" [max]="today"
+                                                    [readonly]="!editPersonalDetails" class="form-control"
+                                                    formControlName="actingDate" placeholder="-">
+                                                <span class="invalid-input"
+                                                    *ngIf="b['actingDate'].errors && b['actingDate'].errors.required && isError">This
+                                                    Field
+                                                    is Required</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label for="regimentCrops">Regiment / Corps</label>
+                                            <input type="text" id="regimentCrops" maxlength="100"
+                                                [readonly]="!editPersonalDetails" class="form-control"
+                                                formControlName="regimentCrops" placeholder="-">
+                                            <span class="invalid-input"
+                                                *ngIf="b['regimentCrops'].errors && b['regimentCrops'].errors.required && isError">This
+                                                Field
+                                                is Required</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="inner-section">
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <label for="birthPlace">Type of commission
+
+                                                    <!-- <span class="invalid-input" *ngIf="
+                                                !b['isPcWefCommission'].value 
+                                                && !b['isPcSlCommission'].value
+                                                && !b['isSscCommission'].value
+                                                && !b['isEcCommission'].value
+                                                && !b['isTaCommission'].value 
+                                                && isError">Please Select One of These</span> -->
+                                                </label>
+
+
+                                                <div class="row">
+
+                                                    <div class="form-group col-md-12">
+                                                        <div class="chk-input-new">
+                                                            <span>
+                                                                <input id="pcwef" type="checkbox"
+                                                                    formControlName="isPcWefCommission"
+                                                                    name="commission">
+                                                                <label for="pcwef">
+                                                                    <p>PC wef</p>
+                                                                </label>
+
+                                                            </span>
+                                                            <span>
+                                                                <input id="pcsl" type="checkbox"
+                                                                    formControlName="isPcSlCommission"
+                                                                    name="commission">
+                                                                <label for="pcsl">
+                                                                    <p> PC(SL)</p>
+                                                                </label>
+                                                            </span>
+                                                            <span>
+
+                                                                <input id="ssc" type="checkbox"
+                                                                    formControlName="isSscCommission" name="commission">
+                                                                <label for="ssc">
+                                                                    <p> SSC</p>
+                                                                </label>
+                                                            </span>
+
+                                                            <span>
+                                                                <input id="ec" type="checkbox"
+                                                                    formControlName="isEcCommission" name="commission">
+                                                                <label for="ec">
+                                                                    <p> EC </p>
+                                                                </label>
+                                                            </span>
+                                                            <span>
+                                                                <input id="ta" type="checkbox"
+                                                                    formControlName="isTaCommission" name="commission">
+                                                                <label for="ta">
+                                                                    <p> TA </p>
+                                                                </label>
+                                                            </span>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+
+                                            <div class="form-group col-md-6">
+                                                <label for="authority"> Authority</label>
+                                                <input type="text" id="authority" maxlength="100"
+                                                    [readonly]="!editPersonalDetails" class="form-control"
+                                                    formControlName="authority" placeholder="-">
+                                                <span class="invalid-input"
+                                                    *ngIf="b['authority'].errors && b['authority'].errors.required && isError">This
+                                                    Field
+                                                    is Required</span>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="commissionDate">Date</label>
+                                                <input type="date" id="commissionDate" [readonly]="!editPersonalDetails" class="form-control"
+                                                    formControlName="commissionDate">
+                                                <span class="invalid-input"
+                                                    *ngIf="b['commissionDate'].errors && b['commissionDate'].errors.required && isError">This
+                                                    Field
+                                                    is Required</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label for="substantivePromotionSeniorityDate">Date of seniority for
+                                                Substantive Promotion</label>
+                                            <input type="date" id="substantivePromotionSeniorityDate"
+                                                [readonly]="!editPersonalDetails" class="form-control"
+                                                formControlName="substantivePromotionSeniorityDate" placeholder="-">
+                                            <span class="invalid-input"
+                                                *ngIf="b['substantivePromotionSeniorityDate'].errors && b['substantivePromotionSeniorityDate'].errors.required && isError">This
+                                                Field is Required</span>
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <label for="firstCommissionDate">Date of first commission</label>
+                                            <input type="date" id="battalion" class="form-control"
+                                                formControlName="firstCommissionDate" [readonly]="!editPersonalDetails">
+                                            <span class="invalid-input"
+                                                *ngIf="b['firstCommissionDate'].errors && b['firstCommissionDate'].errors.required && isError">This
+                                                Field is Required</span>
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <label for="dob">DOB(As Recorded
+                                                by UPSC or in Sheet Roll)</label>
+                                            <input type="date" id="battalion" class="form-control" formControlName="dob"
+                                                [readonly]="!editPersonalDetails">
+
+                                            <span class="invalid-input"
+                                                *ngIf="b['dob'].errors && b['dob'].errors.required && isError">This
+                                                Field is Required</span>
+                                        </div>
+
+
+                                        <div class="form-group col-md-6">
+                                            <label for="placeOfBirth">Place of birth</label>
+                                            <input [readonly]="!editPersonalDetails" type="text" class="form-control"
+                                                formControlName="placeOfBirth" maxlength="100">
+                                            <span class="invalid-input"
+                                                *ngIf="b['placeOfBirth'].errors && b['placeOfBirth'].errors.required && isError">This
+                                                Field is
+                                                Required</span>
+                                        </div>
+
+
+
+                                        <div class="form-group col-md-6">
+                                            <label for="nationality">Nationality</label>
+
+                                            <select type="text" id="nationality" class="form-control"
+                                                [attr.disabled]="!editPersonalDetails ? 'disabled' : null"
+                                                formControlName="nationality">
+                                                <option value="" selected hidden disabled>Select</option>
+                                                <option *ngFor="let n of nationalities" [value]="n.name">
+                                                    {{n.name}}
+                                                </option>
+                                            </select>
+
+                                            <span class="invalid-input"
+                                                *ngIf="b['nationality'].errors && b['nationality'].errors.required && isError">This
+                                                Field is Required</span>
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <label for="religiousDenomination">Religious Denomination</label>
+                                            <input [readonly]="!editPersonalDetails" type="text" name="" id=""
+                                                class="form-control" formControlName="religiousDenomination">
+                                            <span class="invalid-input"
+                                                *ngIf="b['religiousDenomination'].errors && b['religiousDenomination'].errors.required && isError">This
+                                                Field is Required</span>
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <label for="motherTongue">Mother tongue</label>
+                                            <input *ngIf="!isIndia" type="text" id="motherTongue"
+                                                maxlength="100" [readonly]="!editPersonalDetails" class="form-control"
+                                                placeholder="-" formControlName="motherTongue">
+
+                                            <span class="invalid-input"
+                                                *ngIf="b['motherTongue'].errors && b['motherTongue'].errors.required && isError">
+                                                This Field is Required</span>
+
+                                        </div>
+
+
+                                        <div class="form-group col-md-6">
+                                            <label for="medicalCategory">Medical category (Present)</label>
+                                            <input type="text" id="medicalCategory" maxlength="100"
+                                                [readonly]="!editPersonalDetails" class="form-control"
+                                                formControlName="medicalCategory">
+                                            <span class="invalid-input"
+                                                *ngIf="b['medicalCategory'].errors && b['medicalCategory'].errors.required && isError">This
+                                                Field is Required</span>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="previousOccupation">Previous Occupation</label>
+                                            <input type="text" id="previousOccupation" maxlength="100"
+                                                [readonly]="!editPersonalDetails" class="form-control"
+                                                formControlName="previousOccupation">
+                                            <span class="invalid-input"
+                                                *ngIf="b['previousOccupation'].errors && b['previousOccupation'].errors.required && isError">This
+                                                Field is Required</span>
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <label for="accountNumber">CDA (Officers) Account No.</label>
+                                            <input style="margin: 0;" type="text" id="accountNumber" maxlength="16"
+                                                formControlName="accountNumber" class="form-control"
+                                                [readonly]="!editPersonalDetails">
+                                            <span class="invalid-input"
+                                                *ngIf="b['accountNumber'].errors && b['accountNumber'].errors.required && isError">This
+                                                Field is Required</span>
+                                        </div>
+
+
+                                        <div class="form-group col-md-6">
+                                            <label for="idCardNo">Identity Card No</label>
+                                            <input style="margin: 0;" type="text" id="idCardNo" maxlength="16"
+                                                [readonly]="!editPersonalDetails" class="form-control"
+                                                formControlName="idCardNo">
+                                            <span class="invalid-input"
+                                                *ngIf="b['idCardNo'].errors && b['idCardNo'].errors.required && isError">This
+                                                Field is
+                                                Required</span>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="row" *ngIf="id">
+                                        <div class="col-md-12">
+                                            <button mat-raised-button [disabled]="!editPersonalDetails"
+                                                (click)="updatePersonalDetails()" class="upt_dne">Update</button>
+                                        </div>
+                                    </div> -->
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div style="float: right;">
+                        <button mat-raised-button (click)="submitPersonalForm()">Next</button>
+                    </div>
+
+                </form>
+            </mat-step>
+
+            <!-- STEP 2 EDUCATION QUALIFICATION -->
+
+            <mat-step label="Qualification" [stepControl]="qualificationForm">
+
+                <form [formGroup]="qualificationForm">
+                    <div class="row border acc_doc" style="margin-top: 15px;background-color: #fff;">
+                        <div class="edi_btn">
+                            <h3>Academic</h3>
+                        </div>
+                        <div formArrayName="academicList" class="col-md-12">
+                            <table>
+                                <thead>
+                                    <th>Examination Passed</th>
+                                    <th>Name of School/College attended</th>
+                                    <th>Year</th>
+                                    <th>Div/Class</th>
+                                </thead>
+
+                                <tbody>
+                                    <tr *ngFor="let ac of getAcads.controls; let i = index">
+                                        <ng-container [formGroupName]="i">
+                                            <td>
+                                                <input type="text" maxlength="100" class="form-control" placeholder="-"
+                                                    formControlName="examination">
+                                            </td>
+                                            <td>
+                                                <input type="text" maxlength="100" class="form-control" placeholder="-"
+                                                    formControlName="schoolCollege">
+                                            </td>
+                                            <td>
+                                                <input type="text" maxlength="100" class="form-control"
+                                                    (keypress)="onlyNum($event)" maxlength="4" formControlName="year"
+                                                    placeholder="-">
+                                            </td>
+                                            <td>
+                                                <input type="text" maxlength="100" class="form-control" placeholder="-"
+                                                    formControlName="divisionClass">
+                                            </td>
+                                            <td class="remove-btn-td">
+                                                <button *ngIf="getAcads.controls.length>1" mat-icon-button
+                                                    (click)="removeAAcad(i)" class="remove-btn">
+                                                    <mat-icon> remove </mat-icon>
+                                                </button>
+                                            </td>
+
+                                        </ng-container>
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                            <div class="ading-bhn">
+                                <button (click)="addAcad()" class="add-btn cus-btn" mat-icon-button>
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- <div class="row" *ngIf="id">
+                            <div class="col-md-12">
+                                <button mat-raised-button class="upt_dne" [disabled]="!editEducationDetails"
+                                    (click)="updateEducationDetails()">Update</button>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="row border acc_doc" style="margin-top: 15px;background-color: #fff;">
+                        <div class="edi_btn">
+                            <h3>Professional / Technical</h3>
+
+                            <!-- <div class="act-btns" *ngIf="id">
+                                    <button mat-icon-button class="edi" *ngIf="!editEducationDetails"
+                                        (click)="editEducationDetails = true">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button class="clo" *ngIf="editEducationDetails"
+                                        (click)="editEducationDetails = false">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div> -->
+
+                        </div>
+
+                        <div formArrayName="professionalList" class="col-md-12">
+                            <table>
+                                <thead>
+                                    <th>Qualification</th>
+                                    <th>Institution</th>
+                                    <th>Year</th>
+                                    <th>Distinction</th>
+                                </thead>
+
+                                <tbody>
+                                    <tr *ngFor="let pt of getAllProfTechQl.controls; let i=index">
+                                        <ng-container [formGroupName]="i">
+
+                                            <td>
+                                                <input maxlength="100" type="text" class="form-control" placeholder="-"
+                                                    formControlName="qualification">
+                                            </td>
+                                            <td>
+                                                <input maxlength="100" type="text" class="form-control" placeholder="-"
+                                                    formControlName="institution">
+                                                <!-- <span class="invalid-input" *ngIf="ef._10schoolName.errors && ef._10schoolName.errors.required && isErrorInEduForm ">Required Field</span> -->
+                                            </td>
+                                            <td> <input maxlength="100" type="text" class="form-control"
+                                                    (keypress)="onlyNum($event)" maxlength="4" placeholder="-"
+                                                    formControlName="year">
+                                                <!-- <span class="invalid-input" *ngIf="ef._10passedYear.errors && ef._10passedYear.errors.required && isErrorInEduForm ">Required
+                                                                                            Field</span> -->
+                                            </td>
+                                            <td>
+                                                <input maxlength="100" type="text" class="form-control" placeholder="-"
+                                                    formControlName="distinction">
+                                                <!-- <span class="invalid-input" *ngIf="ef._10division.errors && ef._10division.errors.required && isErrorInEduForm ">Required Field</span> -->
+                                            </td>
+                                            <td class="remove-btn-td">
+                                                <button *ngIf="getAllProfTechQl.controls.length>1" mat-icon-button
+                                                    (click)="removeProfTechQl(i)" class="remove-btn">
+                                                    <mat-icon> remove </mat-icon>
+                                                </button>
+                                            </td>
+                                        </ng-container>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                            <div class="ading-bhn">
+                                <button (click)="addProfTechQl()" class="add-btn cus-btn" mat-icon-button>
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+
+
+                        </div>
+
+                        <!-- <div class="row" *ngIf="id">
+                            <div class="col-md-12">
+                                <button mat-raised-button class="upt_dne" [disabled]="!editEducationDetails"
+                                    (click)="updateEducationDetails()">Update</button>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="row border acc_doc" style="margin-top: 15px;background-color: #fff;">
+                        <div class="edi_btn">
+                            <h3>Experience in Civil Trades/ Professions
+                            </h3>
+
+                            <!-- <div class="act-btns" *ngIf="id">
+                                    <button mat-icon-button class="edi" *ngIf="!editEducationDetails"
+                                        (click)="editEducationDetails = true">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button class="clo" *ngIf="editEducationDetails"
+                                        (click)="editEducationDetails = false">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div> -->
+
+                        </div>
+                        <div formArrayName="experienceInCivilTradeList" class="col-md-12">
+                            <p class="btn-deta">(Details in chronological order, of civil professions in which served or
+                                gained
+                                experience prior to joining the Army) </p>
+                            <table>
+                                <thead>
+                                    <th>Trade/Profession</th>
+                                    <th>Duration</th>
+                                    <th>Name of Employer</th>
+                                    <th>Address of Employer</th>
+
+                                </thead>
+
+                                <tbody>
+
+                                    <tr *ngFor="let e of getAllExp.controls; let i=index">
+                                        <ng-container [formGroupName]="i">
+
+                                            <td>
+
+                                                <input type="text" maxlength="100" class="form-control" placeholder=""
+                                                    formControlName="profession">
+                                            </td>
+                                            <td>
+                                                <input type="text" maxlength="100" class="form-control" placeholder=""
+                                                    formControlName="duration">
+                                                <!-- <span class="invalid-input"
+                                                *ngIf="ef._10schoolName.errors && ef._10schoolName.errors.required && isErrorInEduForm ">Required
+                                                Field</span> -->
+                                            </td>
+                                            <td> <input type="text" maxlength="100" class="form-control"
+                                                    formControlName="nameOfEmployer" placeholder="">
+                                                <!-- <span class="invalid-input"
+                                                *ngIf="ef._10passedYear.errors && ef._10passedYear.errors.required && isErrorInEduForm ">Required
+                                                Field</span> -->
+                                            </td>
+                                            <td> <input type="text" maxlength="100" class="form-control"
+                                                    formControlName="addressOfEmployer" placeholder="">
+                                                <!-- <span class="invalid-input"
+                                                                                            *ngIf="ef._10passedYear.errors && ef._10passedYear.errors.required && isErrorInEduForm ">Required
+                                                                                            Field</span> -->
+                                            </td>
+                                            <td class="remove-btn-td">
+                                                <button *ngIf="getAllExp.controls.length>1" mat-icon-button
+                                                    (click)="removeExp(i)" class="remove-btn">
+                                                    <mat-icon> remove </mat-icon>
+                                                </button>
+                                            </td>
+                                        </ng-container>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="ading-bhn">
+                                <button (click)="addExp()" class="add-btn cus-btn" mat-icon-button>
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+
+                        </div>
+
+
+                        <!-- <div class="row" *ngIf="id">
+                            <div class="col-md-12">
+                                <button mat-raised-button class="upt_dne" [disabled]="!editEducationDetails"
+                                    (click)="updateEducationDetails()">Update</button>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="row border acc_doc" style="margin-top: 15px;background-color: #fff;">
+                        <div class="edi_btn">
+                            <h3>Particulars of former service
+                            </h3>
+
+
+                            <!-- <div class="act-btns" *ngIf="id">
+                                    <button mat-icon-button class="edi" *ngIf="!editEducationDetails"
+                                        (click)="editEducationDetails = true">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button class="clo" *ngIf="editEducationDetails"
+                                        (click)="editEducationDetails = false">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div> -->
+
+                        </div>
+
+                        <div formArrayName="formerServiceList" class="col-md-12">
+                            <p class="btn-deta">(This portion should be completed as far as information is known to the
+                                officer. The name of the Regt/ Corps/Record
+                                office/Department from which authority permitting reckoning of former service can be
+                                obtained will be stated in Column
+                                2, if it cannot produced by the officer). </p>
+                            <table class="tg">
+                                <thead>
+                                    <tr>
+                                        <th class="tg-0lax" rowspan="2">Particulars of Pre-Commission Service</th>
+                                        <th class="tg-0lax" rowspan="2">Regt/Corps/Office Deptt</th>
+                                        <th class="tg-0lax" colspan="2">Period</th>
+                                        <th class="tg-0lax" rowspan="2">Total Service Years- Days</th>
+                                        <th class="tg-0lax" rowspan="2">Remarks (Here state authority permitting
+                                            reckoning
+                                            of this service for pension)</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax"><b>From</b></td>
+                                        <td class="tg-0lax"><b>To</b></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let s of getAllService.controls; let i=index">
+                                        <ng-container [formGroupName]="i">
+
+                                            <td class="tg-0lax">
+                                                <input type="text" class="form-control"
+                                                    formControlName="preCommissionService">
+                                            </td>
+                                            <td class="tg-0lax">
+                                                <input type="text" class="form-control"
+                                                    formControlName="regtCorpsOfficeDeptt">
+                                            </td>
+                                            <td class="tg-0lax">
+                                                <input type="date" class="form-control" formControlName="dateFrom">
+                                            </td>
+                                            <td class="tg-0lax">
+                                                <input type="date" class="form-control" formControlName="dateTo">
+                                            </td>
+                                            <td class="tg-0lax">
+                                                <input type="text" class="form-control"
+                                                    formControlName="totalServiceExperience">
+                                            </td>
+                                            <td class="tg-0lax">
+                                                <input type="text" class="form-control" formControlName="remark">
+                                            </td>
+                                            <td class="remove-btn-td">
+                                                <button *ngIf="getAllService.controls.length>1" mat-icon-button
+                                                    (click)="removeService(i)" class="remove-btn">
+                                                    <mat-icon> remove </mat-icon>
+                                                </button>
+                                            </td>
+                                        </ng-container>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="ading-bhn">
+                                <button (click)="addService()" class="add-btn cus-btn" mat-icon-button>
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- <div class="row" *ngIf="id">
+                            <div class="col-md-12">
+                                <button mat-raised-button class="upt_dne" [disabled]="!editEducationDetails"
+                                    (click)="updateEducationDetails()">Update</button>
+                            </div>
+                        </div> -->
+                    </div>
+
+                    <div class="row border acc_doc" style="margin-top: 15px;background-color: #fff;">
+                        <div class="edi_btn">
+                            <h3>JCO/Equivalent Service Personal No and Rank</h3>
+
+                            <!-- <div class="act-btns" *ngIf="id">
+                                    <button mat-icon-button class="edi" *ngIf="!editEducationDetails"
+                                        (click)="editEducationDetails = true">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button class="clo" *ngIf="editEducationDetails"
+                                        (click)="editEducationDetails = false">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div> -->
+
+                        </div>
+
+                        <div class="col-md-12 iner-bs">
+                            <div class="row per_cls">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label for="jcoPersonalNumber">Personal Number</label>
+                                            <input type="text" id="jcoPersonalNumber" class="form-control"
+                                                formControlName="jcoPersonalNumber">
+                                            <span class="invalid-input"
+                                                *ngIf="ef['jcoPersonalNumber'].errors && ef['jcoPersonalNumber'].errors.required && isErrQForm">This
+                                                Field is
+                                                Required</span>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="jcoRank">Rank </label>
+                                            <input type="text" id="jcoRank" maxlength="100" class="form-control"
+                                                formControlName="jcoRank" placeholder="-">
+                                            <span class="invalid-input"
+                                                *ngIf="ef['jcoRank'].errors && ef['jcoRank'].errors.required && isErrQForm">This
+                                                Field is
+                                                Required</span>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <!-- <div class="row" *ngIf="id">
+                            <div class="col-md-12">
+                                <button mat-raised-button class="upt_dne" [disabled]="!editEducationDetails"
+                                    (click)="updateEducationDetails()">Update</button>
+                            </div>
+                        </div> -->
+                    </div>
+
+                    <div class="row border acc_doc" style="margin-top: 15px;background-color: #fff;">
+                        <div class="edi_btn">
+                            <h3>Officer Service Personal No
+                                and Rank</h3>
+
+                            <!-- <div class="act-btns" *ngIf="id">
+                                    <button mat-icon-button class="edi" *ngIf="!editEducationDetails"
+                                        (click)="editEducationDetails = true">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button class="clo" *ngIf="editEducationDetails"
+                                        (click)="editEducationDetails = false">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div> -->
+
+                        </div>
+
+                        <div class="col-md-12 iner-bs">
+                            <div class="row per_cls">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label for="offrPersonalNumber">Personal Number</label>
+                                            <input type="text" id="offrPersonalNumber" class="form-control"
+                                                formControlName="offrPersonalNumber" maxlength="100">
+                                            <span class="invalid-input"
+                                                *ngIf="ef['offrPersonalNumber'].errors && ef['offrPersonalNumber'].errors.required && isErrQForm">This
+                                                Field is Required</span>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="offrRank">Rank </label>
+                                            <input type="text" id="offrRank" maxlength="100" class="form-control"
+                                                formControlName="offrRank" placeholder="-">
+                                            <span class="invalid-input"
+                                                *ngIf="ef['offrRank'].errors && ef['offrRank'].errors.required && isErrQForm">This
+                                                Field is Required</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- <div class="row" *ngIf="id">
+                            <div class="col-md-12">
+                                <button mat-raised-button class="upt_dne" [disabled]="!editEducationDetails"
+                                    (click)="updateEducationDetails()">Update</button>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="row border acc_doc" style="margin-top: 15px;background-color: #fff;">
+                        <div class="edi_btn">
+                            <h3>Other Reckonable Service</h3>
+
+                            <!-- <div class="act-btns" *ngIf="id">
+                                    <button mat-icon-button class="edi" *ngIf="!editEducationDetails"
+                                        (click)="editEducationDetails = true">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button class="clo" *ngIf="editEducationDetails"
+                                        (click)="editEducationDetails = false">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div> -->
+                        </div>
+
+                        <div class="col-md-12 iner-bs">
+                            <div class="row per_cls">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label for="otherReckonableServiceDetails">Details</label>
+                                            <textarea type="text" id="otherReckonableServiceDetails"
+                                                formControlName="otherReckonableServiceDetails"
+                                                class="form-control"></textarea>
+                                            <span class="invalid-input" *ngIf="ef['otherReckonableServiceDetails'].errors 
+                                            && ef['otherReckonableServiceDetails'].errors.required && isErrQForm">
+                                                This Field is Required
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- <div class="row" *ngIf="id">
+                            <div class="col-md-12">
+                                <button mat-raised-button class="upt_dne" [disabled]="!editEducationDetails"
+                                    (click)="updateEducationDetails()">Update</button>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="row border acc_doc" style="margin-top: 15px;background-color: #fff;">
+                        <div class="edi_btn">
+                            <h3>If commissioned after passing out from NDA/IMA/OTS :-
+                            </h3>
+
+                            <!--                             
+                                <div class="act-btns" *ngIf="id">
+                                    <button mat-icon-button class="edi" *ngIf="!editEducationDetails"
+                                        (click)="editEducationDetails = true">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button class="clo" *ngIf="editEducationDetails"
+                                        (click)="editEducationDetails = false">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div> -->
+                        </div>
+                        <div formArrayName="passingOutTrainingEstablishmentList" class="col-md-12">
+                            <table class="tg">
+                                <thead>
+                                    <tr>
+                                        <th class="tg-0lax" rowspan="2">Name of Training Establishment</th>
+                                        <th class="tg-0lax" rowspan="2">Location of Training Establishment</th>
+                                        <th class="tg-0lax" colspan="2">Period</th>
+                                        <th class="tg-0lax" rowspan="2">Course S No</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax"><b>From</b></td>
+                                        <td class="tg-0lax"><b>To</b></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let c of getAllCommissions.controls;let i=index">
+                                        <ng-container [formGroupName]="i">
+
+                                            <td class="tg-0lax">
+                                                <input type="text" class="form-control"
+                                                    formControlName="trainingEstablishmentName">
+                                            </td>
+                                            <td class="tg-0lax">
+                                                <input type="text" class="form-control"
+                                                    formControlName="trainingEstablishmentLocation">
+                                            </td>
+                                            <td class="tg-0lax">
+                                                <input type="date" class="form-control" formControlName="dateFrom">
+                                            </td>
+                                            <td class="tg-0lax">
+                                                <input type="date" class="form-control" formControlName="dateTo">
+                                            </td>
+                                            <td class="tg-0lax">
+                                                <input type="text" class="form-control" formControlName="courseNo">
+                                            </td>
+                                            <td class="remove-btn-td">
+                                                <button *ngIf="getAllCommissions.controls.length>1" mat-icon-button
+                                                    (click)="removeCommission(i)" class="remove-btn">
+                                                    <mat-icon> remove </mat-icon>
+                                                </button>
+                                            </td>
+
+                                        </ng-container>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="ading-bhn">
+                                <button (click)="addCommission()" class="add-btn cus-btn" mat-icon-button>
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- <div class="row" *ngIf="id">
+                            <div class="col-md-12">
+                                <button mat-raised-button class="upt_dne" [disabled]="!editEducationDetails"
+                                    (click)="updateEducationDetails()">Update</button>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="back_nxt" style="float: right;">
+                        <button mat-raised-button matStepperPrevious>Back</button>
+                        <button mat-raised-button (click)="submitQualificationForm()">Next</button>
+                    </div>
+
+                </form>
+            </mat-step>
+
+
+
+            <mat-step label="Courses & Regimental Duties" [stepControl]="otherDetailsForm">
+
+                <form [formGroup]="otherDetailsForm">
+
+                    <div class="row border acc_doc" style="margin-top: 15px;background-color: #fff;">
+                        <div class="edi_btn">
+
+                            <h3>Courses</h3>
+
+                            <!-- <div class="act-btns" *ngIf="id">
+                                    <button mat-icon-button class="edi" *ngIf="!editEducationDetails"
+                                        (click)="editEducationDetails = true">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button class="clo" *ngIf="editEducationDetails"
+                                        (click)="editEducationDetails = false">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div> -->
+
+                        </div>
+                        <div formArrayName="courseList" class="col-md-12">
+                            <table class="tg">
+                                <thead>
+                                    <tr>
+                                        <th class="tg-0lax" rowspan="2">Name of Course</th>
+                                        <th class="tg-0lax" colspan="2">Period</th>
+                                        <th class="tg-0lax" rowspan="2">Institution</th>
+                                        <th class="tg-0lax" rowspan="2">Location</th>
+                                        <th class="tg-0lax" rowspan="2">Grading Obtained</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax"><b>From</b></td>
+                                        <td class="tg-0lax"><b>To</b></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let cr of getAllCourses.controls;let i=index">
+                                        <ng-container [formGroupName]="i">
+                                            <td class="tg-0lax">
+                                                <input type="text" maxlength="100" class="form-control"
+                                                    formControlName="courseName">
+                                            </td>
+                                            <td class="tg-0lax">
+                                                <input type="date" class="form-control" formControlName="dateFrom">
+                                            </td>
+                                            <td class="tg-0lax">
+                                                <input type="date" class="form-control" formControlName="dateTo">
+                                            </td>
+                                            <td class="tg-0lax">
+                                                <input type="text" maxlength="100" class="form-control"
+                                                    formControlName="institution">
+                                            </td>
+                                            <td class="tg-0lax">
+                                                <input type="text" maxlength="100" class="form-control"
+                                                    formControlName="location">
+                                            </td>
+                                            <td class="tg-0lax">
+                                                <input type="text" maxlength="100" class="form-control"
+                                                    formControlName="gradingObtained">
+                                            </td>
+
+                                            <td class="remove-btn-td">
+                                                <button *ngIf="getAllCourses.controls.length>1" mat-icon-button
+                                                    (click)="removeCourse(i)" class="remove-btn">
+                                                    <mat-icon> remove </mat-icon>
+                                                </button>
+                                            </td>
+
+
+                                        </ng-container>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="ading-bhn">
+                                <button (click)="addCourse()" class="add-btn cus-btn" mat-icon-button>
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row border acc_doc" style="margin-top: 15px;background-color: #fff;">
+                        <div class="edi_btn">
+                            <h3>Promotion Examination passed or yet to be passed including Number of chances remaining
+                            </h3>
+
+
+                            <!-- <div class="act-btns" *ngIf="id">
+                                    <button mat-icon-button class="edi" *ngIf="!editEducationDetails"
+                                        (click)="editEducationDetails = true">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button class="clo" *ngIf="editEducationDetails"
+                                        (click)="editEducationDetails = false">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div> -->
+
+
+                        </div>
+                        <div formArrayName="promotionExaminationList" class="col-md-12">
+                            <table class="tg">
+                                <thead>
+                                    <tr>
+                                        <th class="tg-0lax">Exam</th>
+                                        <th class="tg-0lax">Cleared/Part cleared/Not cleared</th>
+                                        <th class="tg-0lax">No of attempts</th>
+                                        <th>Auth (if cleared)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let pe of getAllPromotionExams.controls;let i=index">
+                                        <ng-container [formGroupName]="i">
+                                            <td class="tg-0lax"><input maxlength="100" type="text" class="form-control"
+                                                    formControlName="exam"></td>
+                                            <td class="tg-0lax">
+                                                <!-- <input maxlength="100" type="text" class="form-control"
+                                                    formControlName="cleared"> -->
+                                                <select name="" id="" formControlName="cleared"
+                                                    class="form-control form-select">
+                                                    <option value="" selected hidden disabled>Select</option>
+                                                    <option value="Cleared">Cleared</option>
+                                                    <option value="Part Cleared">Part Cleared</option>
+                                                    <option value="Not Cleared">Not Cleared</option>
+
+                                                </select>
+                                            </td>
+                                            <td class="tg-0lax"><input maxlength="100" type="text" class="form-control"
+                                                    formControlName="attempts"></td>
+                                            <td class="tg-0lax"><input maxlength="100" type="text" class="form-control"
+                                                    formControlName="auth"></td>
+                                            <td class="remove-btn-td">
+                                                <button *ngIf="getAllPromotionExams.controls.length>1" mat-icon-button
+                                                    (click)="removePromotionExam(i)" class="remove-btn">
+                                                    <mat-icon> remove </mat-icon>
+                                                </button>
+                                            </td>
+
+                                        </ng-container>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="ading-bhn">
+                                <button (click)="addPromotionExam()" class="add-btn cus-btn" mat-icon-button>
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row border acc_doc" style="margin-top: 15px;background-color: #fff;">
+                        <div class="edi_btn">
+                            <h3>Foreign languages and degree of proficiency :-
+                            </h3>
+
+                            <!-- <div class="act-btns" *ngIf="id">
+                                    <button mat-icon-button class="edi" *ngIf="!editEducationDetails"
+                                        (click)="editEducationDetails = true">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button class="clo" *ngIf="editEducationDetails"
+                                        (click)="editEducationDetails = false">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div> -->
+
+
+                        </div>
+                        <div formArrayName="foreignlanguageList" class="col-md-12">
+                            <table class="tg">
+                                <thead>
+                                    <tr>
+                                        <th>Language</th>
+                                        <th>Interpretership Held / Examination Passed</th>
+                                        <th>Date</th>
+                                        <th>Proficiency</th>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let fl of getAllForeignLanguages.controls;let i=index">
+                                        <ng-container [formGroupName]="i">
+
+                                            <td><input type="text" class="form-control" formControlName="language"></td>
+                                            <td><input type="text" class="form-control"
+                                                    formControlName="examinationPassed"></td>
+                                            <td><input type="date" class="form-control"
+                                                    formControlName="examinationDate"></td>
+                                            <td>
+                                                <div class="chk-input-new proff">
+                                                    <span>
+                                                        <input type="checkbox" formControlName="canRead" [id]="'r'+i">
+                                                        <label [for]="'r'+i">
+                                                            <p>
+                                                                Read
+                                                            </p>
+                                                        </label>
+                                                    </span>
+                                                    <span>
+                                                        <input type="checkbox" formControlName="canWrite" [id]="'w'+i">
+                                                        <label [for]="'w'+i">
+                                                            <p>
+                                                                Write
+                                                            </p>
+                                                        </label>
+                                                    </span>
+                                                    <span>
+                                                        <input type="checkbox" formControlName="canSpeak" [id]="'s'+i">
+                                                        <label [for]="'s'+i">
+                                                            <p>
+                                                                Speak
+                                                            </p>
+                                                        </label>
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td class="remove-btn-td">
+                                                <button *ngIf="getAllForeignLanguages.controls.length>1" mat-icon-button
+                                                    (click)="removeForeignLanguage(i)" class="remove-btn">
+                                                    <mat-icon> remove </mat-icon>
+                                                </button>
+                                            </td>
+
+                                        </ng-container>
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="ading-bhn">
+                                <button (click)="addForeignLanguage()" class="add-btn cus-btn" mat-icon-button>
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row border acc_doc" style="margin-top: 15px;background-color: #fff;">
+                        <div class="edi_btn">
+                            <h3>Indian languages and degree of proficiency :-
+                            </h3>
+
+
+                            <!-- <div class="act-btns" *ngIf="id">
+                                    <button mat-icon-button class="edi" *ngIf="!editEducationDetails"
+                                        (click)="editEducationDetails = true">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button class="clo" *ngIf="editEducationDetails"
+                                        (click)="editEducationDetails = false">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div> -->
+
+
+
+                        </div>
+                        <div formArrayName="indianLanguageList" class="col-md-12">
+                            <table class="tg">
+                                <thead>
+                                    <tr>
+                                        <th>Language</th>
+                                        <th>Examination passed</th>
+                                        <th>Date</th>
+                                        <th>Proficiency</th>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let il of getAllIndianLanguages.controls;let i=index">
+                                        <ng-container [formGroupName]="i">
+
+                                            <td class="tg-0lax"><input type="text" formControlName="language"
+                                                    class="form-control"></td>
+                                            <td class="tg-0lax"><input type="text" formControlName="examinationPassed"
+                                                    class="form-control"></td>
+                                            <td class="tg-0lax"><input type="date" formControlName="examinationDate"
+                                                    class="form-control"></td>
+                                            <td>
+                                                <div class="chk-input-new proff">
+                                                    <span>
+                                                        <input type="checkbox" formControlName="canRead" [id]="'Ir'+i">
+                                                        <label [for]="'Ir'+i">
+                                                            <p>
+                                                                Read
+                                                            </p>
+                                                        </label>
+
+                                                    </span>
+                                                    <span>
+                                                        <input type="checkbox" formControlName="canWrite" [id]="'Iw'+i">
+                                                        <label [for]="'Iw'+i">
+                                                            <p>
+                                                                Write
+                                                            </p>
+                                                        </label>
+
+                                                    </span>
+                                                    <span>
+                                                        <input type="checkbox" formControlName="canSpeak" [id]="'Is'+i">
+                                                        <label [for]="'Is'+i">
+                                                            <p>
+                                                                Speak
+                                                            </p>
+                                                        </label>
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td class="remove-btn-td">
+                                                <button *ngIf="getAllIndianLanguages.controls.length>1" mat-icon-button
+                                                    (click)="removeIndianLanguage(i)" class="remove-btn">
+                                                    <mat-icon> remove </mat-icon>
+                                                </button>
+                                            </td>
+
+
+                                        </ng-container>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="ading-bhn">
+                                <button (click)="addIndianLanguage()" class="add-btn cus-btn" mat-icon-button>
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row border acc_doc" style="margin-top: 15px;background-color: #fff;">
+                        <div class="edi_btn">
+                            <h3>Regimental Duties.
+                            </h3>
+
+                            <!-- <div class="act-btns" *ngIf="id">
+                                    <button mat-icon-button class="edi" *ngIf="!editEducationDetails"
+                                        (click)="editEducationDetails = true">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button class="clo" *ngIf="editEducationDetails"
+                                        (click)="editEducationDetails = false">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div> -->
+
+
+                        </div>
+                        <div formArrayName="regimentalDutyList" class="col-md-12">
+                            <table class="tg">
+                                <thead>
+                                    <tr>
+                                        <th class="tg-0lax" rowspan="2">Formation/Unit</th>
+                                        <th class="tg-0lax" rowspan="2">Appt</th>
+                                        <th class="tg-0lax" rowspan="2">Place</th>
+                                        <th class="tg-0lax" colspan="2">Period</th>
+                                        <th class="tg-0lax" rowspan="2">Total Days</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax"><b>From</b></td>
+                                        <td class="tg-0lax"><b>To </b></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let rd of getAllRegimentalDuties.controls;let i=index">
+                                        <ng-container [formGroupName]="i">
+
+                                            <td class="tg-0lax"><input maxlength="100" type="text" class="form-control"
+                                                    formControlName="unit"></td>
+                                            <td class="tg-0lax"><input maxlength="100" type="text" class="form-control"
+                                                    formControlName="appt"></td>
+                                            <td class="tg-0lax"><input maxlength="100" type="text" class="form-control"
+                                                    formControlName="place"></td>
+                                            <td class="tg-0lax"><input type="date" class="form-control"
+                                                    formControlName="dateFrom"></td>
+                                            <td class="tg-0lax"><input type="date" class="form-control"
+                                                    formControlName="dateTo"></td>
+                                            <td class="tg-0lax"><input maxlength="100" type="text" class="form-control"
+                                                    formControlName="totalDays"></td>
+                                            <td class="remove-btn-td">
+                                                <button *ngIf="getAllRegimentalDuties.controls.length>1" mat-icon-button
+                                                    (click)="removeRegimentalDuties(i)" class="remove-btn">
+                                                    <mat-icon> remove </mat-icon>
+                                                </button>
+                                            </td>
+                                        </ng-container>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="ading-bhn">
+                                <button (click)="addRegimentalDuties()" class="add-btn cus-btn" mat-icon-button>
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row border acc_doc" style="margin-top: 15px;background-color: #fff;">
+                        <div class="edi_btn">
+                            <h3>Staff employment other than regimental
+                            </h3>
+
+                            <!-- <div class="act-btns" *ngIf="id">
+                                    <button mat-icon-button class="edi" *ngIf="!editEducationDetails"
+                                        (click)="editEducationDetails = true">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button class="clo" *ngIf="editEducationDetails"
+                                        (click)="editEducationDetails = false">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div>                            -->
+
+                        </div>
+                        <div formArrayName="staffEmploymentOtherRegimentalList" class="col-md-12">
+                            <table class="tg">
+                                <thead>
+                                    <tr>
+
+                                        <th class="tg-0lax" rowspan="2">Formation/Unit</th>
+                                        <th class="tg-0lax" rowspan="2">Appt</th>
+                                        <th class="tg-0lax" rowspan="2">Place</th>
+                                        <th class="tg-0lax" colspan="2">Period</th>
+                                        <th class="tg-0lax" rowspan="2">Total Days</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax"><b>From</b></td>
+                                        <td class="tg-0lax"><b>To</b></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let se of getAllStaffEmployment.controls;let i=index">
+                                        <ng-container [formGroupName]="i">
+
+                                            <td class="tg-0lax"><input maxlength="100" type="text" class="form-control"
+                                                    formControlName="unit"></td>
+                                            <td class="tg-0lax"><input maxlength="100" type="text" class="form-control"
+                                                    formControlName="appointment"></td>
+                                            <td class="tg-0lax"><input maxlength="100" type="text" class="form-control"
+                                                    formControlName="place"></td>
+                                            <td class="tg-0lax"><input type="date" class="form-control"
+                                                    formControlName="dateFrom"></td>
+                                            <td class="tg-0lax"><input type="date" class="form-control"
+                                                    formControlName="dateTo"></td>
+                                            <td class="tg-0lax"><input maxlength="100" type="text" class="form-control"
+                                                    formControlName="totalDays"></td>
+                                            <td class="remove-btn-td">
+                                                <button *ngIf="getAllStaffEmployment.controls.length>1" mat-icon-button
+                                                    (click)="removeStaffEmployment(i)" class="remove-btn">
+                                                    <mat-icon> remove </mat-icon>
+                                                </button>
+                                            </td>
+                                        </ng-container>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="ading-bhn">
+                                <button (click)="addStaffEmployment()" class="add-btn cus-btn" mat-icon-button>
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row border acc_doc" style="margin-top: 15px;background-color: #fff;">
+                        <div class="edi_btn">
+                            <h3>Instructional and Extra Regimental Employment
+                            </h3>
+
+
+                            <!-- <div class="act-btns" *ngIf="id">
+                                    <button mat-icon-button class="edi" *ngIf="!editEducationDetails"
+                                        (click)="editEducationDetails = true">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button class="clo" *ngIf="editEducationDetails"
+                                        (click)="editEducationDetails = false">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div> -->
+
+
+                        </div>
+
+
+                        <div formArrayName="extraRegimentalEmploymentList" class="col-md-12">
+                            <table class="tg">
+                                <thead>
+                                    <tr>
+                                        <th class="tg-0lax" rowspan="2">Formation/Unit</th>
+                                        <th class="tg-0lax" rowspan="2">Appt</th>
+                                        <th class="tg-0lax" rowspan="2">Place</th>
+                                        <th class="tg-0lax" colspan="2">Period</th>
+                                        <th class="tg-0lax" rowspan="2">Total Days</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax"><b>From</b></td>
+                                        <td class="tg-0lax"><b>To </b></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let ins of getAllInstructionals.controls;let i=index">
+                                        <ng-container [formGroupName]="i">
+                                            <td class="tg-0lax"><input maxlength="100" type="text" class="form-control"
+                                                    formControlName="unit"></td>
+                                            <td class="tg-0lax"><input maxlength="100" type="text" class="form-control"
+                                                    formControlName="appointment"></td>
+                                            <td class="tg-0lax"><input maxlength="100" type="text" class="form-control"
+                                                    formControlName="place"></td>
+                                            <td class="tg-0lax"><input type="date" class="form-control"
+                                                    formControlName="dateFrom"></td>
+                                            <td class="tg-0lax"><input type="date" class="form-control"
+                                                    formControlName="dateTo"></td>
+                                            <td class="tg-0lax"><input maxlength="100" type="text" class="form-control"
+                                                    formControlName="totalDays"></td>
+                                            <td class="remove-btn-td">
+                                                <button *ngIf="getAllInstructionals.controls.length>1" mat-icon-button
+                                                    (click)="removeInstructional(i)" class="remove-btn">
+                                                    <mat-icon> remove </mat-icon>
+                                                </button>
+                                            </td>
+
+                                        </ng-container>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="ading-bhn">
+                                <button (click)="addInstructional()" class="add-btn cus-btn" mat-icon-button>
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row border acc_doc" style="margin-top: 15px;background-color: #fff;">
+                        <div class="edi_btn">
+                            <h3>Decorations, Campaign Stars and Medals
+                            </h3>
+
+                            <!-- <div class="act-btns" *ngIf="id">
+                                    <button mat-icon-button class="edi" *ngIf="!editEducationDetails"
+                                        (click)="editEducationDetails = true">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button class="clo" *ngIf="editEducationDetails"
+                                        (click)="editEducationDetails = false">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div> -->
+
+                        </div>
+                        <div formArrayName="decorationList" class="col-md-12">
+                            <table class="tg">
+                                <thead>
+                                    <tr>
+                                        <th class="tg-0lax">Decorations/Stars/Medals</th>
+                                        <th class="tg-0lax">Unit serving with at the time of award</th>
+                                        <th class="tg-0lax">Authority</th>
+
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let d of getAllDecorations.controls;let i=index">
+                                        <ng-container [formGroupName]="i">
+                                            <td class="tg-0lax"><input maxlength="100" type="text" class="form-control"
+                                                    formControlName="decorations"></td>
+                                            <td class="tg-0lax"><input maxlength="100" type="text" class="form-control"
+                                                    formControlName="servingUnit"></td>
+                                            <td class="tg-0lax"><input maxlength="100" type="text" class="form-control"
+                                                    formControlName="authority"></td>
+                                            <td class="remove-btn-td">
+                                                <button *ngIf="getAllDecorations.controls.length>1" mat-icon-button
+                                                    (click)="removeDecoration(i)" class="remove-btn">
+                                                    <mat-icon> remove </mat-icon>
+                                                </button>
+                                            </td>
+
+
+                                        </ng-container>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="ading-bhn">
+                                <button (click)="addDecoration()" class="add-btn cus-btn" mat-icon-button>
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row border acc_doc" style="margin-top: 15px;background-color: #fff;">
+                        <div class="edi_btn">
+                            <h3>Permanent Home Address
+                            </h3>
+
+
+                            <!-- <div class="act-btns" *ngIf="id">
+                                    <button mat-icon-button class="edi" *ngIf="!editEducationDetails"
+                                        (click)="editEducationDetails = true">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button class="clo" *ngIf="editEducationDetails"
+                                        (click)="editEducationDetails = false">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div> -->
+
+                        </div>
+
+
+                        <div class="col-md-12 iner-bs">
+                            <div class="row inner-pd">
+
+                                <div class="form-group col-md-12">
+                                    <label for="address"> Address Line 1 </label>
+                                    <input maxlength="100" type="text" formControlName="perAddLine1"
+                                        class="form-control" name="" id="">
+                                    <span class="invalid-input"
+                                        *ngIf="of['perAddLine1'].errors && of['perAddLine1'].errors.required && isErrODForm">This
+                                        Field is Required</span>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label for="address"> Address Line 2 </label>
+                                    <input maxlength="100" type="text" formControlName="perAddLine2"
+                                        class="form-control" name="" id="">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="address"> Village </label>
+                                    <input maxlength="100" type="text" formControlName="perVillage" class="form-control"
+                                        name="" id="">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="address"> Tehsil </label>
+                                    <input maxlength="100" type="text" formControlName="perTehsil" class="form-control"
+                                        name="" id="">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="address"> Post Office </label>
+                                    <input maxlength="100" type="text" formControlName="perPostOffice"
+                                        class="form-control" name="" id="">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="address"> City  </label>
+                                    <input maxlength="100" type="text" formControlName="perCity" class="form-control"
+                                        name="" id="">
+                                    <span class="invalid-input"
+                                        *ngIf="of['perCity'].errors && of['perCity'].errors.required && isErrODForm">This
+                                        Field is Required</span>
+
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="address"> District </label>
+                                    <input maxlength="100" type="text" formControlName="perDistrict"
+                                        class="form-control" name="" id="">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="address"> State </label>
+                                    <input maxlength="100" type="text" formControlName="perState" class="form-control"
+                                        name="" id="">
+                                    <span class="invalid-input"
+                                        *ngIf="of['perState'].errors && of['perState'].errors.required && isErrODForm">This
+                                        Field is Required</span>
+
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="address"> Pincode </label>
+                                    <input maxlength="10" type="text" formControlName="perPinCode"
+                                        (keypress)="onlyNum($event)" class="form-control" name="" id="">
+                                    <span class="invalid-input"
+                                        *ngIf="of['perPinCode'].errors && of['perPinCode'].errors.required && isErrODForm">This
+                                        Field is Required</span>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="row border acc_doc" style="margin-top: 15px;background-color: #fff;">
+                        <div class="edi_btn">
+                            <h3>Name and address of the Officer’s Bankers
+                            </h3>
+
+                            <!-- <div class="act-btns" *ngIf="id">
+                                <button mat-icon-button class="edi" *ngIf="!editEducationDetails"
+                                    (click)="editEducationDetails = true">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                                <button mat-icon-button class="clo" *ngIf="editEducationDetails"
+                                    (click)="editEducationDetails = false">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                            </div> -->
+
+                        </div>
+
+                        <div class="col-md-12 iner-bs">
+                            <div class="row inner-pd">
+                                <div class="form-group col-md-12">
+                                    <label for="nameObBanker"> Name </label>
+                                    <input type="text" maxlength="100" formControlName="officerBankersName"
+                                        class="form-control" name="" id="nameObBanker">
+                                    <span class="invalid-input"
+                                        *ngIf="of['officerBankersName'].errors && of['officerBankersName'].errors.required && isErrODForm">This
+                                        Field is Required</span>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="address1b"> Address Line 1 </label>
+                                    <input type="text" maxlength="100" formControlName="officerBankersAddLine1"
+                                        class="form-control" name="" id="address1b">
+                                    <span class="invalid-input"
+                                        *ngIf="of['officerBankersAddLine1'].errors && of['officerBankersAddLine1'].errors.required && isErrODForm">This
+                                        Field is Required</span>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="address2b"> Address Line 2 </label>
+                                    <input type="text" maxlength="100" formControlName="officerBankersAddLine2"
+                                        class="form-control" name="" id="address2b">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="address"> Village </label>
+                                    <input type="text" maxlength="100" formControlName="officerBankersVillage"
+                                        class="form-control" name="" id="">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="address"> Tehsil </label>
+                                    <input type="text" maxlength="100" formControlName="officerBankersTehsil"
+                                        class="form-control" name="" id="">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="address"> Post Office </label>
+                                    <input type="text" maxlength="100" formControlName="officerBankersPostOffice"
+                                        class="form-control" name="" id="">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="address"> City </label>
+                                    <input type="text" maxlength="100" formControlName="officerBankersCity"
+                                        class="form-control" name="" id="">
+                                    <span class="invalid-input"
+                                        *ngIf="of['officerBankersCity'].errors && of['officerBankersCity'].errors.required && isErrODForm">This
+                                        Field is Required</span>
+
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="address"> District </label>
+                                    <input type="text" maxlength="100" formControlName="officerBankersDistrict"
+                                        class="form-control" name="" id="">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="address"> State </label>
+                                    <input type="text" maxlength="100" formControlName="officerBankersState"
+                                        class="form-control" name="" id="">
+                                    <span class="invalid-input"
+                                        *ngIf="of['officerBankersState'].errors && of['officerBankersState'].errors.required && isErrODForm">This
+                                        Field is Required</span>
+
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="address"> Pincode </label>
+                                    <input type="text" maxlength="100" formControlName="officerBankersPinCode"
+                                        (keypress)="onlyNum($event)" class="form-control" name="" id="">
+                                    <span class="invalid-input"
+                                        *ngIf="of['officerBankersPinCode'].errors && of['officerBankersPinCode'].errors.required && isErrODForm">This
+                                        Field is Required</span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row border acc_doc" style="margin-top: 15px;background-color: #fff;">
+                        <div class="edi_btn">
+                            <h3>Next of Kin (Name, relationship and full address of relative to whom in the event of
+                                death or serious emergency or on being placed on DI/SI list officer wishes intimation
+                                sent)
+                            </h3>
+
+                            <!-- <div class="act-btns" *ngIf="id">
+                                    <button mat-icon-button class="edi" *ngIf="!editEducationDetails"
+                                        (click)="editEducationDetails = true">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button class="clo" *ngIf="editEducationDetails"
+                                        (click)="editEducationDetails = false">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div> -->
+
+
+                        </div>
+                        <div formArrayName="nextKinList" class="col-md-12">
+                            <table class="tg">
+                                <thead>
+                                    <tr>
+                                        <th class="tg-0lax">Name</th>
+                                        <th class="tg-0lax">Relationship</th>
+                                        <th class="tg-0lax">Address</th>
+
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let k of getAllNextKins.controls;let i=index">
+                                        <ng-container [formGroupName]="i">
+                                            <td class="tg-0lax"><input type="text" maxlength="100"
+                                                    formControlName="name" class="form-control"></td>
+                                            <td class="tg-0lax"><input type="text" maxlength="100"
+                                                    formControlName="relationship" class="form-control"></td>
+                                            <td class="tg-0lax"><input type="text" maxlength="100"
+                                                    formControlName="address" class="form-control"></td>
+                                            <td class="remove-btn-td">
+                                                <button *ngIf="getAllNextKins.controls.length>1" mat-icon-button
+                                                    (click)="removeNextKin(i)" class="remove-btn">
+                                                    <mat-icon> remove </mat-icon>
+                                                </button>
+                                            </td>
+                                        </ng-container>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="ading-bhn">
+                                <button (click)="addNextKin()" class="add-btn cus-btn" mat-icon-button>
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row border acc_doc" style="margin-top: 15px;background-color: #fff;">
+                        <div class="edi_btn">
+                            <h3>Whether 'Will' executed, if so its location
+                            </h3>
+
+
+                            <!-- <div class="act-btns" *ngIf="id">
+                                    <button mat-icon-button class="edi" *ngIf="!editEducationDetails"
+                                        (click)="editEducationDetails = true">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button class="clo" *ngIf="editEducationDetails"
+                                        (click)="editEducationDetails = false">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div> -->
+
+
+                        </div>
+                        <div class="col-md-12 iner-bs">
+                            <div class="row inner-pd">
+
+                                <div class="form-group col-md-12">
+                                    <label for="address"> Location </label>
+                                    <input type="text" maxlength="100" formControlName="whetherLocation"
+                                        class="form-control" name="" id="">
+                                    <span class="invalid-input" *ngIf="of['whetherLocation'].errors && 
+                                    of['whetherLocation'].errors.required && isErrODForm">This Field is Required</span>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row border acc_doc" style="margin-top: 15px;background-color: #fff;">
+                        <div class="edi_btn">
+                            <h3>Whether under mentioned nomination made</h3>
+
+                            <!-- <div class="act-btns" *ngIf="id">
+                                    <button mat-icon-button class="edi" *ngIf="!editEducationDetails"
+                                        (click)="editEducationDetails = true">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button class="clo" *ngIf="editEducationDetails"
+                                        (click)="editEducationDetails = false">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div> -->
+
+
+
+
+
+                        </div>
+                        <div class="nany">
+
+                            <div class="form-group col-md-12">
+
+                                <table>
+                                    <tr>
+                                        <td class="y-n-tbl-td-lbl"> <strong>Death cum Retirement Gratuity</strong> </td>
+                                        <td class="y-n-tbl-td-opt"> <label> <input type="radio" name=""
+                                                    formControlName="isDeathCumRetirementGratuity" [value]="trueValue">
+                                                Yes</label>
+                                        </td>
+                                        <td class="y-n-tbl-td-opt"> <label> <input type="radio" name=""
+                                                    formControlName="isDeathCumRetirementGratuity" [value]="falseValue">
+                                                No</label>
+                                        </td>
+                                    </tr>
+                                    <span class="invalid-input"
+                                        *ngIf="of['isDeathCumRetirementGratuity'].errors && of['isDeathCumRetirementGratuity'].errors.required && isErrODForm">This
+                                        Field is Required</span>
+
+                                </table>
+
+                                <table>
+                                    <tr>
+                                        <td class="y-n-tbl-td-lbl"> <strong>Army Group Insurance</strong></td>
+                                        <td class="y-n-tbl-td-opt"> <label> <input type="radio" name=""
+                                                    formControlName="isArmyGroupInsurance" [value]="trueValue">
+                                                Yes</label> </td>
+                                        <td class="y-n-tbl-td-opt"> <label> <input type="radio" name=""
+                                                    formControlName="isArmyGroupInsurance" [value]="falseValue">
+                                                No</label> </td>
+                                    </tr>
+                                    <span class="invalid-input"
+                                        *ngIf="of['isArmyGroupInsurance'].errors && of['isArmyGroupInsurance'].errors.required && isErrODForm">This
+                                        Field is Required</span>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <td class="y-n-tbl-td-lbl"> <strong>DSOP Fund</strong></td>
+                                        <td class="y-n-tbl-td-opt"> <label> <input type="radio" name=""
+                                                    [value]="trueValue" formControlName="isDSOPFund" value="1">
+                                                Yes</label> </td>
+                                        <td class="y-n-tbl-td-opt"> <label> <input type="radio" name=""
+                                                    [value]="falseValue" formControlName="isDSOPFund" value="0">
+                                                No</label> </td>
+                                    </tr>
+                                    <span class="invalid-input"
+                                        *ngIf="of['isDSOPFund'].errors && of['isDSOPFund'].errors.required && isErrODForm">This
+                                        Field is Required</span>
+                                </table>
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="row border acc_doc" style="margin-top: 15px;background-color: #fff;">
+                        <div class="edi_btn">
+                            <h3>Details of Life Insurance Policies
+                            </h3>
+
+
+                            <!-- <div class="act-btns" *ngIf="id">
+                                <button mat-icon-button class="edi" *ngIf="!editEducationDetails"
+                                    (click)="editEducationDetails = true">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                                <button mat-icon-button class="clo" *ngIf="editEducationDetails"
+                                    (click)="editEducationDetails = false">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                            </div> -->
+
+
+                        </div>
+                        <div formArrayName="insurancePolicyList" class="col-md-12">
+                            <table class="tg">
+                                <thead>
+                                    <tr>
+                                        <th class="tg-0lax">Policy No</th>
+                                        <th class="tg-0lax">Sum Assured</th>
+                                        <th class="tg-0lax">Assigned</th>
+                                        <th class="tg-0lax">Whether paid directly or through DSOP Fund</th>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let lip of getAllLifeInsurancePolicies.controls;let i=index">
+                                        <ng-container [formGroupName]="i">
+
+                                            <td class="tg-0lax"><input type="text" maxlength="100" class="form-control"
+                                                    formControlName="policyNo"></td>
+                                            <td class="tg-0lax"><input type="text" maxlength="100" class="form-control"
+                                                    formControlName="sumAssured"></td>
+                                            <td class="tg-0lax"><input type="text" maxlength="100" class="form-control"
+                                                    formControlName="assigned"></td>
+                                            <td class="tg-0lax">
+                                                <select type="text" class="form-control" formControlName="paymentMode">
+                                                    <option value="" selected hidden disabled>Select</option>
+                                                    <option value="Paid Directly">Paid Directly</option>
+                                                    <option value="Paid by DSOP Fund">Paid through DSOP Fund</option>
+                                                </select>
+                                            </td>
+
+                                            <td class="remove-btn-td">
+                                                <button *ngIf="getAllLifeInsurancePolicies.controls.length>1"
+                                                    mat-icon-button (click)="removeLifeInsurancePolicy(i)"
+                                                    class="remove-btn">
+                                                    <mat-icon> remove </mat-icon>
+                                                </button>
+                                            </td>
+                                        </ng-container>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="ading-bhn">
+                                <button (click)="addLifeInsurancePolicy()" class="add-btn cus-btn" mat-icon-button>
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row border acc_doc" style="margin-top: 15px;background-color: #fff;">
+                        <div class="edi_btn">
+                            <h3>Details of family (To be left blank where not applicable).
+                            </h3>
+
+
+                            <!-- <div class="act-btns" *ngIf="id">
+                                    <button mat-icon-button class="edi" *ngIf="!editEducationDetails"
+                                        (click)="editEducationDetails = true">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button class="clo" *ngIf="editEducationDetails"
+                                        (click)="editEducationDetails = false">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div> -->
+
+
+                        </div>
+                        <div formArrayName="familyDetailsAList" class="col-md-12">
+                            <P>(a) Whether single/married/widower/divorcee if married specify</P>
+                            <table class="tg">
+                                <thead>
+                                    <tr>
+                                        <th class="tg-0lax">Date of Marriage</th>
+                                        <th class="tg-0lax">Place of Marriage</th>
+                                        <th class="tg-0lax">Under what rites/law</th>
+                                        <th class="tg-0lax">To whom</th>
+                                        <th class="tg-0lax">Nationality of spouse before marriage</th>
+                                        <th>Authority if any</th>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let fd of getAllFamilyDetails.controls;let i=index">
+                                        <ng-container [formGroupName]="i">
+                                            <td class="tg-0lax"><input type="date" class="form-control"
+                                                    formControlName="marriageDate"></td>
+                                            <td class="tg-0lax"><input type="text" maxlength="100" class="form-control"
+                                                    formControlName="marriagePlace"></td>
+                                            <td class="tg-0lax"><input type="text" maxlength="100" class="form-control"
+                                                    formControlName="law"></td>
+                                            <td class="tg-0lax"><input type="text" maxlength="100" class="form-control"
+                                                    formControlName="toWhom"></td>
+                                            <td class="tg-0lax"><input type="text" maxlength="100" class="form-control"
+                                                    formControlName="spouseNationality"></td>
+                                            <td class="tg-0lax"><input type="text" maxlength="100" class="form-control"
+                                                    formControlName="authority"></td>
+                                            <td class="remove-btn-td">
+                                                <button *ngIf="getAllFamilyDetails.controls.length>1" mat-icon-button
+                                                    (click)="removeFamilyDetail(i)" class="remove-btn">
+                                                    <mat-icon> remove </mat-icon>
+                                                </button>
+                                            </td>
+
+                                        </ng-container>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="ading-bhn">
+                                <button (click)="addFamilyDetail()" class="add-btn cus-btn" mat-icon-button>
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+
+
+                        </div>
+
+                        <div formArrayName="familyDetailsBList" class="col-md-12">
+                            <P style="margin-top: 15px;">(b) If the officer has any legitimate (including validity
+                                adopted) children, specify</P>
+                            <table class="tg">
+                                <thead>
+                                    <tr>
+                                        <th class="tg-0lax">Name</th>
+                                        <th class="tg-0lax">Sex</th>
+                                        <th class="tg-0lax">Date of Birth</th>
+                                        <th class="tg-0lax">Place of Birth</th>
+                                        <th class="tg-0lax">Auth if any</th>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let cd of getAllChildrenDetails.controls;let i=index">
+                                        <ng-container [formGroupName]="i">
+                                            <td class="tg-0lax"><input type="text" maxlength="100" class="form-control"
+                                                    formControlName="name"></td>
+                                            <td class="tg-0lax"><input type="text" maxlength="100" class="form-control"
+                                                    formControlName="gender"></td>
+                                            <td class="tg-0lax"><input type="date" class="form-control"
+                                                    formControlName="dob"></td>
+                                            <td class="tg-0lax"><input type="text" maxlength="100" class="form-control"
+                                                    formControlName="birthPlace"></td>
+                                            <td class="tg-0lax"><input type="text" maxlength="100" class="form-control"
+                                                    formControlName="authority"></td>
+                                            <td class="remove-btn-td">
+                                                <button *ngIf="getAllChildrenDetails.controls.length>1" mat-icon-button
+                                                    (click)="removeChildrenDetail(i)" class="remove-btn">
+                                                    <mat-icon> remove </mat-icon>
+                                                </button>
+                                            </td>
+                                        </ng-container>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="ading-bhn">
+                                <button (click)="addChildrenDetail()" class="add-btn cus-btn" mat-icon-button>
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row border acc_doc" style="margin-top: 15px;background-color: #fff;">
+                        <div class="edi_btn">
+                            <h3>Particulars of annual leave for the last two years
+                            </h3>
+                            <!-- 
+                                <div class="act-btns" *ngIf="id">
+                                    <button mat-icon-button class="edi" *ngIf="!editEducationDetails"
+                                        (click)="editEducationDetails = true">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button class="clo" *ngIf="editEducationDetails"
+                                        (click)="editEducationDetails = false">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div>                             -->
+
+                        </div>
+                        <div formArrayName="annualLeaveList" class="col-md-12">
+                            <table class="tg">
+                                <thead>
+                                    <tr>
+                                        <th class="tg-0lax" rowspan="2">Unit</th>
+                                        <th class="tg-0lax" colspan="2">Period</th>
+                                        <th class="tg-0lax" rowspan="2">Remark</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax"><b>From</b></td>
+                                        <td class="tg-0lax"><b>To</b></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let al of getAllAnnualLeaves.controls;let i=index">
+                                        <ng-container [formGroupName]="i">
+                                            <td class="tg-0lax"><input type="text" maxlength="100" class="form-control"
+                                                    formControlName="unit"></td>
+                                            <td class="tg-0lax"><input type="date" class="form-control"
+                                                    formControlName="dateFrom"></td>
+                                            <td class="tg-0lax"><input type="date" class="form-control"
+                                                    formControlName="dateTo"></td>
+                                            <td class="tg-0lax"><input type="text" maxlength="100" class="form-control"
+                                                    formControlName="remarks"></td>
+                                            <td class="remove-btn-td">
+                                                <button *ngIf="getAllAnnualLeaves.controls.length>1" mat-icon-button
+                                                    (click)="removeAnnualLeave(i)" class="remove-btn">
+                                                    <mat-icon> remove </mat-icon>
+                                                </button>
+                                            </td>
+                                        </ng-container>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="ading-bhn">
+                                <button (click)="addAnnualLeave()" class="add-btn cus-btn" mat-icon-button>
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row border acc_doc" style="margin-top: 15px;background-color: #fff;">
+                        <div class="edi_btn">
+                            <h3>Confirmation
+                            </h3>
+
+                            <div class="act-btns" *ngIf="id">
+
+                                <!-- <div class="act-btns" *ngIf="id">
+                                    <button mat-icon-button class="edi" *ngIf="!editEducationDetails"
+                                        (click)="editEducationDetails = true">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button class="clo" *ngIf="editEducationDetails"
+                                        (click)="editEducationDetails = false">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </div> -->
+                            </div>
+
+                        </div>
+                        <div class="nany">
+
+                            <div class="form-group col-md-6">
+                                <label for="bloodGroup">Place<span class="required">*</span></label>
+                                <input type="text" maxlength="100" formControlName="confirmationPlace"
+                                    class="form-control">
+                                <span class="invalid-input"
+                                    *ngIf="of['confirmationPlace'].errors && of['confirmationPlace'].errors.required && isErrODForm">This
+                                    Field
+                                    is Required</span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="state">Date<span class="required">*</span></label>
+                                <input type="date" formControlName="confirmationDate" class="form-control">
+                                <span class="invalid-input"
+                                    *ngIf="of['confirmationDate'].errors && of['confirmationDate'].errors.required && isErrODForm">This
+                                    Field
+                                    is Required</span>
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-12">
+                            <p>
+                                <label for="declaration">
+                                    <input type="checkbox" id="declaration" formControlName="declareConfirmation">
+                                    <!-- <span class="required">*</span> -->
+                                    I hereby certify that to
+                                    the best of my knowledge and belief the
+                                    above particulars are, in all respects correct and
+                                    true.
+
+                                </label>
+                            </p>
+                            <span class="invalid-input" *ngIf="!of['declareConfirmation'] && isError">This
+                                Field
+                                is Required</span>
+                        </div>
+
+
+                        <div class="form-group col-md-6">
+                            <label for="status" class="form-label">Status <span class="required">*</span></label>
+                            <select name="" id="status" class="form-control" formControlName="status">
+                                <option value="" disabled selected hidden>Select</option>
+                                <option value="1">Active</option>
+                                <option value="0">Inactive</option>
+                            </select>
+                            <!-- <span class="validation_msg" *ngIf="af.status.touched && af.status.invalid">
+                                *Please Select Status
+                            </span> -->
+                        </div>
+
+                    </div>
+
+
+                    <!-- <div class="row" *ngIf="id">
+                        <div class="col-md-12">
+                            <button mat-raised-button class="upt_dne" [disabled]="!editEducationDetails"
+                                (click)="updateEducationDetails()">Update</button>
+                        </div>
+                    </div> -->
+
+
+
+                </form>
+
+
+                <div style="float: right;">
+                    <button mat-raised-button matStepperPrevious>Back</button>
+                    <button *ngIf="!id" mat-raised-button (click)="addRecordOfService()"
+                        [disabled]="!of['declareConfirmation'].value">Add Record of Service</button>
+                    <button *ngIf="id" mat-raised-button (click)="updateRecordOfService()"
+                        [disabled]="!of['declareConfirmation'].value">
+                        Update Record of Service
+                    </button>
+                </div>
+
+            </mat-step>
+
+        </mat-horizontal-stepper>
+
+    </div>
+
+</mat-card>

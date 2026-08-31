@@ -1,0 +1,44 @@
+.primary-bg, body .ngx-datatable.material .datatable-footer .datatable-pager li.active a, .gene-form-wizard .mat-tab-label-active {
+    background: #a9823d !important;
+    color: #ffffff !important;
+}
+
+h4 {
+    font-size: 20px;
+    color: #3d3635;
+    font-weight: 800;
+}
+.both_input.ng-tns-c418-1 {
+    display: flex;
+}
+.mat-button-base:focus {
+    outline: none !important;
+}
+.iner-pt .form-group.ng-tns-c418-1 {
+    margin: 0;
+}
+#center_section{
+    background: url('../../../assets/img/white.png');
+    padding: 10px 30px;
+    border: 1px solid #eee;
+    box-shadow: 1px 1px 3px #ccc;
+    margin-top: 30px;
+}
+
+.btn-success{
+
+    height: fit-content;
+    margin-top: 30px;
+}
+
+.modal.show .modal-dialog {
+	-webkit-transform: none;
+	-ms-transform: none;
+	transform: none;
+    overflow: hidden;
+    max-width: 100%;
+    margin: 0;
+}
+.modal.show .modal-dialog .modal-content{
+    margin: 1.75rem auto;
+}

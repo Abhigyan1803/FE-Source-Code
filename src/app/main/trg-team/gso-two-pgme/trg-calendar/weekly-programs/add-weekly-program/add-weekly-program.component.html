@@ -1,0 +1,292 @@
+<div class="mat-new">
+  <h4 class="card-heading"> <button mat-icon-button (click)="goBack()">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    GSO-2(PGME)<span class="sub-menu1"> > TRG Calendar > Weekly PGME </span> <span class="sub-menu1"> > {{pageTitle}}
+    </span>
+  </h4>
+</div>
+
+<mat-card>
+
+  <div class="top-br">
+    <form [formGroup]="addProgramForm">
+
+      <div class="row" style="display: flex;">
+
+        <div class="form-group col-md-3">
+
+          <label for="seasonTerm">Season Term<span class="required">*</span></label>
+          <select id="seasonTerm" class="form-control" formControlName="seasonTerm" (change)="getAllDatesOfWeek()"
+          [attr.disabled]="!addPgme ? 'disabled' : null"
+          >
+            <option value="" selected hidden disabled>Select</option>
+            <option *ngFor="let t of seasonTerms" [value]="t.id">{{t.name}} </option>
+          </select>
+
+          <span class="validation_msg" *ngIf="f.seasonTerm.errors && f.seasonTerm.errors.required && isError">Please
+            Select Season Term</span>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label for="year">Year<span class="required">*</span></label>
+          <input id="year" type="number" [min]="currentYear" class="form-control" formControlName="year"
+            (change)="getAllDatesOfWeek()" [attr.disabled]="!addPgme ? 'disabled' : null" >
+          <span class="validation_msg" *ngIf="f.year.errors  && isError">Please Enter a Valid Year</span>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label for="week">Week<span class="required">*</span></label>
+          <select id="week" type="week" class="form-control" formControlName="week" (change)="getAllDatesOfWeek()"
+            [attr.disabled]="!addPgme ? 'disabled' : null">
+            <option value="" selected hidden disabled>Select</option>
+            <option *ngFor="let w of weeks" [value]="w.id">{{w.name}} </option>
+          </select>
+          <span class="validation_msg" *ngIf="f.week.errors && f.week.errors.required && isError">Please Select
+            Week</span>
+        </div>
+        <!-- <div class=" col-md-2">
+          <button mat-raised-button (click)="getAllDatesOfWeek()" style="margin-top: 30px;width: 100%;">Submit</button>
+        </div> -->
+      </div>
+
+
+
+
+      <ng-container *ngIf="show">
+
+
+        <div class="bod-ts">
+          <div class="inner-pts">
+            <div class="form-group col-md-3">
+              <label for="start">Week Start Date</label>
+              <input type="text" id="start" readonly class="form-control" formControlName="weekStartDate">
+            </div>
+            <div class="form-group col-md-3">
+              <label for="end">Week Ending Date</label>
+              <input type="text" id="end" readonly class="form-control" formControlName="weekEndDate">
+            </div>
+            <div class="form-group col-md-3">
+              <label for="battalion">Battalion<span class="required">*</span></label>
+              <select id="battalion" class="form-control" formControlName="battalion">
+                <option value="" selected hidden disabled>Select</option>
+                <option *ngFor="let b of battalions" [value]="b.id">{{b.shortName}} Bn</option>
+              </select>
+              <span class="validation_msg" *ngIf="f.battalion.errors && f.battalion.errors.required && isError">Please
+                Select Battalion</span>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="term">Term<span class="required">*</span></label>
+              <select id="term" type="text" class="form-control" formControlName="term">
+                <option value="" selected hidden disabled>Select</option>
+                <option *ngFor="let t of terms" [value]="t.id">{{t.name}} </option>
+              </select>
+              <span class="validation_msg" *ngIf="f.term.errors && f.term.errors.required && isError">Please Enter a
+                Valid
+                Year</span>
+            </div>
+
+
+          </div>
+        </div>
+
+
+
+
+
+
+        <ng-container formArrayName="weeklyScheduleDate">
+
+
+
+
+          <mat-tab-group>
+            <mat-tab *ngFor="let sch of weeklyScheduleDates.controls;let dateIndex=index">
+
+              <div class="" [formGroupName]="dateIndex">
+
+                <ng-template mat-tab-label>
+                  <span>
+                    {{sch.value.displayDate}}
+                  </span>
+                </ng-template>
+
+                <div formArrayName="dailySchedule">
+                  <ng-container *ngFor="let pgme of getPGMEs(dateIndex).controls;let pgmeIndex = index">
+                    <div [formGroupName]="pgmeIndex">
+                      <div class="inner-nfs form-group">
+
+                        <div class="col-md-3 mt-2">
+                          <label for="">Period</label>
+                          <input type="text" class="form-control" maxlength="150" formControlName="period"
+                            placeholder="Period">
+                        </div>
+                        <div class="col-md-3 mt-2">
+                          <label for="">Start Time</label>
+                          <input type="text" class="form-control" maxlength="4" (keypress)="onlyNum($event)"
+                          (keyup)="validateTime($event)"
+                            formControlName="startTime" placeholder="Start Time">
+                        </div>
+                        <div class="col-md-3 mt-2">
+                          <label for="">End Time</label>
+                          <input type="text" class="form-control" maxlength="4" (keypress)="onlyNum($event)"
+                          (keyup)="validateTime($event)"
+                            formControlName="endTime" placeholder="End Time">
+                        </div>
+                        <div class="col-md-3 mt-2 ">
+                          <label for="">Subject</label>
+                          <input type="text" class="form-control" maxlength="150" formControlName="subject"
+                            placeholder="Subject">
+                        </div>
+                        <div class="col-md-3 mt-2 ">
+                          <label for="">Type</label>
+                          <input type="text" class="form-control" maxlength="150" formControlName="type"
+                            placeholder="Type">
+                        </div>
+                        <div class="col-md-3 mt-2 ">
+                          <label for="">Lesson</label>
+                          <input type="text" class="form-control" maxlength="150" formControlName="lession"
+                            placeholder="Lesson">
+                        </div>
+                        <div class="col-md-3 mt-2 ">
+                          <label for="">Instructor</label>
+                          <input type="text" class="form-control" maxlength="150" formControlName="instructor"
+                            placeholder="Instructor Name">
+                        </div>
+                        <div class="col-md-3 mt-2 ">
+                          <label for="">Place</label>
+                          <input type="text" class="form-control" maxlength="150" formControlName="place"
+                            placeholder="Place">
+                        </div>
+                        <div class="btn-fhj">
+                          <button mat-icon-button class="remove-btn" (click)="removePGME(dateIndex,pgmeIndex)">
+                            <mat-icon>remove</mat-icon>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                  </ng-container>
+                  <div class="add-new-btn">
+                    <button mat-icon-button class="add-btn cus-btn" (click)="addPGME(dateIndex)">
+                      <mat-icon>add</mat-icon>
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </mat-tab>
+
+          </mat-tab-group>
+
+
+
+          <!-- <ng-container class="border" *ngFor="let sch of weeklyScheduleDates.controls;let dateIndex=index">
+
+            <div class="border col-md-12" [formGroupName]="dateIndex">
+
+              <div class="form-group row col-md-12 mt-3">
+                <div class="inf-f">
+                  <input type="text" formControlName="displayDate" class="form-control" readonly style="width: auto;">
+                </div>
+              </div>
+
+              <div formArrayName="dailySchedule">
+                <ng-container *ngFor="let pgme of getPGMEs(dateIndex).controls;let pgmeIndex = index">
+                  <div [formGroupName]="pgmeIndex">
+                    <div class="inner-nfs form-group">
+
+                      <div class="col-md-3 mt-2">
+                        <label for="">Period</label>
+                        <input type="text" class="form-control" maxlength="150" formControlName="period"
+                          placeholder="Period">
+                      </div>
+                      <div class="col-md-3 mt-2">
+                        <label for="">Start Time</label>
+                        <input type="text" class="form-control" maxlength="4" (keydown)="onlyNum($event)"
+                          formControlName="startTime" placeholder="Start Time">
+                      </div>
+                      <div class="col-md-3 mt-2">
+                        <label for="">End Time</label>
+                        <input type="text" class="form-control" maxlength="4" (keydown)="onlyNum($event)"
+                          formControlName="endTime" placeholder="End Time">
+                      </div>
+                      <div class="col-md-3 mt-2 ">
+                        <label for="">Subject</label>
+                        <input type="text" class="form-control" maxlength="150" formControlName="subject"
+                          placeholder="Subject">
+                      </div>
+                      <div class="col-md-3 mt-2 ">
+                        <label for="">Type</label>
+                        <input type="text" class="form-control" maxlength="150" formControlName="type"
+                          placeholder="Type">
+                      </div>
+                      <div class="col-md-3 mt-2 ">
+                        <label for="">Lesson</label>
+                        <input type="text" class="form-control" maxlength="150" formControlName="lession"
+                          placeholder="Lesson">
+                      </div>
+                      <div class="col-md-3 mt-2 ">
+                        <label for="">Instructor</label>
+                        <input type="text" class="form-control" maxlength="150" formControlName="instructor"
+                          placeholder="Instructor Name">
+                      </div>
+                      <div class="col-md-3 mt-2 ">
+                        <label for="">Place</label>
+                        <input type="text" class="form-control" maxlength="150" formControlName="place"
+                          placeholder="Place">
+                      </div>
+                      <div class="btn-fhj">
+                        <button mat-icon-button class="remove-btn" (click)="removePGME(dateIndex,pgmeIndex)">
+                          <mat-icon>remove</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                </ng-container>
+
+              </div>
+              <div class="add-new-btn">
+                <button mat-icon-button class="add-btn cus-btn" (click)="addPGME(dateIndex)">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+            </div>
+
+          </ng-container> -->
+
+
+        </ng-container>
+
+
+
+
+
+
+
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="status">Status<span class="required">*</span></label>
+            <select id="status" class="form-control" formControlName="status">
+              <option value="" selected hidden disabled>Select</option>
+              <option value="1">Active</option>
+              <option value="0">Inactive</option>
+            </select>
+          </div>
+        </div>
+
+      </ng-container>
+
+
+      <div *ngIf="show" style="float: right;">
+
+        <button *ngIf="!id" mat-raised-button (click)="addProgram()">Add PGME</button>
+        <button *ngIf="id" mat-raised-button (click)="updateProgram()">Update PGME</button>
+
+      </div>
+
+    </form>
+
+  </div>
+</mat-card>

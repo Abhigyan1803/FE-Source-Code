@@ -1,0 +1,61 @@
+
+<div class="mat-new">
+    <h4 class="card-heading">
+      <button mat-icon-button (click)="goBack()" ><mat-icon>chevron_left</mat-icon> </button>
+      GS Branch <span class="sub-menu1"> > Policies/Advisories <span class="sub-menu1"> > {{pageTitle}}</span></span>
+    </h4>
+  </div>
+  <mat-card>
+    <div class="top-br">
+      <form [formGroup]="addPoliciesForm">
+  
+        <div class="row">
+
+            <div class="form-group col-md-6">
+               <label for="position">Name<span class="required">*</span></label>
+               <input id="name" type="text" class="form-control" maxlength="100" formControlName="name"
+               placeholder="Name">
+                <span class="validation_msg"
+                    *ngIf="f.name.errors && f.name.errors.required && isError">Please Enter Name</span>
+            </div>
+
+
+        </div> 
+
+        <div class="row">
+                 <div class="form-group col-md-12">
+            <label for="awards">Description <span class="char-count" >   ({{descLength}}/1500)  </span> <span class="required">*</span></label>
+            <!-- <input type="text" id="awards" class="form-control"  maxlength="100" formControlName="awards" placeholder="Awards"> -->
+            <textarea matInput placeholder="Maximum 1500 Characters" class="form-control"  (input)="charCount($event)" maxlength="1500" formControlName="description"></textarea>
+            <span class="val_msg" *ngIf="f.description.errors && f.description.errors.required && isError" >*Please Enter history</span>
+
+             </div>
+        </div> 
+
+        <div class="form-group">
+          <label class="form-label">Document<span class="required">*</span></label>
+            <input type="file" #inputFile accept=".pdf,.doc,.docx" (change)="onSelectDoc($event)" id="image">
+            <mat-icon *ngIf="docUrl" class="document_icon" (click)="openDoc(docUrl)" >description</mat-icon>
+            <span class="note">Max File Size {{sharedService.fileSize}} MB. (Only pdf and doc format.)</span>
+            <span class="validation_msg" *ngIf="!isDoc && isError" >Document is required</span>  
+            
+        </div>
+  
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="status">Status<span class="required" >*</span></label>
+            <select name="" id="" class="form-control " formControlName="status">
+              <option value="" disabled selected hidden>Status</option>
+              <option value="1">Active</option>
+              <option value="0">Inactive</option>
+            </select>
+            <span class="validation_msg" *ngIf="f.status.errors && f.status.errors.required && isError" >Status is required</span> 
+          </div>
+        </div>
+  
+        <button mat-raised-button *ngIf="pageTitle=='Add ProphylacticPolicies'" (click)="addProphylactic()">Add </button>
+        <button mat-raised-button *ngIf="pageTitle=='View ProphylacticPolicies'" (click)="updateProphylactic()">Update </button>
+  
+      </form>
+    </div>
+  </mat-card>

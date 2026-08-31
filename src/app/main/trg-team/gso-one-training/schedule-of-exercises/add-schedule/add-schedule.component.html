@@ -1,0 +1,111 @@
+<div class="mat-new">
+    <h4 class="card-heading"> <button mat-icon-button (click)="goBack()" ><mat-icon>chevron_left</mat-icon> </button> GSO-1 TRG <span class="sub-menu1"> > Schedule of Exercise ></span> <span class="sub-menu1"> {{pTitle}}
+        </span>
+    </h4>
+</div>
+<mat-card>
+    <div class="top-br">
+        <form [formGroup]="addScheduleForm">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="seasonTerm">Seasom Term<span class="required">*</span> </label>
+                    <select type="text"   class="form-control" id="seasonTerm" formControlName="seasonTermId">
+                        <option value="" selected disabled hidden >Select</option>
+                        <option *ngFor="let s of seasonTerms" [value]="s.id">{{s.name}} </option>
+                    </select>
+                    <span class="validation_msg" *ngIf="f.seasonTermId.errors && f.seasonTermId.errors.required && isError" >Please Select Season Term</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="year">Year<span class="required">*</span></label>
+                    <input type="number" [min]="currYear"  class="form-control" id="year" formControlName="year">
+                    <span class="validation_msg" *ngIf="f.year.errors && f.year.invalid && isError" >Please Enter a Valid Year</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="exercise">Exercise<span class="required">*</span> <span class="char-count" >({{exeLength}}/100)</span> </label>
+                    <input type="text" (input)="charCount($event,'exercise')" placeholder="Exercise(Maximum 100 Characters)" class="form-control" maxlength="100" id="exercise" formControlName="exercise">
+                    <span class="validation_msg" *ngIf="f.exercise.errors && f.exercise.errors.required && isError" >Please Enter Exercise Name</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="term">Term<span class="required">*</span></label>
+                    <select class="form-control" maxlength="100" id="term" formControlName="termId">
+                        <option value="" selected disabled hidden>Select Term</option>
+                        <option *ngFor="let t of terms" [value]="t.id">{{t.name}} </option>
+                    </select>
+                    <span class="validation_msg" *ngIf="f.termId.errors && f.termId.errors.required && isError" >Please Select Term</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="resp">RESP<span class="required">*</span></label>
+                    <select type="text" class="form-control" maxlength="100" id="resp" formControlName="respId" id="designation">
+                        <option value="" selected hidden disabled>Select</option>
+                        <option *ngFor="let r of resp" [value]="r.id">{{r.respType}} </option>
+                    </select>
+                    <span class="validation_msg" *ngIf="f.respId.errors && f.respId.errors.required && isError" >RESP is required</span>   
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="dsBriefing">DS Briefing</label>
+                    <input (input)="charCount($event,'dsBriefing')" placeholder="Enter Dates" type="text" class="form-control" maxlength="100" id="dsBriefing" formControlName="dsBriefing">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="recceTewt">RECCE/TEWT</label>
+                    <input (input)="charCount($event,'recceTewt')" placeholder="Enter Dates" type="text" class="form-control" maxlength="100" id="recceTewt" formControlName="recceTewt">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="bbe">BBE</label>
+                    <input (input)="charCount($event,'bbe')" placeholder="Enter Dates" type="text" class="form-control" maxlength="100" id="bbe" formControlName="bbe">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="verbalOrders">Verbal Orders</label>
+                    <input (input)="charCount($event,'verbalOrders')" placeholder="Enter Dates" type="text" class="form-control" maxlength="100" id="verbalOrders" formControlName="verbalOrders">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="smd">SMD</label>
+                    <input (input)="charCount($event,'smd')" placeholder="Enter Dates" type="text" class="form-control" maxlength="100" id="smd" formControlName="smd">
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="duration">Duration</label>
+                    <input type="text"  (input)="charCount($event,'duration')" placeholder="Enter Dates" class="form-control" maxlength="100" id="duration" formControlName="duration" >
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="status">Status<span class="required">*</span></label>
+                    <select class="form-control" formControlName="status">
+                        <option value="" selected hidden disabled>Select</option>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+                    <span class="validation_msg" *ngIf="f.status.errors && f.status.errors.required && isError" >Status is required</span>   
+                </div>
+              
+            </div>
+            <div class="row">
+            <div class="form-group col-md-6">
+                <label class="form-label">Document Upload</label>
+                  <input  type="file"
+                  (change)="upload1($event, i)"
+                  accept=".pdf*"
+                  class="form-control">
+                  
+              </div>
+            </div>
+            <button *ngIf="pTitle == 'Add Schedule of Exercise'"  mat-raised-button (click)="addSchedule()">Add Schedule</button>
+            <button *ngIf="pTitle == 'View Schedule of Exercise'" mat-raised-button (click)="updateSchedule()">Update Schedule</button>
+
+        </form>
+    </div>
+</mat-card>

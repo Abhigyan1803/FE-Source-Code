@@ -1,0 +1,96 @@
+<div>
+    <div class="mat-new">
+        <h4 class="card-heading" *ngIf="mnc=='add'"> Add MR Prac <span class="sub-menu1"> </span>
+        </h4>
+        <h4 class="card-heading" *ngIf="mnc=='update'">Edit MR Prac <span class="sub-menu1"> </span>
+        </h4>
+
+    </div>
+    <mat-card>
+        <form [formGroup]="mrpracForm">
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label class="form-label">IMA No. </label>
+                    <input type="text" formControlName="serviceId" disabled maxlength="100" class="form-control">
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label class="form-label">Name </label>
+                    <input type="text" formControlName="username" disabled maxlength="100" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="form-label">Term </label>
+                    <input type="text" formControlName="termId" disabled maxlength="100" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label class="form-label">Batallion </label>
+                    <input type="text" formControlName="battalian" disabled maxlength="100" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="form-label">CoY </label>
+                    <input type="text" formControlName="company" disabled maxlength="100" class="form-control">
+
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="form-label">Course </label>
+                    <input type="text" formControlName="course" disabled maxlength="100" class="form-control">
+                </div>
+            </div>
+            <div class="row" *ngIf="mnc=='add'">
+                <div class="form-group col-md-4">
+                    <label class="form-label">Type </label>
+                    <input type="text" formControlName="resultType" disabled maxlength="100" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="form-label">Total Mark </label>
+                    <input disabled min="0" oninput="this.value = 
+                    !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                        formControlName="totalMarks" maxlength="2" class="form-control">
+
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="form-label">Obtained Marks </label>
+                    <input (change)="change($event.target.value)" min="0" oninput="this.value = 
+                    !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                        formControlName="obtainedMarks" maxlength="2" class="form-control">
+                </div>
+            </div>
+            <div class="row" *ngIf="mnc=='update'">
+                <div class="form-group col-md-4">
+                    <label class="form-label">Type </label>
+                    <input type="text" formControlName="resultType" disabled maxlength="100" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="form-label">Total Mark </label>
+                    <input disabled min="0" oninput="this.value = 
+                    !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                        formControlName="totalMarks" maxlength="2" class="form-control">
+
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="form-label">Obtained Marks </label>
+                    <input (change)="change($event.target.value)" min="0" oninput="this.value = 
+                    !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                        formControlName="obtainedMarks" maxlength="2" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12 remarkdiv">
+                    <label class="form-label">Remarks </label>
+                    <textarea matInput placeholder="" formControlName="remark" class="form-control textarea-33"
+                        maxlength="1500"></textarea>
+                    <div *ngIf="mnc=='add'" class="form-group col-md-2 submitbutton">
+                        <button mat-raised-button (click)="submit()">Submit</button>
+                    </div>
+                    <div *ngIf="mnc=='update'" class="form-group col-md-2 submitbutton">
+                        <button mat-raised-button (click)="confirm()">Update</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+    </mat-card>
+</div>

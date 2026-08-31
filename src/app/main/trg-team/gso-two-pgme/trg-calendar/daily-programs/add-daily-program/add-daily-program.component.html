@@ -1,0 +1,170 @@
+<div class="mat-new">
+  <h4 class="card-heading"> <button mat-icon-button (click)="goBack()"><mat-icon>chevron_left</mat-icon> </button> GSO-2(PGME)<span class="sub-menu1"> > TRG Calendar > Daily Pgme </span> <span
+      class="sub-menu1"> > {{pageTitle}} </span>
+  </h4>
+</div>
+<mat-card>
+  <div class="top-br">
+    <form [formGroup]="addProgramForm">
+
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="date">Date<span class="required">*</span></label>
+          <input type="date" [min]="minDate" [max]="maxDate" id="date" class="form-control" (change)="onSelectDate($event)"
+            formControlName="date">
+             <span class="validation_msg" *ngIf="f.date.errors && f.date.errors.required && isError" >Please Select Date</span>
+             <span class="validation_msg" *ngIf="f.date.errors && isLessDate" >Please Enter a Valid Date.</span>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="battalion">Battalion<span class="required">*</span></label>
+          <select id="battalion" class="form-control" formControlName="battalion">
+            <option value="" selected hidden disabled>Select</option>
+            <option *ngFor="let b of battalions" [value]="b.shortName">{{b.shortName}} Bn </option>
+          </select>
+          <span class="validation_msg" *ngIf="f.battalion.errors && f.battalion.errors.required && isError" >Please Select Battalion</span>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="seasonTerm">Season Term<span class="required">*</span></label>
+          <select id="seasonTerm" class="form-control" formControlName="seasonTerm">
+            <option value="" selected hidden disabled>Select</option>
+            <option *ngFor="let t of seasonTerms" [value]="t.name">{{t.name}} </option>
+          </select>
+          <span class="validation_msg" *ngIf="f.seasonTerm.errors && f.seasonTerm.errors.required && isError" >Please Select Season Term</span>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="year">Year<span class="required">*</span></label>
+          <input id="year" type="number" [min]="currentYear" maxlength="4" class="form-control" formControlName="year">
+            <span class="validation_msg" *ngIf="f.year.errors && isError" >Please Enter Year</span>
+        </div>
+      </div>
+
+
+      <div class="row">
+        
+
+        <div class="form-group col-md-6">
+          <label for="term">Term<span class="required">*</span></label>
+          <select id="term" type="text" class="form-control" formControlName="term" placeholder="Term">
+            <option value="" selected hidden disabled>Select</option>
+            <option *ngFor="let t of terms" [value]="t.name">{{t.name}} </option>
+          </select>
+          <span class="validation_msg" *ngIf="f.term.errors && f.term.errors.required && isError" >Please Select Term</span>
+           
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="week">Week<span class="required">*</span></label>
+          <select id="week" type="week" class="form-control" formControlName="week">
+            <option value="" selected hidden disabled>Select</option>
+            <option *ngFor="let w of weeks" [value]="w.name">{{w.name}} </option>
+          </select>
+          <span class="validation_msg" *ngIf="f.week.errors && f.week.errors.required && isError" >Please Select Week</span>
+        </div>
+      </div>
+
+
+
+
+      <div class="row">
+
+
+        <div class="form-group col-md-3">
+          <label for="hours">Start Hours<span class="required">*</span></label>
+          <select type="date" id="hours" #startHours class="form-control" [disabled]="!f.date.value"
+            (change)="startHoursSelected($event)">
+            <option value="" selected disabled hidden>--</option>
+            <option *ngFor="let h of hours" [value]="h" [disabled]="min_s_hrs>h">{{h}}</option>
+          </select>
+          <span class="validation_msg" *ngIf="f.startTime.errors && f.startTime.errors.required && isError" >Please Select Start Time</span>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="minutes">Start Minutes<span class="required">*</span></label>
+          <select id="minutes" #startMinutes class="form-control" [disabled]="!f.date.value"
+            (change)="startMinutesSelected($event)">
+            <option value="" selected disabled hidden>--</option>
+            <option *ngFor="let m of minutes" [value]="m" [disabled]="min_s_mnts>m">{{m}} </option>
+          </select>
+          <!-- <span class="validation_msg" *ngIf="f.username.errors && f.username.errors.required && isError" >Login Id is required</span> -->
+        </div>
+
+
+        <div class="form-group col-md-3">
+          <label for="hours">End Hours<span class="required">*</span></label>
+          <select type="date" #endHours id="hours" class="form-control" [disabled]="!f.startTime.value"
+            (change)="endHoursSelected($event)">
+            <option value="" selected disabled hidden>--</option>
+            <option *ngFor="let h of hours" [value]="h" [disabled]="min_e_hrs>h">{{h}}</option>
+          </select>
+          <span class="validation_msg" *ngIf="f.endTime.errors && f.endTime.errors.required && isError" >Please Select End Time</span>
+          <!-- <span class="validation_msg" *ngIf="f.username.errors && f.username.errors.required && isError" >Login Id is required</span> -->
+        </div>
+        <div class="form-group col-md-3">
+          <label for="minutes">End Minutes<span class="required">*</span></label>
+          <select id="minutes" #endMinutes class="form-control" [disabled]="!f.startTime.value"
+            (change)="endMinutesSelected($event)">
+            <option value="" selected disabled hidden>--</option>
+            <option *ngFor="let m of minutes" [value]="m" [disabled]="min_e_mnts>m">{{m}} </option>
+          </select>
+          <!-- <span class="validation_msg" *ngIf="f.username.errors && f.username.errors.required && isError" >Login Id is required</span> -->
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="period">Period</label>
+          <input id="period" type="text" maxlength="100" class="form-control" formControlName="period" placeholder="Period">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="subject">Subject</label>
+          <input id="subject" type="text" maxlength="100" class="form-control" formControlName="subject" placeholder="Subject">
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="type">Type</label>
+          <input id="type" type="text" maxlength="100" class="form-control" formControlName="type" placeholder="Type">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="lesson">Lesson</label>
+          <input id="lesson" type="text" maxlength="100" class="form-control" formControlName="lession" placeholder="Lesson">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="instructor">Instructor</label>
+          <input type="text" id="instructor" class="form-control" maxlength="100" formControlName="instruction" placeholder="Instructor Name">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="place">Place</label>
+          <input id="place" type="text" class="form-control" maxlength="100" formControlName="place" placeholder="Place">
+        </div>
+      </div>
+
+      <div class="row">
+
+
+        <div class="form-group col-md-6">
+          <label for="status">Status<span class="required">*</span></label>
+          <select id="status" class="form-control" formControlName="status">
+            <option value="" selected hidden disabled>Select</option>
+            <option value="1">Active</option>
+            <option value="0">Inactive</option>
+          </select>
+        </div>
+      </div>
+
+      <button *ngIf="pageTitle == 'Add PGME'" mat-raised-button  (click)="addProgram()">Add PGME</button>
+      <button *ngIf="pageTitle == 'View PGME'" mat-raised-button (click)="updateProgram()">Update PGME</button>
+
+    </form>
+  </div>
+</mat-card>

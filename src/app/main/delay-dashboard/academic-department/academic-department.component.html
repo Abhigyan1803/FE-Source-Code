@@ -1,0 +1,77 @@
+<div class="mat-new">
+    <h4 class="card-heading">Delay Dashboard > <span class="sub-menu1">Academic Department > {{term}} </span> </h4>
+</div>
+
+<mat-card class="ppt-table" #tableCard >
+
+
+    <mat-card-content>
+
+        <div class="text-center" *ngIf="!staffList.length && showSpinner">
+            <div class="spinner-border " role="status"    >
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <div class="text-center" *ngIf="!staffList.length && !showSpinner" >
+            <h5> {{statusMsg}}</h5> 
+        </div>
+
+      <!-- <div  *ngIf="staffList.length" >
+        Set final result submission date for {{term}}
+      </div> -->
+
+        <table class="tg" *ngIf="staffList.length" >
+            <thead class="table-head" id="table-header">
+                <tr>
+                    <th class="tg-qnnc" >S. No.</th>
+                    <th class="tg-qnnc" >Officer's Name</th>
+                    <th class="tg-qnnc" >Officer's Role</th>
+                    <th class="tg-qnnc" >Service I'd</th>
+                    <th class="tg-qnnc" colspan="2" >Date for Final Submission </th>
+                    <th class="tg-qnnc" >Final Submitted At</th>
+                    <th class="tg-qnnc" >Status</th>
+               
+                </tr>
+    
+    
+            </thead>
+    
+            <tbody *ngIf="staffList.length">
+                <tr *ngFor="let staff of staffList;let i=index">
+                    
+                    <td class="tg-baqh"> {{i+1}} </td>
+                    <td class="tg-baqh"> {{staff.name}} </td>
+                    <td class="tg-baqh"> 
+                        <ul>
+                            <li *ngFor="let role of staff.roleNames; let j=index" >
+                                {{role}}    
+                            </li>
+                        </ul>    
+                    </td>
+                    <td class="tg-baqh"> {{staff.serviceId}} </td>
+                    <td class="tg-baqh input-col"> 
+                        <!-- <div style="display: flex; width: 200px;" > -->
+                             
+                        <input type="date" name="" id="" class="form-control" (change)="getStatus(staff.finalSubmissionDate)"
+                        [ngModel]="staff.finalSubmissionDate | date:'yyyy-MM-dd'" (ngModelChange)="staff.finalSubmissionDate=$event" >    
+                        <!-- </div> -->
+                    </td>
+                    <td>
+                        <button mat-raised-button *ngIf="!staff.dateGiven" class="" (click)="submit(staff)" class="ml-2" >Submit</button>
+                        <button mat-raised-button *ngIf="staff.dateGiven" class="" (click)="update(staff)" class="ml-2" >Update</button>
+
+                    </td>
+                    <td class="tg-baqh"> {{staff.dateOfSubmission || '-'}} </td>
+                    <td class="tg-baqh"> 
+                        <span [innerHTML]="getStatus(staff)" >
+                        </span>
+                        <!-- {{staff.status || '-'}}  -->
+                    
+                    </td>
+    
+                </tr>
+            </tbody>
+        </table>
+    </mat-card-content>
+   
+</mat-card>

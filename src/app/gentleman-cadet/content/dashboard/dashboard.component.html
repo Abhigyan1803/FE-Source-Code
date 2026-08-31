@@ -1,0 +1,286 @@
+<div class="cccv container-fluid main-card">
+    <div id="md-btm" class="row">
+        <div class="col-md-9">
+            <div class="dev">
+                <h4 class="diii" style="margin-bottom: 0px;">Daily Schedule</h4>
+                <p class="dats">Date: {{myDate | date:'dd MMM yyyy'}}</p>
+            </div>
+            <div id="center_section" class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="data_row aln_ls">
+                            <div class="col-md-12">
+                            </div>
+
+                        </div>
+                        <table *ngIf="Weeklyschedule.length" class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th>Time</th>
+                                    <th>Period</th>
+                                    <th>Subject</th>
+                                    <th>Type</th>
+                                    <th>Lesson</th>
+                                    <th>Instr</th>
+                                    <th>Place</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- <tr>
+                                    <td>1</td>
+                                    <td>0600-0700h</td>
+                                    <td>01</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>OTD Excuse</td>
+                                    <td>COL GS</td>
+                                    <td>Khetarpal Audi</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>0800-0900h</td>
+                                    <td>02</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>DCCI Opening Address</td>
+                                    <td>BRIG ADM</td>
+                                    <td>Khetarpal Audi</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>0900-0700h </td>
+                                    <td>03</td>
+                                    <td>MISC</td>
+                                    <td>-</td>
+                                    <td>PSOs Opening Address</td>
+                                    <td>HAD</td>
+                                    <td>Khetarpal Audi</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>0100-0200h</td>
+                                    <td>04</td>
+                                    <td>Games</td>
+                                    <td>-</td>
+                                    <td>GS Branch (0935-0955)</td>
+                                    <td>BRIG TRG</td>
+                                    <td>Khetarpal Audi</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>0300-0500h</td>
+                                    <td>05</td>
+                                    <td>MISC</td>
+                                    <td>-</td>
+                                    <td>ADM Branch (0955-1015)</td>
+                                    <td>BN AQ</td>
+                                    <td>Khetarpal Audi</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>0900-0400h</td>
+                                    <td>06</td>
+                                    <td>MISC</td>
+                                    <td>-</td>
+                                    <td>ACAD Branch (1035-1055)</td>
+                                    <td>PTO</td>
+                                    <td>Khetarpal Audi</td>
+                                </tr> -->
+
+                                <tr *ngFor="let l of Weeklyschedule; let i=index;">
+                                    <td>{{i+1}}</td>
+                                    <td>{{l.startTime}}-{{l.endTime}}</td>
+                                    <td>{{l.period}}</td>
+                                    <td>{{l.subject}}</td>
+                                    <td>{{l.type}}</td>
+                                    <td>{{l.lession}}</td>
+                                    <td>{{l.instructor}}</td>
+                                    <td>{{l.place}}</td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+                        <div *ngIf="!Weeklyschedule.length" class="no-schedule">
+                            <h3>No Schedules</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div id="accordion" class="acc-od">
+                <div class="card" id="one">
+                    <div class="card-header" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
+                        aria-controls="collapseExample">
+                        <a class="card-link">
+                            Upcoming Events
+                        </a>
+                        <i class="fa fa-chevron-right jkl" id="ones"></i>
+                    </div>
+                    <div id="collapseOne" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+                        <div class="card-body">
+                            <ul class="task_list ul-new">
+
+                                <div *ngIf="!UpcomingEvent.length" class="not-available" >
+                                    No Upcoming Events.
+                                </div>
+                                <li *ngFor="let e of UpcomingEvent">
+                                    <div class="time edata">
+                                        <span class="event_date">{{e.eventDate | date:'EE, d MMM y' }}</span>
+                                        <!-- <span class="event_time">{{e.eventDate | date:'HHmm' || '-' }}</span> -->
+                                        <span class="event_time"> {{getEveTime(e.eventDate)}} </span>
+
+                                    </div>
+                                    <div class="right" (click)="openEventDetails(e)">
+
+                                        <div class="info">
+                                            <h2 class="title">{{e.title}}</h2>
+                                            <ng-container *ngIf="e.isNew">
+                                                <img src="assets/img/new1.gif" style="    width: 40px;
+                                           height: 36px;
+                                           margin-top: -8px;">
+                                            </ng-container>
+                                        </div>
+
+                                    </div>
+                                </li>
+
+
+
+                                <!--                                         
+                                <li><a href="#">Provide Space Control</a></li>
+                                <li><a href="#">Conduct Public Affairs Operations</a></li>
+                                <li><a href="#">Integrate Military Information </a></li>
+                                <li><a href="#">3 Conduct Soldier and Leader Engagement</a></li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" (click)="collapse2.toggle()" [attr.aria-expanded]="!isCollapsed2"
+                        aria-controls="collapseExample">
+                        <a class="collapsed card-link">
+                            My Task
+                        </a>
+                        <i class="fa fa-chevron-right jkl" id=""></i>
+                    </div>
+                    <div #collapse2="ngbCollapse" [(ngbCollapse)]="isCollapsed2">
+                        <div class="card-body">
+                            <ul class="task_list">
+                                <ng-container *ngFor="let t of assignments">
+
+                                    <li *ngIf="!t.isAnswered" >
+                                    
+                                        <p class="Date_cls"> {{t.createdAt | date}}  
+                                            <!-- <span *ngIf="t.isAnswered" >Answered</span> -->
+                                             <span *ngIf="!t.isAnswered" >Pending</span> </p>
+                                    <a href="javascript:void(0)"> {{t.assignment}} </a>
+                                    
+                                </li>
+                                </ng-container>
+
+                                <!-- <li>
+                                    <p class="Date_cls">15/10/2021</p><a href="#">Provide Space Control</a>
+                                </li>
+                                <li>
+                                    <p class="Date_cls">15/10/2021</p><a href="#">Conduct Public Affairs Operations</a>
+                                </li>
+                                <li>
+                                    <p class="Date_cls">15/10/2021</p><a href="#">Integrate Military Information </a>
+                                </li>
+                                <li>
+                                    <p class="Date_cls">15/10/2021</p><a href="#">3 Conduct Soldier and Leader
+                                        Engagement</a>
+                                </li>
+                                <li>
+                                    <p class="Date_cls">15/10/2021</p><a href="#"> Prepare for Tactical Operations</a>
+                                </li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" (click)="collapse3.toggle()" [attr.aria-expanded]="!isCollapsed3"
+                        aria-controls="collapseExample">
+                        <a class="collapsed card-link">
+                            C / LEC
+                        </a>
+                        <i class="fa fa-chevron-right jkl" id=""></i>
+                    </div>
+                    <div #collapse3="ngbCollapse" [(ngbCollapse)]="isCollapsed3">
+                        <div class="card-body">
+                            <ul class="task_list">
+
+                                <li *ngFor="let l of CLec">
+                                    <div class="row Date_cls">
+                                        <div class="col-9">
+
+                                            <p > {{l.date | date:'dd/MM/yyyy'}}</p>
+                                        </div>
+                                        <div class="col-3">
+
+                                            <a href="javascript:void(0)" (click)="openDoc(l)" >
+                                                <mat-icon>description</mat-icon>
+                                            </a> 
+                                        </div>
+                                    </div>
+                                    <a href="javascript:void(0)">{{l.description}}</a>
+                                    
+                                    
+                                </li>
+
+
+
+
+                                <!-- 
+                                <li><p class="Date_cls">15/10/2021</p><a href="#">Conduct Public Affairs Operations</a></li>
+                                <li><p class="Date_cls">15/10/2021</p><a href="#">Integrate Military Information </a></li>
+                                <li><p class="Date_cls">15/10/2021</p><a href="#">3 Conduct Soldier and Leader Engagement</a></li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" class="card-header" (click)="collapse4.toggle()"
+                        [attr.aria-expanded]="!isCollapsed4" aria-controls="collapseExample">
+                        <a class="collapsed card-link">
+                            Counsellor
+                        </a>
+                        <i class="fa fa-chevron-right jkl" id=""></i>
+                    </div>
+                    <div id="collapsefour" #collapse4="ngbCollapse" [(ngbCollapse)]="isCollapsed4">
+                        <div class="card-body">
+                            <div *ngIf="!counsellor" class="not-available" >
+                                 No Counsellor Added. 
+                            </div>
+                            <ul class="task_list" *ngIf="counsellor">
+                                <li >
+                                    <p class="Date_cls">Rank : <span> {{counsellor.rankName}} </span></p>
+                                    <p class="Date_cls">Name : <span>{{counsellor.name}}</span></p>
+                                    <p class="Date_cls">Contact No : <span>{{counsellor.mobileNumber}}</span> </p>
+                                </li>
+                                
+                                <!-- <li *ngFor="let c of Counsellor; let i=index">
+                                    <p class="Date_cls">Rank : <span> {{c.rankName}} </span></p>
+                                    <p class="Date_cls">Name : <span>{{c.name}}</span></p>
+                                    <p class="Date_cls">Contact No : <span>{{c.mobileNumber}}</span> </p>
+                                </li> -->
+
+                                <!-- <li><p class="Date_cls">Rank : <span>Leftinent</span></p>
+                                    <p class="Date_cls">Name : <span>Vijay Yadav</span></p>
+                                    <p class="Date_cls">Contact No : <span>123456789</span> </p>
+                                    </li> -->
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

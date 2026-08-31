@@ -1,0 +1,54 @@
+<div class="mat-new">
+    <h4 class="card-heading">
+        <button mat-icon-button (click)="goBack()">
+            <mat-icon>chevron_left</mat-icon>
+        </button> Home <span class="sub-menu1"> > Location State of Officers</span> <span class="sub-menu1"> >
+            {{pTitle}}</span>
+    </h4>
+</div>
+<mat-card>
+    <div class="top-br">
+        <form [formGroup]="addLocationForm">
+
+            <div class="row">
+
+                <div class="form-group col-md-6">
+                   <label for="position">Name<span class="required">*</span></label>
+                   <input id="name" type="text" class="form-control" maxlength="100" formControlName="name"
+                   placeholder="Name">
+                    <span class="validation_msg"
+                        *ngIf="f.name.errors && f.name.errors.required && isError">Please Enter Name</span>
+                </div>
+
+
+            </div>
+          
+
+            <div class="form-group">
+                <label class="form-label">Document<span class="required">*</span>
+                </label>
+                
+                <input type="file" accept=".doc,.docx,.pdf" #inputFile id="image" (change)="onSelectDoc($event)">
+              
+                <mat-icon class="document_icon" *ngIf="docUrl" (click)="openDoc()">description</mat-icon>            
+                <span class="note">Max File Size 200 MB. (Only pdf and doc format)</span>
+                <span class="validation_msg" *ngIf="!isDoc && isError" >Document is required</span>  
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-6">       
+                <label for="status" class="form-label">Status <span class="required">*</span></label>
+                  <select name="" id="status" class="form-control" required formControlName="status" >
+                    <option value="" disabled selected hidden >Select</option>
+                    <option value="1">Active</option>
+                    <option value="0">Inactive</option>
+                  </select>
+                  <span  class="validation_msg"  *ngIf="f.status.touched && f.status.invalid" >*Please Select Status</span>
+                </div>
+              </div>
+            <button mat-raised-button *ngIf="!id" (click)="addLocation()">Add Location</button>
+            <button mat-raised-button *ngIf="id" (click)="updateAro()">Update Location</button>
+
+        </form>
+    </div>
+</mat-card>

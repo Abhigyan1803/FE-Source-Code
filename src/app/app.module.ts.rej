@@ -1,0 +1,9 @@
+diff a/src/app/app.module.ts b/src/app/app.module.ts	(rejected hunks)
+@@ -41,7 +41,6 @@
+ import { MatTooltipModule } from '@angular/material/tooltip';
+ import { RoutingModule } from "./app-routing.module";
+ import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+-import { LoadingBarModule } from '@ngx-loading-bar/core';
+ import { AuthService } from './service/auth-service/auth.service';
+ import { PageTitleService } from './core/page-title/page-title.service';
+ import { D3ChartService } from "./core/nvD3/nvD3.service";

@@ -1,0 +1,85 @@
+
+.text-gray {
+    color: #aaa
+}
+span.dates {
+    font-size: 12px;
+    font-weight: 700;
+    color: #721a0c;
+    background: #eee;
+    padding: 3px 7px;
+    border-radius: 2px;
+    position: absolute;
+    right: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 2px #ccc;
+    top: 10px;
+}
+.app-12 img {
+    height: 85px;
+    width: 100px;
+    margin-top: 3px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #ccc;
+    padding: 2px;
+}
+.app-12 li.list-group-item {
+    display: flex;
+    margin-bottom: 10px;
+}
+.app-12 .media-body {
+    width: 100%;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin-left: 10px;
+}
+.media1 p {
+    margin: 4px 0 0 0;
+    color: #721a0c;
+    font-weight: 600;
+    font-size: 14px;
+}
+.media1 h6 {
+    margin: 0;
+    font-size: 12px;
+    color: #777;
+}
+.media1 {
+    width: 100%;
+}
+.app-12 .media-body h5 {
+    margin: 0;
+    color: #bc9753;
+    font-size: 15px;
+}
+.dates {
+    display: flex;
+    justify-content: space-between;
+}
+.dates input, .dates select  {
+    border: 1px solid #ccc;
+    height: 35px;
+    border-radius: 3px;
+    padding: 4px 10px;
+    box-shadow: 1px 1px 2px #ccc;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+.dates p {
+    text-align: center;
+    font-weight: 600;
+    color: #777;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+button.sub.col-md-1 {
+    background: #721a0c;
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    height: 35px;
+    border-radius: 4px;
+}

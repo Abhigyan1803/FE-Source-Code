@@ -1,0 +1,18 @@
+<!-- <h1 mat-dialog-title>{{data.message}}</h1> -->
+
+<div class="realte">
+  <button class="event_close" mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div class="waiting">
+  <p>Please wait....</p>
+</div>
+
+
+<div mat-dialog-content class="mat-typography mat_custom">
+  <div *ngIf="data.type == 'document'">
+    <ngx-doc-viewer [url]="data.url" viewer="google" googleCheckContentLoaded=true googleCheckInterval=3000
+      style="width:100%;height:120vh !important;"></ngx-doc-viewer>
+  </div>
+</div>

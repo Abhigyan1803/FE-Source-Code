@@ -1,0 +1,641 @@
+<div class="mat-new">
+    <h4 class="card-heading">Reports <span class="sub-menu1"> > {{term}} </span>
+    </h4>
+</div>
+
+<mat-card>
+
+    <div class="text-center" *ngIf="!report.length && showSpinner">
+        <div class="spinner-border " role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    
+    <div *ngIf="term == 'I Term'">
+        <table class="tg" *ngIf="report.length" id="table_I_Term">
+            <thead class="table-head">
+                <tr>
+                    <th class="tg-qnnc" rowspan="2">S. No.</th>
+                    <th class="tg-qnnc" rowspan="2">Course</th>
+                    <th class="tg-qnnc" rowspan="2">Country</th>
+                    <th class="tg-qnnc" rowspan="2">IMA Number</th>
+                    <th class="tg-qnnc" rowspan="2">Name</th>
+                    <th class="tg-qnnc" rowspan="2">Coy</th>
+                    <th class="tg-qnnc" rowspan="2">Bn</th>
+                    <th class="tg-qnnc" rowspan="2">WT</th>
+                    <th class="tg-qnnc" rowspan="2">BMT-I</th> 
+                    <th class="tg-qnnc" colspan="3">MAP READING</th> 
+                    <th class="tg-qnnc" colspan="5">SERVICE SUBJECT BBS & BMT-II</th>
+                    <th class="tg-qnnc" colspan="6">CAMPS/EXS (INCLUDING TAC TRG PRACTICE)</th> 
+                    <th class="tg-qnnc" rowspan="2">FINAL SERVICE SUBJECT TOTAL</th>
+                    <th class="tg-qnnc" colspan="10">FAIL IN SERVICE SUBJECT</th> 
+                </tr>
+                <tr>
+                    <!-- MAP READING -->
+                    <th>PRACTICAL TEST(MR EX)</th>
+                    <th>WRITTEN TEST</th>
+                    <th>TOTAL</th>
+
+                    <!-- BMT 2 -->
+                    <th>RADIO TELEPHONY</th>
+                    <th>FIELD ENGINEERING</th>
+                    <th>ORG & ADM and I&S</th>
+                    <th>LDRSHIP TRG</th>
+                    <th>TOTAL</th>
+
+                    <!-- CAMPS/EXS -->
+                    <th>EX PARVAT RAKSHA</th>
+                    <th>EX CHINDIT</th>
+                    <th>CAMP AVG</th>
+                    <th>SPEED MARCH</th>
+                    <th>RUNBACK</th>
+                    <th>TOTAL</th>
+
+                    <th>WT</th>
+                    <th>BMT-I</th>
+                    <th>PRACTICAL TEST (MR EX)</th>
+                    <th>WRITTEN TEST</th>
+                    <th>FAIL</th>
+                    <th>SERVICE SUBJECT BMT-II</th>
+                    <th>EX PARVAT RAKSHA</th>
+                    <th>EX CHINDIT</th>
+                    <th>SPEED MARCH</th>
+                    <th>RUNBACK</th>
+                </tr>
+            </thead>
+    
+            <tbody>
+                <tr>
+                    <td colspan="7" >
+                        MAXIMUM MARKS
+                    </td>
+                    <!-- TOTAL MARKS -->
+                    <!-- WT -->
+                    <td>150</td>
+                    <!-- BMT 1 -->
+                    <td>200</td>
+                    <!-- MAP READING -->
+                    <td>25</td>
+                    <td>25</td>
+                    <td>50</td>
+
+                    <!-- BMT 2 MARKS -->
+                    <td>30</td>
+                    <td>20</td>
+                    <td>25</td>
+                    <td>50</td>
+                    <td>125</td>
+
+                    <td>125</td>
+                    <td></td>
+                    <td></td>
+                    <td>15</td>
+                    <td>15</td>
+                    <td></td>
+                    <td>715</td>
+                </tr>
+                <tr *ngFor="let cadet of report;let i=index">
+                    <!-- CADET INFO -->
+                    <td> {{i+1}} </td>
+                    <td> {{cadet.course}} </td>
+                    <td> {{cadet.fgcCountry}} </td>
+                    <td> {{cadet.serviceId}} </td>
+                    <td> {{cadet.name}} </td>
+                    <td> {{cadet.coy}} </td>
+                    <td> {{cadet.bn}} </td>
+                    <!-- MARKS -->
+                    <td> {{cadet.wtObtainedMarks || '0'}} </td>
+                    <td> {{cadet.bmt1ObtainedMarks || '0'}} </td>
+                    <!-- MAP READING MARKS -->
+                    <td> {{cadet.mapReadingPacticalObtainedMarks || '0'}} </td>
+                    <td> {{cadet.mapReadingWrittenObtainedMarks || '0'}} </td>
+                    <td> {{cadet.mapReadingPacticalObtainedMarks + cadet.mapReadingWrittenObtainedMarks}} </td>
+                    
+                    <!-- BMT 2 MARKS -->
+                    <td> {{cadet.radioTelephonyObtainedMarks || '0'}} </td>
+                    <td> {{cadet.fieldEngineeringObtainedMarks || '0'}} </td>
+                    <td> {{cadet.orgAdmAndIsObtainedMarks || '0'}} </td>
+                    <td> {{cadet.ldrshipTrgObtainedMarks || '0'}} </td>
+                    <td> 
+                        {{cadet.radioTelephonyObtainedMarks + cadet.fieldEngineeringObtainedMarks + cadet.orgAdmAndIsObtainedMarks + cadet.ldrshipTrgObtainedMarks}}     
+                    </td>
+
+                    <!-- CAMP/EXS MARKS -->
+                    <td> {{cadet.exPervatRakshaObtainedMarks || '0'}} </td>
+                    <td> {{cadet.exChinditObtainedMarks || '0'}} </td>
+                    <td> {{cadet.campAvgObtainedMarks || '0'}} </td>
+                    <td> {{cadet.speedMarchObtainedMarks || '0'}} </td>
+                    <td> {{cadet.runbackObtainedMarks || '0'}} </td>
+                    <td> 
+                        {{
+                         cadet.speedMarchObtainedMarks +
+                         cadet.runbackObtainedMarks
+                        }}     
+                    </td>
+                    <td>
+
+                         {{  cadet.wtObtainedMarks + cadet.bmt1ObtainedMarks
+                            + cadet.mapReadingPacticalObtainedMarks +cadet.mapReadingWrittenObtainedMarks 
+                            + cadet.mapReadingPacticalObtainedMarks + cadet.mapReadingWrittenObtainedMarks
+                            + cadet.radioTelephonyObtainedMarks + cadet.fieldEngineeringObtainedMarks 
+                            + cadet.orgAdmAndIsObtainedMarks + cadet.ldrshipTrgObtainedMarks 
+                            + cadet.exPervatRakshaObtainedMarks + cadet.exChinditObtainedMarks
+                            + cadet.campAvgObtainedMarks + cadet.speedMarchObtainedMarks + cadet.runbackObtainedMarks 
+                        }} 
+                    </td>
+
+                    <!-- IF FAILED -->
+                    <td>{{returnFail(cadet.wtRemarks)}}</td>
+                    <td>{{returnFail(cadet.bmt1Remarks)}}</td>
+                    <td>{{returnFail(cadet.mapReadingPacticalRemarks)}}</td>
+                    <td>{{returnFail(cadet.mapReadingWrittenRemarks)}}</td>
+                    <td>{{returnResult(50,cadet.mapReadingPacticalObtainedMarks + cadet.mapReadingWrittenObtainedMarks)}}</td>
+                    <td>{{returnResult(125,cadet.radioTelephonyObtainedMarks + cadet.fieldEngineeringObtainedMarks + cadet.orgAdmAndIsObtainedMarks + cadet.ldrshipTrgObtainedMarks)}}</td>
+                    <td>{{returnFail(cadet.exPervatRakshaRemarks)}}</td>
+                    <td>{{returnFail(cadet.exChinditRemarks)}}</td>
+                    <td>{{returnFail(cadet.speedMarchRemarks)}}</td>
+                    <td>{{returnFail(cadet.runbackRemarks)}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div *ngIf="term == 'II Tech'">
+        <table class="tg" *ngIf="report.length" id="table_II_Tech" >
+            <thead class="table-head">
+                <tr>
+                    <th class="tg-qnnc" rowspan="2">S. No.</th>
+                    <th class="tg-qnnc" rowspan="2">Course</th>
+                    <th class="tg-qnnc" rowspan="2">Country</th>
+                    <th class="tg-qnnc" rowspan="2">IMA Number</th>
+                    <th class="tg-qnnc" rowspan="2">Name</th>
+                    <th class="tg-qnnc" rowspan="2">Coy</th>
+                    <th class="tg-qnnc" rowspan="2">Bn</th>
+                    <th class="tg-qnnc" rowspan="2">WT</th>
+                    <th class="tg-qnnc" rowspan="2">BMT-I</th> 
+                    <th class="tg-qnnc" colspan="3">MAP READING</th> 
+                    <th class="tg-qnnc" colspan="5">SERVICE SUBJECT BBS & BMT-II</th>
+                    <th class="tg-qnnc" colspan="6">CAMPS/EXS (INCLUDING TAC TRG PRACTICE)</th> 
+                    <th class="tg-qnnc" rowspan="2">FINAL SERVICE SUBJECT TOTAL</th>
+                    <th class="tg-qnnc" colspan="10">FAIL IN SERVICE SUBJECT</th> 
+
+                </tr>
+                <tr>
+                    <!-- MAP READING -->
+                    <th>PRACTICAL TEST(MR EX)</th>
+                    <th>WRITTEN TEST</th>
+                    <th>TOTAL</th>
+
+                    <!-- BMT 2 -->
+                    <th>RADIO TELEPHONY</th>
+                    <th>FIELD ENGINEERING</th>
+                    <th>ORG & ADM and I&S</th>
+                    <th>LDRSHIP TRG</th>
+                    <th>TOTAL</th>
+
+                    <!-- CAMPS/EXS -->
+                    <th>EX PARVAT RAKSHA</th>
+                    <th>EX CHINDIT</th>
+                    <th>CAMP AVG</th>
+                    <th>SPEED MARCH</th>
+                    <th>RUNBACK</th>
+                    <th>TOTAL</th>
+
+                    <th>WT</th>
+                    <th>BMT-I</th>
+                    <th>PRACTICAL TEST (MR EX)</th>
+                    <th>WRITTEN TEST</th>
+                    <th>FAIL</th>
+                    <th>SERVICE SUBJECT BMT-II</th>
+                    <th>EX PARVAT RAKSHA</th>
+                    <th>EX CHINDIT</th>
+                    <th>SPEED MARCH</th>
+                    <th>RUNBACK</th>
+                </tr>
+
+    
+                
+            </thead>
+    
+            <tbody>
+                <tr>
+                    <td colspan="7" >
+                        MAXIMUM MARKS
+                    </td>
+                    <!-- TOTAL MARKS -->
+                    <!-- WT -->
+                    <td>150</td>
+                    <!-- BMT 1 -->
+                    <td>200</td>
+                    <!-- MAP READING -->
+                    <td>25</td>
+                    <td>25</td>
+                    <td>50</td>
+
+                    <!-- BMT 2 MARKS -->
+                    <td>30</td>
+                    <td>20</td>
+                    <td>25</td>
+                    <td>50</td>
+                    <td>125</td>
+
+                    <td>125</td>
+                    <td></td>
+                    <td></td>
+                    <td>15</td>
+                    <td>15</td>
+                    <td></td>
+                    <td>715</td>
+                </tr>
+                <tr *ngFor="let cadet of report;let i=index">
+                    <!-- CADET INFO -->
+                    <td> {{i+1}} </td>
+                    <td> {{cadet.course}} </td>
+                    <td> {{cadet.fgcCountry}} </td>
+                    <td> {{cadet.serviceId}} </td>
+                    <td> {{cadet.name}} </td>
+                    <td> {{cadet.coy}} </td>
+                    <td> {{cadet.bn}} </td>
+                    <!-- MARKS -->
+                    <td> {{cadet.wtObtainedMarks || '0'}} </td>
+                    <td> {{cadet.bmt1ObtainedMarks || '0'}} </td>
+                    <!-- MAP READING MARKS -->
+                    <td> {{cadet.mapReadingPacticalObtainedMarks || '0'}} </td>
+                    <td> {{cadet.mapReadingWrittenObtainedMarks || '0'}} </td>
+                    <td> {{cadet.mapReadingPacticalObtainedMarks + cadet.mapReadingWrittenObtainedMarks}} </td>
+                    
+                    <!-- BMT 2 MARKS -->
+                    <td> {{cadet.radioTelephonyObtainedMarks || '0'}} </td>
+                    <td> {{cadet.fieldEngineeringObtainedMarks || '0'}} </td>
+                    <td> {{cadet.orgAdmAndIsObtainedMarks || '0'}} </td>
+                    <td> {{cadet.ldrshipTrgObtainedMarks || '0'}} </td>
+                    <td> 
+                        {{cadet.radioTelephonyObtainedMarks + cadet.fieldEngineeringObtainedMarks + cadet.orgAdmAndIsObtainedMarks + cadet.ldrshipTrgObtainedMarks}}     
+                    </td>
+
+                    <!-- CAMP/EXS MARKS -->
+                    <td> {{cadet.exPervatRakshaObtainedMarks || '0'}} </td>
+                    <td> {{cadet.exChinditObtainedMarks || '0'}} </td>
+                    <td> {{cadet.campAvgObtainedMarks || '0'}} </td>
+                    <td> {{cadet.speedMarchObtainedMarks || '0'}} </td>
+                    <td> {{cadet.runbackObtainedMarks || '0'}} </td>
+                    <td> 
+                        {{
+                         cadet.speedMarchObtainedMarks +
+                         cadet.runbackObtainedMarks
+                        }}     
+                    </td>
+                    <td>
+
+                         {{  cadet.wtObtainedMarks + cadet.bmt1ObtainedMarks
+                            + cadet.mapReadingPacticalObtainedMarks +cadet.mapReadingWrittenObtainedMarks 
+                            + cadet.mapReadingPacticalObtainedMarks + cadet.mapReadingWrittenObtainedMarks
+                            + cadet.radioTelephonyObtainedMarks + cadet.fieldEngineeringObtainedMarks 
+                            + cadet.orgAdmAndIsObtainedMarks + cadet.ldrshipTrgObtainedMarks 
+                            + cadet.exPervatRakshaObtainedMarks + cadet.exChinditObtainedMarks
+                            + cadet.campAvgObtainedMarks + cadet.speedMarchObtainedMarks + cadet.runbackObtainedMarks 
+                        }} 
+                          
+                    </td>
+                    
+                    <!-- IF FAILED -->
+                    <td>{{returnFail(cadet.wtRemarks)}}</td>
+                    <td>{{returnFail(cadet.bmt1Remarks)}}</td>
+                    <td>{{returnFail(cadet.mapReadingPacticalRemarks)}}</td>
+                    <td>{{cadet.mapReadingWrittenRemarks || '-'}}</td>
+                    <td>{{returnResult(50,cadet.mapReadingPacticalObtainedMarks + cadet.mapReadingWrittenObtainedMarks)}}</td>
+                    <td>{{returnResult(125,cadet.radioTelephonyObtainedMarks + cadet.fieldEngineeringObtainedMarks + cadet.orgAdmAndIsObtainedMarks + cadet.ldrshipTrgObtainedMarks)}}</td>
+                    <td>{{returnFail(cadet.exPervatRakshaRemarks)}}</td>
+                    <td>{{returnFail(cadet.exChinditRemarks)}}</td>
+                    <td>{{returnFail(cadet.speedMarchRemarks)}}</td>
+                    <td>{{returnFail(cadet.runbackRemarks)}}</td>
+
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="term == 'II Term'">
+        <table class="tg" *ngIf="report.length" id="table_II_Term">
+            <thead class="table-head">
+                <tr>
+                    <th class="tg-qnnc" rowspan="2">S. No.</th>
+                    <th class="tg-qnnc" rowspan="2">Course</th>
+                    <th class="tg-qnnc" rowspan="2">Country</th>
+                    <th class="tg-qnnc" rowspan="2">IMA Number</th>
+                    <th class="tg-qnnc" rowspan="2">Name</th>
+                    <th class="tg-qnnc" rowspan="2">Coy</th>
+                    <th class="tg-qnnc" rowspan="2">Bn</th>
+                    <th class="tg-qnnc" rowspan="2">WT</th>
+                    <th class="tg-qnnc" rowspan="2">BMT-I</th> 
+                    <th class="tg-qnnc" colspan="3">MAP READING</th> 
+                    <th class="tg-qnnc" colspan="5">SERVICE SUBJECT BBS & BMT-II</th>
+                    <th class="tg-qnnc" colspan="6">CAMPS/EXS (INCLUDING TAC TRG PRACTICE)</th> 
+                    <th class="tg-qnnc" rowspan="2">FINAL SERVICE SUBJECT TOTAL</th>
+                    <th class="tg-qnnc" colspan="10">FAIL IN SERVICE SUBJECT</th> 
+                    
+                </tr>
+                <tr>
+                    <!-- MAP READING -->
+                    <th>PRACTICAL TEST(MR EX)</th>
+                    <th>WRITTEN TEST</th>
+                    <th>TOTAL</th>
+
+                    <!-- BMT 2 -->
+                    <th>RADIO TELEPHONY</th>
+                    <th>FIELD ENGINEERING</th>
+                    <th>ORG & ADM and I&S</th>
+                    <th>LDRSHIP TRG</th>
+                    <th>TOTAL</th>
+
+                    <!-- CAMPS/EXS -->
+                    <th>EX PARVAT RAKSHA</th>
+                    <th>EX CHINDIT</th>
+                    <th>CAMP AVG</th>
+                    <th>SPEED MARCH</th>
+                    <th>RUNBACK</th>
+                    <th>TOTAL</th>
+
+                    <th>WT</th>
+                    <th>BMT-I</th>
+                    <th>PRACTICAL TEST (MR EX)</th>
+                    <th>WRITTEN TEST</th>
+                    <th>FAIL</th>
+                    <th>SERVICE SUBJECT BMT-II</th>
+                    <th>EX PARVAT RAKSHA</th>
+                    <th>EX CHINDIT</th>
+                    <th>SPEED MARCH</th>
+                    <th>RUNBACK</th>
+
+
+                </tr>
+            </thead>
+    
+            <tbody>
+                <tr>
+                    <td colspan="7" >
+                        MAXIMUM MARKS
+                    </td>
+                    <!-- TOTAL MARKS -->
+                    <!-- WT -->
+                    <td>150</td>
+                    <!-- BMT 1 -->
+                    <td>200</td>
+                    <!-- MAP READING -->
+                    <td>25</td>
+                    <td>25</td>
+                    <td>50</td>
+
+                    <!-- BMT 2 MARKS -->
+                    <td>30</td>
+                    <td>20</td>
+                    <td>25</td>
+                    <td>50</td>
+                    <td>125</td>
+
+                    <td>125</td>
+                    <td></td>
+                    <td></td>
+                    <td>15</td>
+                    <td>15</td>
+                    <td></td>
+                    <td>715</td>
+                </tr>
+                <tr *ngFor="let cadet of report;let i=index">
+                    <!-- CADET INFO -->
+                    <td> {{i+1}} </td>
+                    <td> {{cadet.course}} </td>
+                    <td> {{cadet.fgcCountry}} </td>
+                    <td> {{cadet.serviceId}} </td>
+                    <td> {{cadet.name}} </td>
+                    <td> {{cadet.coy}} </td>
+                    <td> {{cadet.bn}} </td>
+                    <!-- MARKS -->
+                    <td> {{cadet.wtObtainedMarks || '0'}} </td>
+                    <td> {{cadet.bmt1ObtainedMarks || '0'}} </td>
+                    <!-- MAP READING MARKS -->
+                    <td> {{cadet.mapReadingPacticalObtainedMarks || '0'}} </td>
+                    <td> {{cadet.mapReadingWrittenObtainedMarks || '0'}} </td>
+                    <td> {{cadet.mapReadingPacticalObtainedMarks + cadet.mapReadingWrittenObtainedMarks}} </td>
+                    
+                    <!-- BMT 2 MARKS -->
+                    <td> {{cadet.radioTelephonyObtainedMarks || '0'}} </td>
+                    <td> {{cadet.fieldEngineeringObtainedMarks || '0'}} </td>
+                    <td> {{cadet.orgAdmAndIsObtainedMarks || '0'}} </td>
+                    <td> {{cadet.ldrshipTrgObtainedMarks || '0'}} </td>
+                    <td> 
+                        {{cadet.radioTelephonyObtainedMarks + cadet.fieldEngineeringObtainedMarks + cadet.orgAdmAndIsObtainedMarks + cadet.ldrshipTrgObtainedMarks}}     
+                    </td>
+
+                    <!-- CAMP/EXS MARKS -->
+                    <td> {{cadet.exPervatRakshaObtainedMarks || '0'}} </td>
+                    <td> {{cadet.exChinditObtainedMarks || '0'}} </td>
+                    <td> {{cadet.campAvgObtainedMarks || '0'}} </td>
+                    <td> {{cadet.speedMarchObtainedMarks || '0'}} </td>
+                    <td> {{cadet.runbackObtainedMarks || '0'}} </td>
+                    <td> 
+                        {{
+                         cadet.speedMarchObtainedMarks +
+                         cadet.runbackObtainedMarks}}     
+                    </td>
+                    <td>
+                         {{  cadet.wtObtainedMarks + cadet.bmt1ObtainedMarks
+                            + cadet.mapReadingPacticalObtainedMarks +cadet.mapReadingWrittenObtainedMarks 
+                            + cadet.mapReadingPacticalObtainedMarks + cadet.mapReadingWrittenObtainedMarks
+                            + cadet.radioTelephonyObtainedMarks + cadet.fieldEngineeringObtainedMarks 
+                            + cadet.orgAdmAndIsObtainedMarks + cadet.ldrshipTrgObtainedMarks 
+                            + cadet.exPervatRakshaObtainedMarks + cadet.exChinditObtainedMarks
+                            + cadet.campAvgObtainedMarks + cadet.speedMarchObtainedMarks + cadet.runbackObtainedMarks 
+                        }}
+                    </td>
+                  <!-- IF FAILED -->
+                  <td>{{returnFail(cadet.wtRemarks)}}</td>
+                  <td>{{returnFail(cadet.bmt1Remarks)}}</td>
+                  <td>{{returnFail(cadet.mapReadingPacticalRemarks)}}</td>
+                  <td>{{cadet.mapReadingWrittenRemarks || '-'}}</td>
+                  <td>{{returnResult(50,cadet.mapReadingPacticalObtainedMarks + cadet.mapReadingWrittenObtainedMarks)}}</td>
+                  <td>{{returnResult(125,cadet.radioTelephonyObtainedMarks + cadet.fieldEngineeringObtainedMarks + cadet.orgAdmAndIsObtainedMarks + cadet.ldrshipTrgObtainedMarks)}}</td>
+                  <td>{{returnFail(cadet.exPervatRakshaRemarks)}}</td>
+                  <td>{{returnFail(cadet.exChinditRemarks)}}</td>
+                  <td>{{returnFail(cadet.speedMarchRemarks)}}</td>
+                  <td>{{returnFail(cadet.runbackRemarks)}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="term == 'III Term'">
+        
+        <table class="tg" *ngIf="report.length" id="table_III_Term">
+            <thead class="table-head">
+                <tr>
+                    <th class="tg-qnnc" rowspan="2">S. No.</th>
+                    <th class="tg-qnnc" rowspan="2">Course</th>
+                    <th class="tg-qnnc" rowspan="2">Country</th>
+                    <th class="tg-qnnc" rowspan="2">IMA Number</th>
+                    <th class="tg-qnnc" rowspan="2">Name</th>
+                    <th class="tg-qnnc" rowspan="2">Coy</th>
+                    <th class="tg-qnnc" rowspan="2">Bn</th>
+                    <th class="tg-qnnc" rowspan="2">WT</th>
+                    <th class="tg-qnnc" rowspan="2">BMT-I</th> 
+                    <th class="tg-qnnc" colspan="3">MAP READING</th> 
+                    <th class="tg-qnnc" colspan="5">SERVICE SUBJECT BBS & BMT-II</th>
+                    <th class="tg-qnnc" colspan="6">CAMPS/EXS (INCLUDING TAC TRG PRACTICE)</th> 
+                    <th class="tg-qnnc" rowspan="2">FINAL SERVICE SUBJECT TOTAL</th>
+                    <th class="tg-qnnc" colspan="10">FAIL IN SERVICE SUBJECT</th> 
+
+                </tr>
+                <tr>
+                    <!-- MAP READING -->
+                    <th>PRACTICAL TEST(MR EX)</th>
+                    <th>WRITTEN TEST</th>
+                    <th>TOTAL</th>
+
+                    <!-- BMT 2 -->
+                    <th>FIELD ENGINEERING</th>
+                    <th>ORG & ADM and I&S</th>
+                    <th>FIN & TIME MGT</th>
+                    <th>LDRSHIP TRG</th>
+                    <th>TOTAL</th>
+
+                    <!-- CAMPS/EXS -->
+                    <th>EX PARVAT RAKSHA</th>
+                    <th>EX CHINDIT</th>
+                    <th>CAMP AVG</th>
+                    <th>SPEED MARCH</th>
+                    <th>RUNBACK</th>
+                    <th>TOTAL</th>
+
+                    <th>WT</th>
+                    <th>BMT-I</th>
+                    <th>PRACTICAL TEST (MR EX)</th>
+                    <th>WRITTEN TEST</th>
+                    <th>FAIL</th>
+                    <th>SERVICE SUBJECT BMT-II</th>
+                    <th>EX PARVAT RAKSHA</th>
+                    <th>EX CHINDIT</th>
+                    <th>SPEED MARCH</th>
+                    <th>RUNBACK</th>
+
+                </tr>
+
+    
+                
+            </thead>
+    
+            <tbody>
+                <tr>
+                    <td colspan="7" >
+                        MAXIMUM MARKS
+                    </td>
+                    <!-- TOTAL MARKS -->
+                    <!-- WT -->
+                    <td>150</td>
+                    <!-- BMT 1 -->
+                    <td>200</td>
+                    <!-- MAP READING -->
+                    <td>25</td>
+                    <td>25</td>
+                    <td>50</td>
+
+                    <!-- BMT 2 MARKS -->
+                    <td>25</td>
+                    <td>25</td>
+                    <td>25</td>
+                    <td>50</td>
+                    <td>125</td>
+
+                    <td>125</td>
+                    <td>125</td>
+                    <td>125</td>
+                    <td>15</td>
+                    <td>50</td>
+                    <td>65</td>
+                    <td>715</td>
+                </tr>
+                <tr *ngFor="let cadet of report;let i=index">
+                    <!-- CADET INFO -->
+                    <td> {{i+1}} </td>
+                    <td> {{cadet.course}} </td>
+                    <td> {{cadet.fgcCountry}} </td>
+                    <td> {{cadet.serviceId}} </td>
+                    <td> {{cadet.name}} </td>
+                    <td> {{cadet.coy}} </td>
+                    <td> {{cadet.bn}} </td>
+                    <!-- MARKS -->
+                    <td> {{cadet.wtObtainedMarks || '0'}} </td>
+                    <td> {{cadet.bmt1ObtainedMarks || '0'}} </td>
+                    <!-- MAP READING MARKS -->
+                    <td> {{cadet.mapReadingPacticalObtainedMarks || '0'}} </td>
+                    <td> {{cadet.mapReadingWrittenObtainedMarks || '0'}} </td>
+                    <td> {{cadet.mapReadingPacticalObtainedMarks + cadet.mapReadingWrittenObtainedMarks}} </td>
+                    
+                    <!-- BMT 2 MARKS -->
+                    <td> {{cadet.fieldEngineeringObtainedMarks || '0'}} </td>
+                    <td> {{cadet.orgAdmAndIsObtainedMarks || '0'}} </td>
+                    <td> {{cadet.finTimeMgtObtainedMarks || '0'}} </td>
+
+                    <td> {{cadet.ldrshipTrgObtainedMarks || '0'}} </td>
+                    <td> 
+                        {{cadet.finTimeMgtObtainedMarks + cadet.fieldEngineeringObtainedMarks + cadet.orgAdmAndIsObtainedMarks + cadet.ldrshipTrgObtainedMarks}}     
+                    </td>
+
+                    <!-- CAMP/EXS MARKS -->
+                    <td> {{cadet.exPervatRakshaObtainedMarks || '0'}} </td>
+                    <td> {{cadet.exChinditObtainedMarks || '0'}} </td>
+                    <td> {{cadet.campAvgObtainedMarks || '0'}} </td>
+                    <td> {{cadet.speedMarchObtainedMarks || '0'}} </td>
+                    <td> {{cadet.runbackObtainedMarks || '0'}} </td>
+                    <td> 
+                        {{
+                         cadet.speedMarchObtainedMarks +
+                         cadet.runbackObtainedMarks}}     
+                    </td>
+                    <td>
+
+                         {{  cadet.wtObtainedMarks + cadet.bmt1ObtainedMarks
+                            + cadet.mapReadingPacticalObtainedMarks +cadet.mapReadingWrittenObtainedMarks 
+                            + cadet.mapReadingPacticalObtainedMarks + cadet.mapReadingWrittenObtainedMarks
+                            + cadet.radioTelephonyObtainedMarks + cadet.fieldEngineeringObtainedMarks 
+                            + cadet.orgAdmAndIsObtainedMarks + cadet.ldrshipTrgObtainedMarks 
+                            + cadet.exPervatRakshaObtainedMarks + cadet.exChinditObtainedMarks
+                            + cadet.campAvgObtainedMarks + cadet.speedMarchObtainedMarks + cadet.runbackObtainedMarks 
+                        }} 
+                          
+                    </td>
+       <!-- IF FAILED -->
+       <td>{{returnFail(cadet.wtRemarks)}}</td>
+       <td>{{returnFail(cadet.bmt1Remarks)}}</td>
+       <td>{{returnFail(cadet.mapReadingPacticalRemarks)}}</td>
+       <td>{{cadet.mapReadingWrittenRemarks || '-'}}</td>
+       <td>{{returnResult(50,cadet.mapReadingPacticalObtainedMarks + cadet.mapReadingWrittenObtainedMarks)}}</td>
+       <td>{{returnResult(125,cadet.finTimeMgtObtainedMarks + cadet.fieldEngineeringObtainedMarks + cadet.orgAdmAndIsObtainedMarks + cadet.ldrshipTrgObtainedMarks)}}</td>
+       <td>{{returnFail(cadet.exPervatRakshaRemarks)}}</td>
+       <td>{{returnFail(cadet.exChinditRemarks)}}</td>
+       <td>{{returnFail(cadet.speedMarchRemarks)}}</td>
+       <td>{{returnFail(cadet.runbackRemarks)}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+   
+    <div class="pull-right mt-2 mb-5 " >
+        <button mat-raised-button *ngIf="report.length && !showSpinner" (click)="exportToExcel()" >
+            DOWNLOAD
+        </button>
+    </div>
+
+
+    <!-- <div class="">
+        <mat-paginator #myPaginator [length]="resultsLength" [pageSizeOptions]="[25]" showFirstLastButtons>
+        </mat-paginator>
+    </div> -->
+
+
+</mat-card>

@@ -1,0 +1,748 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="mat-heading">
+      <div id="top-bar" class="">
+        <h2>ADJUTANT BRANCH <span class="sub-menu1">
+            > General Instruction > Drill Competition > {{term}} > Drill Marks</span></h2>
+      </div>
+    </div>
+    <div class="academics">
+      <div class="mat-card mat-focus-indicator">
+        <!-- <div class="ng-star-inserted">
+          <div class="mat-new mb-4">
+            <h4 class="card-heading">Drill Marks > {{term}} > {{type}}</h4>
+          </div>
+        </div>-->
+        <form class="ng-untouched ng-pristine ng-invalid">
+          <div class="row">
+            <div class="form-group col-md-3">
+              <label for="battalion">Battalion</label>
+              <select id="battalion" name="battalion" (change)="battalionSelected($event.target.value)"
+                class="form-control">
+                <option value="0" selected>Select</option>
+                <option *ngFor="let b of battalionList" [value]="b.shortName"> {{b.shortName}}</option>
+              </select>
+
+            </div>
+            <div class="form-group col-md-3">
+              <label for="company">Company</label>
+              <select id="company" class="form-control" name="company" (change)="companySelected($event.target.value)">
+                <option value="0" selected>Select</option>
+                <option *ngFor="let c of companyList" [value]="c.name"> {{c.name}}</option>
+              </select>
+
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="rank">Search</label>
+                <input placeholder="IMA No." formcontrolname="" type="text" name="serviceid" [(ngModel)]="serviceid"
+                  (keyup)="serviceSearch($event.target.value)" class="form-control ng-untouched ng-pristine ng-invalid">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <label>&nbsp;</label>
+              <button type="button" mat-raised-button (click)="edSearch()">Search</button>
+              <!-- <button mat-raised-button (click)="clearSearch()" >Clear</button> -->
+            </div>
+          </div>
+        </form>
+        <!-- <form class="oq-matrix-form"> -->
+        <div *ngIf="termId==1">
+          <table class="tg" *ngIf="cadetList.length">
+            <thead class="table-head" id="table-header">
+              <tr>
+                <th class="tg-qnnc" rowspan="2">S. No.</th>
+                <th class="tg-qnnc" rowspan="2">IMA No.</th>
+                <th class="tg-qnnc" rowspan="2">Rank</th>
+                <th class="tg-qnnc t-name" rowspan="2">Name</th>
+                <th class="tg-qnnc" rowspan="2">Course</th>
+
+
+                <th class="tg-qnnc" colspan="2">Static Mov (MM-{{_static_mov}}) </th>
+                <th class="tg-qnnc" colspan="2">Quick March (MM-{{_quick_march}})</th>
+                <th class="tg-qnnc" colspan="2">Reporting (MM-{{_reporting}})</th>
+                <th class="tg-qnnc" colspan="2">Turn Out (MM-{{turn_out}})</th>
+                <th class="tg-qnnc" colspan="2">Bearing (MM-{{bearing}})</th>
+                <th class="tg-qnnc" colspan="2">Mks For Exellence (MM-{{mks_for_exellence}})</th>
+                <!-- <th *ngIf="termId==3" class="tg-qnnc" colspan="3"> Mks for Excellence<sup>nd</sup> CL Rope (4 Mtr Climb) (MM-{{_4mtrClimg_mm}})</th> -->
+
+                <th class="tg-qnnc">Total (MM-{{totalMM}})</th>
+
+              </tr>
+
+              <tr>
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <!-- <th>Grade</th> -->
+
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <!-- <th>Grade</th> -->
+
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <!-- <th>Grade</th> -->
+
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <!-- <th>Grade</th> -->
+
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <!-- <th>Grade</th> -->
+
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <th>KHALI HATH</th>
+
+                <!-- <th *ngIf="termId==3">Attempt Type</th>
+                      <th *ngIf="termId==3">Obtained Marks</th>
+                      <th *ngIf="termId==3">Grade</th> -->
+
+              </tr>
+
+            </thead>
+
+            <tbody *ngIf="cadetList.length">
+              <tr *ngFor="let cadet of cadetList;let i=index">
+                <td> {{i+1}} </td>
+                <td> {{cadet.serviceId}} </td>
+                <td>
+                  <span *ngIf="cadet.nationality == 'India'">GC</span>
+                  <span *ngIf="cadet.nationality != 'India'">FGC</span>
+                </td>
+                <td class="t-name"> {{cadet.name}} </td>
+                <td> {{cadet.course}} </td>
+
+                <ng-container *ngFor="let sub of cadet.dRILLResult.dRILLSubjectResult;let j=index">
+                  <td>
+                    <span *ngIf="!hasAccess"> {{sub.lastAttemptType}} </span>
+                    <select *ngIf="hasAccess" id="company" class="form-control" [(ngModel)]="sub.lastAttemptType">
+                      <option value="" selected hidden disabled>--</option>
+                      <!-- <option *ngFor="let att of attemtTypes" [value]="att"> {{att}}</option> -->
+                      <option value="M1">M1</option>
+                      <option [disabled]="!sub.m1ObtainedMarks" value="M2">M2</option>
+                      <option [disabled]="!sub.m2ObtainedMarks" value="C1">C1</option>
+                      <option [disabled]="!sub.c1ObtainedMarks" value="C2">C2</option>
+                    </select>
+                  </td>
+                  <td>
+                    <span *ngIf="sub.lastAttemptType == 'M1' && !hasAccess "> {{sub.m1ObtainedMarks}} </span>
+                    <span *ngIf="sub.lastAttemptType == 'M2' && !hasAccess "> {{sub.m2ObtainedMarks}} </span>
+                    <span *ngIf="sub.lastAttemptType == 'C1' && !hasAccess "> {{sub.c1ObtainedMarks}} </span>
+                    <span *ngIf="sub.lastAttemptType == 'C2' && !hasAccess "> {{sub.c2ObtainedMarks}} </span>
+
+                    <input *ngIf="sub.lastAttemptType == 'M1' && hasAccess " (keypress)="onlyNum($event)"
+                      (focusout)="patchNumbers($event,sub,i,j,'M1')" maxlength="2" name="" id="" class="form-control"
+                      [(ngModel)]="sub.m1ObtainedMarks">
+                    <input *ngIf="sub.lastAttemptType == 'M2' && hasAccess" (keypress)="onlyNum($event)"
+                      (focusout)="patchNumbers($event,sub,i,j,'M2')" maxlength="2" name="" id="" class="form-control"
+                      [(ngModel)]="sub.m2ObtainedMarks">
+                    <input *ngIf="sub.lastAttemptType == 'C1' && hasAccess" (keypress)="onlyNum($event)"
+                      (focusout)="patchNumbers($event,sub,i,j,'C1')" maxlength="2" name="" id="" class="form-control"
+                      [(ngModel)]="sub.c1ObtainedMarks">
+                    <input *ngIf="sub.lastAttemptType == 'C2' && hasAccess" (keypress)="onlyNum($event)"
+                      (focusout)="patchNumbers($event,sub,i,j,'C2')" maxlength="2" name="" id="" class="form-control"
+                      [(ngModel)]="sub.c2ObtainedMarks">
+                  </td>
+                  <!-- <td>
+                              <span *ngIf="sub.resultGrade">
+                                  {{sub.resultGrade}}
+                              </span>
+                          </td> -->
+
+                </ng-container>
+
+                <td>
+                  <span *ngIf="cadet.dRILLResult.ptTotalMarks">
+                    {{cadet.dRILLResult.ptTotalMarks}}
+                  </span>
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <br>
+        <div *ngIf="termId==7">
+          <table class="tg" *ngIf="cadetList.length">
+            <thead class="table-head" id="table-header">
+              <tr>
+                <th class="tg-qnnc" rowspan="2">S. No.</th>
+                <th class="tg-qnnc" rowspan="2">IMA No.</th>
+                <th class="tg-qnnc" rowspan="2">Rank</th>
+                <th class="tg-qnnc t-name" rowspan="2">Name</th>
+                <th class="tg-qnnc" rowspan="2">Course</th>
+
+
+                <th class="tg-qnnc" colspan="2">Static Mov (MM-{{_static_mov}}) </th>
+                <th class="tg-qnnc" colspan="2">Quick March (MM-{{_quick_march}})</th>
+                <th class="tg-qnnc" colspan="2">Reporting (MM-{{_reporting}})</th>
+                <th class="tg-qnnc" colspan="2">Turn Out (MM-{{turn_out}})</th>
+                <th class="tg-qnnc" colspan="2">Bearing (MM-{{bearing}})</th>
+                <th class="tg-qnnc" colspan="2">Mks For Exellence (MM-{{mks_for_exellence}})</th>
+                <!-- <th *ngIf="termId==3" class="tg-qnnc" colspan="3"> Mks for Excellence<sup>nd</sup> CL Rope (4 Mtr Climb) (MM-{{_4mtrClimg_mm}})</th> -->
+
+                <th class="tg-qnnc">Total (MM-{{totalMM}})</th>
+
+              </tr>
+
+              <tr>
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <!-- <th>Grade</th> -->
+
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <!-- <th>Grade</th> -->
+
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <!-- <th>Grade</th> -->
+
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <!-- <th>Grade</th> -->
+
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <!-- <th>Grade</th> -->
+
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <th>KHALI HATH</th>
+
+                <!-- <th *ngIf="termId==3">Attempt Type</th>
+                      <th *ngIf="termId==3">Obtained Marks</th>
+                      <th *ngIf="termId==3">Grade</th> -->
+
+              </tr>
+
+            </thead>
+
+            <tbody *ngIf="cadetList.length">
+              <tr *ngFor="let cadet of cadetList;let i=index">
+                <td> {{i+1}} </td>
+                <td> {{cadet.serviceId}} </td>
+                <td>
+                  <span *ngIf="cadet.nationality == 'India'">GC</span>
+                  <span *ngIf="cadet.nationality != 'India'">FGC</span>
+                </td>
+                <td class="t-name"> {{cadet.name}} </td>
+                <td> {{cadet.course}} </td>
+
+                <ng-container *ngFor="let sub of cadet.dRILLResult.dRILLSubjectResult;let j=index">
+                  <td>
+                    <span *ngIf="!hasAccess"> {{sub.lastAttemptType}} </span>
+                    <select *ngIf="hasAccess" id="company" class="form-control" [(ngModel)]="sub.lastAttemptType">
+                      <option value="" selected hidden disabled>--</option>
+                      <!-- <option *ngFor="let att of attemtTypes" [value]="att"> {{att}}</option> -->
+                      <option value="M1">M1</option>
+                      <option [disabled]="!sub.m1ObtainedMarks" value="M2">M2</option>
+                      <option [disabled]="!sub.m2ObtainedMarks" value="C1">C1</option>
+                      <option [disabled]="!sub.c1ObtainedMarks" value="C2">C2</option>
+                    </select>
+                  </td>
+                  <td>
+                    <span *ngIf="sub.lastAttemptType == 'M1' && !hasAccess "> {{sub.m1ObtainedMarks}} </span>
+                    <span *ngIf="sub.lastAttemptType == 'M2' && !hasAccess "> {{sub.m2ObtainedMarks}} </span>
+                    <span *ngIf="sub.lastAttemptType == 'C1' && !hasAccess "> {{sub.c1ObtainedMarks}} </span>
+                    <span *ngIf="sub.lastAttemptType == 'C2' && !hasAccess "> {{sub.c2ObtainedMarks}} </span>
+
+                    <input *ngIf="sub.lastAttemptType == 'M1' && hasAccess " (keypress)="onlyNum($event)"
+                      (focusout)="patchNumbers($event,sub,i,j,'M1')" maxlength="2" name="" id="" class="form-control"
+                      [(ngModel)]="sub.m1ObtainedMarks">
+                    <input *ngIf="sub.lastAttemptType == 'M2' && hasAccess" (keypress)="onlyNum($event)"
+                      (focusout)="patchNumbers($event,sub,i,j,'M2')" maxlength="2" name="" id="" class="form-control"
+                      [(ngModel)]="sub.m2ObtainedMarks">
+                    <input *ngIf="sub.lastAttemptType == 'C1' && hasAccess" (keypress)="onlyNum($event)"
+                      (focusout)="patchNumbers($event,sub,i,j,'C1')" maxlength="2" name="" id="" class="form-control"
+                      [(ngModel)]="sub.c1ObtainedMarks">
+                    <input *ngIf="sub.lastAttemptType == 'C2' && hasAccess" (keypress)="onlyNum($event)"
+                      (focusout)="patchNumbers($event,sub,i,j,'C2')" maxlength="2" name="" id="" class="form-control"
+                      [(ngModel)]="sub.c2ObtainedMarks">
+                  </td>
+                  <!-- <td>
+                              <span *ngIf="sub.resultGrade">
+                                  {{sub.resultGrade}}
+                              </span>
+                          </td> -->
+
+                </ng-container>
+
+                <td>
+                  <span *ngIf="cadet.dRILLResult.ptTotalMarks">
+                    {{cadet.dRILLResult.ptTotalMarks}}
+                  </span>
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div *ngIf="termId==2">
+          <table class="tg" *ngIf="cadetList.length">
+            <thead class="table-head" id="table-header">
+              <tr>
+                <th class="tg-qnnc" rowspan="2">S. No.</th>
+                <th class="tg-qnnc" rowspan="2">IMA No.</th>
+                <th class="tg-qnnc" rowspan="2">Rank</th>
+                <th class="tg-qnnc t-name" rowspan="2">Name</th>
+                <th class="tg-qnnc" rowspan="2">Course</th>
+
+
+                <th class="tg-qnnc" colspan="2">Wpn Drill (MM-{{Wpn_Drill}}) </th>
+                <th class="tg-qnnc" colspan="2">Reporting with Rifle (MM-{{Reporting_with_Rifle}})</th>
+                <th class="tg-qnnc" colspan="2">Quick March (MM-{{_quick_march}})</th>
+                <th class="tg-qnnc" colspan="2">Slow March (MM-{{Slow_March}})</th>
+                <th class="tg-qnnc" colspan="2">Turn Out (MM-{{turn_Out}})</th>
+                <th class="tg-qnnc" colspan="2">Bearing (MM-{{bearing}})</th>
+                <!-- <th *ngIf="termId==3" class="tg-qnnc" colspan="3"> Mks for Excellence<sup>nd</sup> CL Rope (4 Mtr Climb) (MM-{{_4mtrClimg_mm}})</th> -->
+
+                <th class="tg-qnnc">Total (MM-{{totalMM}})</th>
+
+              </tr>
+
+              <tr>
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <!-- <th>Grade</th> -->
+
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <!-- <th>Grade</th> -->
+
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <!-- <th>Grade</th> -->
+
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <!-- <th>Grade</th> -->
+
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <!-- <th>Grade</th> -->
+
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <th>RIFLE DRILL</th>
+                <!-- <th>Grade</th> -->
+
+                <!-- <th *ngIf="termId==3">Attempt Type</th>
+                      <th *ngIf="termId==3">Obtained Marks</th>
+                      <th *ngIf="termId==3">Grade</th> -->
+
+              </tr>
+
+            </thead>
+
+            <tbody *ngIf="cadetList.length">
+              <tr *ngFor="let cadet of cadetList;let i=index">
+                <td> {{i+1}} </td>
+                <td> {{cadet.serviceId}} </td>
+                <td>
+                  <span *ngIf="cadet.nationality == 'India'">GC</span>
+                  <span *ngIf="cadet.nationality != 'India'">FGC</span>
+                </td>
+                <td class="t-name"> {{cadet.name}} </td>
+                <td> {{cadet.course}} </td>
+
+                <ng-container *ngFor="let sub of cadet.dRILLResult.dRILLSubjectResult;let j=index">
+                  <td>
+                    <span *ngIf="!hasAccess"> {{sub.lastAttemptType}} </span>
+                    <select *ngIf="hasAccess" id="company" class="form-control" [(ngModel)]="sub.lastAttemptType">
+                      <option value="" selected hidden disabled>--</option>
+                      <!-- <option *ngFor="let att of attemtTypes" [value]="att"> {{att}}</option> -->
+                      <option value="M1">M1</option>
+                      <option [disabled]="!sub.m1ObtainedMarks" value="M2">M2</option>
+                      <option [disabled]="!sub.m2ObtainedMarks" value="C1">C1</option>
+                      <option [disabled]="!sub.c1ObtainedMarks" value="C2">C2</option>
+                    </select>
+                  </td>
+                  <td>
+                    <span *ngIf="sub.lastAttemptType == 'M1' && !hasAccess "> {{sub.m1ObtainedMarks}} </span>
+                    <span *ngIf="sub.lastAttemptType == 'M2' && !hasAccess "> {{sub.m2ObtainedMarks}} </span>
+                    <span *ngIf="sub.lastAttemptType == 'C1' && !hasAccess "> {{sub.c1ObtainedMarks}} </span>
+                    <span *ngIf="sub.lastAttemptType == 'C2' && !hasAccess "> {{sub.c2ObtainedMarks}} </span>
+
+                    <input *ngIf="sub.lastAttemptType == 'M1' && hasAccess " (keypress)="onlyNum($event)"
+                      (focusout)="patchNumbers($event,sub,i,j,'M1')" maxlength="2" name="" id="" class="form-control"
+                      [(ngModel)]="sub.m1ObtainedMarks">
+                    <input *ngIf="sub.lastAttemptType == 'M2' && hasAccess" (keypress)="onlyNum($event)"
+                      (focusout)="patchNumbers($event,sub,i,j,'M2')" maxlength="2" name="" id="" class="form-control"
+                      [(ngModel)]="sub.m2ObtainedMarks">
+                    <input *ngIf="sub.lastAttemptType == 'C1' && hasAccess" (keypress)="onlyNum($event)"
+                      (focusout)="patchNumbers($event,sub,i,j,'C1')" maxlength="2" name="" id="" class="form-control"
+                      [(ngModel)]="sub.c1ObtainedMarks">
+                    <input *ngIf="sub.lastAttemptType == 'C2' && hasAccess" (keypress)="onlyNum($event)"
+                      (focusout)="patchNumbers($event,sub,i,j,'C2')" maxlength="2" name="" id="" class="form-control"
+                      [(ngModel)]="sub.c2ObtainedMarks">
+                  </td>
+                  <!-- <td>
+                              <span *ngIf="sub.resultGrade">
+                                  {{sub.resultGrade}}
+                              </span>
+                          </td> -->
+
+                </ng-container>
+
+                <td>
+                  <span *ngIf="cadet.dRILLResult.ptTotalMarks">
+                    {{cadet.dRILLResult.ptTotalMarks}}
+                  </span>
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <br>
+        <div *ngIf="termId==8">
+          <table class="tg">
+            <thead>
+              <tr>
+                <th class="tg-qnnc" rowspan="3">S. No.</th>
+                <th class="tg-qnnc" rowspan="3">IMA No.</th>
+                <th class="tg-qnnc" rowspan="3">Course</th>
+                <th class="tg-qnnc" rowspan="3">Name</th>
+                <th class="tg-qnnc" rowspan="3">Rank</th>
+                <th class="tg-qnnc" rowspan="3">Attempt Type</th>
+                <th class="tg-qnnc" colspan="8">Rifle drill</th>
+              </tr>
+              <tr>
+                <th colspan="1" style="width: 11%;" *ngFor="let subject of drillSubjectList" class="tg-qnnc">
+                  {{subject.subjectName}}<br>Marks
+                  ({{subject.totalMarks}})</th>
+
+                <th class="tg-qnnc" rowspan="3">Total </th>
+                <th class="tg-qnnc">GRADING</th>
+
+              </tr>
+
+            </thead>
+            <tbody>
+              <tr *ngFor="let leadership of drillCadetList; let leadershipIndex = index">
+                <td class="tg-c3ow">{{ leadershipIndex + 1}}</td>
+                <td class="tg-c3ow">{{ leadership.serviceId }}</td>
+                <td class="tg-0pky">{{ leadership.course }}</td>
+                <td class="tg-c3ow">{{ leadership.name }}</td>
+                <!-- <td class="tg-0pky">{{ leadership.nationality }}</td> -->
+                <td class="tg-c3ow">
+                  <p *ngIf="leadership.nationality=='India'">GC</p>
+                  <p *ngIf="leadership.nationality !='India'">FGC</p>
+                </td>
+                <ng-container
+                  *ngFor="let leadershipSubject of leadership.dRILLResult.dRILLSubjectResult; let leadershipSubjectIndex = index">
+                  <td *ngIf="leadershipSubjectIndex==0">
+                    <select id="company" class="form-control"
+                      (change)="attemptClear($event.target.value, leadershipIndex, leadershipSubjectIndex)">
+                      <option value="">Select</option>
+                      <option *ngFor="let att of attemtTypes" [selected]="leadership.dRILLResult.clearedIn == att"
+                        [value]="att"> {{att}}</option>
+                    </select>
+                  </td>
+                  <td class="tg-c3ow">
+                    <input *ngIf="leadership.dRILLResult.clearedIn == 'M1'" type="text" class="form-control d-inline"
+                      value="{{leadershipSubject.m1ObtainedMarks}}"
+                      (focus)="onFocusEvent($event.target.value,leadershipIndex)" min="0" (keypress)="keyPress($event)"
+                      on-focusout="onChange($event, $event.target.value, leadershipSubject.totalMarks, leadershipSubject.subjectId, leadershipIndex, leadershipSubjectIndex)">
+                    <input *ngIf="leadership.dRILLResult.clearedIn == 'M2'" type="text" class="form-control d-inline"
+                      value="{{leadershipSubject.m2ObtainedMarks}}"
+                      (focus)="onFocusEvent($event.target.value,leadershipIndex)" min="0" (keypress)="keyPress($event)"
+                      on-focusout="onChange($event, $event.target.value, leadershipSubject.totalMarks, leadershipSubject.subjectId, leadershipIndex, leadershipSubjectIndex)">
+                    <input *ngIf="leadership.dRILLResult.clearedIn == 'C1'" type="text" class="form-control d-inline"
+                      value="{{leadershipSubject.c1ObtainedMarks}}"
+                      (focus)="onFocusEvent($event.target.value,leadershipIndex)" min="0" (keypress)="keyPress($event)"
+                      on-focusout="onChange($event, $event.target.value, leadershipSubject.totalMarks, leadershipSubject.subjectId, leadershipIndex, leadershipSubjectIndex)">
+                    <input *ngIf="leadership.dRILLResult.clearedIn == 'C2'" type="text" class="form-control d-inline"
+                      value="{{leadershipSubject.c2ObtainedMarks}}"
+                      (focus)="onFocusEvent($event.target.value,leadershipIndex)" min="0" (keypress)="keyPress($event)"
+                      on-focusout="onChange($event, $event.target.value, leadershipSubject.totalMarks, leadershipSubject.subjectId, leadershipIndex, leadershipSubjectIndex)">
+                  </td>
+                </ng-container>
+
+                <td class="tg-0pky">
+                  <input *ngIf="leadership.dRILLResult.clearedIn == 'M1'" type="text" class="form-control" disabled
+                    id="{{leadershipIndex}}" value="{{ leadership.dRILLResult.m1ObtainedMarks }}">
+                  <input *ngIf="leadership.dRILLResult.clearedIn == 'M2'" type="text" class="form-control" disabled
+                    id="{{leadershipIndex}}" value="{{ leadership.dRILLResult.m2ObtainedMarks }}">
+                  <input *ngIf="leadership.dRILLResult.clearedIn == 'C1'" type="text" class="form-control" disabled
+                    id="{{leadershipIndex}}" value="{{ leadership.dRILLResult.c1ObtainedMarks }}">
+                  <input *ngIf="leadership.dRILLResult.clearedIn == 'C2'" type="text" class="form-control" disabled
+                    id="{{leadershipIndex}}" value="{{ leadership.dRILLResult.c2ObtainedMarks }}">
+                </td>
+
+                <td class="tg-0pky">
+                  <input type="text" class="form-control" id="{{leadershipIndex}}"
+                    value="{{ leadership.dRILLResult.remarks }}">
+                </td>
+
+
+              </tr>
+              <tr>
+                <td class="mat-cell" style="text-align: center;" *ngIf="! drillCadetList?.length" colspan="14">
+                  <div>No Record Found</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <br>
+
+        <div *ngIf="termId==3">
+          <table class="tg" *ngIf="cadetList.length">
+            <thead class="table-head" id="table-header">
+              <tr>
+                <th class="tg-qnnc" rowspan="2">S. No.</th>
+                <th class="tg-qnnc" rowspan="2">IMA No.</th>
+                <th class="tg-qnnc" rowspan="2">Rank</th>
+                <th class="tg-qnnc t-name" rowspan="2">Name</th>
+                <th class="tg-qnnc" rowspan="2">Course</th>
+
+
+                <th class="tg-qnnc" colspan="2">Wpn Drill (MM-{{Wpn_Drill}}) </th>
+                <th class="tg-qnnc" colspan="2">Reporting with Rifle (MM-{{Reporting_with_Rifle}})</th>
+                <th class="tg-qnnc" colspan="2">Quick March (MM-{{_quick_march}})</th>
+                <th class="tg-qnnc" colspan="2">Slow March (MM-{{turn_out}})</th>
+                <th class="tg-qnnc" colspan="2">Turn Out (MM-{{Slow_March}})</th>
+                <th class="tg-qnnc" colspan="2">Bearing (MM-{{bearing}})</th>
+                <!-- <th *ngIf="termId==3" class="tg-qnnc" colspan="3"> Mks for Excellence<sup>nd</sup> CL Rope (4 Mtr Climb) (MM-{{_4mtrClimg_mm}})</th> -->
+
+                <th class="tg-qnnc">Total (MM-{{totalMM}})</th>
+
+              </tr>
+
+              <tr>
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <!-- <th>Grade</th> -->
+
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <!-- <th>Grade</th> -->
+
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <!-- <th>Grade</th> -->
+
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <!-- <th>Grade</th> -->
+
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <!-- <th>Grade</th> -->
+
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <th>DAT</th>
+                <!-- <th>Grade</th> -->
+
+                <!-- <th *ngIf="termId==3">Attempt Type</th>
+                      <th *ngIf="termId==3">Obtained Marks</th>
+                      <th *ngIf="termId==3">Grade</th> -->
+
+              </tr>
+
+            </thead>
+
+            <tbody *ngIf="cadetList.length">
+              <tr *ngFor="let cadet of cadetList;let i=index">
+                <td> {{i+1}} </td>
+                <td> {{cadet.serviceId}} </td>
+                <td>
+                  <span *ngIf="cadet.nationality == 'India'">GC</span>
+                  <span *ngIf="cadet.nationality != 'India'">FGC</span>
+                </td>
+                <td class="t-name"> {{cadet.name}} </td>
+                <td> {{cadet.course}} </td>
+
+                <ng-container *ngFor="let sub of cadet.dRILLResult.dRILLSubjectResult;let j=index">
+                  <td>
+                    <span *ngIf="!hasAccess"> {{sub.lastAttemptType}} </span>
+                    <select *ngIf="hasAccess" id="company" class="form-control" [(ngModel)]="sub.lastAttemptType">
+                      <option value="" selected hidden disabled>--</option>
+                      <!-- <option *ngFor="let att of attemtTypes" [value]="att"> {{att}}</option> -->
+                      <option value="M1">M1</option>
+                      <option [disabled]="!sub.m1ObtainedMarks" value="M2">M2</option>
+                      <option [disabled]="!sub.m2ObtainedMarks" value="C1">C1</option>
+                      <option [disabled]="!sub.c1ObtainedMarks" value="C2">C2</option>
+                    </select>
+                  </td>
+                  <td>
+                    <span *ngIf="sub.lastAttemptType == 'M1' && !hasAccess "> {{sub.m1ObtainedMarks}} </span>
+                    <span *ngIf="sub.lastAttemptType == 'M2' && !hasAccess "> {{sub.m2ObtainedMarks}} </span>
+                    <span *ngIf="sub.lastAttemptType == 'C1' && !hasAccess "> {{sub.c1ObtainedMarks}} </span>
+                    <span *ngIf="sub.lastAttemptType == 'C2' && !hasAccess "> {{sub.c2ObtainedMarks}} </span>
+
+                    <input *ngIf="sub.lastAttemptType == 'M1' && hasAccess " (keypress)="onlyNum($event)"
+                      (focusout)="patchNumbers($event,sub,i,j,'M1')" maxlength="2" name="" id="" class="form-control"
+                      [(ngModel)]="sub.m1ObtainedMarks">
+                    <input *ngIf="sub.lastAttemptType == 'M2' && hasAccess" (keypress)="onlyNum($event)"
+                      (focusout)="patchNumbers($event,sub,i,j,'M2')" maxlength="2" name="" id="" class="form-control"
+                      [(ngModel)]="sub.m2ObtainedMarks">
+                    <input *ngIf="sub.lastAttemptType == 'C1' && hasAccess" (keypress)="onlyNum($event)"
+                      (focusout)="patchNumbers($event,sub,i,j,'C1')" maxlength="2" name="" id="" class="form-control"
+                      [(ngModel)]="sub.c1ObtainedMarks">
+                    <input *ngIf="sub.lastAttemptType == 'C2' && hasAccess" (keypress)="onlyNum($event)"
+                      (focusout)="patchNumbers($event,sub,i,j,'C2')" maxlength="2" name="" id="" class="form-control"
+                      [(ngModel)]="sub.c2ObtainedMarks">
+                  </td>
+                  <!-- <td>
+                              <span *ngIf="sub.resultGrade">
+                                  {{sub.resultGrade}}
+                              </span>
+                          </td> -->
+
+                </ng-container>
+
+                <td>
+                  <span *ngIf="cadet.dRILLResult.ptTotalMarks">
+                    {{cadet.dRILLResult.ptTotalMarks}}
+                  </span>
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- </form> -->
+
+        <div class="">
+          <!-- <mat-paginator #myPaginator [length]="resultsLength" [pageSizeOptions]="[30]"  showFirstLastButtons>
+                    </mat-paginator> -->
+        
+          <div class="text-center" *ngIf="!cadetList.length " >
+            <h5> No Record Found</h5> 
+        </div>
+        
+          <div class="btn-sec mt-3 text-right">
+            <div class="mb-4 pull-right" *ngIf="hasAccess">
+              <button mat-raised-button (click)="submitResult()" [disabled]="!cadetList.length">
+                Submit
+              </button>
+            </div>
+          </div>
+          <mat-paginator #myPaginator [length]="resultsLength" [pageIndex]="currentPage" [pageSize]="pageSize"
+            aria-label="Select page" showFirstLastButtons>
+          </mat-paginator>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable custom-lg" role="document">
+    <div class="modal-content p-3">
+      <div class="modal-header">
+        <h5 class="modal-title">Review</h5>
+      </div>
+      <div class="modal-body">
+        <table class="tg">
+          <thead>
+            <tr>
+              <th class="tg-qnnc" rowspan="3">S. No.</th>
+              <th class="tg-qnnc" rowspan="3">IMA No.</th>
+              <th class="tg-qnnc" rowspan="3">Course</th>
+              <th class="tg-qnnc" rowspan="3">Name</th>
+              <th class="tg-qnnc" rowspan="3">Rank</th>
+              <th class="tg-qnnc" rowspan="3">Attempt Type</th>
+              <th class="tg-qnnc" colspan="8"></th>
+            </tr>
+            <tr>
+              <th colspan="1" style="width: 11%;" *ngFor="let subject of drillSubjectList" class="tg-qnnc">
+                {{subject.subjectName}}<br>Marks
+                ({{subject.totalMarks}})</th>
+
+              <th class="tg-qnnc" rowspan="3">Total </th>
+              <th class="tg-qnnc">GRADING</th>
+
+            </tr>
+
+          </thead>
+          <tbody>
+            <tr *ngFor="let leadership of drillCadetList; let leadershipIndex = index">
+              <td class="tg-c3ow">{{ leadershipIndex + 1}}</td>
+              <td class="tg-c3ow">{{ leadership.serviceId }}</td>
+              <td class="tg-0pky">{{ leadership.course }}</td>
+              <td class="tg-c3ow">{{ leadership.name }}</td>
+              <td class="tg-c3ow">
+                <p *ngIf="leadership.nationality=='India'">GC</p>
+                <p *ngIf="leadership.nationality !='India'">FGC</p>
+              </td>
+
+              <ng-container
+                *ngFor="let leadershipSubject of leadership.dRILLResult.dRILLSubjectResult; let leadershipSubjectIndex = index">
+                <td *ngIf="leadershipSubjectIndex==0">
+                  <select id="company" class="form-control" disabled
+                    (change)="attemptClear($event.target.value, leadershipIndex, leadershipSubjectIndex)">
+                    <option value="">Select</option>
+                    <option *ngFor="let att of attemtTypes" [selected]="leadership.dRILLResult.clearedIn == att"
+                      [value]="att"> {{att}}</option>
+                  </select>
+                </td>
+                <td class="tg-c3ow">
+                  <input *ngIf="leadership.dRILLResult.clearedIn == 'M1'" disabled type="text"
+                    class="form-control d-inline" value="{{leadershipSubject.m1ObtainedMarks}}"
+                    (focus)="onFocusEvent($event.target.value,leadershipIndex)" (keypress)="keyPress($event)"
+                    [max]="leadershipSubject.totalMarks"
+                    on-focusout="onChange($event, $event.target.value, leadershipSubject.totalMarks, leadershipSubject.subjectId, leadershipIndex, leadershipSubjectIndex)">
+
+                  <input *ngIf="leadership.dRILLResult.clearedIn == 'M2'" disabled type="text"
+                    class="form-control d-inline" value="{{leadershipSubject.m2ObtainedMarks}}"
+                    (focus)="onFocusEvent($event.target.value,leadershipIndex)" min="0" (keypress)="keyPress($event)"
+                    on-focusout="onChange($event, $event.target.value, leadershipSubject.totalMarks, leadershipSubject.subjectId, leadershipIndex, leadershipSubjectIndex)">
+                  <input *ngIf="leadership.dRILLResult.clearedIn == 'C1'" disabled type="text"
+                    class="form-control d-inline" value="{{leadershipSubject.c1ObtainedMarks}}"
+                    (focus)="onFocusEvent($event.target.value,leadershipIndex)" min="0" (keypress)="keyPress($event)"
+                    on-focusout="onChange($event, $event.target.value, leadershipSubject.totalMarks, leadershipSubject.subjectId, leadershipIndex, leadershipSubjectIndex)">
+                  <input *ngIf="leadership.dRILLResult.clearedIn == 'C2'" disabled type="text"
+                    class="form-control d-inline" value="{{leadershipSubject.c2ObtainedMarks}}"
+                    (focus)="onFocusEvent($event.target.value,leadershipIndex)" min="0" (keypress)="keyPress($event)"
+                    on-focusout="onChange($event, $event.target.value, leadershipSubject.totalMarks, leadershipSubject.subjectId, leadershipIndex, leadershipSubjectIndex)">
+                </td>
+              </ng-container>
+
+
+              <td class="tg-0pky">
+                <input *ngIf="leadership.dRILLResult.clearedIn == 'M1'" type="text" class="form-control" disabled
+                  id="{{leadershipIndex}}" value="{{ leadership.dRILLResult.m1ObtainedMarks }}">
+                <input *ngIf="leadership.dRILLResult.clearedIn == 'M2'" type="text" class="form-control" disabled
+                  id="{{leadershipIndex}}" value="{{ leadership.dRILLResult.m2ObtainedMarks }}">
+                <input *ngIf="leadership.dRILLResult.clearedIn == 'C1'" type="text" class="form-control" disabled
+                  id="{{leadershipIndex}}" value="{{ leadership.dRILLResult.c1ObtainedMarks }}">
+                <input *ngIf="leadership.dRILLResult.clearedIn == 'C2'" type="text" class="form-control" disabled
+                  id="{{leadershipIndex}}" value="{{ leadership.dRILLResult.c2ObtainedMarks }}">
+              </td>
+
+              <td class="tg-0pky">
+                <input type="text" class="form-control" id="{{leadershipIndex}}" disabled
+                  on-focusout="onChange1($event.target.value, leadershipIndex)"
+                  value="{{ leadership.dRILLResult.remarks }}">
+              </td>
+
+
+
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button mat-raised-button type="button" class="btn-dark" >Back</button>
+        <button type="button" mat-raised-button >Submit</button>
+
+      </div>
+    </div>
+  </div>
+</div> -->

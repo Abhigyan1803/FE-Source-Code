@@ -1,0 +1,611 @@
+<div class="gene-login login-v2" style="background-image:url(assets/img/80288819.webp);background-position: top;">
+   <div class="gene_cover pad-y-xl">
+      <div fxLayout="row" fxLayoutAlign="center start">
+         <div fxLayout="column" fxFlex="100" fxFlex.xs="90" fxFlex.sm="80" fxFlex.md="95" fxFlex.lg="55" fxFlex.xl="60">
+            <!-- <mat-toolbar-row fxLayoutAlign="space-between" fxLayout.xs="column" fxLayoutAlign.xs="center center" class="mrgn-x-md">
+            <div class="mrgn-b-md">
+               <img src="assets/img/logo-sign.png">
+            </div>
+            <span class="mrgn-b-md">
+               <p class="text-center text-inverse"><span  class="mrgn-r-sm">Not Having Account?</span><button [routerLink]="['/session/registerV2']" mat-raised-button color="accent">Sign Up</button></p>
+            </span>
+         </mat-toolbar-row> -->
+
+            <div *ngIf="loginType =='admin'"
+               fxLayout="row wrap" fxLayoutAlign="center stretch"
+               class="height-full pad-t-xl pad-b-xl form-wrap-row set-resp-space" fxLayoutGap.gt-md="15px">
+               <div fxLayout="column" fxFlex="100" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="55" fxFlex.lg="55"
+                  fxFlex.xl="55">
+                  <mat-card class="gene-login-v2 card-full-height card-full-width">
+                     <div>
+                        <div fxLayout="column" fxLayoutAlign="center center" class="mrgn-b-lggg text-center">
+                           <!-- <h2>Login</h2> -->
+                           <a href="javascript:void(0)" [routerLink]="['/pages']">
+                              <img src="assets/img/logo_red.png" alt="" style="width:80px;height:85px;">
+                           </a>
+                           <h3 class="title">{{title | uppercase}} </h3>
+                        </div>
+                        <form [formGroup]="loginForm" (ngSubmit)="login()" fxLayoutAlign="center start">
+                           <div fxLayout="column" fxFlex.xs="100" fxFlex.sm="80" fxFlex.md="80" fxFlex.lg="90"
+                              fxFlex.xl="90" fxLayoutAlign="start">
+                              <!-- <mat-form-field class="full-wid mrgn-b-md"  appearance="outline">
+                           <mat-label>Username</mat-label>
+                           <input class="mrgn-t-none" matInput  type="text" name="email"  [(ngModel)]="email">
+                           <span matSuffix><i class="material-icons">verified_user</i></span>                              
+                        </mat-form-field>
+                        <mat-form-field class="full-wid mrgn-b-md"  appearance="outline">
+                           <mat-label>Password</mat-label>
+                           <input class="mrgn-t-none" matInput  type="password" name="password"  [(ngModel)]="password">
+                           <span matSuffix><i class="material-icons">vpn_key</i></span>
+                        </mat-form-field> -->
+                              <label for="username" class="login_label">Login ID</label>
+                              <input formControlName="username" type="text" id="username" class="form-control new-ctl">
+                              <span class="val_msg"
+                                 *ngIf="f.username.errors && f.username.errors.required && isError">Login Id is
+                                 required</span>
+                              <label class="login_label" for="password">Password</label>
+
+                              <input formControlName="password" type="password" id="password"
+                                 class="form-control new-ctl">
+                              <span class="val_msg"
+                                 *ngIf="f.password.errors && f.password.errors.required && isError">Password is
+                                 required</span>
+                              <div fxLayoutAlign="center start" class="">
+                                 <button mat-flat-button class="success-bg gene-btn-lg">Login</button>
+                              </div>
+                              <div class="mrgn-b-md1">
+                                 <a class="for">Forgot Password?</a>
+
+                                 <!-- <a class="for" [routerLink]="['/session/forgot-passwordV2']">Forgot Password?</a> -->
+                              </div>
+
+                              <!-- <p class="text-center mrgn-b-sm pad-t-xl">Or Signup Using</p>
+                        <div class="social-list" fxLayoutAlign="center start" fxLayoutGap="15px">
+                           <button mat-fab color="primary" matTooltip="Facebook" aria-label="Button that displays a tooltip for social media link">f</button>
+                           <button mat-fab color="warn" matTooltip="Google" aria-label="Button that displays a tooltip for social media link">G</button>
+                           <button mat-fab color="accent" matTooltip="Twitter" aria-label="Button that displays a tooltip for social media link">t</button>
+                         //  <button mat-fab color="warn" matTooltip="Gmail" aria-label="Button that displays a tooltip for social media link">g</button>                           
+                        </div> -->
+                           </div>
+                        </form>
+                     </div>
+                  </mat-card>
+               </div>
+
+               <!-- <div fxLayout="column" fxFlex="100" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="38" fxFlex.lg="38" fxFlex.xl="38" fxHide.lt-md>
+             
+               <div class="height-full full-wid">
+
+                  <div fxLayout="column" fxLayoutAlign="center center" class="height-full full-wid">
+                     <ngx-slick-carousel [config]="slideConfig"  class="carousel full-wid height-full" #slickModal="slick-carousel">
+                     <div ngxSlickItem *ngFor="let slide of sessionSlider" class="height-full full-wid">
+                        <div class="session-slider overlay-wrap height-full full-wid">
+                           <div class="slider-bg-img full-wid" [ngStyle] = "{'background-image' : 'url(' + slide.image + ')'}"></div>
+                           <div class="overlay-content" fxLayoutAlign="start end">
+                              <div class="content-wrap">
+                                 <div class="sec-title">
+                                    <h5 class="text-inverse">{{slide.name}}</h5>
+                                    <span class="text-inverse">{{slide.designation}}</span>
+                                 </div>
+                                 <div class="sec-content">
+                                    <p class="text-inverse">{{slide.content}}</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     </ngx-slick-carousel>
+                  </div>
+
+               </div>
+            </div> -->
+
+            </div>
+
+            <div *ngIf="loginType =='trg-team' || loginType=='trg-battalion' || loginType=='academic-depart' || loginType =='adjutant-branch' || loginType =='gs-branch'"
+               fxLayout="row wrap" fxLayoutAlign="center stretch"
+               class="height-full pad-t-xl pad-b-xl form-wrap-row set-resp-space" fxLayoutGap.gt-md="15px">
+               <div fxLayout="column" fxFlex="100" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="55" fxFlex.lg="55"
+                  fxFlex.xl="55">
+                  <mat-card class="gene-login-v2 card-full-height card-full-width">
+                     <div>
+                        <div fxLayout="column" fxLayoutAlign="center center" class="mrgn-b-lggg text-center">
+                           <!-- <h2>Login</h2> -->
+                           <a href="javascript:void(0)" [routerLink]="['/pages']">
+                              <img src="assets/img/logo_red.png" alt="" style="width:80px;height:85px;">
+                           </a>
+                           <h3 class="title">{{title | uppercase}} </h3>
+                        </div>
+                        <form [formGroup]="loginForm" (ngSubmit)="loginRoles()" fxLayoutAlign="center start">
+                           <div fxLayout="column" fxFlex.xs="100" fxFlex.sm="80" fxFlex.md="80" fxFlex.lg="90"
+                              fxFlex.xl="90" fxLayoutAlign="start">
+                              <!-- <mat-form-field class="full-wid mrgn-b-md"  appearance="outline">
+                           <mat-label>Username</mat-label>
+                           <input class="mrgn-t-none" matInput  type="text" name="email"  [(ngModel)]="email">
+                           <span matSuffix><i class="material-icons">verified_user</i></span>                              
+                        </mat-form-field>
+                        <mat-form-field class="full-wid mrgn-b-md"  appearance="outline">
+                           <mat-label>Password</mat-label>
+                           <input class="mrgn-t-none" matInput  type="password" name="password"  [(ngModel)]="password">
+                           <span matSuffix><i class="material-icons">vpn_key</i></span>
+                        </mat-form-field> -->
+                              <label for="username" class="login_label">Login ID</label>
+                              <input formControlName="username" type="text" id="username" class="form-control new-ctl">
+                              <span class="val_msg"
+                                 *ngIf="f.username.errors && f.username.errors.required && isError">Login Id is
+                                 required</span>
+                              <label class="login_label" for="password">Password</label>
+
+                              <input formControlName="password" type="password" id="password"
+                                 class="form-control new-ctl">
+                              <span class="val_msg"
+                                 *ngIf="f.password.errors && f.password.errors.required && isError">Password is
+                                 required</span>
+                              <div fxLayoutAlign="center start" class="">
+                                 <button mat-flat-button class="success-bg gene-btn-lg">Login</button>
+                              </div>
+                              <div class="mrgn-b-md1">
+                                 <a class="for">Forgot Password?</a>
+
+                                 <!-- <a class="for" [routerLink]="['/session/forgot-passwordV2']">Forgot Password?</a> -->
+                              </div>
+
+                              <!-- <p class="text-center mrgn-b-sm pad-t-xl">Or Signup Using</p>
+                        <div class="social-list" fxLayoutAlign="center start" fxLayoutGap="15px">
+                           <button mat-fab color="primary" matTooltip="Facebook" aria-label="Button that displays a tooltip for social media link">f</button>
+                           <button mat-fab color="warn" matTooltip="Google" aria-label="Button that displays a tooltip for social media link">G</button>
+                           <button mat-fab color="accent" matTooltip="Twitter" aria-label="Button that displays a tooltip for social media link">t</button>
+                         //  <button mat-fab color="warn" matTooltip="Gmail" aria-label="Button that displays a tooltip for social media link">g</button>                           
+                        </div> -->
+                           </div>
+                        </form>
+                     </div>
+                  </mat-card>
+               </div>
+
+               <!-- <div fxLayout="column" fxFlex="100" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="38" fxFlex.lg="38" fxFlex.xl="38" fxHide.lt-md>
+             
+               <div class="height-full full-wid">
+
+                  <div fxLayout="column" fxLayoutAlign="center center" class="height-full full-wid">
+                     <ngx-slick-carousel [config]="slideConfig"  class="carousel full-wid height-full" #slickModal="slick-carousel">
+                     <div ngxSlickItem *ngFor="let slide of sessionSlider" class="height-full full-wid">
+                        <div class="session-slider overlay-wrap height-full full-wid">
+                           <div class="slider-bg-img full-wid" [ngStyle] = "{'background-image' : 'url(' + slide.image + ')'}"></div>
+                           <div class="overlay-content" fxLayoutAlign="start end">
+                              <div class="content-wrap">
+                                 <div class="sec-title">
+                                    <h5 class="text-inverse">{{slide.name}}</h5>
+                                    <span class="text-inverse">{{slide.designation}}</span>
+                                 </div>
+                                 <div class="sec-content">
+                                    <p class="text-inverse">{{slide.content}}</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     </ngx-slick-carousel>
+                  </div>
+
+               </div>
+            </div> -->
+
+            </div>
+
+
+
+
+            <div *ngIf="loginType =='aro'" fxLayout="row wrap" fxLayoutAlign="center stretch"
+            class="height-full pad-t-xl pad-b-xl form-wrap-row set-resp-space" fxLayoutGap.gt-md="15px">
+            <div fxLayout="column" fxFlex="100" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="55" fxFlex.lg="55"
+               fxFlex.xl="55">
+               <mat-card class="gene-login-v2 card-full-height card-full-width">
+                  <div>
+                     <div fxLayout="column" fxLayoutAlign="center center" class="mrgn-b-lggg text-center">
+                        <!-- <h2>Login</h2> -->
+                        <a href="javascript:void(0)" [routerLink]="['/pages']">
+                           <img src="assets/img/logo_red.png" alt="" style="width:80px;height:85px;">
+                        </a>
+                        <h3 class="title">{{title | uppercase}} </h3>
+                     </div>
+                     <form [formGroup]="loginForm" (ngSubmit)="loginForARO()" fxLayoutAlign="center start">
+                        <div fxLayout="column" fxFlex.xs="100" fxFlex.sm="80" fxFlex.md="80" fxFlex.lg="90"
+                           fxFlex.xl="90" fxLayoutAlign="start">
+                           <!-- <mat-form-field class="full-wid mrgn-b-md"  appearance="outline">
+                        <mat-label>Username</mat-label>
+                        <input class="mrgn-t-none" matInput  type="text" name="email"  [(ngModel)]="email">
+                        <span matSuffix><i class="material-icons">verified_user</i></span>                              
+                     </mat-form-field>
+                     <mat-form-field class="full-wid mrgn-b-md"  appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input class="mrgn-t-none" matInput  type="password" name="password"  [(ngModel)]="password">
+                        <span matSuffix><i class="material-icons">vpn_key</i></span>
+                     </mat-form-field> -->
+                           <label for="username" class="login_label">Login ID</label>
+                           <input formControlName="username" type="text" id="username" class="form-control new-ctl">
+                           <span class="val_msg"
+                              *ngIf="f.username.errors && f.username.errors.required && isError">Login Id is
+                              required</span>
+                           <label class="login_label" for="password">Password</label>
+
+                           <input formControlName="password" type="password" id="password"
+                              class="form-control new-ctl">
+                           <span class="val_msg"
+                              *ngIf="f.password.errors && f.password.errors.required && isError">Password is
+                              required</span>
+                           <div fxLayoutAlign="center start" class="">
+                              <button mat-flat-button class="success-bg gene-btn-lg">Login</button>
+                           </div>
+                           <div class="mrgn-b-md1">
+                              <a class="for">Forgot Password?</a>
+
+                              <!-- <a class="for" [routerLink]="['/session/forgot-passwordV2']">Forgot Password?</a> -->
+                           </div>
+
+                           <!-- <p class="text-center mrgn-b-sm pad-t-xl">Or Signup Using</p>
+                     <div class="social-list" fxLayoutAlign="center start" fxLayoutGap="15px">
+                        <button mat-fab color="primary" matTooltip="Facebook" aria-label="Button that displays a tooltip for social media link">f</button>
+                        <button mat-fab color="warn" matTooltip="Google" aria-label="Button that displays a tooltip for social media link">G</button>
+                        <button mat-fab color="accent" matTooltip="Twitter" aria-label="Button that displays a tooltip for social media link">t</button>
+                      //  <button mat-fab color="warn" matTooltip="Gmail" aria-label="Button that displays a tooltip for social media link">g</button>                           
+                     </div> -->
+                        </div>
+                     </form>
+                  </div>
+               </mat-card>
+            </div>
+
+            <!-- <div fxLayout="column" fxFlex="100" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="38" fxFlex.lg="38" fxFlex.xl="38" fxHide.lt-md>
+          
+            <div class="height-full full-wid">
+
+               <div fxLayout="column" fxLayoutAlign="center center" class="height-full full-wid">
+                  <ngx-slick-carousel [config]="slideConfig"  class="carousel full-wid height-full" #slickModal="slick-carousel">
+                  <div ngxSlickItem *ngFor="let slide of sessionSlider" class="height-full full-wid">
+                     <div class="session-slider overlay-wrap height-full full-wid">
+                        <div class="slider-bg-img full-wid" [ngStyle] = "{'background-image' : 'url(' + slide.image + ')'}"></div>
+                        <div class="overlay-content" fxLayoutAlign="start end">
+                           <div class="content-wrap">
+                              <div class="sec-title">
+                                 <h5 class="text-inverse">{{slide.name}}</h5>
+                                 <span class="text-inverse">{{slide.designation}}</span>
+                              </div>
+                              <div class="sec-content">
+                                 <p class="text-inverse">{{slide.content}}</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  </ngx-slick-carousel>
+               </div>
+
+            </div>
+         </div> -->
+
+         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div *ngIf="loginType =='gc'" fxLayout="row wrap" fxLayoutAlign="center stretch"
+               class="height-full pad-t-xl pad-b-xl form-wrap-row set-resp-space" fxLayoutGap.gt-md="15px">
+               <div fxLayout="column" fxFlex="100" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="55" fxFlex.lg="55"
+                  fxFlex.xl="55">
+                  <mat-card class="gene-login-v2 card-full-height card-full-width">
+                     <div>
+                        <div fxLayout="column" fxLayoutAlign="center center" class="mrgn-b-lggg text-center">
+                           <!-- <h2>Login</h2> -->
+                           <a href="javascript:void(0)" [routerLink]="['/pages']">
+                              <img src="assets/img/logo_red.png" alt="" style="width:80px;height:85px;">
+                           </a>
+                           <h3 class="title">{{title | uppercase}} </h3>
+
+                           <!-- <p>The most powerful angular app</p> -->
+                        </div>
+                        <form [formGroup]="LoginGCForm" (ngSubmit)="loginGC()" fxLayoutAlign="center start">
+                           <div fxLayout="column" fxFlex.xs="100" fxFlex.sm="80" fxFlex.md="80" fxFlex.lg="90"
+                              fxFlex.xl="90" fxLayoutAlign="start">
+                              <!-- <mat-form-field class="full-wid mrgn-b-md"  appearance="outline">
+                                       <mat-label>Username</mat-label>
+                                       <input class="mrgn-t-none" matInput  type="text" name="email"  [(ngModel)]="email">
+                                       <span matSuffix><i class="material-icons">verified_user</i></span>                              
+                                    </mat-form-field>
+                                    <mat-form-field class="full-wid mrgn-b-md"  appearance="outline">
+                                       <mat-label>Password</mat-label>
+                                       <input class="mrgn-t-none" matInput  type="password" name="password"  [(ngModel)]="password">
+                                       <span matSuffix><i class="material-icons">vpn_key</i></span>
+                                    </mat-form-field> -->
+                              <label class="login_label" for="username">Login ID</label>
+                              <input formControlName="username" type="text" id="username" class="form-control new-ctl">
+                              <label class="login_label" for="password">Password</label>
+                              <input formControlName="password" type="password" id="password"
+                                 class="form-control new-ctl">
+                              <!-- <label class="login_label" for="password">Battalion</label>
+                              <select formControlName="battalion" class="form-control new-ctl">
+                                 <option value="" disabled selected hidden>Select</option>
+                                 <option *ngFor="let b of battalions" [value]="b.id">{{b.shortName}} Bn</option>
+                              </select> -->
+
+
+                              <div fxLayoutAlign="center start" class="">
+                                 <button mat-flat-button class="success-bg gene-btn-lg"
+                                    [disabled]="LoginGCForm.invalid">Login</button>
+                              </div>
+                              <div class="mrgn-b-md1">
+                                 <a class="for" [routerLink]="['/session/forgot-passwordV2']">Forgot Password?</a>
+                              </div>
+
+                              <!-- <p class="text-center mrgn-b-sm pad-t-xl">Or Signup Using</p>
+                                    <div class="social-list" fxLayoutAlign="center start" fxLayoutGap="15px">
+                                       <button mat-fab color="primary" matTooltip="Facebook" aria-label="Button that displays a tooltip for social media link">f</button>
+                                       <button mat-fab color="warn" matTooltip="Google" aria-label="Button that displays a tooltip for social media link">G</button>
+                                       <button mat-fab color="accent" matTooltip="Twitter" aria-label="Button that displays a tooltip for social media link">t</button>
+                                     //  <button mat-fab color="warn" matTooltip="Gmail" aria-label="Button that displays a tooltip for social media link">g</button>                           
+                                    </div> -->
+                           </div>
+                        </form>
+                     </div>
+                  </mat-card>
+               </div>
+
+               <!-- <div fxLayout="column" fxFlex="100" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="38" fxFlex.lg="38" fxFlex.xl="38" fxHide.lt-md>
+                         
+                           <div class="height-full full-wid">
+            
+                              <div fxLayout="column" fxLayoutAlign="center center" class="height-full full-wid">
+                                 <ngx-slick-carousel [config]="slideConfig"  class="carousel full-wid height-full" #slickModal="slick-carousel">
+                                 <div ngxSlickItem *ngFor="let slide of sessionSlider" class="height-full full-wid">
+                                    <div class="session-slider overlay-wrap height-full full-wid">
+                                       <div class="slider-bg-img full-wid" [ngStyle] = "{'background-image' : 'url(' + slide.image + ')'}"></div>
+                                       <div class="overlay-content" fxLayoutAlign="start end">
+                                          <div class="content-wrap">
+                                             <div class="sec-title">
+                                                <h5 class="text-inverse">{{slide.name}}</h5>
+                                                <span class="text-inverse">{{slide.designation}}</span>
+                                             </div>
+                                             <div class="sec-content">
+                                                <p class="text-inverse">{{slide.content}}</p>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 </ngx-slick-carousel>
+                              </div>
+            
+                           </div>
+                        </div> -->
+
+            </div>
+
+            <div *ngIf="loginType=='e-dossier'" fxLayout="row wrap" fxLayoutAlign="center stretch"
+               class="height-full pad-t-xl pad-b-xl form-wrap-row set-resp-space" fxLayoutGap.gt-md="15px">
+               <div fxLayout="column" fxFlex="100" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="55" fxFlex.lg="55"
+                  fxFlex.xl="55">
+                  <mat-card class="gene-login-v2 card-full-height card-full-width">
+                     <div>
+                        <div fxLayout="column" fxLayoutAlign="center center" class="mrgn-b-lggg text-center">
+                           <!-- <h2>Login</h2> -->
+                           <a href="javascript:void(0)" [routerLink]="['/pages']">
+                              <img src="assets/img/logo_red.png" alt="" style="width:80px;height:85px;">
+                           </a>
+                           <h3 class="title">E-Dossier </h3>
+
+                           <!-- <p>The most powerful angular app</p> -->
+                        </div>
+                        <form [formGroup]="LoginDossierForm" (ngSubmit)="loginDossier()" fxLayoutAlign="center start">
+                           <div fxLayout="column" fxFlex.xs="100" fxFlex.sm="80" fxFlex.md="80" fxFlex.lg="90"
+                              fxFlex.xl="90" fxLayoutAlign="start">
+
+                              <label class="login_label" for="username">Login ID</label>
+                              <input formControlName="username" type="text" id="username" class="form-control new-ctl">
+                              <label class="login_label" for="password">Password</label>
+                              <input formControlName="password" type="password" id="password"
+                                 class="form-control new-ctl">
+                              <div fxLayoutAlign="center start" class="">
+                                 <button mat-flat-button class="success-bg gene-btn-lg"
+                                    [disabled]="LoginDossierForm.invalid">Login</button>
+                              </div>
+                              <div class="mrgn-b-md1">
+                                 <a class="for" [routerLink]="['/session/forgot-passwordV2']">Forgot Password?</a>
+                              </div>
+
+                              <!-- <p class="text-center mrgn-b-sm pad-t-xl">Or Signup Using</p>
+                                    <div class="social-list" fxLayoutAlign="center start" fxLayoutGap="15px">
+                                       <button mat-fab color="primary" matTooltip="Facebook" aria-label="Button that displays a tooltip for social media link">f</button>
+                                       <button mat-fab color="warn" matTooltip="Google" aria-label="Button that displays a tooltip for social media link">G</button>
+                                       <button mat-fab color="accent" matTooltip="Twitter" aria-label="Button that displays a tooltip for social media link">t</button>
+                                     //  <button mat-fab color="warn" matTooltip="Gmail" aria-label="Button that displays a tooltip for social media link">g</button>                           
+                                    </div> -->
+                           </div>
+                        </form>
+                     </div>
+                  </mat-card>
+               </div>
+
+               <!-- <div fxLayout="column" fxFlex="100" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="38" fxFlex.lg="38" fxFlex.xl="38" fxHide.lt-md>
+                         
+                           <div class="height-full full-wid">
+            
+                              <div fxLayout="column" fxLayoutAlign="center center" class="height-full full-wid">
+                                 <ngx-slick-carousel [config]="slideConfig"  class="carousel full-wid height-full" #slickModal="slick-carousel">
+                                 <div ngxSlickItem *ngFor="let slide of sessionSlider" class="height-full full-wid">
+                                    <div class="session-slider overlay-wrap height-full full-wid">
+                                       <div class="slider-bg-img full-wid" [ngStyle] = "{'background-image' : 'url(' + slide.image + ')'}"></div>
+                                       <div class="overlay-content" fxLayoutAlign="start end">
+                                          <div class="content-wrap">
+                                             <div class="sec-title">
+                                                <h5 class="text-inverse">{{slide.name}}</h5>
+                                                <span class="text-inverse">{{slide.designation}}</span>
+                                             </div>
+                                             <div class="sec-content">
+                                                <p class="text-inverse">{{slide.content}}</p>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 </ngx-slick-carousel>
+                              </div>
+            
+                           </div>
+                        </div> -->
+
+            </div>
+
+
+
+
+
+
+            <!-- <div *ngIf="loginType=='trg-battalion'" fxLayout="row wrap" fxLayoutAlign="center stretch"
+               class="height-full pad-t-xl pad-b-xl form-wrap-row set-resp-space" fxLayoutGap.gt-md="15px">
+               <div fxLayout="column" fxFlex="100" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="55" fxFlex.lg="55"
+                  fxFlex.xl="55">
+                  <mat-card class="gene-login-v2 card-full-height card-full-width">
+                     <div>
+                        <div fxLayout="column" fxLayoutAlign="center center" class="mrgn-b-lggg text-center">
+                       
+                           <a href="javascript:void(0)" [routerLink]="['/pages']">
+                              <img src="assets/img/logo_red.png" alt="" style="width:80px;height:85px;">
+                           </a>
+                           <h3 class="title">{{title | uppercase}} </h3>
+                        </div>
+                        <form [formGroup]="battalionLoginForm" (ngSubmit)="loginBattalion()"
+                           fxLayoutAlign="center start">
+                           <div fxLayout="column" fxFlex.xs="100" fxFlex.sm="80" fxFlex.md="80" fxFlex.lg="90"
+                              fxFlex.xl="90" fxLayoutAlign="start">
+                              <label class="login_label" for="username">Login ID</label>
+                              <input formControlName="username" type="text" id="username" class="form-control new-ctl">
+                              <label class="login_label" for="password">Password</label>
+                              <input formControlName="password" type="password" id="password"
+                                 class="form-control new-ctl">
+
+
+                              <div fxLayoutAlign="center start" class="">
+                                 <button mat-flat-button class="success-bg gene-btn-lg"
+                                    [disabled]="battalionLoginForm.invalid">Login</button>
+                              </div>
+                              <div class="mrgn-b-md1">
+                                 <a class="for">Forgot Password?</a>
+
+                              </div>
+                           </div>
+                        </form>
+                     </div>
+                  </mat-card>
+               </div>
+
+            
+
+            </div> -->
+
+            <div *ngIf="loginType == 'delayDashboard'" fxLayout="row wrap" fxLayoutAlign="center stretch"
+               class="height-full pad-t-xl pad-b-xl form-wrap-row set-resp-space" fxLayoutGap.gt-md="15px">
+               <div fxLayout="column" fxFlex="100" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="55" fxFlex.lg="55"
+                  fxFlex.xl="55">
+                  <mat-card class="gene-login-v2 card-full-height card-full-width">
+                     <div>
+                        <div fxLayout="column" fxLayoutAlign="center center" class="mrgn-b-lggg text-center">
+                           <!-- <h2>Login</h2> -->
+                           <a href="javascript:void(0)" [routerLink]="['/pages']">
+                              <img src="assets/img/logo_red.png" alt="" style="width:80px;height:85px;">
+                           </a>
+                           <h3 class="title">{{title | uppercase}} </h3>
+
+                           <!-- <p>The most powerful angular app</p> -->
+                        </div>
+                        <form [formGroup]="loginDelayDashboardForm" (ngSubmit)="loginDelayDashboard()"
+                           fxLayoutAlign="center start">
+                           <div fxLayout="column" fxFlex.xs="100" fxFlex.sm="80" fxFlex.md="80" fxFlex.lg="90"
+                              fxFlex.xl="90" fxLayoutAlign="start">
+                              <!-- <mat-form-field class="full-wid mrgn-b-md"  appearance="outline">
+                                    <mat-label>Username</mat-label>
+                                    <input class="mrgn-t-none" matInput  type="text" name="email"  [(ngModel)]="email">
+                                    <span matSuffix><i class="material-icons">verified_user</i></span>                              
+                                 </mat-form-field>
+                                 <mat-form-field class="full-wid mrgn-b-md"  appearance="outline">
+                                    <mat-label>Password</mat-label>
+                                    <input class="mrgn-t-none" matInput  type="password" name="password"  [(ngModel)]="password">
+                                    <span matSuffix><i class="material-icons">vpn_key</i></span>
+                                 </mat-form-field> -->
+                              <label class="login_label" for="username">Login ID</label>
+                              <input formControlName="username" type="text" id="username" class="form-control new-ctl">
+                              <label class="login_label" for="password">Password</label>
+                              <input formControlName="password" type="password" id="password"
+                                 class="form-control new-ctl">
+                              <!-- <label class="login_label" for="password">Battalion</label>
+                           <select formControlName="battalion" class="form-control new-ctl">
+                              <option value="" disabled selected hidden>Select</option>
+                              <option *ngFor="let b of battalions" [value]="b.id">{{b.shortName}} Bn</option>
+                           </select> -->
+
+
+                              <div fxLayoutAlign="center start" class="">
+                                 <button mat-flat-button class="success-bg gene-btn-lg"
+                                    [disabled]="loginDelayDashboard.invalid">Login</button>
+                              </div>
+                              <div class="mrgn-b-md1">
+                                 <a class="for" [routerLink]="['/session/forgot-passwordV2']">Forgot Password?</a>
+                              </div>
+
+                              <!-- <p class="text-center mrgn-b-sm pad-t-xl">Or Signup Using</p>
+                                 <div class="social-list" fxLayoutAlign="center start" fxLayoutGap="15px">
+                                    <button mat-fab color="primary" matTooltip="Facebook" aria-label="Button that displays a tooltip for social media link">f</button>
+                                    <button mat-fab color="warn" matTooltip="Google" aria-label="Button that displays a tooltip for social media link">G</button>
+                                    <button mat-fab color="accent" matTooltip="Twitter" aria-label="Button that displays a tooltip for social media link">t</button>
+                                  //  <button mat-fab color="warn" matTooltip="Gmail" aria-label="Button that displays a tooltip for social media link">g</button>                           
+                                 </div> -->
+                           </div>
+                        </form>
+                     </div>
+                  </mat-card>
+               </div>
+
+               <!-- <div fxLayout="column" fxFlex="100" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="38" fxFlex.lg="38" fxFlex.xl="38" fxHide.lt-md>
+                      
+                        <div class="height-full full-wid">
+         
+                           <div fxLayout="column" fxLayoutAlign="center center" class="height-full full-wid">
+                              <ngx-slick-carousel [config]="slideConfig"  class="carousel full-wid height-full" #slickModal="slick-carousel">
+                              <div ngxSlickItem *ngFor="let slide of sessionSlider" class="height-full full-wid">
+                                 <div class="session-slider overlay-wrap height-full full-wid">
+                                    <div class="slider-bg-img full-wid" [ngStyle] = "{'background-image' : 'url(' + slide.image + ')'}"></div>
+                                    <div class="overlay-content" fxLayoutAlign="start end">
+                                       <div class="content-wrap">
+                                          <div class="sec-title">
+                                             <h5 class="text-inverse">{{slide.name}}</h5>
+                                             <span class="text-inverse">{{slide.designation}}</span>
+                                          </div>
+                                          <div class="sec-content">
+                                             <p class="text-inverse">{{slide.content}}</p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              </ngx-slick-carousel>
+                           </div>
+         
+                        </div>
+                     </div> -->
+
+            </div>
+
+         </div>
+      </div>
+   </div>
+</div>

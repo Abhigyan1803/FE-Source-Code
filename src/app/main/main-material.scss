@@ -1,0 +1,185 @@
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.cart-item{
+   .content-wrap{
+      font-size: 0.85rem;
+   }
+}
+h4.welcome {
+    color: #fff;
+    font-size: 18px;
+    font-family:  'Roboto', sans-serif;
+}
+p, h1, h2, h3, h4, h5, h6, li, a, span, strong, ul, div, button, input {
+   font-family:  'Roboto', sans-serif;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+   background-color: rgb(193 153 83);
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+   background-color: #a9823d;
+}
+
+.bg_class {  
+	background: url(../../assets/img/sidebar-5.jpg);
+   background-color : rgb(62 66 49) !important;   
+}
+
+.mat-nav.back_imag.ng-tns-c233-0 {
+   height: 100%;
+   background: rgba(62, 66, 49, .8);
+}
+
+body {
+   font-family:  'Roboto', sans-serif;
+}
+.sub-menu1{
+   color: #721a0c;
+}
+.top-br {
+   margin-top: 20px;
+}
+ .add-btton {
+   float: right;
+   background: #4c5041 !important;
+}
+
+body .mat-card {
+   padding: 0.875rem 0.875rem !important;
+}
+.inner-container.my-con {
+   padding: 0.5rem !important;
+}
+.table th, .table td{
+   font-size: 15px;
+}
+
+.add-btton mat-icon {
+   font-size: 16px !important;
+   width: 16px;
+   height: 16px;
+   line-height: 14px;
+}
+.mat-new {
+   padding: 0.875rem 0.875rem 0 !important;
+}
+.img-circle {
+   width: 35px;
+   height: 35px;
+   border: 2px solid #ccc;
+}
+.table-responsive thead {
+   background: #e1e3de;
+}
+.table thead th {
+   padding: 5px 15px;
+}
+.table thead td {
+   padding: 5px 15px;
+}
+.d-flex.btn-set {
+   align-items: flex-end;
+   justify-content: space-between;
+   margin-bottom: 10px;
+}
+
+
+
+.mat-drawer-inner-container::-webkit-scrollbar {
+   width: 10px;
+overflow: overlay ;
+
+  }
+  
+  /* Track */
+  .mat-drawer-inner-container::-webkit-scrollbar-track {
+   background: #888;
+  }
+  
+  /* Handle */
+  .mat-drawer-inner-container::-webkit-scrollbar-thumb {
+   background: #ccc;
+  }
+  
+  /* Handle on hover */
+  .mat-drawer-inner-container::-webkit-scrollbar-thumb:hover {
+   background: #c19953;
+  }
+
+  .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+   background-color: #721a0c !important;
+   color: white;
+}
+.mat-step-header .mat-step-icon {
+   background-color: rgb(192 148 80);
+   color: white;
+}
+
+.capitals{
+   text-transform: uppercase;
+}
+
+.rank-name{
+   text-transform: capitalize;
+}
+
+// input.ng-invalid.ng-touched{
+//    border: 1px solid red;
+// }
+
+// select.ng-invalid.ng-touched{
+//    border: 1px solid red;
+// }
+
+// textarea.ng-invalid.ng-touched{
+//    border: 1px solid red;
+// }
+
+
+
+.under-construction-img{   
+   opacity: .2; 
+   margin: 60px auto 0; 
+   display: table; 
+   width: 55%;
+}
+
+
+.mat-panel11 h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+.mat-panel11 mat-expansion-panel {
+    margin-bottom: 11px;
+    background: #eee;
+}
+
+.mat-panel11 .mat-expansion-panel .mat-expansion-panel {
+    background: #fff!important;
+}
+
+.user-menu{
+   width: 200px;
+}
+
+.acc-info{
+   text-align: center;
+}
+.service-id{
+   font-weight: 100;
+}
+
+label{
+   margin-top: 0px;
+}
+
+mat-toolbar mat-icon.mat-icon.notranslate.material-icons.mat-icon-no-color {
+    color: #c19953;
+} 

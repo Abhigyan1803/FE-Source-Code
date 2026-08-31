@@ -1,0 +1,31 @@
+
+<div class="mat-new">
+  <h4 class="card-heading">
+    <!-- <button mat-icon-button (click)="goBack()" ><mat-icon>chevron_left</mat-icon> </button> -->
+     <span class="sub-menu1">  Home <span class="sub-menu1"> > IMA Activities</span></span>
+  </h4>
+</div>
+
+<mat-card>
+
+  <div class="d-flex btn-set">
+    <button mat-raised-button (click)="addActivity()" class="add-btton">
+      <mat-icon>add</mat-icon> Add
+    </button>
+  </div>
+
+  <div class="gene-card-content pad-t-none">
+
+    <mat-grid-list cols="2" rowHeight="2:1">
+      <mat-grid-tile class="" *ngFor="let a of imaActivities" >
+        <mat-slide-toggle class="slide-toggle" [checked]="a.status == 1" (change)="changeActivityStatus($event,a.id)" ></mat-slide-toggle>
+        <img [src]="IP+a.image" alt="" (click)="openImage($event,a)">
+      </mat-grid-tile>
+
+    </mat-grid-list>
+
+  </div>
+
+  <!-- <mat-paginator #paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
+
+</mat-card>

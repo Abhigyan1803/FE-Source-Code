@@ -1,0 +1,71 @@
+<!-- <div class="mat-new">
+    <h4 class="card-heading"> <button mat-icon-button (click)="goBack()">
+            <mat-icon>chevron_left</mat-icon>
+        </button>Weapons Training ><span class="sub-menu1"> Add Final Result </span>
+    </h4>
+</div>
+
+<mat-card>
+    <form [formGroup]="weaponMarksForm">
+        <ng-container>
+            <ng-container>
+                <div class="gene-card-content pad-t-none">
+
+                    <div class="table-responsive">
+
+                        <table class="table table-hover table-middle th-fw-light mb-0">
+                            <thead>
+                                <tr>
+                                    <ng-container formArrayName="cadetWTMainResultlist">
+                                        <ng-container *ngFor="let cadetWTMainResultlist of cadetWTMainResultlist.controls; let i=index"
+                                            formGroupName="{{i}}">
+                                            <th>{{cadetWTMainResultlist['controls'].name.value}}</th>
+                                        </ng-container>
+                                    </ng-container>
+
+                                    <th>WTT</th>
+                                    <th>Spot Test</th>
+                                    <th>Grand Total</th>
+                                    <th>Remark</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <ng-container>
+                                        <ng-container *ngFor="let cadetWTMainResultlist of finalresult">
+                                            <td><input class="form-control" [value]="cadetWTMainResultlist.total" type="text" readonly>
+                                            </td>
+                                        </ng-container>
+                                    </ng-container>
+
+                                    <td> <input class="form-control" placeholder="WTT" formControlName="wtt"
+                                            type="text"></td>
+                                    <td> <input class="form-control" placeholder="Spot test" formControlName="spot"
+                                            type="text"></td>
+                                    <td><input class="form-control" placeholder="total" formControlName="total"
+                                            [value]="sum" type="text" readonly></td>
+                                    <td><input class="form-control" placeholder="remark" formControlName="remark"
+                                            type="text"></td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                </div>
+
+            </ng-container>
+        </ng-container>
+    </form>
+ 
+
+    <div class="row">
+        <div class="col-md-12 mt-4">
+          
+            <button mat-raised-button (click)="enterMarks()" style="float: right;">Submit</button>
+        </div>
+    </div>
+</mat-card> -->
+
+<p>sucessfull</p>

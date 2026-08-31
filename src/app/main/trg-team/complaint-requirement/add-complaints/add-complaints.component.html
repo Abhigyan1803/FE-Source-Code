@@ -1,0 +1,101 @@
+
+<div class="mat-new">
+    <h4 class="card-heading">
+      <button mat-icon-button (click)="goBack()" ><mat-icon>chevron_left</mat-icon> </button>
+      TRG Team <span class="sub-menu1"> > Complaints <span class="sub-menu1"> > {{pageTitle}}</span></span>
+    </h4>
+  </div>
+  <mat-card>
+    <div class="top-br">
+      <form [formGroup]="addComplaintsForm">
+  
+        <div class="row">
+
+            <div class="form-group col-md-6">
+               <label for="position">Title<span class="required">*</span></label>
+               <input id="title" type="text" class="form-control" maxlength="100" formControlName="title"
+               placeholder="Title">
+                <span class="validation_msg"
+                    *ngIf="f.title.errors && f.title.errors.required && isError">Please Enter title</span>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="position">Address<span class="required">*</span></label>
+              <input id="title" type="text" class="form-control" maxlength="100" formControlName="address"
+              placeholder="address">
+               <span class="validation_msg"
+                   *ngIf="f.address.errors && f.address.errors.required && isError">Please Enter Address</span>
+           </div>
+           
+        </div> 
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="requestType">Request Type<span class="required" >*</span></label>
+                <select name="" id="" class="form-control " formControlName="requestType">
+                  <option value="" disabled selected hidden>Request Type</option>
+                  <option value="Requirement">Requirement </option>
+                  <option value="Complaint">Complaint</option>
+                </select>
+                <span class="validation_msg" *ngIf="f.requestType.errors && f.requestType.errors.required && isError" >Request Type is required</span> 
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="requestNature">Nature of Request<span class="required" >*</span></label>
+                <select name="" id="" class="form-control " formControlName="requestNature">
+                  <option value="" disabled selected hidden>requestNature</option>
+                  <option value="IT">IT</option>
+                  <option value="Communication">Communication</option>
+                </select>
+                <span class="validation_msg" *ngIf="f.requestNature.errors && f.requestNature.errors.required && isError" >requestNature is required</span> 
+              </div>
+       </div> 
+
+       
+
+        <div class="row">
+                 <div class="form-group col-md-12">
+            <label for="details">Details <span class="char-count" >   ({{descLength}}/1500)  </span> <span class="required">*</span></label>
+            <!-- <input type="text" id="awards" class="form-control"  maxlength="100" formControlName="awards" placeholder="Awards"> -->
+            <textarea matInput placeholder="Maximum 1500 Characters" class="form-control"  (input)="charCount($event,'desc')" maxlength="1500" formControlName="details"></textarea>
+            <span class="val_msg" *ngIf="f.details.errors && f.details.errors.required && isError" >*Please Enter Details</span>
+
+             </div>
+        </div> 
+
+        <div class="form-group">
+          <label class="form-label">File</label>
+            <input type="file" #inputFile accept=".pdf,.doc,.docx" (change)="onSelectDoc($event)" id="image">
+            <mat-icon *ngIf="docUrl" class="document_icon" (click)="openDoc(docUrl)" >description</mat-icon>
+            <span class="note">Max File Size 50 MB. (Only pdf and doc format.)</span>
+        </div>
+  
+        <div class="row"  *ngIf="id" [readonly]="true">
+          <div class="form-group col-md-6">
+            <label for="requestStatus">Request Status</label>
+            <select name="" id="" class="form-control " disabled formControlName="requestStatus">
+              <option value="" disabled selected hidden>Request status</option>
+              <option value="Pending">Pending</option>
+              <option value="Completed">Completed/Resolved</option>
+              <option value="Rejected">Rejected</option>
+            </select>
+          </div>
+        </div>
+  
+        <div class="row" *ngIf="id">
+            <div class="form-group col-md-12">
+            <label for="remarks">Remarks by GS Branch</label>
+            <textarea matInput disabled placeholder="Maximum 500 Characters" class="form-control"  (input)="charCount($event,'remarks')" maxlength="1500" formControlName="remarks"></textarea>
+                <span class="validation_msg"
+                    *ngIf="f.remarks.errors && f.remarks.errors.required && isError">Please Enter title</span>
+            </div>
+        </div>
+  
+   
+  
+        <button mat-raised-button *ngIf="!id" (click)="addComplaints()">ADD Complaints</button>
+        <button mat-raised-button *ngIf="id" (click)="updateComplaints()">Update Complaints</button>
+  
+      </form>
+    </div>
+  </mat-card>

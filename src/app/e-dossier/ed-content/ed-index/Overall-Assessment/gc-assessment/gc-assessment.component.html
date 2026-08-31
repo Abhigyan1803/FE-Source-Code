@@ -1,0 +1,977 @@
+<div class="container">
+
+
+  <!-- <div id="top-bar" class="row">
+      <h2>E-Dossier</h2>
+    </div> -->
+  <div class="box-shadow">
+
+    <h4 class="card-heading">
+      <button mat-icon-button (click)="goBack()">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      <span class="sub-menu1"> E-Dossier > Assessment: GC Assessment </span>
+    </h4>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2 form-group">
+
+      <label for="rank">Ima No.</label>
+      <div class="border cdt-dtls"> {{cadetDetails.serviceId}} </div>
+      <!-- <input placeholder="No" type="text" [value]="cadetDetails.serviceId" disabled class="form-control"> -->
+
+    </div>
+    <div class="col-md-2 form-group">
+
+      <label for="rank">Rank</label>
+      <div class="border cdt-dtls"> {{cadetDetails.rank}} </div>
+      <!-- <input placeholder="Rank" [value]="cadetDetails.rank" type="text" disabled class="form-control"> -->
+
+    </div>
+    <div class="col-md-2 form-group">
+
+      <label for="rank">Name</label>
+      <div class="border cdt-dtls">{{cadetDetails.name}} </div>
+      <!-- <input placeholder="Name" [value]="cadetDetails.name" type="text" disabled class="form-control"> -->
+
+    </div>
+    <div class="col-md-2 form-group">
+
+      <label for="rank">Term</label>
+      <div class="border cdt-dtls">{{cadetDetails.termName}} </div>
+      <!-- <input placeholder="Term" [value]="cadetDetails.termName" type="text" disabled class="form-control"> -->
+
+    </div>
+    <div class="col-md-2 form-group">
+
+      <label for="rank">Battalion</label>
+      <div class="border cdt-dtls">{{cadetDetails.battalian + ' Bn'}} </div>
+      <!-- <input placeholder="Bn" [value]="cadetDetails.battalian + ' Bn'" type="text" disabled class="form-control"> -->
+
+    </div>
+    <div class="col-md-2 form-group">
+
+      <label for="rank">Company</label>
+      <div class="border cdt-dtls">{{cadetDetails.company}} </div>
+      <!-- <input placeholder="Coy" [value]="cadetDetails.company" type="text" disabled class="form-control"> -->
+
+    </div>
+
+  </div>
+
+
+  <div class="main-row row">
+    <div class="container-fluid">
+      <div class="mat-card">
+        <table class="tg sss">
+          <thead>
+            <tr>
+              <th class="tg-0pky">S NO</th>
+              <th class="tg-0pky">SUBJECTS</th>
+              <ng-container *ngIf="cadetDetails.entry != 'TGC'">
+                <th class="tg-c3ow" colspan="8">I TERM</th>
+                <th class="tg-c3ow" colspan="8">II TERM</th>
+              </ng-container>
+              <th class="tg-c3ow" colspan="8" *ngIf="cadetDetails.entry == 'TGC'">II TECH</th>
+              <th class="tg-c3ow" colspan="8">III TERM</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky"></td>
+              <ng-container *ngIf="cadetDetails.entry != 'TGC'">
+                <td class="tg-0pky" colspan="2">PL CDR</td>
+                <td class="tg-0pky" colspan="2">Coy CDR</td>
+                <td class="tg-0pky" colspan="2">BN CDR</td>
+                <td class="tg-0pky" colspan="2">TOTAL</td>
+              </ng-container>
+
+              <td class="tg-0pky" colspan="2">PL CDR</td>
+              <td class="tg-0pky" colspan="2">Coy CDR</td>
+              <td class="tg-0pky" colspan="2">BN CDR</td>
+              <td class="tg-0pky" colspan="2">TOTAL</td>
+
+              <td class="tg-0pky" colspan="2">PL CDR</td>
+              <td class="tg-0pky" colspan="2">Coy CDR</td>
+              <td class="tg-0pky" colspan="2">BN CDR</td>
+              <td class="tg-0pky" colspan="2">TOTAL</td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky">1</td>
+              <td class="tg-0pky">Officer Quotient</td>
+
+              <ng-container *ngIf="cadetDetails.entry != 'TGC'">
+                <td class="tg-0pky">Out of marks</td>
+                <td class="tg-0pky">Marks Given</td>
+
+                <td class="tg-0pky">Out of marks</td>
+                <td class="tg-0pky">Marks Given</td>
+
+                <td class="tg-0pky">Out of marks</td>
+                <td class="tg-0pky">Marks Given</td>
+
+                <td class="tg-0pky">Max marks</td>
+                <td class="tg-0pky">Marks Given</td>
+
+              </ng-container>
+
+
+
+              <td class="tg-0pky">Out of marks</td>
+              <td class="tg-0pky">Marks Given</td>
+
+              <td class="tg-0pky">Out of marks</td>
+              <td class="tg-0pky">Marks Given</td>
+
+              <td class="tg-0pky">Out of marks</td>
+              <td class="tg-0pky">Marks Given</td>
+
+              <td class="tg-0pky">Max marks</td>
+              <td class="tg-0pky">Marks Given</td>
+
+
+
+
+              <td class="tg-0pky">Out of marks</td>
+              <td class="tg-0pky">Marks Given</td>
+
+              <td class="tg-0pky">Out of marks</td>
+              <td class="tg-0pky">Marks Given</td>
+
+              <td class="tg-0pky">Max marks</td>
+              <td class="tg-0pky">Marks Given</td>
+
+              <td class="tg-0pky">Max marks</td>
+              <td class="tg-0pky">Marks Given</td>
+
+
+
+            </tr>
+            <tr *ngFor="let offrQtnt of officerQuotient; let i=index">
+
+              <td class="tg-0pky"></td>
+
+              <td class="tg-0pky">{{offrQtnt[0].subjectName}}</td>
+              <ng-container *ngFor="let oq of offrQtnt; let j=index">
+                <td class="tg-0pky"> {{oq.oqPlTotalMarks || '-'}} </td>
+                <td class="tg-0pky">
+                  <span >{{oq.oqPlObtainedMarks || '-'}}</span>
+                </td>
+
+                <td class="tg-0pky">{{oq.oqCoyTotalMarks || '-'}}</td>
+                <td class="tg-0pky">
+                  <span>{{oq.oqCoyObtainedMarks || '-'}}</span>
+                </td>
+                <td class="tg-0pky">{{oq.oqBnTotalMarks || '-'}}</td>
+                <td class="tg-0pky">
+                  <span >{{oq.oqBnObtainedMarks || '-'}}</span>
+                </td>
+
+                <td class="tg-0pky">{{oq.totalMarks || '-'}}</td>
+                <td class="tg-0pky">
+                  <span >{{oq.obtainedMarks || '-'}}</span>
+                </td>
+              </ng-container>
+
+              <!-- <td class="tg-0pky">140</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+              <td class="tg-0pky">90</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+              <td class="tg-0pky">70</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+              <td class="tg-0pky">140</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+              <td class="tg-0pky">140</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+              <td class="tg-0pky">90</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+              <td class="tg-0pky">70</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+              <td class="tg-0pky">140</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+              <td class="tg-0pky">140</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+              <td class="tg-0pky">90</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+              <td class="tg-0pky">70</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+              <td class="tg-0pky">140</td>
+              <td class="tg-0pky"><input type="text"></td> -->
+
+            </tr>
+            <!-- <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">Acad</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">20</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">20</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">20</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">Drill</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">20</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">20</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">20</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">Eqtn</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">10</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">10</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">10</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">OQ Marks Awarded by Dy Comdt & CI</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">20</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">20</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">20</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">OQ Marks Awarded by Comdt</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">30</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">30</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">30</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr> -->
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">Total Officer Quotient Marks</td>
+
+              <ng-container *ngIf="cadetDetails.entry != 'TGC'">
+                <td class="tg-0pky" colspan="6"></td>
+                <td class="tg-0pky">400</td>
+                <td class="tg-0pky"><input type="text"></td>
+              </ng-container>
+
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">400</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">400</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">Officer Quotient Percentage</td>
+              <ng-container *ngIf="cadetDetails.entry != 'TGC'">
+                <td class="tg-0pky" colspan="6"></td>
+                <td class="tg-0pky"><input type="text"></td>
+                <td class="tg-0pky"><input type="text"></td>
+              </ng-container>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">Officer Quotient Grading</td>
+              <ng-container *ngIf="cadetDetails.entry != 'TGC'">
+                <td class="tg-0pky" colspan="6"></td>
+                <td class="tg-0pky"><input type="text"></td>
+                <td class="tg-0pky"><input type="text"></td>
+              </ng-container>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+
+            <tr>
+              <td class="tg-0pky">2</td>
+              <td class="tg-0pky" colspan="25"> Physicals</td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">PT</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">225</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">225</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">225</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">Speed Marches/Runback</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">65</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">65</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">65</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">Games</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">100</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">100</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">100</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">Equitatition Trg</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">50</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">50</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">50</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">Drill</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">100</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">100</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">100</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">Total Physicals</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">540</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">540</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">540</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">Physicals Percentage</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky">3</td>
+              <td class="tg-0pky" colspan="25"> Service Subjects</td>
+            </tr>
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">Weapon Training</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">150</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">150</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">150</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">BMT 1</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">200</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">200</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">200</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">BMT 2</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">150</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">150</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">150</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">Map (Practical)</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">25</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">25</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">25</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">Camp/Exercise (Incl Tac Trg (Practical)</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">125</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">125</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">125</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">Total Service Subjects Marks</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">700</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">700</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">700</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">Service Subjects Percentage</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky">4</td>
+              <td class="tg-0pky" colspan="25">Academics Subjects</td>
+            </tr>
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">Mil History & Mil Thinking</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">80</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">80</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">80</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">CAIR, Area Cultural Studies & Mil Mgt</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">50</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">50</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">50</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">Science & Warfare (SAW)</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">70</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">70</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">70</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky"> </td>
+              <td class="tg-0pky">Service Writing (SWT)</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">25</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">25</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">25</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">English Comn Skills (ECS)</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">25</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">25</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">25</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">IT</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">50</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">50</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">50</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky"></td>
+              <td class="tg-0pky">Total Academics Subjects</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">300</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">300</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">300</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky"> </td>
+              <td class="tg-0pky">Academics Subjects Percentage</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky">5 </td>
+              <td class="tg-0pky">Leadership Matrix</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">60</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">60</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">60</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky">6 </td>
+              <td class="tg-0pky">Credit for Excellence</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">50</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">50</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">50</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky">7 </td>
+              <td class="tg-0pky">Gross Total</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">2000</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">2000</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">2000</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky">8 </td>
+              <td class="tg-0pky">Mutual Assessment (Rank/Out of)</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky">9 </td>
+              <td class="tg-0pky">Weightage of II Term(50% to be added in III Term Marks</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">1000</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky">10 </td>
+              <td class="tg-0pky">Grand Total of all Term Merit</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">2000</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">2000</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky">3000</td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky">11 </td>
+              <td class="tg-0pky">Percentage out of Max Marks</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky">12 </td>
+              <td class="tg-0pky">Grading</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+            <tr>
+              <td class="tg-0pky">13 </td>
+              <td class="tg-0pky">Order of Merit (merit/Out of)</td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky" colspan="6"></td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0pky"><input type="text"></td>
+
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="tg">
+
+          <thead>
+            <tr>
+              <td class="tg-0lax" rowspan="2">GRADING@</td>
+              <td class="tg-0lax">OS</td>
+              <td class="tg-0lax">AA</td>
+              <td class="tg-0lax">JAA</td>
+              <td class="tg-0lax">HA</td>
+              <td class="tg-0lax">A</td>
+              <td class="tg-0lax">LA</td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">75%</td>
+              <td class="tg-0lax">(74%-70)</td>
+              <td class="tg-0lax">(69-65%)</td>
+              <td class="tg-0lax">(64-60%)</td>
+              <td class="tg-0lax">(59-50%)</td>
+              <td class="tg-0lax">(49-40%)</td>
+            </tr>
+          </thead>
+        </table>
+        <table class="tg">
+          <thead>
+            <tr>
+              <th class="tg-0lax">Trg Activity</th>
+              <th class="tg-0lax">Avg Pds Allotted</th>
+              <th class="tg-0lax">Pl Cdr</th>
+              <th class="tg-0lax">Coy Cdr</th>
+              <th class="tg-0lax">Bn Cdr</th>
+              <th class="tg-0lax">Total</th>
+              <th class="tg-0lax">Remarks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tg-0lax">PT</td>
+              <td class="tg-0lax">60</td>
+              <td class="tg-0lax">15</td>
+              <td class="tg-0lax">10</td>
+              <td class="tg-0lax">5</td>
+              <td class="tg-0lax">30</td>
+              <td class="tg-0pky"><input type="text"></td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">Obst Course/Trg</td>
+              <td class="tg-0lax">08</td>
+              <td class="tg-0lax">5</td>
+              <td class="tg-0lax">5</td>
+              <td class="tg-0lax">5</td>
+              <td class="tg-0lax">15</td>
+              <td class="tg-0pky"><input type="text"></td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">Swimming</td>
+              <td class="tg-0lax">16</td>
+              <td class="tg-0lax">5</td>
+              <td class="tg-0lax">5</td>
+              <td class="tg-0lax">5</td>
+              <td class="tg-0lax">15</td>
+              <td class="tg-0pky"><input type="text"></td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">WpnTrg</td>
+              <td class="tg-0lax">95</td>
+              <td class="tg-0lax">15</td>
+              <td class="tg-0lax">10</td>
+              <td class="tg-0lax">5</td>
+              <td class="tg-0lax">30</td>
+              <td class="tg-0pky"><input type="text"></td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">Sports/Games</td>
+              <td class="tg-0lax">88</td>
+              <td class="tg-0lax">20</td>
+              <td class="tg-0lax">15</td>
+              <td class="tg-0lax">10</td>
+              <td class="tg-0lax">45</td>
+              <td class="tg-0pky"><input type="text"></td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">X- Country</td>
+              <td class="tg-0lax">10</td>
+              <td class="tg-0lax">5</td>
+              <td class="tg-0lax">5</td>
+              <td class="tg-0lax">5</td>
+              <td class="tg-0lax">15</td>
+              <td class="tg-0pky"><input type="text"></td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">TacTrgexcl Camps</td>
+              <td class="tg-0lax">165</td>
+              <td class="tg-0lax">25</td>
+              <td class="tg-0lax">10</td>
+              <td class="tg-0lax">10</td>
+              <td class="tg-0lax">45</td>
+              <td class="tg-0pky"><input type="text"></td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">Camps/Ex</td>
+              <td class="tg-0lax">120</td>
+              <td class="tg-0lax">40</td>
+              <td class="tg-0lax">20</td>
+              <td class="tg-0lax">15</td>
+              <td class="tg-0lax">75</td>
+              <td class="tg-0pky"><input type="text"></td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">Dinner/Guest Ni</td>
+              <td class="tg-0lax">5</td>
+              <td class="tg-0lax">5</td>
+              <td class="tg-0lax">5</td>
+              <td class="tg-0lax">5</td>
+              <td class="tg-0lax">15</td>
+              <td class="tg-0pky"><input type="text"></td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">Misc</td>
+              <td class="tg-0lax">-</td>
+              <td class="tg-0lax">5</td>
+              <td class="tg-0lax">5</td>
+              <td class="tg-0lax">5</td>
+              <td class="tg-0lax">15</td>
+              <td class="tg-0pky"><input type="text"></td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">Total (Bn level)</td>
+              <td class="tg-0pky"><input type="text"></td>
+              <td class="tg-0lax">140</td>
+              <td class="tg-0lax">90</td>
+              <td class="tg-0lax">70</td>
+              <td class="tg-0lax">300</td>
+              <td class="tg-0pky"><input type="text"></td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">Acad</td>
+              <td class="tg-0lax">150</td>
+              <td class="tg-0lax">-</td>
+              <td class="tg-0lax">-</td>
+              <td class="tg-0lax">-</td>
+              <td class="tg-0lax">20</td>
+              <td class="tg-0lax">AEC DS</td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">Drill</td>
+              <td class="tg-0lax">55</td>
+              <td class="tg-0lax">-</td>
+              <td class="tg-0lax">-</td>
+              <td class="tg-0lax">-</td>
+              <td class="tg-0lax">20</td>
+              <td class="tg-0lax">Adjt</td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">Eqtn</td>
+              <td class="tg-0lax">22</td>
+              <td class="tg-0lax">-</td>
+              <td class="tg-0lax">-</td>
+              <td class="tg-0lax">-</td>
+              <td class="tg-0lax">10</td>
+              <td class="tg-0lax">ETO</td>
+            </tr>
+            <tr>
+              <td class="tg-0lax" colspan="5">DC & CI</td>
+              <td class="tg-0lax">20</td>
+              <td class="tg-0pky"><input type="text"></td>
+            </tr>
+            <tr>
+              <td class="tg-0lax" colspan="5">Comdt</td>
+              <td class="tg-0lax">30</td>
+              <td class="tg-0pky"><input type="text"></td>
+            </tr>
+            <tr>
+              <td class="tg-0lax" colspan="5">Grand Total</td>
+              <td class="tg-0lax">400</td>
+              <td class="tg-0pky"><input type="text"></td>
+            </tr>
+          </tbody>
+        </table>
+
+
+        <div class="text-right">
+          <button class="btn btn-color mt-2">Submit</button>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>

@@ -1,0 +1,176 @@
+<div class="card" style="width: 100%;" >
+    <section class="ftco-section bg-light">
+        <!-- <h3>{{catName}} </h3> -->
+       
+        <div class="container-fluid">
+            <div class="pull-right">
+                <!-- <div class="search">
+                    <input class="search_input" (input)="applyFilter($event)" placeholder="Search ..." #input>
+                </div> -->
+                <button  mat-raised-button *ngIf='isLoggedIn' (click)="addBlog()" class="add-btton pull-right"  >
+                    <mat-icon>add</mat-icon> Add
+                </button>
+            </div>
+            <div class="row d-flex">
+                <mat-card *ngIf="!imaBlogsList.length" style=" margin: auto; width: 100%; height: 65vh;text-align: center;padding-top: 80px;">
+                    <img src="assets/img/empty-no-data.png" >
+                </mat-card>
+                <div *ngFor="let b of imaBlogsList" class="col-md-4 d-flex ftco-animate fadeInUp ftco-animated">
+                    <div class="blog-entry justify-content-end">
+                        <a *ngIf="b.blogImage" href="javascript:void(0)" class="block-20" style="background-image:url({{IP+b.blogImage}});"></a>
+                        <a *ngIf="!b.blogImage" href="javascript:void(0)" class="block-20">
+                            <img src="assets/img/default-doc-image.jpg" alt="">
+                        </a>
+
+                        <div class="text p-4 float-right d-block">
+                            <div class="topper d-flex align-items-center">
+                                <div class="one py-2 pl-3 pr-1 align-self-stretch">
+                                    <span class="day">{{b.createdAt | date:'d'}}</span>
+                                </div>
+                                <div class="two pl-0 pr-3 py-2 align-self-stretch">
+                                    <span class="mos">{{b.createdAt | date:'MMM'}}</span>
+                                    <span class="yr">{{b.createdAt | date:'y'}}</span>
+                                </div>
+                            </div>
+                            <h3 class="heading mb-3"><a href="javascript:void(0)">{{b.title}}</a></h3>
+                            <p [innerHTML]="b.description.substr(0,95)+'..........'" >
+                            </p>
+                            <p><a href="javascript:void(0)" (click)="readBlog(b)" class="btn-custom">
+                                 <strong>Read more</strong> </a></p>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- <div class="col-md-4 d-flex ftco-animate fadeInUp ftco-animated">
+                    <div class="blog-entry justify-content-end">
+                        <a href="#" class="block-20" style="background-image:url(assets/img/a2.jpg)">
+                        </a>
+                        <div class="text p-4 float-right d-block">
+                            <div class="topper d-flex align-items-center">
+                                <div class="one py-2 pl-3 pr-1 align-self-stretch">
+                                    <span class="day">18</span>
+                                </div>
+                                <div class="two pl-0 pr-3 py-2 align-self-stretch">
+                                    <span class="yr">2019</span>
+                                    <span class="mos">October</span>
+                                </div>
+                            </div>
+                            <h3 class="heading mb-3"><a href="#">All you want to know about industrial laws</a></h3>
+                            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
+                            </p>
+                            <p><a href="#" class="btn-custom"><span class="ion-ios-arrow-round-forward mr-3"></span>Read
+                                    more</a></p>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- <div class="col-md-4 d-flex ftco-animate fadeInUp ftco-animated">
+                    <div class="blog-entry justify-content-end">
+                        <a href="#" class="block-20" style="background-image:url(assets/img/a3.jpg)">
+                        </a>
+                        <div class="text p-4 float-right d-block">
+                            <div class="topper d-flex align-items-center">
+                                <div class="one py-2 pl-3 pr-1 align-self-stretch">
+                                    <span class="day">18</span>
+                                </div>
+                                <div class="two pl-0 pr-3 py-2 align-self-stretch">
+                                    <span class="yr">2019</span>
+                                    <span class="mos">October</span>
+                                </div>
+                            </div>
+                            <h3 class="heading mb-3"><a href="#">All you want to know about industrial laws</a></h3>
+                            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
+                            </p>
+                            <p><a href="#" class="btn-custom"><span class="ion-ios-arrow-round-forward mr-3"></span>Read
+                                    more</a></p>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- <div class="col-md-4 d-flex ftco-animate fadeInUp ftco-animated">
+                    <div class="blog-entry justify-content-end">
+                        <a href="#" class="block-20" style="background-image:url(assets/img/a4.jpg)">
+                        </a>
+                        <div class="text p-4 float-right d-block">
+                            <div class="topper d-flex align-items-center">
+                                <div class="one py-2 pl-3 pr-1 align-self-stretch">
+                                    <span class="day">18</span>
+                                </div>
+                                <div class="two pl-0 pr-3 py-2 align-self-stretch">
+                                    <span class="yr">2019</span>
+                                    <span class="mos">October</span>
+                                </div>
+                            </div>
+                            <h3 class="heading mb-3"><a href="#">All you want to know about industrial laws</a></h3>
+                            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
+                            </p>
+                            <p><a href="#" class="btn-custom"><span class="ion-ios-arrow-round-forward mr-3"></span>Read
+                                    more</a></p>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- <div class="col-md-4 d-flex ftco-animate fadeInUp ftco-animated">
+                    <div class="blog-entry justify-content-end">
+                        <a href="#" class="block-20" style="background-image:url(assets/img/a5.jpg)">
+                        </a>
+                        <div class="text p-4 float-right d-block">
+                            <div class="topper d-flex align-items-center">
+                                <div class="one py-2 pl-3 pr-1 align-self-stretch">
+                                    <span class="day">18</span>
+                                </div>
+                                <div class="two pl-0 pr-3 py-2 align-self-stretch">
+                                    <span class="yr">2019</span>
+                                    <span class="mos">October</span>
+                                </div>
+                            </div>
+                            <h3 class="heading mb-3"><a href="#">All you want to know about industrial laws</a></h3>
+                            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
+                            </p>
+                            <p><a href="#" class="btn-custom"><span class="ion-ios-arrow-round-forward mr-3"></span>Read
+                                    more</a></p>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- <div class="col-md-4 d-flex ftco-animate fadeInUp ftco-animated">
+                    <div class="blog-entry justify-content-end">
+                        <a href="#" class="block-20" style="background-image:url(assets/img/a6.jpg)">
+                        </a>
+                        <div class="text p-4 float-right d-block">
+                            <div class="topper d-flex align-items-center">
+                                <div class="one py-2 pl-3 pr-1 align-self-stretch">
+                                    <span class="day">18</span>
+                                </div>
+                                <div class="two pl-0 pr-3 py-2 align-self-stretch">
+                                    <span class="yr">2019</span>
+                                    <span class="mos">October</span>
+                                </div>
+                            </div>
+                            <h3 class="heading mb-3"><a href="#">All you want to know about industrial laws</a></h3>
+                            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
+                            </p>
+                            <p><a href="#" class="btn-custom"><span class="ion-ios-arrow-round-forward mr-3"></span>Read
+                                    more</a></p>
+                        </div>
+                    </div>
+                </div> -->
+    
+    
+            </div>
+            <!-- <div class="row">
+                <div class="col text-center">
+                    <div class="block-27">
+                        <ul>
+                            <li><a href="#">&lt;</a></li>
+                            <li class="active"><span>1</span></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">&gt;</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div> -->
+        <mat-paginator #myPaginator  [length]="resultsLength"  [pageSizeOptions]="[10,20,50,100]" showFirstLastButtons></mat-paginator>
+
+        </div>
+    </section>
+    </div>

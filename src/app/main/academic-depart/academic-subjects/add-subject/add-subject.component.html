@@ -1,0 +1,544 @@
+<div class="mat-new">
+
+    <h4 class="card-heading">
+        <button mat-icon-button (click)="goBack()">
+            <mat-icon>chevron_left</mat-icon>
+        </button>
+        Subjects > <span class="sub-menu1"> {{term}} > {{paper}} > {{sTitle}} > {{pTitle}} Topics</span>
+    </h4>
+</div>
+
+<mat-card>
+    <!-- <button (click)="getForm()" >GET</button> -->
+    <form [formGroup]="addSubjectForm">
+
+        <mat-accordion class="mat-panel11">
+
+            <ng-container formArrayName="termTopic">
+
+                <div *ngFor="let topic of getAllTopics.controls;let i=index">
+                    <mat-expansion-panel [formGroupName]="i">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <!-- <h4>Topic Name</h4> -->
+                                <!-- <input type="text" class="form-control" name="" id=""
+                                formControlName="topicName" placeholder="Topic Name">
+                                <span  class="validation_msg"  *ngIf="!getAllTopics.controls[i].value.topicName && isError" >
+                                    Required
+                                </span> -->
+                                <h4>
+                                    {{getAllTopics.controls[i].value.topicName || "Topic"}}
+                                </h4>
+
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                <!-- <span  class="validation_msg"  *ngIf="f.date.touched && f.time.invalid" >Please Select Date</span> -->
+                                <span class="validation_msg"
+                                    *ngIf="getAllTopics.controls[i].status =='INVALID' && isError">
+                                    Please Fill All Required Fields.
+                                </span>
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <div>
+                            <mat-accordion class="mat-panel11">
+
+                                <div class="mb-3">
+
+                                    <input type="text" class="form-control" name="" id="" formControlName="topicName"
+                                        placeholder="Topic Name">
+                                    <span class="validation_msg"
+                                        *ngIf="!getAllTopics.controls[i].value.topicName && isError">
+                                        Required
+                                    </span>
+                                </div>
+                                <mat-expansion-panel>
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <h4>Learning Outcomes</h4>
+
+                                        </mat-panel-title>
+                                        <mat-panel-description>
+                                            <!-- This is a summary of the content -->
+                                            <!-- <span class="validation_msg"
+                                                *ngIf="!getAllTopics.controls[i].value.learningOutcomes && isError">
+                                                Required
+                                            </span> -->
+                                        </mat-panel-description>
+                                    </mat-expansion-panel-header>
+
+                                    <ckeditor formControlName="learningOutcomes" (change)="onChange($event)"
+                                        (mouseover)="mouseEvent($event,'mouseover')"
+                                        (mouseout)="mouseEvent($event,'mouseout')" (click)="mouseEvent($event,'click')">
+                                    </ckeditor>
+
+
+                                </mat-expansion-panel>
+
+                                <mat-expansion-panel>
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <h4>Required Readings</h4>
+                                        </mat-panel-title>
+                                        <mat-panel-description>
+                                            <!-- This is a summary of the content -->
+                                            <!-- <span class="validation_msg"
+                                                *ngIf="!getAllTopics.controls[i].value.requiredReading && isError">
+                                                Required
+                                            </span> -->
+                                        </mat-panel-description>
+                                    </mat-expansion-panel-header>
+
+                                    <ckeditor formControlName="requiredReading" (change)="onChange($event)"
+                                        (mouseover)="mouseEvent($event,'mouseover')"
+                                        (mouseout)="mouseEvent($event,'mouseout')" (click)="mouseEvent($event,'click')">
+                                    </ckeditor>
+                                </mat-expansion-panel>
+
+                                <mat-expansion-panel>
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <h4>Bonus Readings</h4>
+                                        </mat-panel-title>
+                                        <mat-panel-description>
+                                            <!-- This is a summary of the content -->
+                                            <!-- <span class="validation_msg"
+                                                *ngIf="!getAllTopics.controls[i].value.bonesReading && isError">
+                                                Required
+                                            </span> -->
+                                        </mat-panel-description>
+                                    </mat-expansion-panel-header>
+
+                                    <ckeditor formControlName="bonesReading" (change)="onChange($event)"
+                                        (mouseover)="mouseEvent($event,'mouseover')"
+                                        (mouseout)="mouseEvent($event,'mouseout')" (click)="mouseEvent($event,'click')">
+                                    </ckeditor>
+                                </mat-expansion-panel>
+
+
+                                <mat-expansion-panel>
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <h4>Notes</h4>
+                                        </mat-panel-title>
+                                        <mat-panel-description>
+                                            <!-- This is a summary of the content -->
+                                            <!-- <span class="validation_msg"
+                                                *ngIf="(!getAllTopics.controls[i].value.notesName || !getAllTopics.controls[i].value.notesUrl) && isError">
+                                                Required
+                                            </span> -->
+                                        </mat-panel-description>
+                                    </mat-expansion-panel-header>
+                                    <div>
+                                        Only
+                                        .docx, .doc, .pdf, .pptx, .ppt,
+                                        .apng, .png, .gif, .jpg, .jpeg, .jfif,
+                                        .pjpg, .pjpeg, .svg, .tiff, .tif , .mp3, .mp4,
+                                        .mov, .wmv, .avi, .flv, .mkv, .webm formats are allowed.
+                                    </div>
+                                    <div>
+                                        Maximum size is 1 GB.
+                                    </div>
+
+                                    <ng-container formArrayName="notesList">
+                                        <ng-container *ngFor="let note of getAllNotes(i).controls;let j=index">
+                                            <div class="row" [formGroupName]="j">
+
+                                                <div class="form-group col-md-6">
+                                                    <input type="text" id="filename" class="form-control"
+                                                        maxlength="100" placeholder="File Name"
+                                                        formControlName="notesName">
+                                                    <!-- <span class="validation_msg"
+                                                        *ngIf="!getAllTopics.controls[i].value.notesName && isError">
+                                                        Please Enter Filename.
+                                                    </span> -->
+                                                </div>
+
+                                                <div class="form-group col-md-3">
+                                                    <label class="custom-file-upload">
+                                                        <input type="file" (change)="addNotes($event,i,j)"
+                                                            accept="audio/*,video/*,image/*,.pdf,.doc,.docx,.ppt,.pptx" />
+                                                        <mat-icon>add</mat-icon> Add File
+                                                    </label>
+
+                                                    <!-- <span class="validation_msg"
+                                                        *ngIf="!getAllTopics.controls[i].value.notesUrl && isError">
+                                                        No File is Selected
+                                                    </span> -->
+                                                </div>
+
+                                                <div class="col-md-3" *ngIf="note.value.progress>0 && note.value.progress<100">
+                                                   Uploading File....{{note.value.progress}}% 
+                                                   <mat-progress-bar mode="determinate" [value]="note.value.progress"></mat-progress-bar>
+                                                </div>
+
+                                                <div class="col-md-2" *ngIf="getAllNotes(i).length>1">
+                                                    <button mat-button class="remove-btn" (click)="removeNotes(i,j)">
+                                                        <mat-icon>
+                                                            remove
+                                                        </mat-icon>
+                                                    </button>
+                                                </div>
+
+                                                <div style="width: 200px; height: 200px;"
+                                                    *ngIf="getAllNotes(i).at(j).value.notesUrl">
+                                                    <a href="javascript:void(0)"
+                                                        (click)="openDialog('img',this.getAllNotes(i).at(j).value.notesUrl)">
+                                                        <img *ngIf="getAllNotes(i).at(j).value.noteType == 'img'"
+                                                            [src]="IP+getAllNotes(i).at(j).value.notesUrl" alt="">
+                                                    </a>
+
+                                                    <a href="javascript:void(0)"
+                                                        *ngIf="getAllNotes(i).at(j).value.noteType == 'document'"
+                                                        (click)="openDialog('document',getAllNotes(i).at(j).value.notesUrl)">
+                                                        <mat-icon>description</mat-icon>
+                                                    </a>
+
+                                                    <a *ngIf="getAllNotes(i).at(j).value.noteType == 'video'" href="javascript:void(0)" (click)="openVideo(getAllNotes(i).at(j).value.notesUrl)" >
+                                                        <video  poster="assets/img/video-play-button.png" width="200" height="150" >
+                                                            <source [src]="IP+getAllNotes(i).at(j).value.notesUrl" type="video/*">
+                                                        </video>    
+                                                    </a>
+                                                </div>
+
+
+                                            </div>
+                                        </ng-container>
+                                        <div class="pull-right">
+                                            <button mat-button class="add-btn cus-btn" (click)="addANotes(i)">
+                                                <mat-icon>
+                                                    add
+                                                </mat-icon>
+                                            </button>
+                                        </div>
+                                    </ng-container>
+
+                                    <!-- <div class="row">
+
+                                        <div class="form-group col-md-6">
+                                            <input type="text" id="filename" class="form-control" maxlength="100"
+                                                placeholder="File Name" formControlName="notesName">
+                                           
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <label class="custom-file-upload">
+                                                <input type="file" (change)="addNotes($event,i)" />
+                                                <mat-icon>add</mat-icon> Add File
+                                            </label>
+                                          
+                                        </div>
+
+
+                                    </div> -->
+
+
+
+
+
+
+
+                                </mat-expansion-panel>
+
+                                <mat-expansion-panel>
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <!-- <h4>Instructor Notes</h4> -->
+                                            <h4>Material Access</h4>
+                                        </mat-panel-title>
+                                        <mat-panel-description>
+                                            <!-- This is a summary of the content -->
+                                            <!-- <span class="validation_msg"
+                                                *ngIf="!getAllTopics.controls[i].value.instruction && isError">
+                                                Required
+                                            </span> -->
+                                        </mat-panel-description>
+                                    </mat-expansion-panel-header>
+                                    <ckeditor formControlName="instruction" (change)="onChange($event)"
+                                        (mouseover)="mouseEvent($event,'mouseover')"
+                                        (mouseout)="mouseEvent($event,'mouseout')" (click)="mouseEvent($event,'click')">
+                                    </ckeditor>
+                                    <div class="row">
+                                        <!-- <div class="col-md-2 pt-2">
+                                            Only
+                                            .docx, .doc, .pdf formats are allowed.
+                                        </div> -->
+                                        <!-- <div>
+                                            Maximum size is 1 GB.
+                                        </div> -->
+                                        <!-- <div class="col-md-3 pt-2">
+                                            <label >Upload Pdf Document</label>
+                                                <input type="file" formControlName="pdfDoc" id="image"
+                                                    accept=".pdf,.doc,.docx,.ppt,.pptx" (change)="addDocFile($event,i)"/>
+                                              
+                                            
+
+                                        </div> -->
+                                        <!-- <div class="col-12">
+                                            <div style="width: 200px; height: 200px;"
+                                            *ngIf="getAllNotes(i).at(j).value.notesUrl">
+                                            
+                                            <a href="javascript:void(0)"
+                                                *ngIf="getAllNotes(i).at(j).value.noteType == 'document'"
+                                                (click)="openDialog('document',getAllNotes(i).at(j).value.notesUrl)">
+                                                <mat-icon>description</mat-icon>
+                                            </a>
+    
+                                            
+                                        </div>
+                                        </div> -->
+                                      
+                                    </div>
+
+                                </mat-expansion-panel>
+
+                            </mat-accordion>
+
+                        </div>
+
+                    </mat-expansion-panel>
+                    <div class="remove-btn-div" *ngIf="getAllTopics.controls.length>1">
+                        <button matTooltip="Remove This Topic" class="remove-btn" mat-button (click)="removeATopic(i)">
+                            <mat-icon>remove</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </ng-container>
+
+            <div class="add-btn-div">
+                <button matTooltip="Add New Topic" class="add-btn cus-btn" mat-button (click)="addATopic()">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <h4>Question Bank</h4>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <!-- This is a summary of the content -->
+                        <!-- <span class="validation_msg" *ngIf="f.questionBank.status =='INVALID' && isError">
+                            Please Fill All Required Fields.
+                        </span> -->
+
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <div formArrayName="questionBank">
+                    <div>
+                        Only
+                        .docx, .doc, .pdf, .pptx, .ppt,
+                        .apng, .png, .gif, .jpg, .jpeg, .jfif,
+                        .pjpg, .pjpeg, .svg, .tiff, .tif formats are allowed. </div>
+                    <div>
+                        Maximum size is 150 MB.
+                    </div>
+                    <div *ngFor="let question of getAllQuestionBank.controls; let i=index">
+                        <ng-container [formGroupName]="i">
+                            <div class="row">
+
+                                <div class="form-group col-md-6">
+                                    <input type="text" id="filename" class="form-control" maxlength="100"
+                                        placeholder="File Name" formControlName="questionBankName">
+                                    <!-- <span class="validation_msg"
+                                        *ngIf="!getAllQuestionBank.controls[i].value.questionBankName && isError">
+                                        Please Enter Question Bank Name.
+                                    </span> -->
+
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label class="custom-file-upload">
+                                        <input type="file" accept="image/*,.pdf,.doc,.docx,.ppt,.pptx" (change)="addQuestionBank($event,i)" />
+                                        <mat-icon>add</mat-icon> Add File
+                                    </label>
+                                    <!-- <span class="validation_msg"
+                                        *ngIf="!getAllQuestionBank.controls[i].value.queBankurl && isError">
+                                        No File is Selected.
+                                    </span> -->
+                                </div>
+                                <div class="col-md-3" *ngIf="question.value.progress>0 && question.value.progress<100">
+                                    Uploading File....{{question.value.progress}}% 
+                                    <mat-progress-bar mode="determinate" [value]="question.value.progress"></mat-progress-bar>
+                                 </div>
+                                <div class="form-group col-md-3" *ngIf="getAllQuestionBank.controls.length>1">
+                                    <div class="remove-btn-div">
+                                        <button matTooltip="Remove This File" class="remove-btn" mat-button
+                                            (click)="removeAQuestionBank(i)">
+                                            <mat-icon>remove</mat-icon>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div style="width: 200px; height: 200px;"
+                                *ngIf="getAllQuestionBank.controls[i].value.queBankurl">
+
+                                <a href="javascript:void(0)" *ngIf="getAllQuestionBank.controls[i].value.type == 'img'"
+                                    (click)="openDialog('img',getAllQuestionBank.controls[i].value.queBankurl)">
+                                    <img [src]="getAllQuestionBank.controls[i].value.queBankurl"
+                                        style="width: 180px; height: 180px;" alt="">
+                                </a>
+                                <a href="javascript:void(0)"
+                                    *ngIf="getAllQuestionBank.controls[i].value.type == 'document'"
+                                    (click)="openDialog('document',getAllQuestionBank.controls[i].value.queBankurl)">
+                                    <mat-icon style="width: 100px !important; height: 120px !important;"> description
+                                    </mat-icon>
+                                </a>
+
+                            </div>
+                        </ng-container>
+
+
+                    </div>
+
+                </div>
+
+                <div class="add-btn-div">
+                    <button matTooltip="Add New Topic" class="add-btn cus-btn" mat-button (click)="addAQuestionBank()">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+
+
+
+
+
+
+
+
+
+            </mat-expansion-panel>
+
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <h4>Previous Term Papers</h4>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <!-- This is a summary of the content -->
+                        <span class="validation_msg" *ngIf="f.previousTermPaper.status =='INVALID' && isError">
+                            Please Fill All Required Fields.
+                        </span>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <div formArrayName="previousTermPaper">
+                    <div>
+                        Only
+                        .docx, .doc, .pdf, .pptx, .ppt,
+                        .apng, .png, .gif, .jpg, .jpeg, .jfif,
+                        .pjpg, .pjpeg, .svg, .tiff, .tif, .mp4,
+                        .mov, .wmv, .avi, .flv, .mkv, .webm formats are allowed. </div>
+                    <div>
+                        Maximum size is 150 MB.
+                    </div>
+                    <div *ngFor="let paper of getAllPreviousTermPapers.controls; let i=index">
+
+                        <ng-container [formGroupName]="i">
+                            <div class="row">
+
+                                <div class="form-group col-md-6">
+                                    <input type="text" id="filename" class="form-control" maxlength="100"
+                                        placeholder="File Name" formControlName="paperName">
+
+                                    <!-- <span class="validation_msg"
+                                        *ngIf="!getAllPreviousTermPapers.controls[i].value.url  && isError">
+                                        Please Enter Previous Term Paper Name.
+                                    </span> -->
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label class="custom-file-upload">
+                                        <input type="file" accept="image/*,.pdf,.doc,.docx,.ppt,.pptx" (change)="addPreviousTermPaper($event,i)" />
+                                        <mat-icon>add</mat-icon> Add File
+                                    </label>
+                                    <!-- <span class="validation_msg"
+                                        *ngIf="!getAllPreviousTermPapers.controls[i].value.url  && isError">
+                                        No File is Selected.
+                                    </span> -->
+                                </div>
+                                <div class="col-md-3" *ngIf="paper.value.progress>0 && paper.value.progress<100">
+                                    Uploading File....{{paper.value.progress}}% 
+                                    <mat-progress-bar mode="determinate" [value]="paper.value.progress"></mat-progress-bar>
+                                 </div>
+                                <div class="form-group col-md-3" *ngIf="getAllPreviousTermPapers.controls.length>1">
+                                    <div class="remove-btn-div">
+                                        <button matTooltip="Remove This File" class="remove-btn" mat-button
+                                            (click)="removeAPreviousTermPaper(i)">
+                                            <mat-icon>remove</mat-icon>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div style="width: 200px; height: 200px;"
+                                *ngIf="getAllPreviousTermPapers.controls[i].value.url">
+                                <a href="javascript:void(0)"
+                                    *ngIf="getAllPreviousTermPapers.controls[i].value.type == 'img'"
+                                    (click)="openDialog('img',getAllPreviousTermPapers.controls[i].value.url)">
+                                    <img [src]="getAllPreviousTermPapers.controls[i].value.url"
+                                        style="width: 180px; height: 180px;" alt="">
+                                </a>
+
+                                <a href="javascript:void(0)"
+                                    *ngIf="getAllPreviousTermPapers.controls[i].value.type == 'document'"
+                                    (click)="openDialog('document',getAllPreviousTermPapers.controls[i].value.url)">
+                                    <mat-icon style="width: 100px !important; height: 120px !important;"> description
+                                    </mat-icon>
+                                </a>
+
+
+                            </div>
+                        </ng-container>
+
+
+
+
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="add-btn-div">
+                    <button matTooltip="Add New Topic" class="add-btn cus-btn" mat-button
+                        (click)="addAPreviousTermPaper()">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </mat-expansion-panel>
+
+        </mat-accordion>
+
+        <div style="float: right;">
+            <button *ngIf="!id" mat-raised-button (click)="addTopics()">
+                Add Topic
+            </button>
+
+            <button *ngIf="id" mat-raised-button (click)="updateTopics()">
+                Update Topic
+            </button>
+        </div>
+
+    </form>
+
+
+
+</mat-card>

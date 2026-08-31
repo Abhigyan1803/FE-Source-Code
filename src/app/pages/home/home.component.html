@@ -1,0 +1,300 @@
+<div class="d-md-block d-lg-none">
+    <img src="assets/img/80288819.webp" width="100%">
+</div>
+
+<div class="dlab-bnr-inr overlay-black-middle bg-pt course-banner"
+    style="background-image:url(assets/img/80288819.webp);">
+    <div class="container-fluid" style="padding-top: 15px;">
+        <div class="row">
+            <div class="col-md-3">
+                <h4 class="tab-title para">THE ACADEMY</h4>
+                <div class="row1">
+                    <ul class="lefty-ro2">
+                        <li><a href="javascript:void(0)" (click)="sentToAROLogin('aro')">ARO</a></li>  <!--  [routerLink]="['/pages/aro']" -->
+                        <li><a href="javascript:void(0)" (click)="sendToLogin('gs-branch')"> GS Branch </a> </li>
+                        <!-- <li>Adm Branch</li> -->
+                        <li><a href="javascript:void(0)" (click)="sendToLogin('adjutant-branch')">Adjutant Branch</a></li>
+                        <li><a href="javascript:void(0)" (click)="sendToLogin('trg-team')">Training Team</a></li>
+                        <li><a href="javascript:void(0)" (click)="sendToLogin('trg-battalion')">Training Battalions</a>
+                        </li>
+                        <li> <a href="javascript:void(0)" (click)="loginForEdossier()" >E - Dossier</a> </li>
+                        <li><a href="javascript:void(0)" (click)="sendToLogin('academic-depart')">Academic Department</a>
+                        </li>
+                        <!-- <li>ACC Wing</li> -->
+                        <li><a href="javascript:void(0)" [routerLink]="['/pages/social-list']">Social List</a></li>
+                        <li><a href="javascript:void(0)" [routerLink]="['/pages/sectional-hospital']">Section Hospital</a></li>
+                        <li><a href="javascript:void(0)" [routerLink]="['/pages/syllabus']">Syllabus</a></li>
+                        <li><a href="javascript:void(0)" [routerLink]="['/pages/study-material']">Study Material</a></li>
+                        <li><a href="javascript:void(0)" [routerLink]="['/pages/academic-pared']">Academic Pared</a></li>
+                        
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-6" style="position: relative;">
+                <div class="prt">
+                <h4 _ngcontent-ckj-c389="" class="tab-title para">HIGHLIGHTS</h4>
+                <div class="holder">
+                    <marquee width="100%" onmouseover="this.stop();"  onmouseout="this.start();" behavior="scroll" direction="up" scrollamount="3" loop="infinite" height="150px">
+                        <ul id="ticker01"  >
+                            <li *ngFor="let n of announcement"><span><img src="assets/img/aero.png"
+                                        style="width: 13px;margin-right: 10px;padding-top: 3px;"></span>
+                             <a href="javascript:void(0)">{{n.announcementDescp}} </a> 
+                             <span>
+                                <a class="ann-doc" href="javascript:void(0)"  
+                                *ngIf="n.announcementDocument" (click)="openDoc(n)" >
+                                    <mat-icon>
+                                        description
+                                    </mat-icon>
+                                </a>
+                            </span> 
+                        </li> 
+
+                        </ul>
+                    </marquee>
+                </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-3">
+                <!-- <h4 class="tab-title para" [routerLink]="['/pages/upcoming']" style="cursor: pointer;">Upcoming Events</h4> -->
+                <h4 class="tab-title para"  style="cursor: pointer;">Upcoming Events</h4>
+
+                <div class="row1 new1" style="margin-bottom: 23px;">
+                    <ng-container *ngIf="!events.length">
+                        <h4 class="no_data white"> No upcoming events are added!</h4>
+                    </ng-container>
+
+                    <div >
+                        <ng-container>
+                            <ul class="event-list">
+                                <li *ngFor="let e of events">
+                                    <div class="time">
+                                        <span class="event_date">{{e.eventDate | date:'EE, d MMMM y' }}</span>
+                                        <!-- <span class="event_time">{{e.eventDate | date:'HHmm' || '-' }}</span> -->
+                                        <span class="event_time"> {{getEveTime(e.eventDate)}} </span>
+
+                                    </div>
+                                    <div class="right" (click)="openEventDetails(e)">
+
+                                        <div class="info">
+                                            <h2 class="title">{{e.title}}</h2>
+                                            <ng-container *ngIf="e.isNew">
+                                                <img src="assets/img/new1.gif" style="    width: 40px;
+                                           height: 36px;
+                                           margin-top: -8px;">
+                                            </ng-container>
+                                        </div>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </ng-container>
+                    </div>
+
+                </div>
+
+            
+
+                <h4 class="tab-title para">GC Message Board</h4>
+                <div class="row1 new1">
+                    <!-- <ng-container *ngIf="!specialOccasions.length">
+                        <h4 class="no_data white"> No GC Messages!</h4>
+                    </ng-container> -->
+                
+                    <div class="holder gc-mb">
+                        <marquee width="100%" onmouseover="this.stop();"  onmouseout="this.start();" behavior="scroll" direction="up" scrollamount="3" loop="infinite" height="150px">
+                            <ul id="ticker01"  >
+                                <li *ngFor="let g of gcboard"><span><img src="assets/img/aero.png"
+                                            style="width: 13px;margin-right: 10px;padding-top: 3px;"></span>
+                                 <a href="javascript:void(0)">{{g.title}} </a> 
+                                 <span>
+                                    <a class="ann-doc" href="javascript:void(0)"  
+                                    *ngIf="g.document" (click)="openDocGC(g)" >
+                                        <mat-icon>
+                                            description
+                                        </mat-icon>
+                                    </a>
+                                </span> 
+                            </li> 
+
+                            <li *ngFor="let p of pcht"><span><img src="assets/img/aero.png"
+                                style="width: 13px;margin-right: 10px;padding-top: 3px;"></span>
+                     <a href="javascript:void(0)">{{p.name}} </a> 
+                     <span>
+                        <a class="ann-doc" href="javascript:void(0)"  
+                        *ngIf="p.document" (click)="openDocGC(p)" >
+                            <mat-icon>
+                                description
+                            </mat-icon>
+                        </a>
+                    </span> 
+                </li> 
+    
+                            </ul>
+                        </marquee>
+                    </div>
+                    <!-- <div class="myEvent">
+                        <ng-container>
+                  
+                            <ul class="event-list-occation" style="margin: 0px; top: 0px;">
+                                      
+                                <li *ngFor="let o of specialOccasions">
+                                    <ng-container *ngIf="o.type=='oBday'">
+                                        <div class="pro_img">
+                                            <img src="assets/img/cake.png" style="width: 40px; height: 36px;border-radius: 30px;">
+                                        </div>
+                                        <div class="info-main">
+                                            <div class="occation-time"><span class="event_date">{{o.date | date:'dd
+                                                    MMMM'}}</span></div>
+                                            <div class="right-info">
+                                                <div class="info">
+                                                    <h2 class="occation-title">Birthday : {{o.oName | titlecase}} <span *ngIf="o.department">
+                                                            ({{o?.department || "-" }})</span></h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                    </ng-container>
+                                
+                                    <ng-container *ngIf="o.type == 'sBday'">
+                                        <div class="pro_img">
+                                            <img src="assets/img/cake.png" style="width: 40px; height: 36px;border-radius: 30px;">
+                                        </div>
+                                        <div class="info-main">
+                                            <div class="occation-time"><span class="event_date">{{o.date | date:'dd
+                                                    MMMM'}}</span></div>
+                                            <div class="right-info">
+                                                <div class="info">
+                                                    <h2 class="occation-title">Birthday : {{o.sName | titlecase}}
+                                                        {{o.relation}} {{o.oName | titlecase}} <span *ngIf="o.department">
+                                                            ({{o?.department || "-" }})</span> </h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                    </ng-container>
+                                
+                                    <ng-container *ngIf="o.type == 'wedd'">
+                                        <div class="pro_img">
+                                            <img src="assets/img/buket.jpg" style="width: 40px; height: 36px;border-radius: 30px;">
+                                        </div>
+                                        <div class="info-main">
+                                            <div class="occation-time"><span class="event_date">{{o.date | date:'dd
+                                                    MMMM'}}</span></div>
+                                            <div class="right-info">
+                                                <div class="info">
+                                                    <h2 class="occation-title">Marriage Anniversary : {{o.oName |
+                                                        titlecase}}<span *ngIf="o.department"> ({{o?.department || "-"
+                                                            }})</span> & {{o.sName | titlecase}}</h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                    </ng-container>
+                                
+                                </li>
+
+                            </ul>
+                        </ng-container>
+                    </div> -->
+                
+                </div> 
+               
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div class="container-fluid">
+    <div class="main-row">
+        <div class="row">
+            <div class="col-md-3">
+                <h4 class="tab-title thre-tab">Commandant Daily Programme</h4>
+                <div class="events-list holder1">
+
+                    <ng-container *ngIf="!dailyPrograms.length">
+                        <h4 class="no_data">No programme are added!</h4>
+                    </ng-container>
+                    <!-- <marquee *ngIf="dailyPrograms.length" behavior="scroll" onmouseover="this.stop();"
+                    onmouseout="this.start();" direction="up" scrollamount="4" height="200"> -->
+                    <div class="myTicker">
+                        <ul>
+                            <li *ngFor="let p of dailyPrograms">
+                                <div class="list0ev">
+                                    <span>
+                                        <div class="space"></div>
+                                        <p class="dates">
+                                            <span><i class="fa fa-calendar" aria-hidden="true"></i>
+                                                {{p.scheduledDate |date:'EEE'}}
+                                                <span>{{p.scheduledDate | date:'d'}} {{p.scheduledDate |
+                                                    date:'MMM'}}</span>
+                                            </span>
+                                            <span><i class="fa fa-clock-o" aria-hidden="true"></i>
+                                                <span class="fixed_time">
+                                                    {{p.startTime | date:'HHmm'}}-{{p.endTime | date:'HHmm'}} </span>
+                                            </span>
+                                        </p>
+                                        <div class="space" style="    left: 46px;
+                                        width: 2px;"></div>
+                                        <p class="tole">
+                                            {{p.title}}
+                                        </p>
+                                    </span>
+                                    <p class="venue">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                        <span class="venue">{{p.venue}} </span>
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!-- </marquee> -->
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <h4 class="tab-title thre-tab">Message from the Commandant</h4>
+                <div *ngIf="commandantMsg" class="row">
+                    <div class="col-md-4 img">
+                        <img [src]="IP+commandantMsg.image" (error)="noImg($event)">
+                    </div>
+                    <div class="col-md-8 contents">
+                        <p><span class="nor-text-b">
+                                {{readLess}}
+                                <a class="read_more" (click)="readMore(commandantMsg)" *ngIf="isReadMore">...Read
+                                    more</a>
+                            </span></p>
+                        <p class="nor-text-b">
+                            <strong> <span class="rank-name">{{commandantMsg.designation}} {{commandantMsg.name}}
+                                </span><br> <span class="capitals"> {{commandantMsg.award}}</span> <br>
+                                Commandant<br>
+                                <span class="capitals">INDIAN MILITARY ACADEMY</span>
+                            </strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h4 class="tab-title thre-tab">IMA Activities</h4>
+                <div class="w3-content w3-section img-slider" style="max-width:100%;">
+                    <ng-container *ngIf="!activities.length">
+                        <h4 class="no_data">No IMA activities are added!</h4>
+                    </ng-container>
+                    <ng-container *ngIf="activities.length">
+                        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+                            <div ngxSlickItem *ngFor="let image of activities" class="slide">
+                                <img [src]="IP+image" alt="" width="100%" height="100%">
+                            </div>
+                        </ngx-slick-carousel>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+        <br /><br />
+    </div>
+</div>

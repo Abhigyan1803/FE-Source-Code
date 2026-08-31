@@ -1,0 +1,760 @@
+<div class="container-fluid">
+    <div id="top-bar" class="row">
+      <h2>E-Dossier- ASSESSMENT: OQ MATRIX</h2>
+    </div>
+  
+    <div class="main-row row">
+      <div class="container-fluid">
+      <div class="mat-card">
+  
+    <div class="box-shadow">
+      <h4 class="card-heading">  <span class="sub-menu1">I TERM (DE) : OQ MARKS</span></h4>
+    </div>
+    <form [formGroup]="AssessmentForm">
+        <div class="mb-5" *ngIf="termid==1 || termid==2 || termid==3">  
+        <div formArrayName="trgEQTNSubResult" >
+        <div class="box-shadow">
+          <h4 class="card-heading">  <span class="sub-menu1">MID TERM</span></h4>
+        </div>
+    
+          <table class="tg">
+            <thead>
+              <tr>
+                <th class="tg-0lax">Trg Activity</th>
+                <th class="tg-0lax" colspan="2">Pl Cdr</th>
+                <th class="tg-0lax" colspan="2">Coy Cdr</th>
+                <th class="tg-0lax" colspan="2">Bn Cdr</th>
+                <th class="tg-0lax">Total Marks</th>
+                <th class="tg-0lax">Marks Given</th>
+              </tr>
+              <tr>
+                <th class="tg-0lax"></th>
+                <th class="tg-0lax">Max Marks</th>
+                <th class="tg-0lax">Marks given </th>
+                <th class="tg-0lax">Max Marks</th>
+                <th class="tg-0lax">Marks given </th>
+                <th class="tg-0lax">Max Marks</th>
+                <th class="tg-0lax">Marks given </th>
+                <th class="tg-0lax"></th>
+                <th class="tg-0lax"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let mr of getCSubjectRes.controls;let i=index">
+                <ng-container [formGroupName]="i">
+                <td class="tg-0lax">{{mr.value.subjectName}}</td>
+               
+                 <td class="tg-0lax">{{mr.value.totalMarksPlCdr}}</td>
+                <td class="tg-0lax"><input type="text" formControlName="obtainedMarksPlCdr" class="form-control" readonly></td>
+                <td class="tg-0lax">{{mr.value.totalMarksCoyCdr}}</td>
+                <td class="tg-0lax"><input type="text" formControlName="obtainedMarksCoyCdr" class="form-control" readonly></td>
+               
+                <td class="tg-0lax">{{mr.value.totalMarksBnCdr}}</td>
+                <td class="tg-0lax">
+                  <input type="text" formControlName="obtainedMarksBnCdr" class="form-control" readonly>
+                </td>
+                <!-- <td class="tg-0lax">{{this.totalBNPLCOYMarks}}</td> -->
+                <td class="tg-0lax">{{mr.value.totalBNPLCOYMarks}}</td>
+                <td class="tg-0lax"><input type="text" formControlName="totalPLBNCOYObtainedMarks" class="form-control" readonly></td>
+              </ng-container>  </tr>
+             <tr>
+                <td class="tg-0lax"><b>Total (Bn level)</b></td>
+                <td class="tg-0lax"><b>{{this.totalPlMarks_I_MID_TERM}}</b></td>
+                <td class="tg-0lax"><input type="text" [(ngModel)]="totalObtainedPlMarks_I_MID_TERM" [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+                <td class="tg-0lax"><b>{{this.totalCoyMarks_I_MID_TERM}}</b></td>
+                <td class="tg-0lax"><input type="text" [(ngModel)]="totalObtainedCoyMarks_I_MID_TERM" [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+                <td class="tg-0lax"><b>{{this.totalBnMarks_I_MID_TERM}}</b></td>
+                <td class="tg-0lax"><input type="text" [(ngModel)]="totalObtainedBnMarks_I_MID_TERM" [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+                <td class="tg-0lax"><b>{{this.total_I_MID_TERM}}</b></td>
+                <td class="tg-0lax"><input type="text" [(ngModel)]="totalObtained_I_MID_TERM" [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+              </tr>
+              
+              <tr>
+                <td class="tg-0lax">Acad</td>
+                <td class="tg-0lax">-</td>
+                <td class="tg-0lax"><input type="text"></td>
+                <td class="tg-0lax">-</td>
+                <td class="tg-0lax"><input type="text"></td>
+                <td class="tg-0lax">-</td>
+                <td class="tg-0lax"><input type="text"></td>
+                <td class="tg-0lax">20</td>
+                <td class="tg-0lax"><input type="text"  [(ngModel)]="acd_I_MID_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+              </tr>
+              <tr>
+                <td class="tg-0lax">Drill</td>
+                <td class="tg-0lax">-</td>
+                <td class="tg-0lax"><input type="text"></td>
+                <td class="tg-0lax">-</td>
+                <td class="tg-0lax"><input type="text"></td>
+                <td class="tg-0lax">-</td>
+                <td class="tg-0lax"><input type="text"></td>
+                <td class="tg-0lax">20</td>
+                <td class="tg-0lax"><input type="text"  [(ngModel)]="drill_I_MID_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+              </tr>
+              <tr>
+                <td class="tg-0lax">Eqtn</td>
+                <td class="tg-0lax">-</td>
+                <td class="tg-0lax"><input type="text"></td>
+                <td class="tg-0lax">-</td>
+                <td class="tg-0lax"><input type="text"></td>
+                <td class="tg-0lax">-</td>
+                <td class="tg-0lax"><input type="text"></td>
+                <td class="tg-0lax">10</td>
+                <td class="tg-0lax"><input type="text"  [(ngModel)]="oqEqtn_I_MID_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+              </tr>
+              <tr>
+                <td class="tg-0lax" colspan="7"><b>Grand Total</b></td>
+                <td class="tg-0lax"><b>{{this._G_T_I_MID_TERM}}</b></td>
+                <td class="tg-0lax"><input type="text" [(ngModel)]="finaltotal_I_MID_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+              </tr>
+            </tbody>
+          </table>
+      
+        <div class="text-right">
+        <button class="btn btn-color mt-2">Submit</button>
+        </div>
+        </div>
+        <div formArrayName="trgEQTNSubResult_I_FINAL_TERM">
+          <div class="box-shadow">
+            <h4 class="card-heading">  <span class="sub-menu1">FINAL TERM</span></h4>
+        </div>
+        <table class="tg">
+        <thead>
+          <tr>
+            <th class="tg-0lax">Trg Activity</th>
+            <th class="tg-0lax" colspan="2">Pl Cdr</th>
+            <th class="tg-0lax" colspan="2">Coy Cdr</th>
+            <th class="tg-0lax" colspan="2">Bn Cdr</th>
+            <th class="tg-0lax">Total Marks</th>
+            <th class="tg-0lax">Marks Given</th>
+          </tr>
+          <tr>
+            <th class="tg-0lax"></th>
+            <th class="tg-0lax">Max Marks</th>
+            <th class="tg-0lax">Marks given </th>
+            <th class="tg-0lax">Max Marks</th>
+            <th class="tg-0lax">Marks given </th>
+            <th class="tg-0lax">Max Marks</th>
+            <th class="tg-0lax">Marks given </th>
+            <th class="tg-0lax"></th>
+            <th class="tg-0lax"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let mr of getCSubjectRes4.controls;let i=index">
+            <ng-container [formGroupName]="i">
+            <td class="tg-0lax">{{mr.value.subjectName}}</td>
+           
+             <td class="tg-0lax">{{mr.value.totalMarksPlCdr}}</td>
+            <td class="tg-0lax"><input type="text" formControlName="obtainedMarksPlCdr" class="form-control" readonly></td>
+            <td class="tg-0lax">{{mr.value.totalMarksCoyCdr}}</td>
+            <td class="tg-0lax"><input type="text" formControlName="obtainedMarksCoyCdr" class="form-control" readonly></td>
+           
+            <td class="tg-0lax">{{mr.value.totalMarksBnCdr}}</td>
+            <td class="tg-0lax">
+              <input type="text" formControlName="obtainedMarksBnCdr" class="form-control" readonly>
+            </td>
+            <!-- <td class="tg-0lax">{{this.totalBNPLCOYMarks}}</td> -->
+            <td class="tg-0lax">{{mr.value.totalBNPLCOYMarks}}</td>
+            <td class="tg-0lax"><input type="text" formControlName="totalPLBNCOYObtainedMarks"  class="form-control" readonly></td>
+          </ng-container> 
+         </tr>
+         <tr>
+          <td class="tg-0lax"><b>Total (Bn level)</b></td>
+          <td class="tg-0lax"><b>{{this.totalPlMarks_I_FINAL_TERM}}</b></td>
+          <td class="tg-0lax"><input type="text" [(ngModel)]="totalObtainedPlMarks_I_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+          <td class="tg-0lax"><b>{{this.totalCoyMarks_I_FINAL_TERM}}</b></td>
+          <td class="tg-0lax"><input type="text" [(ngModel)]="totalObtainedCoyMarks_I_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+          <td class="tg-0lax"><b>{{this.totalBnMarks_I_FINAL_TERM}}</b></td>
+          <td class="tg-0lax"><input type="text" [(ngModel)]="totalObtainedBnMarks_I_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+          <td class="tg-0lax"><b>{{this.total_I_FINAL_TERM}}</b></td>
+          <td class="tg-0lax"><input type="text" [(ngModel)]="totalObtained_I_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+        </tr>
+        <tr>
+          <td class="tg-0lax">Acad</td>
+          <td class="tg-0lax">-</td>
+          <td class="tg-0lax"><input type="text"></td>
+          <td class="tg-0lax">-</td>
+          <td class="tg-0lax"><input type="text"></td>
+          <td class="tg-0lax">-</td>
+          <td class="tg-0lax"><input type="text"></td>
+          <td class="tg-0lax">20</td>
+          <td class="tg-0lax"><input type="text"  [(ngModel)]="acd_I_FINAL_TERM" [ngModelOptions]="{standalone: true}"  class="form-control" readonly></td>
+        </tr>
+        <tr>
+          <td class="tg-0lax">Drill</td>
+          <td class="tg-0lax">-</td>
+          <td class="tg-0lax"><input type="text"></td>
+          <td class="tg-0lax">-</td>
+          <td class="tg-0lax"><input type="text"></td>
+          <td class="tg-0lax">-</td>
+          <td class="tg-0lax"><input type="text"></td>
+          <td class="tg-0lax">20</td>
+          <td class="tg-0lax"><input type="text"  [(ngModel)]="drill_I_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+        </tr>
+        <tr>
+          <td class="tg-0lax">Eqtn</td>
+          <td class="tg-0lax">-</td>
+          <td class="tg-0lax"><input type="text"></td>
+          <td class="tg-0lax">-</td>
+          <td class="tg-0lax"><input type="text"></td>
+          <td class="tg-0lax">-</td>
+          <td class="tg-0lax"><input type="text"></td>
+          <td class="tg-0lax">10</td>
+          <td class="tg-0lax"><input type="text"  [(ngModel)]="oqEqtn_I_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+        </tr>
+          <tr>
+            <td class="tg-0pky"><b>Grand Total</b></td>
+            <td class="tg-0pky" colspan="6"><input type="text" [(ngModel)]="finaltotal_I_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+            <td class="tg-0pky"><b>{{this._G_T_I_FINAL_TERM}}</b></td>
+            <td class="tg-0pky"><input type="text" [(ngModel)]="finaltotal_I_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+          </tr>
+         
+          <tr>
+            <td class="tg-0pky">Pre Mid Term (Mid Term OQ)</td>
+           <td class="tg-0pky" colspan="6"><input type="text"></td>
+            <td class="tg-0pky">{{this._G_T_I_MID_TERM}}</td>
+            <td class="tg-0pky"><input type="text"  [(ngModel)]="finaltotal_I_MID_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">Pre Final Exam (Final OQ)</td>
+           <td class="tg-0pky" colspan="6"><input type="text"></td>
+            <td class="tg-0pky">{{this._G_T_I_FINAL_TERM}}</td>
+            <td class="tg-0pky"><input type="text"  [(ngModel)]="finaltotal_I_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">Avg (Pre + Post)/2</td>
+            <td class="tg-0pky" colspan="6"><input type="text"></td>
+            <td class="tg-0pky">{{this._G_T_I_FINAL_TERM}}</td>
+            <td class="tg-0pky"><input type="text"  [(ngModel)]="avg_I_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+          </tr>
+            <tr>
+            <td class="tg-0pky">DC &amp; CI</td>
+            <td class="tg-0pky" colspan="6"><input type="text"></td>
+            <td class="tg-0pky">20</td>
+            <td class="tg-0pky"><input type="number"  [(ngModel)]="marks_DC_CI_I_Term" [ngModelOptions]="{standalone: true}" (change)="change($event)"></td>
+          </tr>
+           <tr>
+            <td class="tg-0pky">Comdt</td>
+           <td class="tg-0pky" colspan="6"><input type="text"></td>
+            <td class="tg-0pky">30</td>
+            <td class="tg-0pky"><input type="number"  [(ngModel)]="marks_comdt_I_Term" [ngModelOptions]="{standalone: true}" (change)="changec($event)"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky" colspan="7"><b>Grand Total</b></td>
+            <td class="tg-0pky"><b>{{this._G_T_I_MID_TERM+50}}</b></td>
+            <td class="tg-0pky"><input type="number"  [(ngModel)]="GRAND_TOTAL_I_TERM" [ngModelOptions]="{standalone: true}"  class="form-control" readonly></td>
+          </tr>
+        </tbody>
+        </table>
+        <div class="text-right">
+        <button class="btn btn-color mt-2" type="submit" (click)="onSubmit1()">Submit</button>
+        </div>
+        </div>
+        </div>
+
+
+   <div class="mb-5" *ngIf="termid==2 || termid==3">
+     <div formArrayName="trgEQTNSubResult2" >
+    
+    <div class="box-shadow">
+      <h4 class="card-heading">  <span class="sub-menu1">II TERM (DE/EX-NDA/EX-ACC/II TECH : OQ MARKS</span></h4>
+    </div>
+  
+  <div class="box-shadow">
+    <h4 class="card-heading">  <span class="sub-menu1">MID TERM</span></h4>
+  </div>
+  <table class="tg">
+  <thead>
+    <tr>
+      <th class="tg-0lax">Trg Activity</th>
+      <th class="tg-0lax" colspan="2">Pl Cdr</th>
+      <th class="tg-0lax" colspan="2">Coy Cdr</th>
+      <th class="tg-0lax" colspan="2">Bn Cdr</th>
+      <th class="tg-0lax">Total Marks</th>
+      <th class="tg-0lax">Marks Given</th>
+    </tr>
+    <tr>
+      <th class="tg-0lax"></th>
+      <th class="tg-0lax">Max Marks</th>
+      <th class="tg-0lax">Marks given </th>
+      <th class="tg-0lax">Max Marks</th>
+      <th class="tg-0lax">Marks given </th>
+      <th class="tg-0lax">Max Marks</th>
+      <th class="tg-0lax">Marks given </th>
+      <th class="tg-0lax"></th>
+      <th class="tg-0lax"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let mr of getCSubjectRes2.controls;let i=index">
+      <ng-container [formGroupName]="i">
+        <td class="tg-0lax">{{mr.value.subjectName}}</td>
+               
+        <td class="tg-0lax">{{mr.value.totalMarksPlCdr}}</td>
+       <td class="tg-0lax"><input type="text" formControlName="obtainedMarksPlCdr" class="form-control" readonly></td>
+       <td class="tg-0lax">{{mr.value.totalMarksCoyCdr}}</td>
+       <td class="tg-0lax"><input type="text" formControlName="obtainedMarksCoyCdr" class="form-control" readonly></td>
+      
+       <td class="tg-0lax">{{mr.value.totalMarksBnCdr}}</td>
+       <td class="tg-0lax">
+         <input type="text" formControlName="obtainedMarksBnCdr" class="form-control" readonly>
+       </td>
+       <!-- <td class="tg-0lax">{{this.totalBNPLCOYMarks}}</td> -->
+       <td class="tg-0lax">{{mr.value.totalBNPLCOYMarks}}</td>
+       <td class="tg-0lax"><input type="text" formControlName="totalPLBNCOYObtainedMarks"   class="form-control" readonly></td>
+      </ng-container>
+    </tr>
+  
+    <tr>
+      <td class="tg-0lax"><b>Total (Bn level)</b></td>
+      <td class="tg-0lax"><b>{{this.totalPlMarks_II_MID_TERM}}</b></td>
+      <td class="tg-0lax"><input type="text" [(ngModel)]="totalObtainedPlMarks_II_MID_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+      <td class="tg-0lax"><b>{{this.totalCoyMarks_II_MID_TERM}}</b></td>
+      <td class="tg-0lax"><input type="text" [(ngModel)]="totalObtainedCoyMarks_II_MID_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+      <td class="tg-0lax"><b>{{this.totalBnMarks_II_MID_TERM}}</b></td>
+      <td class="tg-0lax"><input type="text" [(ngModel)]="totalObtainedBnMarks_II_MID_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+      <td class="tg-0lax"><b>{{this.total_II_MID_TERM}}</b></td>
+      <td class="tg-0lax"><input type="text" [(ngModel)]="totalObtained_II_MID_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+    </tr>
+    <tr>
+      <td class="tg-0lax">Acad</td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">20</td>
+      <td class="tg-0lax"><input type="text"  [(ngModel)]="acd_II_MID_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+    </tr>
+    <tr>
+      <td class="tg-0lax">Drill</td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">20</td>
+      <td class="tg-0lax"><input type="text"  [(ngModel)]="drill_II_MID_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+    </tr>
+    <tr>
+      <td class="tg-0lax">Eqtn</td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">10</td>
+      <td class="tg-0lax"><input type="text"  [(ngModel)]="oqEqtn_II_MID_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+    </tr>
+    <tr>
+      <td class="tg-0lax" colspan="7"><b>Grand Total</b></td>
+      <td class="tg-0lax"><b>{{this._G_T_II_MID_TERM}}</b></td>
+      <td class="tg-0lax"><input type="text" [(ngModel)]="finaltotal_II_MID_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+    </tr> 
+
+  </tbody>
+  </table>
+  <div class="text-right">
+  <button class="btn btn-color mt-2" >Submit</button>
+ </div>
+     </div>
+
+
+  <div formArrayName="trgEQTNSubResult_II_FINAL_TERM">
+  <div class="box-shadow">
+      <h4 class="card-heading">  <span class="sub-menu1">FINAL TERM</span></h4>
+  </div>
+  <table class="tg">
+  <thead>
+    <tr>
+      <th class="tg-0lax">Trg Activity</th>
+      <th class="tg-0lax" colspan="2">Pl Cdr</th>
+      <th class="tg-0lax" colspan="2">Coy Cdr</th>
+      <th class="tg-0lax" colspan="2">Bn Cdr</th>
+      <th class="tg-0lax">Total Marks</th>
+      <th class="tg-0lax">Marks Given</th>
+    </tr>
+    <tr>
+      <th class="tg-0lax"></th>
+      <th class="tg-0lax">Max Marks</th>
+      <th class="tg-0lax">Marks given </th>
+      <th class="tg-0lax">Max Marks</th>
+      <th class="tg-0lax">Marks given </th>
+      <th class="tg-0lax">Max Marks</th>
+      <th class="tg-0lax">Marks given </th>
+      <th class="tg-0lax"></th>
+      <th class="tg-0lax"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let mr of getCSubjectRes2.controls;let i=index">
+      <ng-container [formGroupName]="i">
+        <td class="tg-0lax">{{mr.value.subjectName}}</td>
+               
+        <td class="tg-0lax">{{mr.value.totalMarksPlCdr}}</td>
+       <td class="tg-0lax"><input type="text" formControlName="obtainedMarksPlCdr" class="form-control" readonly></td>
+       <td class="tg-0lax">{{mr.value.totalMarksCoyCdr}}</td>
+       <td class="tg-0lax"><input type="text" formControlName="obtainedMarksCoyCdr" class="form-control" readonly></td>
+      
+       <td class="tg-0lax">{{mr.value.totalMarksBnCdr}}</td>
+       <td class="tg-0lax">
+         <input type="text" formControlName="obtainedMarksBnCdr" class="form-control" readonly>
+       </td>
+       <!-- <td class="tg-0lax">{{this.totalBNPLCOYMarks}}</td> -->
+       <td class="tg-0lax">{{mr.value.totalBNPLCOYMarks}}</td>
+       <td class="tg-0lax"><input type="text" formControlName="totalPLBNCOYObtainedMarks"   class="form-control"></td>
+      </ng-container>
+    </tr>
+    <tr>
+      <td class="tg-0lax"><b>Total (Bn level)</b></td>
+      <td class="tg-0lax"><b>{{this.totalPlMarks_I_FINAL_TERM}}</b></td>
+      <td class="tg-0lax"><input type="text" [(ngModel)]="totalObtainedPlMarks_I_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+      <td class="tg-0lax"><b>{{this.totalCoyMarks_I_FINAL_TERM}}</b></td>
+      <td class="tg-0lax"><input type="text" [(ngModel)]="totalObtainedCoyMarks_I_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+      <td class="tg-0lax"><b>{{this.totalBnMarks_I_FINAL_TERM}}</b></td>
+      <td class="tg-0lax"><input type="text" [(ngModel)]="totalObtainedBnMarks_I_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+      <td class="tg-0lax"><b>{{this.total_I_FINAL_TERM}}</b></td>
+      <td class="tg-0lax"><input type="text" [(ngModel)]="totalObtained_I_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+    </tr>
+    <tr>
+      <td class="tg-0lax">Acad</td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">20</td>
+      <td class="tg-0lax"><input type="text"  [(ngModel)]="acd_II_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+    </tr>
+    <tr>
+      <td class="tg-0lax">Drill</td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">20</td>
+      <td class="tg-0lax"><input type="text"  [(ngModel)]="drill_II_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+    </tr>
+    <tr>
+      <td class="tg-0lax">Eqtn</td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">10</td>
+      <td class="tg-0lax"><input type="text"  [(ngModel)]="oqEqtn_II_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+    </tr>
+      <tr>
+        <td class="tg-0pky"><b>Grand Total</b></td>
+        <td class="tg-0pky" colspan="6"><input type="text" [(ngModel)]="finaltotal_II_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+        <td class="tg-0pky"><b>{{this._G_T_II_FINAL_TERM}}</b></td>
+        <td class="tg-0pky"><input type="text" [(ngModel)]="finaltotal_II_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+      </tr>
+    <tr>
+      <td class="tg-0pky">Pre Mid Term (Mid Term OQ)</td>
+     <td class="tg-0pky" colspan="6"><input type="text"></td>
+      <td class="tg-0pky">{{this._G_T_II_MID_TERM}}</td>
+      <td class="tg-0pky"><input type="text"  [(ngModel)]="finaltotal_II_MID_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+    </tr>
+    <tr>
+      <td class="tg-0pky">Pre Final Exam (Final OQ)</td>
+     <td class="tg-0pky" colspan="6"><input type="text"></td>
+      <td class="tg-0pky">{{this._G_T_II_FINAL_TERM}}</td>
+      <td class="tg-0pky"><input type="text"  [(ngModel)]="finaltotal_II_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+    </tr>
+    <tr>
+      <td class="tg-0pky">Avg (Pre + Post)/2</td>
+      <td class="tg-0pky" colspan="6"><input type="text"></td>
+      <td class="tg-0pky">{{this._G_T_I_MID_TERM}}</td>
+      <td class="tg-0pky"><input type="text"  [(ngModel)]="avg_II_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+    </tr>
+      <tr>
+      <td class="tg-0pky">DC &amp; CI</td>
+      <td class="tg-0pky" colspan="6"><input type="text"></td>
+      <td class="tg-0pky">20</td>
+      <td class="tg-0pky"><input type="text"  [(ngModel)]="marks_DC_CI_II_Term" [ngModelOptions]="{standalone: true}" (change)="change($event)"></td>
+    </tr>
+     <tr>
+      <td class="tg-0pky">Comdt</td>
+     <td class="tg-0pky" colspan="6"><input type="text"></td>
+      <td class="tg-0pky">30</td>
+      <td class="tg-0pky"><input type="text"  [(ngModel)]="marks_comdt_II_Term" [ngModelOptions]="{standalone: true}" (change)="changec($event)"></td>
+    </tr>
+    <tr>
+      <td class="tg-0pky"><b>Grand Total</b></td>
+     <td class="tg-0pky" colspan="6"><input type="text"></td>
+      <td class="tg-0pky"><b>{{this._G_T_I_MID_TERM+50}}</b></td>
+      <td class="tg-0pky"><input type="text"  [(ngModel)]="GRAND_TOTAL_II_TERM" [ngModelOptions]="{standalone: true}"  class="form-control" readonly></td>
+    </tr>
+  </tbody>
+  </table>
+  <div class="text-right">
+  <button class="btn btn-color mt-2"  type="submit" (click)="onSubmit2()">Submit</button>
+  </div>
+     </div>
+    </div>
+
+  
+   
+
+  <div class="mb-5" *ngIf="termid==3">
+    <div formArrayName="trgEQTNSubResult3">
+    <div class="box-shadow">
+        <h4 class="card-heading">  <span class="sub-menu1">III TERM ((DE/ Ex-NDA/Ex-ACC)/ III Tech) : OQ MARKS</span></h4>
+      </div>
+   
+    <div class="box-shadow">
+      <h4 class="card-heading">  <span class="sub-menu1">MID TERM</span></h4>
+    </div>
+    <table class="tg">
+    <thead>
+      <tr>
+        <th class="tg-0lax">Trg Activity</th>
+        <th class="tg-0lax" colspan="2">Pl Cdr</th>
+        <th class="tg-0lax" colspan="2">Coy Cdr</th>
+        <th class="tg-0lax" colspan="2">Bn Cdr</th>
+        <th class="tg-0lax">Total Marks</th>
+        <th class="tg-0lax">Marks Given</th>
+      </tr>
+      <tr>
+        <th class="tg-0lax"></th>
+        <th class="tg-0lax">Max Marks</th>
+        <th class="tg-0lax">Marks given </th>
+        <th class="tg-0lax">Max Marks</th>
+        <th class="tg-0lax">Marks given </th>
+        <th class="tg-0lax">Max Marks</th>
+        <th class="tg-0lax">Marks given </th>
+        <th class="tg-0lax"></th>
+        <th class="tg-0lax"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let mr of getCSubjectRes3.controls;let i=index">
+        <ng-container [formGroupName]="i">
+          <td class="tg-0lax">{{mr.value.subjectName}}</td>
+               
+          <td class="tg-0lax">{{mr.value.totalMarksPlCdr}}</td>
+         <td class="tg-0lax"><input type="text" formControlName="obtainedMarksPlCdr" class="form-control" readonly></td>
+         <td class="tg-0lax">{{mr.value.totalMarksCoyCdr}}</td>
+         <td class="tg-0lax"><input type="text" formControlName="obtainedMarksCoyCdr" class="form-control" readonly></td>
+        
+         <td class="tg-0lax">{{mr.value.totalMarksBnCdr}}</td>
+         <td class="tg-0lax">
+           <input type="text" formControlName="obtainedMarksBnCdr" class="form-control" readonly>
+         </td>
+         <!-- <td class="tg-0lax">{{this.totalBNPLCOYMarks}}</td> -->
+         <td class="tg-0lax">{{mr.value.totalBNPLCOYMarks}}</td>
+         <td class="tg-0lax"><input type="text" formControlName="totalPLBNCOYObtainedMarks"   class="form-control" readonly></td>
+        </ng-container>  
+      </tr>
+      <tr>
+        <td class="tg-0lax"><b>Total (Bn level)</b></td>
+        <td class="tg-0lax"><b>{{this.totalPlMarks_III_MID_TERM}}</b></td>
+        <td class="tg-0lax"><input type="text" [(ngModel)]="totalObtainedPlMarks_III_MID_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+        <td class="tg-0lax"><b>{{this.totalCoyMarks_III_MID_TERM}}</b></td>
+        <td class="tg-0lax"><input type="text" [(ngModel)]="totalObtainedCoyMarks_III_MID_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+        <td class="tg-0lax"><b>{{this.totalBnMarks_III_MID_TERM}}</b></td>
+        <td class="tg-0lax"><input type="text" [(ngModel)]="totalObtainedBnMarks_III_MID_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+        <td class="tg-0lax"><b>{{this.total_III_MID_TERM}}</b></td>
+        <td class="tg-0lax"><input type="text" [(ngModel)]="totalObtained_III_MID_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+      </tr>
+      <tr>
+        <td class="tg-0lax">Acad</td>
+        <td class="tg-0lax">-</td>
+        <td class="tg-0lax"><input type="text"></td>
+        <td class="tg-0lax">-</td>
+        <td class="tg-0lax"><input type="text"></td>
+        <td class="tg-0lax">-</td>
+        <td class="tg-0lax"><input type="text"></td>
+        <td class="tg-0lax">20</td>
+        <td class="tg-0lax"><input type="text"  [(ngModel)]="acd_III_MID_TERM" [ngModelOptions]="{standalone: true}"  class="form-control"  readonly></td>
+      </tr>
+      <tr>
+        <td class="tg-0lax">Drill</td>
+        <td class="tg-0lax">-</td>
+        <td class="tg-0lax"><input type="text"></td>
+        <td class="tg-0lax">-</td>
+        <td class="tg-0lax"><input type="text"></td>
+        <td class="tg-0lax">-</td>
+        <td class="tg-0lax"><input type="text"></td>
+        <td class="tg-0lax">20</td>
+        <td class="tg-0lax"><input type="text"  [(ngModel)]="drill_III_MID_TERM" [ngModelOptions]="{standalone: true}"  readonly></td>
+      </tr>
+      <tr>
+        <td class="tg-0lax">Eqtn</td>
+        <td class="tg-0lax">-</td>
+        <td class="tg-0lax"><input type="text"></td>
+        <td class="tg-0lax">-</td>
+        <td class="tg-0lax"><input type="text"></td>
+        <td class="tg-0lax">-</td>
+        <td class="tg-0lax"><input type="text"></td>
+        <td class="tg-0lax">10</td>
+        <td class="tg-0lax"><input type="text"  [(ngModel)]="oqEqtn_III_MID_TERM" [ngModelOptions]="{standalone: true}"  readonly></td>
+      </tr>
+      <tr>
+        <td class="tg-0lax" colspan="7"><b>Grand Total</b></td>
+        <td class="tg-0lax"><b>{{this._G_T_III_MID_TERM}}</b></td>
+        <td class="tg-0lax"><input type="text" [(ngModel)]="finaltotal_III_MID_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+      </tr>
+    </tbody>
+    </table>
+    <div class="text-right">
+    <button class="btn btn-color mt-2">Submit</button>
+    </div>
+  </div>
+  <div formArrayName="trgEQTNSubResult_III_FINAL_TERM">
+    <div class="box-shadow">
+        <h4 class="card-heading">  <span class="sub-menu1">FINAL TERM</span></h4>
+      </div>
+    <table class="tg">
+    <thead>
+      <tr>
+        <th class="tg-0lax">Trg Activity</th>
+        <th class="tg-0lax" colspan="2">Pl Cdr</th>
+        <th class="tg-0lax" colspan="2">Coy Cdr</th>
+        <th class="tg-0lax" colspan="2">Bn Cdr</th>
+        <th class="tg-0lax">Total Marks</th>
+        <th class="tg-0lax">Marks Given</th>
+      </tr>
+      <tr>
+        <th class="tg-0lax"></th>
+        <th class="tg-0lax">Max Marks</th>
+        <th class="tg-0lax">Marks given </th>
+        <th class="tg-0lax">Max Marks</th>
+        <th class="tg-0lax">Marks given </th>
+        <th class="tg-0lax">Max Marks</th>
+        <th class="tg-0lax">Marks given </th>
+        <th class="tg-0lax"></th>
+        <th class="tg-0lax"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let mr of getCSubjectRes6.controls;let i=index">
+      <ng-container [formGroupName]="i">
+        <td class="tg-0lax">{{mr.value.subjectName}}</td>
+               
+        <td class="tg-0lax">{{mr.value.totalMarksPlCdr}}</td>
+       <td class="tg-0lax"><input type="text" formControlName="obtainedMarksPlCdr" class="form-control" readonly></td>
+       <td class="tg-0lax">{{mr.value.totalMarksCoyCdr}}</td>
+       <td class="tg-0lax"><input type="text" formControlName="obtainedMarksCoyCdr" class="form-control" readonly></td>
+      
+       <td class="tg-0lax">{{mr.value.totalMarksBnCdr}}</td>
+       <td class="tg-0lax">
+         <input type="text" formControlName="obtainedMarksBnCdr" class="form-control" readonly>
+       </td>
+       <!-- <td class="tg-0lax">{{this.totalBNPLCOYMarks}}</td> -->
+       <td class="tg-0lax">{{mr.value.totalBNPLCOYMarks}}</td>
+       <td class="tg-0lax"><input type="text" formControlName="totalPLBNCOYObtainedMarks"   class="form-control" readonly></td>
+      </ng-container>
+    </tr>
+    <tr>
+      <td class="tg-0lax"><b>Total (Bn level)</b></td>
+      <td class="tg-0lax"><b>{{this.totalPlMarks_III_FINAL_TERM}}</b></td>
+      <td class="tg-0lax"><input type="text" [(ngModel)]="totalObtainedPlMarks_III_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+      <td class="tg-0lax"><b>{{this.totalCoyMarks_III_FINAL_TERM}}</b></td>
+      <td class="tg-0lax"><input type="text" [(ngModel)]="totalObtainedCoyMarks_III_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+      <td class="tg-0lax"><b>{{this.totalBnMarks_III_FINAL_TERM}}</b></td>
+      <td class="tg-0lax"><input type="text" [(ngModel)]="totalObtainedBnMarks_III_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+      <td class="tg-0lax"><b>{{this.total_III_FINAL_TERM}}</b></td>
+      <td class="tg-0lax"><input type="text" [(ngModel)]="totalObtained_III_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+    </tr>
+    <tr>
+      <td class="tg-0lax">Acad</td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">20</td>
+      <td class="tg-0lax"><input type="text"  [(ngModel)]="acd_III_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+    </tr>
+    <tr>
+      <td class="tg-0lax">Drill</td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">20</td>
+      <td class="tg-0lax"><input type="text"  [(ngModel)]="drill_III_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+    </tr>
+    <tr>
+      <td class="tg-0lax">Eqtn</td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">-</td>
+      <td class="tg-0lax"><input type="text"></td>
+      <td class="tg-0lax">10</td>
+      <td class="tg-0lax"><input type="text"  [(ngModel)]="oqEqtn_III_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+    </tr>
+      <tr>
+        <td class="tg-0pky"><b>Grand Total</b></td>
+        <td class="tg-0pky" colspan="6"><input type="text" [(ngModel)]="finaltotal_III_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+        <td class="tg-0pky"><b>{{this._G_T_III_MID_TERM}}</b></td>
+        <td class="tg-0pky"><input type="text" [(ngModel)]="finaltotal_III_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+      </tr>
+      <tr>
+        <td class="tg-0pky">Pre Mid Term (Mid Term OQ)</td>
+       <td class="tg-0pky" colspan="6"><input type="text"></td>
+        <td class="tg-0pky">{{this._G_T_III_MID_TERM}}</td>
+        <td class="tg-0pky"><input type="text" [(ngModel)]="finaltotal_III_MID_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+      </tr>
+      <tr>
+        <td class="tg-0pky">Pre Final Exam (Final OQ)</td>
+       <td class="tg-0pky" colspan="6"><input type="text"></td>
+        <td class="tg-0pky">{{this._G_T_III_FINAL_TERM}}</td>
+        <td class="tg-0pky"><input type="text"  [(ngModel)]="finaltotal_III_FINAL_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+      </tr>
+      <tr>
+        <td class="tg-0pky">Avg (Pre + Post)/2</td>
+        <td class="tg-0pky" colspan="6"><input type="text"></td>
+        <td class="tg-0pky">{{this._G_T_III_MID_TERM}}</td>
+        <td class="tg-0pky"><input type="text"  [(ngModel)]="avg_III_TERM"  [ngModelOptions]="{standalone: true}" class="form-control" readonly></td>
+      </tr>
+        <tr>
+        <td class="tg-0pky">DC &amp; CI</td>
+        <td class="tg-0pky" colspan="6"><input type="text"></td>
+        <td class="tg-0pky">20</td>
+        <td class="tg-0pky"><input type="text"  [(ngModel)]="marks_DC_CI_III_Term" [ngModelOptions]="{standalone: true}" (change)="change($event)"></td>
+      </tr>
+       <tr>
+        <td class="tg-0pky">Comdt</td>
+        <td class="tg-0pky" colspan="6"><input type="text"></td>
+        <td class="tg-0pky">30</td>
+        <td class="tg-0pky"><input type="text"  [(ngModel)]="marks_comdt_III_Term" [ngModelOptions]="{standalone: true}" (change)="changec($event)"></td>
+      </tr>
+      <tr>
+        <td class="tg-0pky"><b>Grand Total</b></td>
+       <td class="tg-0pky" colspan="6"><input type="text"></td>
+        <td class="tg-0pky"><b>{{this._G_T_III_MID_TERM+50}}</b></td>
+        <td class="tg-0pky"><input type="text"  [(ngModel)]="GRAND_TOTAL_III_TERM" [ngModelOptions]="{standalone: true}"  class="form-control" readonly></td>
+      </tr>
+    </tbody>
+    </table>
+    <div class="text-right">
+    <button class="btn btn-color mt-2"  type="submit" (click)="onSubmit3()" >Submit</button>
+  </div>
+  </div>
+  </div>
+</form>
+     
+  
+  
+</div>
+</div>
+    </div>
+    <!-- </form> -->
+    </div>

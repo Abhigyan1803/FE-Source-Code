@@ -1,0 +1,229 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="mat-heading">
+      <div id="top-bar" class="">
+        <h2>TRG TEAM <span class="sub-menu1">
+          > EQTN > {{term}}</span></h2>
+    </div>
+  
+    </div>
+    <div class="academics">
+      <div class="mat-card mat-focus-indicator">
+        <!-- <div class="ng-star-inserted">
+          <div class="mat-new mb-4">
+            <h4 class="card-heading">EQTN > Assessment -{{term}} </h4>
+          </div>
+        </div> -->
+        <form class="ng-untouched ng-pristine ng-invalid">
+          <div class="row">
+
+            <div class="form-group col-md-3">
+              <label for="battalion">Battalion</label>
+              <select id="battalion" name="battalion" (change)="battalionSelected($event.target.value)" class="form-control">
+                <option value="0" selected>Select</option>
+                <option *ngFor="let b of battalionList" [value]="b.shortName"> {{b.shortName}}</option>
+              </select>
+              
+              <!-- <span class="val_msg" *ngIf="f.battalion.errors && f.battalion.errors.required && isError">*Please Select
+                    Battalion</span> -->
+            </div>
+            <div class="form-group col-md-3">
+              <label for="company">Company</label>
+              <select id="company" class="form-control" name="company"  (change)="companySelected($event.target.value)" >
+                <option value="0" selected>Select</option>
+                <option *ngFor="let c of companyList" [value]="c.name"> {{c.name}}</option>
+              </select>
+              <!-- <span class="val_msg" *ngIf="f.company.errors && f.company.errors.required && isError">*Please Select
+                    Company</span> -->
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="rank">Search</label>
+                <input placeholder="IMA NO." [(ngModel)]="serviceid" name="serviceid" type="text" (keyup)="serviceSearch($event.target.value)"
+                 class="form-control ng-untouched ng-pristine ng-invalid">
+              </div>
+            </div>
+            <div class="col-md-3 " style="padding: 2rem 1rem;">
+              <button type="button" mat-raised-button (click)="edSearch()">Search</button>
+            </div>
+          </div>
+        </form>
+
+        <form [formGroup]="eqtnForm" class="eqtn-table">
+          <table class="tg">
+            <thead>
+              <tr>
+                <th class="tg-qnnc" rowspan="3">S. No.</th>
+                <th class="tg-qnnc" rowspan="3">IMA No.</th>
+                <th class="tg-qnnc" rowspan="3">Course</th>
+                <th class="tg-qnnc" rowspan="3">Name</th>
+                <th class="tg-qnnc" rowspan="3">Rank</th>
+                <th class="tg-qnnc" rowspan="3">Bn/Coy</th>
+                <th class="tg-qnnc" colspan="10">Subjects</th>
+              </tr>
+              <tr>
+                <th colspan="1" style="width: 11%;" *ngFor="let subject of eqtnSubjects" class="tg-qnnc">
+                  {{subject.subjectName}}<br>Marks
+                  ({{subject.totalMarks}})</th>
+
+                <th class="tg-qnnc" rowspan="3">Total (50)</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let eqtn of eqtnList; let eqtnIndex = index">
+                <td class="tg-c3ow">{{ eqtnIndex + 1}}</td>
+                <td class="tg-c3ow">{{ eqtn.serviceId }}</td>
+                <td class="tg-0pky">{{ eqtn.course }}</td>
+                <td class="tg-c3ow">{{ eqtn.name }}</td>
+                <!-- <td class="tg-0pky">{{ leadership.nationality }}</td> -->
+                <td class="tg-c3ow">
+                  <p  *ngIf="eqtn.nationality=='India'">GC</p>
+                  <p  *ngIf="eqtn.nationality !='India'">FGC</p>
+                </td>
+                <td class="tg-c3ow">{{ eqtn.battalian }}/{{ eqtn.company }}</td>
+                <td class="tg-c3ow" *ngFor="let eqtnSubjects of eqtn.trgEQTNResult.trgEQTNSubResult; let eqtnSubjectIndex = index">
+                  <div class="d-flex">
+                    <ng-container
+                      >
+                      <input type="text" *ngIf="hasAccess" maxlength="2" class="form-control d-inline"
+                      value="{{eqtnSubjects.obtainedMarks}}"
+                      min="0" (keypress)="keyPress($event)" oninput="this.value =!!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                      (focus)="onFocusEvent($event.target.value,eqtnIndex)"
+                      on-focusout="onChange($event,$event.target.value, eqtnSubjects.totalMarks, eqtnSubjects.subjectId, eqtnIndex, eqtnSubjectIndex)">
+                      
+
+
+                      </ng-container>
+                  </div>
+                </td>
+
+                <td class="tg-0pky">
+                  <input type="text" *ngIf="hasAccess" class="form-control" disabled id="{{eqtnIndex}}"
+                    value="{{ eqtn.trgEQTNResult.obtainedMarks }}">
+                </td>
+
+
+
+                <div *ngIf="!eqtn.trgEQTNResult">
+                  <div *ngFor="let size of eqtnSubjects;let ser=index;">
+                    <td class="tg-c3ow">
+                      <input type="text" class="form-control" formControlName="obtainedMarks">
+                    </td>
+                    <td *ngIf="ser+1 == eqtnSubjects.length" class="tg-c3ow">{{obtainedTotalMarks}}</td>
+                  </div>
+                </div>
+              </tr>
+
+
+              <tr  *ngIf="! eqtnList?.length">
+                <td class="mat-cell" style="text-align: center;" colspan="14"><div>No Record Found</div></td>
+             </tr>
+            </tbody>
+          </table>
+
+          <!-- <div class="">
+            <mat-paginator #myPaginator [length]="resultsLength" [pageIndex]="currentPage" [pageSize]="pageSize"
+              [pageSizeOptions]="[30]" (page)="pageChanged($event)" aria-label="Select page" showFirstLastButtons>
+            </mat-paginator>
+          </div> -->
+          <div class="">
+            <mat-paginator #myPaginator [length]="resultsLength" [pageIndex]="currentPage" [pageSize]="pageSize"
+            [pageSizeOptions]="[30]" (page)="pageChanged($event)" aria-label="Select page" showFirstLastButtons>
+          </mat-paginator>
+          </div>
+          <div class="btn-sec mt-3 text-right">
+            <button type="button" mat-raised-button (click)="openPopup()" [disabled]="!eqtnList?.length">Preview</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable custom-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Review</h3>
+      </div>
+      <div class="modal-body">
+        <table class="tg">
+          <thead>
+            <tr>
+              <th class="tg-qnnc" rowspan="3">S. No.</th>
+              <th class="tg-qnnc" rowspan="3">IMA No.</th>
+              <th class="tg-qnnc" rowspan="3">Course</th>
+              <th class="tg-qnnc" rowspan="3">Name</th>
+              <th class="tg-qnnc" rowspan="3">Rank</th>
+              <th class="tg-qnnc" rowspan="3">Bn/Coy</th>
+              <th class="tg-qnnc" colspan="10">Subjects</th>
+            </tr>
+            <tr>
+              <th colspan="1" style="width: 11%;" *ngFor="let subject of eqtnSubjects" class="tg-qnnc">
+                {{subject.subjectName}}<br>Marks
+                ({{subject.totalMarks}})</th>
+
+              <th class="tg-qnnc" rowspan="3">Total (50)</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let eqtn of eqtnList; let eqtnIndex = index">
+              <td class="tg-c3ow">{{ eqtnIndex + 1}}</td>
+              <td class="tg-c3ow">{{ eqtn.serviceId }}</td>
+              <td class="tg-0pky">{{ eqtn.course }}</td>
+              <td class="tg-c3ow">{{ eqtn.name }}</td>
+              <!-- <td class="tg-0pky">{{ leadership.nationality }}</td> -->
+              <td class="tg-c3ow">
+                <p  *ngIf="eqtn.nationality=='India'">GC</p>
+                <p  *ngIf="eqtn.nationality !='India'">FGC</p>
+              </td>
+              <td class="tg-c3ow">{{ eqtn.battalian }}/{{ eqtn.company }}</td>
+              <td class="tg-c3ow" *ngFor="let eqtnSubjects of eqtn.trgEQTNResult.trgEQTNSubResult; let eqtnSubjectIndex = index">
+                <div class="d-flex">
+                  <ng-container
+                    >
+                 
+                     <input type="text" disabled maxlength="2" class="form-control d-inline" *ngIf="hasAccess"
+                      value="{{eqtnSubjects.obtainedMarks}}"
+                      min="0" (keypress)="keyPress($event)" oninput="this.value =!!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                      (focus)="onFocusEvent($event.target.value,eqtnIndex)"
+                      on-focusout="onChange($event,$event.target.value, eqtnSubjects.totalMarks, eqtnSubjects.subjectId, eqtnIndex, eqtnSubjectIndex)">
+                      
+                 </ng-container>
+                </div>
+              </td>
+
+              <td class="tg-0pky">
+                <input type="text" *ngIf="hasAccess" class="form-control" disabled id="{{eqtnIndex}}"
+                  value="{{ eqtn.trgEQTNResult.obtainedMarks }}">
+              </td>
+
+
+
+              <div *ngIf="!eqtn.trgEQTNResult">
+                <div *ngFor="let size of eqtnSubjects;let ser=index;">
+                  <td class="tg-c3ow">
+                    <input type="text" class="form-control" formControlName="obtainedMarks">
+                  </td>
+                  <td *ngIf="ser+1 == eqtnSubjects.length" class="tg-c3ow">{{obtainedTotalMarks}}</td>
+                </div>
+              </div>
+            </tr>
+            <tr  *ngIf="! eqtnList?.length">
+              <td class="mat-cell" style="text-align: center;" colspan="14"><div>No Record Found</div></td>
+           </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button mat-raised-button type="button" class="btn-dark" (click)="closePopup()">Back</button>
+        <button type="button" mat-raised-button (click)="confirm()">Submit</button>
+
+      </div>
+    </div>
+  </div>
+</div>

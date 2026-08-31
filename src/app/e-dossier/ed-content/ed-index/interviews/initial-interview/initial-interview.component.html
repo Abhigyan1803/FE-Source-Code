@@ -1,0 +1,102 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="mat-heading">
+      <div id="top-bar" class="">
+        <h2 class="backbtn"><button mat-icon-button (click)="goBack()">
+          <mat-icon>chevron_left</mat-icon>
+        </button>E-Dossier <span class="sub-menu1">
+          > Interviews > INITIAL INTERVIEW</span></h2>
+    </div>
+    </div>
+    
+    <div class="interview-sheet">
+      <div class="mat-card mat-focus-indicator">
+        <!-- <div class="ng-star-inserted">
+          <div class="mat-new">
+            <h4 class="card-heading">INITIAL INTERVIEW</h4>
+          </div>
+        </div> -->
+        <form class="ng-untouched ng-pristine ng-invalid">
+          <div class="row">
+              <div class="col-md-2">
+                  <div class="form-group">
+                      <label for="rank">IMA No.</label>
+                      <input placeholder="No" formcontrolname="" disabled id="IncadetServiceId" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                  </div>
+              </div>	
+              <div class="col-md-2">
+                  <div class="form-group">
+                      <label for="rank">Rank</label>
+                      <input placeholder="Rank" formcontrolname="" disabled id="IncadetRank" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                  <div class="form-group">
+                      <label for="rank">Name</label>
+                      <input placeholder="Name" formcontrolname="" disabled id="IncadetName" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                  <div class="form-group">
+                      <label for="rank">Term</label>
+                      <input placeholder="Term" formcontrolname="" disabled id="IntermName" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                    <label for="rank">Bn</label>
+                    <input placeholder="Bn" formcontrolname="" disabled id="InbattalionName" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                </div>
+            </div>
+              <div class="col-md-2">
+                  <div class="form-group">
+                      <label for="rank">Coy</label>
+                      <input placeholder="Coy" formcontrolname="" disabled id="IncompanyName" Background="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                  </div>
+              </div>
+              
+          </div>
+      </form>
+          <table class="tg">
+          <thead>
+            <tr>
+              <th class="tg-t2cw"><span style="font-weight:700;font-style:normal;text-decoration:underline;color:#000;background-color:transparent">Date</span></th>
+              <th class="tg-t2cw"><span style="font-weight:700;font-style:normal;text-decoration:underline;color:#000;background-color:transparent">Details</span></th>
+              <th class="tg-t2cw"><span style="font-weight:700;font-style:normal;text-decoration:underline;color:#000;background-color:transparent">GCs Initials with date</span></th>
+              <th class="tg-t2cw"><span style="font-weight:700;font-style:normal;text-decoration:underline;color:#000;background-color:transparent">Submission</span></th>
+            </tr>
+          </thead>
+          <tbody >
+              <tr [formGroup]="interviewFormI">
+                <td class="tg-0lax"><input type="date" class="form-control ng-untouched ng-pristine ng-invalid"
+                   formControlName="date" max="{{maxDate}}" required></td>
+                <td class="tg-0lax">
+                  <label style="font-weight:700;font-style:normal;text-decoration:underline;color:#000;background-color:transparent">INITIAL INTERVIEW : COY CDR</label>
+                  <textarea  placeholder="" maxlength="1500"
+                  formControlName="initialInterview" (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true" class="form-control ng-untouched ng-pristine ng-invalid" rows="3"></textarea><br><br><br><br>
+                  <label>Maj/Lt Col <br>Coy Cdr</label>
+                  <input type="text" placeholder="" (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true" formControlName="majCol" class="form-control ng-untouched ng-pristine ng-invalid mb-2">
+                </td>
+                <td class="tg-0lax"><input type="text" formControlName="gcInitialsWithDate" class="form-control ng-untouched ng-pristine ng-invalid" disabled></td>
+                <td class="tg-0lax text-center"><button class="btn btn-color" (click)="addClubsubmitI('COY_CDR')">Submit</button></td>
+              </tr>
+
+            
+            <tr [formGroup]="interviewFormII">
+              <td class="tg-0lax"><input type="date" max="{{maxDate}}" class="form-control ng-untouched ng-pristine ng-invalid" formControlName="date"></td>
+              <td class="tg-0lax">
+                <label style="font-weight:700;font-style:normal;text-decoration:underline;color:#000;background-color:transparent">INITIAL INTERVIEW : Bn CDR</label>
+                <textarea  placeholder="" maxlength="1500"
+                formControlName="initialInterview" (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true" class="form-control ng-untouched ng-pristine ng-invalid" rows="3"></textarea><br><br><br><br>
+                <label>Col <br>Bn Cdr</label>
+                <input type="text" placeholder="" (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true" formControlName="majCol" class="form-control ng-untouched ng-pristine ng-invalid mb-2">
+              </td>
+              <td class="tg-0lax"><input type="text" formControlName="gcInitialsWithDate" class="form-control ng-untouched ng-pristine ng-invalid" disabled></td>
+              <td class="tg-0lax text-center"><button class="btn btn-color" (click)="addClubsubmitI('BN_CDR')">Submit</button></td>
+            </tr>
+          </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+</div>

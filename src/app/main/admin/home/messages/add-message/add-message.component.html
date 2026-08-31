@@ -1,0 +1,65 @@
+<div class="mat-new">
+  <h4 class="card-heading">
+    <button mat-icon-button (click)="goBack()"><mat-icon>chevron_left</mat-icon> </button>
+    Home <span class="sub-menu1"> > Commandant Message </span> <span class="sub-menu1"> > {{pageName}}</span>
+  </h4>
+</div>
+
+<mat-card>
+  <div class="top-br">
+    <form [formGroup]="addMessageForm" >
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label>Rank  <span class="char-count" > ({{rankLength}}/50)</span><span class="required">*</span></label>
+          <input type="text" class="form-control" maxlength="50" formControlName="rank" placeholder="Maximum 50 Characters"  (input)="charCount($event,'rank')" >
+          <span *ngIf="f.rank.touched && f.rank.invalid" class="required"> *Please Enter Rank </span>
+        </div>
+        <div class="form-group col-md-6">
+          <label >Name  <span class="char-count" > ({{nameLength}}/50)</span><span class="required">*</span></label>
+          <input type="text" class="form-control"  maxlength="50" formControlName="name" placeholder="Maximum 50 Characters"  (input)="charCount($event,'name')" >
+          <span *ngIf="f.name.touched && f.name.invalid" class="required"> *Please Enter Name </span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label >Awards/Medals <span class="char-count" > ({{awardsLength}}/150)</span><span class="required">*</span></label>
+          <input type="text" class="form-control"  maxlength="150" formControlName="awards" placeholder="Maximum 150 Characters"  (input)="charCount($event,'awards')">
+          <span *ngIf="f.awards.touched && f.awards.invalid" class="required"> *Please Enter Awards </span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label >Message <span class="char-count" > ({{msgLength}}/500)</span> <span class="required">*</span></label>
+          <textarea class="form-control"  maxlength="500"  placeholder="Maximum 500 Characters" formControlName="message"  (input)="charCount($event,'msg')" ></textarea>
+          <span *ngIf="f.message.touched && f.message.invalid" class="required"> *Please Enter Message </span>
+
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label >Image</label>
+        <input #file type="file" id="image" accept="image/*" (change)="onSelectImage($event)">
+        <span  class="size_info">Max Image Size {{sharedService.fileSize}} MB. (Image size must be  186px * 225px)</span>
+        <div  *ngIf="previewImg" class="preview_image"> <img [src]="previewImg" alt=""></div> 
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label >Status<span class="required">*</span></label>
+          <select name="" id="" class="form-control" formControlName="status">
+            <option value="" selected hidden disabled>Select</option>
+            <option value="1">Active</option>
+            <option value="0">Inactive</option>
+          </select>
+          <span *ngIf="f.status.touched && f.status.invalid" class="required"> *Please Select Status </span>
+
+        </div>
+      </div>
+
+      <button mat-raised-button *ngIf="pageName == 'Add Message'"  (click)="addMessage()"  >Add Message</button>
+      <button mat-raised-button  *ngIf="pageName == 'View Message'"  (click)="updateMessage()"  >Update Message</button>
+
+    </form>
+  </div>
+</mat-card>

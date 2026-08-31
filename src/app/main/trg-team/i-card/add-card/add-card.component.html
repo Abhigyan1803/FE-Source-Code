@@ -1,0 +1,254 @@
+<div class="mat-new">
+    <h4 class="card-heading">
+        <button mat-icon-button (click)="goBack()">
+            <mat-icon>chevron_left</mat-icon>
+        </button>
+        TRG TEAM Branch > I Card
+    </h4>
+</div>
+<mat-card>
+    <div class="top-br">
+        <form [formGroup]="addCardForm">
+            <div class="row border acc_doc">
+                <div class="edi_btn">
+                    <h3>Personal Details</h3>
+                </div>
+                <div class="d-flex d-row">
+                    <div class="form-group col-md-6">
+                        <label for="position">Name<span class="required">*</span></label>
+                        <input id="title" type="text" class="form-control" maxlength="100" formControlName="name"
+                            placeholder="Name">
+                            <span class="validation_msg"
+                            *ngIf="f.name.errors && f.name.errors.required && isError">Please Enter Name</span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="position">Father/Husband's Name <span class="required">*</span></label>
+                        <input id="title" type="text" class="form-control" maxlength="100" formControlName="fatherOrHusband_Name"
+                            placeholder="Father/Husband's Name">
+                            <span class="validation_msg"
+                            *ngIf="f.fatherOrHusband_Name.errors && f.fatherOrHusband_Name.errors.required && isError">Please Enter Father/Husband's Name</span>
+                    </div>
+
+                </div>
+                <div class="d-flex d-row">
+                    <div class="form-group col-md-6">
+                        <label for="position">Father/Husband's Designation <span class="required">*</span></label>
+                        <input id="title" type="text" class="form-control" maxlength="100" formControlName="fatherOrHusband_Designation"
+                            placeholder="Father Husband_Designation">
+                            <span class="validation_msg"
+                            *ngIf="f.fatherOrHusband_Designation.errors && f.fatherOrHusband_Designation.errors.required && isError">Please Enter Father/Husband's Designation</span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="position">Name of Issuing Auth<span class="required">*</span></label>
+                        <input id="title" type="text" class="form-control" maxlength="100" formControlName="name_of_issuing_Auth"
+                            placeholder="Name of issuing Auth">
+                            <span class="validation_msg"
+                            *ngIf="f.name_of_issuing_Auth.errors && f.name_of_issuing_Auth.errors.required && isError">Please Enter Name of Issuing Auth</span>
+                    </div>
+                </div>
+
+
+                <div class="d-flex d-row">
+                    <div class="form-group col-md-6">
+                        <label for="position">Pers No<span class="required">*</span></label>
+                        <input id="pers_No" type="text" class="form-control" (keypress)="keyPress($event)" maxlength="10" formControlName="pers_No"
+                            placeholder="Personal No">
+                            <span class="validation_msg" *ngIf="f.pers_No.errors && f.pers_No.errors.required && isError">Please Enter Number</span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="position">Rank<span class="required">*</span></label>
+                        <input id="title" type="text" class="form-control" maxlength="100" formControlName="rankName"
+                            placeholder="Rank">
+                            <span class="validation_msg" *ngIf="f.rankName.errors && f.rankName.errors.required && isError">Please Enter Rank</span>
+                    </div>
+                </div>
+
+                <div class="d-flex d-row">
+                    <div class="form-group col-md-6">
+                        <label for="position">Old I/Card No<span class="required">*</span></label>
+                        <input id="title" type="text" class="form-control" maxlength="100" formControlName="old_ICard_No"
+                            placeholder="Old I/Card No">
+                            <span class="validation_msg" *ngIf="f.old_ICard_No.errors && f.old_ICard_No.errors.required && isError">Please Enter CardNo</span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="position">Date of Issue<span class="required">*</span></label>
+                        <input id="scheduleDate" type="date" class="form-control" formControlName="date_of_issue"
+                            >
+                            <span class="validation_msg" *ngIf="f.date_of_issue.errors && f.date_of_issue.errors.required && isError">Please Enter Date of Issue</span>
+
+                    </div>
+                </div>
+
+                <div class="d-flex d-row">
+                    <div class="form-group col-md-6">
+                        <label for="position">Place of Issue<span class="required">*</span></label>
+                        <input id="title" type="text" class="form-control" maxlength="100" formControlName="place_of_Issue"
+                            placeholder="Place of Issue">
+                            <span class="validation_msg" *ngIf="f.place_of_Issue.errors && f.place_of_Issue.errors.required && isError">Please Enter Place of Issue</span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="position">Place of Birth<span class="required">*</span></label>
+                        <input id="title" type="text" class="form-control" maxlength="100" formControlName="place_of_Birth"
+                            placeholder="Place of Birth">
+                            <span class="validation_msg" *ngIf="f.place_of_Birth.errors && f.place_of_Birth.errors.required && isError">Please Enter Place of Birth</span>
+                    </div>
+                </div>
+
+
+
+                <div class="d-flex d-row">
+                    <div class="form-group col-md-6">
+                        <label for="scheduleDate"> Date of Birth<span class="required">*</span></label>
+                        <input id="scheduleDate" type="date"  class="form-control" formControlName="date_of_Birth"
+                            >
+                        <span class="validation_msg" *ngIf="f.date_of_Birth.errors && f.date_of_Birth.errors.required && isError">Date of Birth</span>
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="scheduleDate">Date of Commission/Enrollment<span class="required">*</span></label>
+                        <input id="datepicker1" type="date"  class="form-control" formControlName="date_of_CommissionOrEnrolment"
+                            >
+                            <span class="validation_msg" *ngIf="f.date_of_CommissionOrEnrolment.errors && f.date_of_CommissionOrEnrolment.errors.required && isError">Date of Commission/Enrolment</span>
+
+                    </div>
+                </div>
+
+                
+                <div class="d-flex d-row">
+                    <div class="form-group col-md-12">
+                        <label for="remarks">Reason for Change I-Card<span class="required">*</span></label>
+                        <textarea matInput placeholder="Maximum 500 Characters" class="form-control"
+                            (input)="charCount($event,'remarks')" maxlength="1500" formControlName="reason_for_Change_ICard"></textarea>
+                            <span class="validation_msg" *ngIf="f.reason_for_Change_ICard.errors && f.reason_for_Change_ICard.errors.required && isError">Reason for Change I-Card</span>
+                    </div>
+                </div>
+
+                <div class="d-flex d-row">
+                    <div class="form-group col-md-6">
+                        <label for="position">Date of Retirement</label>
+                        <input id="scheduleDate" type="date" class="form-control" formControlName="date_of_Retirement"
+                            >
+                            <span class="validation_msg" *ngIf="f.date_of_Retirement.errors && f.date_of_Retirement.errors.required && isError">Date of Retirement</span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="position">Unit/Corps/Ship<span class="required">*</span></label>
+                        <input id="title" type="text" class="form-control" maxlength="100" formControlName="unit_crops_ship"
+                            placeholder="Unit">
+                            <span class="validation_msg" *ngIf="f.unit_crops_ship.errors && f.unit_crops_ship.errors.required && isError">Date of Unit/Corps/Ship</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row border acc_doc">
+                <div class="edi_btn">
+                    <h3>Permanent Home Address</h3>
+                </div>
+                <div class="d-flex d-row">
+                    <div class="form-group col-md-6">
+                        <label for="position">India</label>
+                        <input id="title" type="text" class="form-control" maxlength="100" formControlName="permanent_Home_Address_India"
+                            placeholder="Address">
+                        
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="position">Elsewhere</label>
+                        <input id="title" type="text" class="form-control" maxlength="100" formControlName="permanent_Home_Address_Elsewhere"
+                            placeholder="Address">
+                    </div>
+                </div>
+            </div>
+            <div class="row border acc_doc">
+                <div class="edi_btn">
+                    <h3>Visible Identification Mark</h3>
+                </div>
+                <div class="col-md-12 d-flex plr-0">
+                    <div class="form-group col-md-4">
+                        <label for="position">Height<span class="required">*</span></label>
+                        <input id="title" type="text" class="form-control" maxlength="100" formControlName="height"
+                            placeholder="height">
+                            <span class="validation_msg" *ngIf="f.height.errors && f.height.errors.required && isError">please enter Height</span>    
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="position">Color of Hair<span class="required">*</span></label>
+                        <input id="title" type="text" class="form-control" maxlength="100" formControlName="color_of_Hair"
+                            placeholder="Color of Hair">
+                            <span class="validation_msg" *ngIf="f.color_of_Hair.errors && f.color_of_Hair.errors.required && isError">please enter Color of Hair</span>    
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="position">Color of Eyes<span class="required">*</span></label>
+                        <input id="title" type="text" class="form-control" maxlength="100" formControlName="color_of_Eyes"
+                            placeholder="Color of Eyes">
+                            <span class="validation_msg" *ngIf="f.color_of_Eyes.errors && f.color_of_Eyes.errors.required && isError">please enter Color of Eyes</span>    
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="row">
+            <div class="form-group col-md-6">
+               <label for="position">Height<span class="required">*</span></label>
+               <input id="title" type="text" class="form-control" maxlength="100" formControlName="height"
+               placeholder="height">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="position">Color of Hair<span class="required">*</span></label>
+                <input id="title" type="text" class="form-control" maxlength="100" formControlName="haircolor"
+                placeholder="Color of Hair">
+                
+             </div>
+        </div> 
+
+        <div class="row">
+            
+            <div class="form-group col-md-6">
+                <label for="position">Color of Eyes<span class="required">*</span></label>
+                <input id="title" type="text" class="form-control" maxlength="100" formControlName="eyecolor"
+                placeholder="Color of Eyes">
+                
+             </div>
+        </div>  -->
+
+            <div class="row border acc_doc">
+                <!-- <div  class="edi_btn"><h3>Witnesses</h3></div> -->
+                <div class="form-group col-md-6">
+                    <label for="position">Station</label>
+                    <input id="title" type="text" class="form-control" maxlength="100" formControlName="station"
+                     value="Dehradun"  >
+                     
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="position">Date <span class="required">*</span></label>
+                    <input id="scheduleDate" type="date" class="form-control" formControlName="todayDate"
+                        >
+                        <span class="validation_msg" *ngIf="f.todayDate.errors && f.todayDate.errors.required && isError">please enter Date</span>    
+
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="position">Signature<span class="required">*</span></label>
+                    <input id="title" type="text" class="form-control" maxlength="100" formControlName="signature_name"
+                        placeholder="signature">
+                        <span class="validation_msg"
+                        *ngIf="f.signature_name.errors && f.signature_name.errors.required && isError">Please Enter Name</span>
+                </div>
+            </div>
+
+           
+
+
+            <!-- <div class="row"  *ngIf="id" [readonly]="true">
+                <div class="form-group col-md-6">
+                    <label for="request_type">Request Status</label>
+                    <select name="" id="" class="form-control " disabled formControlName="request_type">
+                        <option value=""  disabled selected hidden>Requested</option>
+                        <option value="Pending">On Hold</option>
+                        <option value="Completed">Under Process</option>
+                        <option value="Rejected">Issued</option>
+                    <option value="Rejected">Rejected</option>
+
+                    </select>
+                </div>
+            </div> -->
+      
+            <button mat-raised-button *ngIf="pageTitle=='Add CARD'" (click)="addCard()">Add Request</button>
+            <button mat-raised-button *ngIf="pageTitle=='View CARD'" (click)="updateCard()">Update Request</button>
+
+        </form>
+    </div>
+</mat-card>

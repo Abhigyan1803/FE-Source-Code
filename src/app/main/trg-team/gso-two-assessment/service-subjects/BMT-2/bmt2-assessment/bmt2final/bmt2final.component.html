@@ -1,0 +1,228 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="mat-heading">
+            <div id="top-bar" class="">
+                <h2>TRG TEAM <span class="sub-menu1">
+                        > GSO-2 > {{type}} > Service Subjects > BMT2 > Assessment > Final Term</span></h2>
+            </div>
+        </div>
+        <div class="academics">
+            <div class="mat-card mat-focus-indicator">
+
+                <form class="ng-untouched ng-pristine ng-invalid">
+                    <div class="row">
+
+                        <div class="form-group col-md-3">
+                            <label for="battalion">Battalion</label>
+                            <select id="battalion" name="battalion" (change)="battalionSelected($event.target.value)"
+                                class="form-control">
+                                <option value="0" selected>Select</option>
+                                <option *ngFor="let b of battalionList" [value]="b.shortName"> {{b.shortName}}</option>
+                            </select>
+                            <!-- <span class="val_msg" *ngIf="f.battalion.errors && f.battalion.errors.required && isError">*Please Select
+                              Battalion</span> -->
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="company">Company</label>
+                            <select id="company" class="form-control" name="company"
+                                (change)="companySelected($event.target.value)">
+                                <option value="0" selected>Select</option>
+                                <option *ngFor="let c of companyList" [value]="c.name"> {{c.name}}</option>
+                            </select>
+                            <!-- <span class="val_msg" *ngIf="f.company.errors && f.company.errors.required && isError">*Please Select
+                              Company</span> -->
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="rank">Search</label>
+                                <input placeholder="Search by IMA No." [(ngModel)]="txt_ima" name="txt_ima"
+                                    (change)="serviceSearch()"
+                                    class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-3 " style="margin-top: 29px;">
+                            <button type="button" mat-raised-button (click)="edSearch()">Search</button>
+                            <button mat-raised-button (click)="clearSearch($event)">Clear</button>
+
+                        </div>
+                    </div>
+                </form>
+                <form class="oq-matrix-form">
+                    <table class="tg">
+                        <thead>
+                            <tr>
+                                <th class="tg-qnnc" rowspan="3">S. No.</th>
+                                <th class="tg-qnnc" rowspan="3">IMA No.</th>
+                                <th class="tg-qnnc" rowspan="3">Course</th>
+                                <th class="tg-qnnc" rowspan="3">Name</th>
+                                <th class="tg-qnnc" rowspan="3">Rank</th>
+                                <th class="tg-qnnc" rowspan="3">Bn/Coy</th>
+                                <th class="tg-qnnc" colspan="6">Subjects</th>
+                                <th class="tg-qnnc" rowspan="3">Remark</th>
+                            </tr>
+                            <tr>
+                                <th colspan="1" style="width: 11%;" *ngFor="let subject of Bmt2SubjectList"
+                                    class="tg-qnnc">
+                                    {{subject.subjectName}}<br>Marks
+                                    ({{subject.totalMarks}})</th>
+
+                                <th class="tg-qnnc" rowspan="3">Total <br>Marks (150)</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let leadership of intellectualCadetList; let leadershipIndex = index">
+                                <td class="tg-c3ow">{{ leadershipIndex + 1}}</td>
+                                <td class="tg-c3ow">{{ leadership.serviceId }}</td>
+                                <td class="tg-0pky">{{ leadership.course }}</td>
+                                <td class="tg-c3ow">{{ leadership.name }}</td>
+                                <!-- <td class="tg-0pky">{{ leadership.nationality }}</td> -->
+                                <td class="tg-c3ow">
+                                    <p *ngIf="leadership.nationality=='India'">GC</p>
+                                    <p *ngIf="leadership.nationality !='India'">FGC</p>
+                                </td>
+                                <td class="tg-c3ow">{{ leadership.battalian }}/{{ leadership.company }}</td>
+
+                                <td class="tg-c3ow"
+                                    *ngFor="let leadershipSubject of leadership.serviceBmt2Result.serviceBmt2SubjectResult; let leadershipSubjectIndex = index">
+                                    <div class="d-flex">
+                                        <ng-container>
+                                            <input type="text" [disabled]="!hasAccess" maxlength="2" class="form-control d-inline"
+                                                value="{{leadershipSubject.obtainedMarks}}" min="0"
+                                                (keypress)="keyPress($event)"
+                                                oninput="this.value =!!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                                                (focus)="onFocusEvent($event.target.value,leadershipIndex)"
+                                                on-focusout="onChange($event,$event.target.value, leadershipSubject.totalMarks, leadershipSubject.subjectId, leadershipIndex, leadershipSubjectIndex)">
+                                        </ng-container>
+                                    </div>
+                                </td>
+
+                                <td class="tg-0pky">
+                                    <input type="text" class="form-control" disabled id="{{leadershipIndex}}"
+                                        value="{{ leadership.serviceBmt2Result.obtainedMarks }}">   
+                                </td>
+
+                                <td class="tg-c3ow"> 
+                                    <p>{{leadership.serviceBmt2Result.remarks}}</p>
+                                  </td>
+
+                                <div *ngIf="!leadership.serviceBmt2Result">
+                                    <div *ngFor="let size of leaderShipSubject;let ser=index;">
+                                        <td class="tg-c3ow">
+                                            <input type="text" class="form-control" formControlName="obtainedMarks">
+                                        </td>
+                                        <td *ngIf="ser+1 == leaderShipSubject.length" class="tg-c3ow">
+                                            {{obtainedTotalMarks}}</td>
+                                    </div>
+                                </div>
+                            </tr>
+                            <tr>
+                                <td class="mat-cell" style="text-align: center;" *ngIf="!intellectualCadetList?.length"
+                                    colspan="14">
+                                    <div>No Record Found</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+                <mat-paginator #myPaginator [length]="resultsLength" [pageIndex]="currentPage" [pageSize]="pageSize"
+                    [pageSizeOptions]="[30]" aria-label="Select page" showFirstLastButtons>
+                </mat-paginator>
+                <div class="btn-sec mt-3 text-right">
+                    <button type="button" disabled mat-raised-button (click)="openPopup()" *ngIf="!intellectualCadetList?.length">Preview</button>
+                    <button type="button" [disabled]="!hasAccess" mat-raised-button (click)="openPopup()" *ngIf="this.intellectualCadetList?.length > 0">Preview</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable custom-lg" role="document">
+        <div class="modal-content p-3">
+            <div class="modal-header">
+                <h5 class="modal-title">Review</h5>
+            </div>
+            <div class="modal-body">
+                <table class="tg">
+                    <thead>
+                        <tr>
+                            <th class="tg-qnnc" rowspan="3">S. No.</th>
+                            <th class="tg-qnnc" rowspan="3">IMA No.</th>
+                            <th class="tg-qnnc" rowspan="3">Course</th>
+                            <th class="tg-qnnc" rowspan="3">Name</th>
+                            <th class="tg-qnnc" rowspan="3">Rank</th>
+                            <th class="tg-qnnc" rowspan="3">Bn/Coy</th>
+                            <th class="tg-qnnc" colspan="6">Subjects</th>
+                            <th class="tg-qnnc" rowspan="3">Remark</th>
+
+                        </tr>
+                        <tr>
+                            <th colspan="1" *ngFor="let subject of Bmt2SubjectList" class="tg-qnnc">
+                                {{subject.subjectName}}<br>Marks
+                                ({{subject.totalMarks}})</th>
+
+                                <th class="tg-qnnc" rowspan="3">Total <br>Marks (150)</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let leadership of intellectualCadetList; let leadershipIndex = index">
+                            <td class="tg-c3ow">{{ leadershipIndex + 1}}</td>
+                            <td class="tg-c3ow">{{ leadership.serviceId }}</td>
+                            <td class="tg-0pky">{{ leadership.course }}</td>
+                            <td class="tg-c3ow">{{ leadership.name }}</td>
+                            <!-- <td class="tg-0pky">{{ leadership.nationality }}</td> -->
+                            <td class="tg-c3ow">
+                                <p *ngIf="leadership.nationality=='India'">GC</p>
+                                <p *ngIf="leadership.nationality !='India'">FGC</p>
+                            </td>
+                            <td class="tg-c3ow">{{ leadership.battalian }}/{{ leadership.company }}</td>
+                            <td class="tg-c3ow"
+                                *ngFor="let leadershipSubject of leadership.serviceBmt2Result.serviceBmt2SubjectResult; let leadershipSubjectIndex = index">
+                                <div class="d-flex">
+                                    <ng-container>
+                                        <input type="text" disabled class="form-control d-inline"
+                                            value="{{leadershipSubject.obtainedMarks}}"
+                                            (focus)="onFocusEvent($event.target.value,leadershipIndex,leadershipSubjectIndex)"
+                                            on-focusout="onChange($event.target.value, leadershipSubject.totalMarks, leadershipSubject.subjectId, leadershipIndex, leadershipSubjectIndex)">
+                                    </ng-container>
+                                </div>
+                            </td>
+
+                            <td class="tg-0pky">
+                                <input type="text" class="form-control" disabled id="{{leadershipIndex}}"
+                                    value="{{ leadership.serviceBmt2Result.obtainedMarks }}">
+                            </td>
+                            <td class="tg-c3ow"> 
+                                <p>{{leadership.serviceBmt2Result.remarks}}</p>
+                              </td>
+
+
+                            <div *ngIf="!leadership.serviceBmt2Result">
+                                <div *ngFor="let size of leaderShipSubject;let ser=index;">
+                                    <td class="tg-c3ow">
+                                        <input type="text" disabled class="form-control"
+                                            formControlName="obtainedMarks">
+                                    </td>
+                                    <td *ngIf="ser+1 == leaderShipSubject.length" class="tg-c3ow">
+                                        {{obtainedTotalMarks}}</td>
+                                </div>
+                            </div>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button mat-raised-button type="button" class="btn-dark" (click)="closePopup()">Back</button>
+                <button type="button" mat-raised-button (click)="confirm()">Submit</button>
+
+            </div>
+        </div>
+    </div>
+</div>

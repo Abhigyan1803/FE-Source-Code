@@ -1,0 +1,44 @@
+
+<div class="mat-new">
+    <h4 class="card-heading">
+      <button mat-icon-button (click)="goBack()" ><mat-icon>chevron_left</mat-icon> </button>
+      Exercise Type  <span class="sub-menu1">  <span class="sub-menu1"> > {{pageTitle}}</span></span>
+    </h4>
+  </div>
+  <mat-card>
+    <div class="top-br">
+      <form [formGroup]="addExerciseTypeForm">
+  
+        <div class="row">
+
+            <div class="form-group col-md-6">
+               <label for="position">ExerciseType<span class="required">*</span></label>
+               <input id="type" type="text" class="form-control" maxlength="100" formControlName="type"
+               placeholder="ExerciseType">
+                <span class="validation_msg"
+                    *ngIf="f.type.errors && f.type.errors.required && isError">Please Enter ExerciseType</span>
+            </div>
+
+
+        </div> 
+
+   
+  
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="status">Status<span class="required" >*</span></label>
+            <select name="" id="" class="form-control " formControlName="status">
+              <option value="" disabled selected hidden>Status</option>
+              <option value="1">Active</option>
+              <option value="0">Inactive</option>
+            </select>
+            <span class="validation_msg" *ngIf="f.status.errors && f.status.errors.required && isError" >Status is required</span> 
+          </div>
+        </div>
+  
+        <button mat-raised-button *ngIf="pageTitle=='Add Exercise Type'" (click)="addExerciseType()">Add ExerciseType</button>
+        <button mat-raised-button *ngIf="pageTitle=='View Exercise Type'" (click)="updateExerciseType()">Update ExerciseType</button>
+  
+      </form>
+    </div>
+  </mat-card>

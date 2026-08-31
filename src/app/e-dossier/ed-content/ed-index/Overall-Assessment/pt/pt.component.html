@@ -1,0 +1,2151 @@
+<div class="container">
+
+
+  <!-- <div id="top-bar" class="row">
+    <h2>E-Dossier</h2>
+  </div> -->
+  <div class="box-shadow">
+
+    <h4 class="card-heading">
+      <button mat-icon-button (click)="goBack()">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      <span class="sub-menu1"> E-Dossier > Assessment: Physical Training </span>
+    </h4>
+  </div>
+  <div class="row">
+    <div class="col-md-2 form-group">
+
+      <label for="rank">Ima No.</label>
+      <input placeholder="No" type="text" [value]="cadetDetails.serviceId" disabled class="form-control">
+
+    </div>
+    <div class="col-md-2 form-group">
+
+      <label for="rank">Rank</label>
+      <input placeholder="Rank" [value]="this.cadetDetails.rank" type="text" disabled class="form-control">
+
+    </div>
+    <div class="col-md-2 form-group">
+
+      <label for="rank">Name</label>
+      <input placeholder="Name" [value]="cadetDetails.name" type="text" disabled class="form-control">
+
+    </div>
+    <div class="col-md-2 form-group">
+
+      <label for="rank">Term</label>
+      <input placeholder="Term" [value]="cadetDetails.termName" type="text" disabled class="form-control">
+
+    </div>
+    <div class="col-md-2 form-group">
+
+      <label for="rank">Battalion</label>
+      <input placeholder="Bn" [value]="cadetDetails.battalian + ' Bn'" type="text" disabled class="form-control">
+
+    </div>
+    <div class="col-md-2 form-group">
+
+      <label for="rank">Company</label>
+      <input placeholder="Coy" [value]="cadetDetails.company" type="text" disabled class="form-control">
+
+    </div>
+
+  </div>
+
+  <div class="main-row row">
+
+    <mat-card *ngIf="!_I_termData.dataAvailable && !_II_techData.dataAvailable && !_II_termData.dataAvailable && !_III_termData.dataAvailable"  >
+        <div style="width: 500px; height: 500px;" >
+          <img src="assets/img/no_data_available.png" style="width: 500px; height: 500px;" alt="No Data Available">
+        </div> 
+    </mat-card>
+
+    <mat-card *ngIf="_I_termData.dataAvailable">
+      <mat-card-title>
+        <div class="card-title">
+          <h1>Term I</h1> 
+        </div>
+      </mat-card-title>
+      <mat-card-content>
+        <div *ngFor="let subject of _I_termData.subjects;let i=index" class="card m-4">
+
+          <div>
+            <h4> {{i+1}}. {{subject.subjectType}}</h4>
+          </div>
+          <div>
+            <table class="tg">
+              <thead>
+                <tr>
+                  <th class="tg-0lax" rowspan="2">Sr.No.</th>
+                  <th class="tg-0lax" rowspan="2">Test</th>
+                  <th class="tg-0lax" rowspan="2">Last Attempt</th>
+                  <th class="tg-0lax" rowspan="2">Total Marks</th>
+                  <th class="tg-0lax" colspan="4">Obtained Marks</th>
+                  <th class="tg-0lax" rowspan="2">Cleared In</th>
+                  <th class="tg-0lax" rowspan="2">Grade</th>
+                </tr>
+                <tr>
+                  <th class="tg-0lax">M1</th>
+                  <th class="tg-0lax">M2</th>
+                  <th class="tg-0lax">C1</th>
+                  <th class="tg-0lax">C2</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let sub of subject.edossierPtSubjectResult;let j=index">
+                  <td class="tg-0lax">{{j+1}} </td>
+                  <td class="tg-0lax"> {{sub.subjectName || '-'}} </td>
+                  <td class="tg-0lax resData">
+                    <select *ngIf="hasAccess" name="" id="" [(ngModel)]="sub.lastAttemptType" class="form-control">
+                      <!-- <option *ngFor="let at of attemptTypes" [value]="at">{{at}} </option> -->
+                      <option value="" selected disabled hidden>Select</option>
+                      <option value="M1">M1</option>
+                      <option value="M2" [disabled]="!sub.m1ObtainedMarks">M2</option>
+                      <option value="C1" [disabled]="!sub.m2ObtainedMarks">C1</option>
+                      <option value="C2" [disabled]="!sub.c1ObtainedMarks">C2</option>
+
+                    </select>
+                    <span *ngIf="!hasAccess">
+                      {{sub.lastAttemptType || '-'}}
+                    </span>
+                  </td>
+                  <td>
+                    <span> {{sub.totalMarks || '-'}} </span>
+                  </td>
+                  <td class="tg-0lax resData">
+                    <input *ngIf="hasAccess" [disabled]="sub.lastAttemptType != 'M1'" type="text" name="" id=""
+                      class="form-control" [(ngModel)]="sub.m1ObtainedMarks" (keypress)="onlyNum($event)"
+                      (focusout)="patchMarksIterm($event,subject,sub,i,j,'M1')">
+                    <span *ngIf="!hasAccess">
+                      {{sub.m1ObtainedMarks || '-'}}
+                    </span>
+                  </td>
+                  <td class="tg-0lax resData">
+                    <input *ngIf="hasAccess" [disabled]="sub.lastAttemptType != 'M2'" type="text" name="" id=""
+                      class="form-control" [(ngModel)]="sub.m2ObtainedMarks" (keypress)="onlyNum($event)"
+                      (focusout)="patchMarksIterm($event,subject,sub,i,j,'M2')">
+                    <span *ngIf="!hasAccess">
+                      {{sub.m2ObtainedMarks || '-'}}
+                    </span>
+                  </td>
+                  <td class="tg-0lax resData">
+                    <input *ngIf="hasAccess" [disabled]="sub.lastAttemptType != 'C1'" type="text" name="" id=""
+                      class="form-control" [(ngModel)]="sub.c1ObtainedMarks" (keypress)="onlyNum($event)"
+                      (focusout)="patchMarksIterm($event,subject,sub,i,j,'C1')">
+                    <span *ngIf="!hasAccess">{{sub.c1ObtainedMarks || '-'}}</span>
+                  </td>
+                  <td class="tg-0lax resData">
+                    <input *ngIf="hasAccess" [disabled]="sub.lastAttemptType != 'C2'" type="text" name="" id=""
+                      class="form-control" [(ngModel)]="sub.c2ObtainedMarks" (keypress)="onlyNum($event)"
+                      (focusout)="patchMarksIterm($event,subject,sub,i,j,'C2')">
+                    <span *ngIf="!hasAccess">{{sub.c2ObtainedMarks || '-'}}</span>
+                  </td>
+                  <td class="tg-0lax resData"> {{sub.clearedIn || '-'}} </td>
+                  <td class="tg-0lax resData"> {{sub.resultGrade || '-'}} </td>
+
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="3">Total </td>
+                  <td> {{subject.totalMarks || '-'}} </td>
+                  <td colspan="6"> {{subject.obtainedMarks||'-'}} </td>
+
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <div class="text-right" *ngIf="hasAccess">
+            <button mat-raised-button (click)="updateResult(subject)">
+              Update
+            </button>
+          </div>
+        </div>
+
+
+
+
+
+        <div class="row col-md-12">
+          <div class="card col-md-6">
+            <div class="card-header">
+              <h4>Motivational Awards</h4>
+            </div>
+            <div class="card-body row">
+              <div class="">
+                <div class="form-group">
+                  <label ><input type="checkbox" name="" id="merit-card"
+                      [checked]="_I_termData.motivationalAwards.meritCard == '1'" [disabled]="!hasAccess"
+                      (change)="markMotivationalAwards($event,'Merit Card',1)"> Merit Card </label>
+
+                </div>
+
+                <div class="form-group">
+                  <label ><input type="checkbox" name="" id="half-blue"
+                      [checked]="_I_termData.motivationalAwards.halfBlue == '1'" [disabled]="!hasAccess"
+                      (change)="markMotivationalAwards($event, 'Half Blue',1)"> Half Blue </label>
+
+                </div>
+
+                <div class="form-group">
+                  <label ><input type="checkbox" name="" id="blue"
+                      [checked]="_I_termData.motivationalAwards.blue == '1'" [disabled]="!hasAccess"
+                      (change)="markMotivationalAwards($event,'Blue',1)"> Blue </label>
+
+                </div>
+
+                <div class="form-group">
+                  <label ><input type="checkbox" name="" id="blazer"
+                      [checked]="_I_termData.motivationalAwards.blazer == '1'" [disabled]="!hasAccess"
+                      (change)="markMotivationalAwards($event,'Blazer',1)"> Blazer </label>
+
+                </div>
+
+                <div class="text-right" *ngIf="hasAccess">
+                  <button mat-raised-button (click)="updateMotivationalAwards(1)">
+                    Update Motivational Awards
+                  </button>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div class="card col-md-6">
+            <div class="card-header">
+              <h4>Total Marks in PT</h4>
+            </div>
+            <div class="card-body">
+              <h3>
+                {{_I_termData.totalObtainedMarks}}
+              </h3>
+            </div>
+          </div>
+
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card *ngIf="_II_techData.dataAvailable">
+      <mat-card-title>
+        <div class="card-title">
+          <h1>Term II Tech</h1> 
+        </div>
+      </mat-card-title>
+      <mat-card-content>
+        <div *ngFor="let subject of _II_techData.subjects;let i=index" class="card m-4">
+
+          <div>
+            <h4> {{i+1}}. {{subject.subjectType}}</h4>
+          </div>
+          <div>
+            <table class="tg">
+              <thead>
+                <tr>
+                  <th class="tg-0lax" rowspan="2">Sr.No.</th>
+                  <th class="tg-0lax" rowspan="2">Test</th>
+                  <th class="tg-0lax" rowspan="2">Last Attempt</th>
+                  <th class="tg-0lax" rowspan="2">Total Marks</th>
+                  <th class="tg-0lax" colspan="4">Obtained Marks</th>
+                  <th class="tg-0lax" rowspan="2">Cleared In</th>
+                  <th class="tg-0lax" rowspan="2">Grade</th>
+                </tr>
+                <tr>
+                  <th class="tg-0lax">M1</th>
+                  <th class="tg-0lax">M2</th>
+                  <th class="tg-0lax">C1</th>
+                  <th class="tg-0lax">C2</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let sub of subject.edossierPtSubjectResult;let j=index">
+                  <td class="tg-0lax">{{j+1}} </td>
+                  <td class="tg-0lax"> {{sub.subjectName || '-'}} </td>
+                  <td class="tg-0lax resData">
+                    <select *ngIf="hasAccess" name="" id="" [(ngModel)]="sub.lastAttemptType" class="form-control">
+                      <!-- <option *ngFor="let at of attemptTypes" [value]="at">{{at}} </option> -->
+                      <option value="" selected disabled hidden>Select</option>
+                      <option value="M1">M1</option>
+                      <option value="M2" [disabled]="!sub.m1ObtainedMarks">M2</option>
+                      <option value="C1" [disabled]="!sub.m2ObtainedMarks">C1</option>
+                      <option value="C2" [disabled]="!sub.c1ObtainedMarks">C2</option>
+
+                    </select>
+                    <span *ngIf="!hasAccess">
+                      {{sub.lastAttemptType || '-'}}
+                    </span>
+                  </td>
+                  <td>
+                    <span> {{sub.totalMarks || '-'}} </span>
+                  </td>
+                  <td class="tg-0lax resData">
+                    <input *ngIf="hasAccess" [disabled]="sub.lastAttemptType != 'M1'" type="text" name="" id=""
+                      class="form-control" [(ngModel)]="sub.m1ObtainedMarks" (keypress)="onlyNum($event)"
+                      (focusout)="patchMarksIterm($event,subject,sub,i,j,'M1')">
+                    <span *ngIf="!hasAccess">
+                      {{sub.m1ObtainedMarks || '-'}}
+                    </span>
+                  </td>
+                  <td class="tg-0lax resData">
+                    <input *ngIf="hasAccess" [disabled]="sub.lastAttemptType != 'M2'" type="text" name="" id=""
+                      class="form-control" [(ngModel)]="sub.m2ObtainedMarks" (keypress)="onlyNum($event)"
+                      (focusout)="patchMarksIterm($event,subject,sub,i,j,'M2')">
+                    <span *ngIf="!hasAccess">
+                      {{sub.m2ObtainedMarks || '-'}}
+                    </span>
+                  </td>
+                  <td class="tg-0lax resData">
+                    <input *ngIf="hasAccess" [disabled]="sub.lastAttemptType != 'C1'" type="text" name="" id=""
+                      class="form-control" [(ngModel)]="sub.c1ObtainedMarks" (keypress)="onlyNum($event)"
+                      (focusout)="patchMarksIterm($event,subject,sub,i,j,'C1')">
+                    <span *ngIf="!hasAccess">{{sub.c1ObtainedMarks || '-'}}</span>
+                  </td>
+                  <td class="tg-0lax resData">
+                    <input *ngIf="hasAccess" [disabled]="sub.lastAttemptType != 'C2'" type="text" name="" id=""
+                      class="form-control" [(ngModel)]="sub.c2ObtainedMarks" (keypress)="onlyNum($event)"
+                      (focusout)="patchMarksIterm($event,subject,sub,i,j,'C2')">
+                    <span *ngIf="!hasAccess">{{sub.c2ObtainedMarks || '-'}}</span>
+                  </td>
+                  <td class="tg-0lax resData"> {{sub.clearedIn || '-'}} </td>
+                  <td class="tg-0lax resData"> {{sub.resultGrade || '-'}} </td>
+
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="3">Total </td>
+                  <td> {{subject.totalMarks || '-'}} </td>
+                  <td colspan="6"> {{subject.obtainedMarks||'-'}} </td>
+
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <div class="text-right" *ngIf="hasAccess">
+            <button mat-raised-button (click)="updateResult(subject)">
+              Update
+            </button>
+          </div>
+        </div>
+
+
+
+
+
+        <div class="row col-md-12">
+          <div class="card col-md-6">
+            <div class="card-header">
+              <h4>Motivational Awards</h4>
+            </div>
+            <div class="card-body row">
+              <div class="">
+                <div class="form-group">
+                  <label ><input type="checkbox" name="" id="merit-card"
+                      [checked]="_II_techData.motivationalAwards.meritCard == '1'" [disabled]="!hasAccess"
+                      (change)="markMotivationalAwards($event,'Merit Card',7)"> Merit Card </label>
+
+                </div>
+
+                <div class="form-group">
+                  <label ><input type="checkbox" name="" id="half-blue"
+                      [checked]="_II_techData.motivationalAwards.halfBlue == '1'" [disabled]="!hasAccess"
+                      (change)="markMotivationalAwards($event, 'Half Blue',7)"> Half Blue </label>
+
+                </div>
+
+                <div class="form-group">
+                  <label ><input type="checkbox" name="" id="blue"
+                      [checked]="_II_techData.motivationalAwards.blue == '1'" [disabled]="!hasAccess"
+                      (change)="markMotivationalAwards($event,'Blue',7)"> Blue </label>
+
+                </div>
+
+                <div class="form-group">
+                  <label ><input type="checkbox" name="" id="blazer"
+                      [checked]="_II_techData.motivationalAwards.blazer == '1'" [disabled]="!hasAccess"
+                      (change)="markMotivationalAwards($event,'Blazer',7)"> Blazer </label>
+
+                </div>
+
+                <div class="text-right" *ngIf="hasAccess">
+                  <button mat-raised-button (click)="updateMotivationalAwards(7)">
+                    Update Motivational Awards
+                  </button>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div class="card col-md-6">
+            <div class="card-header">
+              <h4>Total Marks in PT</h4>
+            </div>
+            <div class="card-body">
+              <h3>
+                {{_II_techData.totalObtainedMarks}}
+              </h3>
+            </div>
+          </div>
+
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card *ngIf="_II_termData.dataAvailable">
+  
+      <mat-card-title>
+        <div class="card-title">
+          <h1>Term II</h1> 
+        </div>
+      </mat-card-title>
+      <mat-card-content>
+        <div *ngFor="let subject of _II_termData.subjects;let i=index" class="card m-4">
+
+          <div>
+            <h4> {{i+1}}. {{subject.subjectType}}</h4>
+          </div>
+          <div>
+            <table class="tg">
+              <thead>
+                <tr>
+                  <th class="tg-0lax" rowspan="2">Sr.No.</th>
+                  <th class="tg-0lax" rowspan="2">Test</th>
+                  <th class="tg-0lax" rowspan="2">Last Attempt</th>
+                  <th class="tg-0lax" rowspan="2">Total Marks</th>
+                  <th class="tg-0lax" colspan="4">Obtained Marks</th>
+                  <th class="tg-0lax" rowspan="2">Cleared In</th>
+                  <th class="tg-0lax" rowspan="2">Grade</th>
+                </tr>
+                <tr>
+                  <th class="tg-0lax">M1</th>
+                  <th class="tg-0lax">M2</th>
+                  <th class="tg-0lax">C1</th>
+                  <th class="tg-0lax">C2</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let sub of subject.edossierPtSubjectResult;let j=index">
+                  <td class="tg-0lax">{{j+1}} </td>
+                  <td class="tg-0lax"> {{sub.subjectName || '-'}} </td>
+                  <td class="tg-0lax resData">
+                    <select *ngIf="hasAccess" name="" id="" [(ngModel)]="sub.lastAttemptType" class="form-control">
+                      <!-- <option *ngFor="let at of attemptTypes" [value]="at">{{at}} </option> -->
+                      <option value="" selected disabled hidden>Select</option>
+                      <option value="M1">M1</option>
+                      <option value="M2" [disabled]="!sub.m1ObtainedMarks">M2</option>
+                      <option value="C1" [disabled]="!sub.m2ObtainedMarks">C1</option>
+                      <option value="C2" [disabled]="!sub.c1ObtainedMarks">C2</option>
+
+                    </select>
+                    <span *ngIf="!hasAccess">
+                      {{sub.lastAttemptType || '-'}}
+                    </span>
+                  </td>
+                  <td>
+                    <span> {{sub.totalMarks || '-'}} </span>
+                  </td>
+                  <td class="tg-0lax resData">
+                    <input *ngIf="hasAccess" [disabled]="sub.lastAttemptType != 'M1'" type="text" name="" id=""
+                      class="form-control" [(ngModel)]="sub.m1ObtainedMarks" (keypress)="onlyNum($event)"
+                      (focusout)="patchMarksIIterm($event,subject,sub,i,j,'M1')">
+                    <span *ngIf="!hasAccess">
+                      {{sub.m1ObtainedMarks || '-'}}
+                    </span>
+                  </td>
+                  <td class="tg-0lax resData">
+                    <input *ngIf="hasAccess" [disabled]="sub.lastAttemptType != 'M2'" type="text" name="" id=""
+                      class="form-control" [(ngModel)]="sub.m2ObtainedMarks" (keypress)="onlyNum($event)"
+                      (focusout)="patchMarksIIterm($event,subject,sub,i,j,'M2')">
+                    <span *ngIf="!hasAccess">
+                      {{sub.m2ObtainedMarks || '-'}}
+                    </span>
+                  </td>
+                  <td class="tg-0lax resData">
+                    <input *ngIf="hasAccess" [disabled]="sub.lastAttemptType != 'C1'" type="text" name="" id=""
+                      class="form-control" [(ngModel)]="sub.c1ObtainedMarks" (keypress)="onlyNum($event)"
+                      (focusout)="patchMarksIIterm($event,subject,sub,i,j,'C1')">
+                    <span *ngIf="!hasAccess">{{sub.c1ObtainedMarks || '-'}}</span>
+                  </td>
+                  <td class="tg-0lax resData">
+                    <input *ngIf="hasAccess" [disabled]="sub.lastAttemptType != 'C2'" type="text" name="" id=""
+                      class="form-control" [(ngModel)]="sub.c2ObtainedMarks" (keypress)="onlyNum($event)"
+                      (focusout)="patchMarksIIterm($event,subject,sub,i,j,'C2')">
+                    <span *ngIf="!hasAccess">{{sub.c2ObtainedMarks || '-'}}</span>
+                  </td>
+                  <td class="tg-0lax resData"> {{sub.clearedIn || '-'}} </td>
+                  <td class="tg-0lax resData"> {{sub.resultGrade || '-'}} </td>
+
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="3">Total </td>
+                  <td> {{subject.totalMarks || '-'}} </td>
+                  <td colspan="6"> {{subject.obtainedMarks||'-'}} </td>
+
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <div class="text-right" *ngIf="hasAccess">
+            <button mat-raised-button (click)="updateResult(subject)">
+              Update
+            </button>
+          </div>
+        </div>
+        <div class="row col-md-12">
+          <div class="card col-md-6">
+            <div class="card-header">
+              <h4>Motivational Awards</h4>
+            </div>
+            <div class="card-body row">
+              <div class="">
+                <div class="form-group">
+                  <label ><input type="checkbox" name="" id="merit-card"
+                      [checked]="_II_termData.motivationalAwards.meritCard == '1'" [disabled]="!hasAccess"
+                      (change)="markMotivationalAwards($event,'Merit Card',2)"> Merit Card </label>
+
+                </div>
+
+                <div class="form-group">
+                  <label ><input type="checkbox" name="" id="half-blue"
+                      [checked]="_II_termData.motivationalAwards.halfBlue == '1'" [disabled]="!hasAccess"
+                      (change)="markMotivationalAwards($event, 'Half Blue',2)"> Half Blue </label>
+
+                </div>
+
+                <div class="form-group">
+                  <label ><input type="checkbox" name="" id="blue"
+                      [checked]="_II_termData.motivationalAwards.blue == '1'" [disabled]="!hasAccess"
+                      (change)="markMotivationalAwards($event,'Blue',2)"> Blue </label>
+
+                </div>
+
+                <div class="form-group">
+                  <label ><input type="checkbox" name="" id="blazer"
+                      [checked]="_II_termData.motivationalAwards.blazer == '1'" [disabled]="!hasAccess"
+                      (change)="markMotivationalAwards($event,'Blazer',2)"> Blazer </label>
+
+                </div>
+
+                <div class="text-right" *ngIf="hasAccess">
+                  <button mat-raised-button (click)="updateMotivationalAwards(2)">
+                    Update Motivational Awards
+                  </button>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div class="card col-md-6">
+            <div class="card-header">
+              <h4>Total Marks in PT</h4>
+            </div>
+            <div class="card-body">
+              <h3>
+                {{_II_termData.totalObtainedMarks}}
+              </h3>
+            </div>
+          </div>
+
+        </div>
+
+      </mat-card-content>
+
+    </mat-card>
+
+    <mat-card *ngIf="_III_termData.dataAvailable">
+
+      <mat-card-title>
+        <div class="card-title">
+          <h1>Term III</h1> 
+        </div>
+      </mat-card-title>
+      <mat-card-content>
+        <div *ngFor="let subject of _III_termData.subjects;let i=index" class="card m-4">
+
+          <div>
+            <h4> {{i+1}}. {{subject.subjectType}}</h4>
+          </div>
+          <div>
+            <table class="tg">
+              <thead>
+                <tr>
+                  <th class="tg-0lax" rowspan="2">Sr.No.</th>
+                  <th class="tg-0lax" rowspan="2">Test</th>
+                  <th class="tg-0lax" rowspan="2">Last Attempt</th>
+                  <th class="tg-0lax" rowspan="2">Total Marks</th>
+                  <th class="tg-0lax" colspan="4">Obtained Marks</th>
+                  <th class="tg-0lax" rowspan="2">Cleared In</th>
+                  <th class="tg-0lax" rowspan="2">Grade</th>
+                </tr>
+                <tr>
+                  <th class="tg-0lax">M1</th>
+                  <th class="tg-0lax">M2</th>
+                  <th class="tg-0lax">C1</th>
+                  <th class="tg-0lax">C2</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let sub of subject.edossierPtSubjectResult;let j=index">
+                  <td class="tg-0lax">{{j+1}} </td>
+                  <td class="tg-0lax"> {{sub.subjectName || '-'}} </td>
+                  <td class="tg-0lax resData">
+                    <select *ngIf="hasAccess" name="" id="" [(ngModel)]="sub.lastAttemptType" class="form-control">
+                      <!-- <option *ngFor="let at of attemptTypes" [value]="at">{{at}} </option> -->
+                      <option value="" selected disabled hidden>Select</option>
+                      <option value="M1">M1</option>
+                      <option value="M2" [disabled]="!sub.m1ObtainedMarks">M2</option>
+                      <option value="C1" [disabled]="!sub.m2ObtainedMarks">C1</option>
+                      <option value="C2" [disabled]="!sub.c1ObtainedMarks">C2</option>
+
+                    </select>
+                    <span *ngIf="!hasAccess">
+                      {{sub.lastAttemptType || '-'}}
+                    </span>
+                  </td>
+                  <td>
+                    <span> {{sub.totalMarks || '-'}} </span>
+                  </td>
+                  <td class="tg-0lax resData">
+                    <input *ngIf="hasAccess" [disabled]="sub.lastAttemptType != 'M1'" type="text" name="" id=""
+                      class="form-control" [(ngModel)]="sub.m1ObtainedMarks" (keypress)="onlyNum($event)"
+                      (focusout)="patchMarksIIIterm($event,subject,sub,i,j,'M1')">
+                    <span *ngIf="!hasAccess">
+                      {{sub.m1ObtainedMarks || '-'}}
+                    </span>
+                  </td>
+                  <td class="tg-0lax resData">
+                    <input *ngIf="hasAccess" [disabled]="sub.lastAttemptType != 'M2'" type="text" name="" id=""
+                      class="form-control" [(ngModel)]="sub.m2ObtainedMarks" (keypress)="onlyNum($event)"
+                      (focusout)="patchMarksIIIterm($event,subject,sub,i,j,'M2')">
+                    <span *ngIf="!hasAccess">
+                      {{sub.m2ObtainedMarks || '-'}}
+                    </span>
+                  </td>
+                  <td class="tg-0lax resData">
+                    <input *ngIf="hasAccess" [disabled]="sub.lastAttemptType != 'C1'" type="text" name="" id=""
+                      class="form-control" [(ngModel)]="sub.c1ObtainedMarks" (keypress)="onlyNum($event)"
+                      (focusout)="patchMarksIIIterm($event,subject,sub,i,j,'C1')">
+                    <span *ngIf="!hasAccess">{{sub.c1ObtainedMarks || '-'}}</span>
+                  </td>
+                  <td class="tg-0lax resData">
+                    <input *ngIf="hasAccess" [disabled]="sub.lastAttemptType != 'C2'" type="text" name="" id=""
+                      class="form-control" [(ngModel)]="sub.c1ObtainedMarks" (keypress)="onlyNum($event)"
+                      (focusout)="patchMarksIIIterm($event,subject,sub,i,j,'C2')">
+                    <span *ngIf="!hasAccess">{{sub.c2ObtainedMarks || '-'}}</span>
+                  </td>
+                  <td class="tg-0lax resData"> {{sub.clearedIn || '-'}} </td>
+                  <td class="tg-0lax resData"> {{sub.resultGrade || '-'}} </td>
+
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="3">Total </td>
+                  <td> {{subject.totalMarks || '-'}} </td>
+                  <td colspan="6"> {{subject.obtainedMarks||'-'}} </td>
+
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <div class="text-right" *ngIf="hasAccess">
+            <button mat-raised-button (click)="updateResult(subject)">
+              Update
+            </button>
+          </div>
+        </div>
+        <div class="row col-md-12">
+          <div class="card col-md-6">
+            <div class="card-header">
+              <h4>Motivational Awards</h4>
+            </div>
+            <div class="card-body row">
+              <div class="">
+                <div class="form-group">
+                  <label ><input type="checkbox" name="" id="merit-card"
+                      [checked]="_III_termData.motivationalAwards.meritCard == '1'" [disabled]="!hasAccess"
+                      (change)="markMotivationalAwards($event,'Merit Card',3)"> Merit Card </label>
+
+                </div>
+
+                <div class="form-group">
+                  <label ><input type="checkbox" name="" id="half-blue"
+                      [checked]="_III_termData.motivationalAwards.halfBlue == '1'" [disabled]="!hasAccess"
+                      (change)="markMotivationalAwards($event, 'Half Blue',3)"> Half Blue </label>
+
+                </div>
+
+                <div class="form-group">
+                  <label ><input type="checkbox" name="" id="blue"
+                      [checked]="_III_termData.motivationalAwards.blue == '1'" [disabled]="!hasAccess"
+                      (change)="markMotivationalAwards($event,'Blue',3)"> Blue </label>
+
+                </div>
+
+                <div class="form-group">
+                  <label ><input type="checkbox" name="" id="blazer"
+                      [checked]="_III_termData.motivationalAwards.blazer == '1'" [disabled]="!hasAccess"
+                      (change)="markMotivationalAwards($event,'Blazer',3)"> Blazer </label>
+
+                </div>
+
+                <div class="text-right" *ngIf="hasAccess">
+                  <button mat-raised-button (click)="updateMotivationalAwards(3)">
+                    Update Motivational Awards
+                  </button>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div class="card col-md-6">
+            <div class="card-header">
+              <h4>Total Marks in PT</h4>
+            </div>
+            <div class="card-body">
+              <h3>
+                {{_III_termData.totalObtainedMarks}}
+              </h3>
+            </div>
+          </div>
+
+        </div>
+
+      </mat-card-content>
+
+    </mat-card>
+
+
+
+
+    <!-- <div class="mat-card">
+      <table class="tg">
+        <thead>
+          <tr>
+            <th class="tg-0lax" rowspan="2">TEST</th>
+            <th class="tg-0lax" colspan="3">SUPER EX</th>
+            <th class="tg-0lax">EX</th>
+            <th class="tg-0lax">GOOD</th>
+            <th class="tg-0lax">SAT</th>
+            <th class="tg-0lax"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-0lax"></td>
+            <td class="tg-0lax">S/EX-1</td>
+            <td class="tg-0lax">S/EX-2</td>
+            <td class="tg-0lax">S/EX-3</td>
+            <td class="tg-0lax"></td>
+            <td class="tg-0lax"></td>
+            <td class="tg-0lax"></td>
+            <td class="tg-0lax"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">2.4KM</td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">TOTAL MARKS</td>
+            <td class="tg-0lax">20</td>
+            <td class="tg-0lax">19</td>
+            <td class="tg-0lax">17</td>
+            <td class="tg-0lax">15</td>
+            <td class="tg-0lax">12</td>
+            <td class="tg-0lax">9</td>
+            <td class="tg-0lax">MARKS OBTAINED</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">CLEARED IN (M1/M2/C1/C2)</td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">C/UP</td>
+            <td class="tg-0lax">15</td>
+            <td class="tg-0lax">12</td>
+            <td class="tg-0lax">10</td>
+            <td class="tg-0lax">08</td>
+            <td class="tg-0lax">06</td>
+            <td class="tg-0lax">04</td>
+            <td class="tg-0lax"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">MARKS</td>
+            <td class="tg-0lax">20</td>
+            <td class="tg-0lax">19</td>
+            <td class="tg-0lax">17</td>
+            <td class="tg-0lax">15</td>
+            <td class="tg-0lax">12</td>
+            <td class="tg-0lax">9</td>
+            <td class="tg-0lax">MARKS OBTAINED</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">CLEARED IN (M1/M2/C1/C2)</td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">TOE TOUCH</td>
+            <td class="tg-0lax">15</td>
+            <td class="tg-0lax">12</td>
+            <td class="tg-0lax">10</td>
+            <td class="tg-0lax">8</td>
+            <td class="tg-0lax">6</td>
+            <td class="tg-0lax">4</td>
+            <td class="tg-0lax"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">MARKS</td>
+            <td class="tg-0lax">20</td>
+            <td class="tg-0lax">19</td>
+            <td class="tg-0lax">17</td>
+            <td class="tg-0lax">15</td>
+            <td class="tg-0lax">12</td>
+            <td class="tg-0lax">9</td>
+            <td class="tg-0lax">MARKS OBTAINED</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">CLEARED IN (M1/M2/C1/C2)</td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">5/MTR</td>
+            <td class="tg-0lax">20</td>
+            <td class="tg-0lax">19</td>
+            <td class="tg-0lax">18</td>
+            <td class="tg-0lax">16</td>
+            <td class="tg-0lax">14</td>
+            <td class="tg-0lax">12</td>
+            <td class="tg-0lax"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">MARKS</td>
+            <td class="tg-0lax">15</td>
+            <td class="tg-0lax">14</td>
+            <td class="tg-0lax">13</td>
+            <td class="tg-0lax">12</td>
+            <td class="tg-0lax">9</td>
+            <td class="tg-0lax">6</td>
+            <td class="tg-0lax">MARKS OBTAINED</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">CLEARED IN (M1/M2/C1/C2)</td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">100 MTR</td>
+            <td class="tg-0lax">10 Sec</td>
+            <td class="tg-0lax">11 Sec</td>
+            <td class="tg-0lax">12 Sec</td>
+            <td class="tg-0lax">13 Sec</td>
+            <td class="tg-0lax">15 Sec</td>
+            <td class="tg-0lax">17 Sec</td>
+            <td class="tg-0lax"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">MARKS</td>
+            <td class="tg-0lax">10</td>
+            <td class="tg-0lax">9</td>
+            <td class="tg-0lax">8</td>
+            <td class="tg-0lax">7</td>
+            <td class="tg-0lax">6</td>
+            <td class="tg-0lax">5</td>
+            <td class="tg-0lax">MARKS OBTAINED</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">CLEARED IN (M1/M2/C1/C2)</td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">SIT/UP</td>
+            <td class="tg-0lax">55</td>
+            <td class="tg-0lax">50</td>
+            <td class="tg-0lax">45</td>
+            <td class="tg-0lax">40</td>
+            <td class="tg-0lax">35</td>
+            <td class="tg-0lax">30</td>
+            <td class="tg-0lax"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">MARKS</td>
+            <td class="tg-0lax">15</td>
+            <td class="tg-0lax">14</td>
+            <td class="tg-0lax">13</td>
+            <td class="tg-0lax">12</td>
+            <td class="tg-0lax">9</td>
+            <td class="tg-0lax">6</td>
+            <td class="tg-0lax"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">CLEARED IN (M1/M2/C1/C2)</td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+          </tr>
+
+          <tr>
+            <td class="tg-0lax">TOTAL MARKS</td>
+            <td class="tg-0lax">100</td>
+            <td class="tg-0lax">94</td>
+            <td class="tg-0lax">85</td>
+            <td class="tg-0lax">76</td>
+            <td class="tg-0lax">60</td>
+            <td class="tg-0lax">44</td>
+            <td class="tg-0lax"></td>
+          </tr>
+
+        </tbody>
+      </table>
+      <table class="tg">
+        <thead>
+          <tr>
+            <th class="tg-0pky" colspan="8">IPET</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-0pky">TEST</td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky" colspan="3">MANDATORY STDS</td>
+            <td class="tg-0pky" colspan="2">HIGHER TEST</td>
+            <td class="tg-0pky"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky">3rd CL ROPE(3 MTR CLIMB)</td>
+            <td class="tg-0pky">BACK ROLL</td>
+            <td class="tg-0pky">DIVE ROLL</td>
+            <td class="tg-0pky">BEAM (2 REP)</td>
+            <td class="tg-0pky">A/VAULT (III CL) </td>
+            <td class="tg-0pky">CW/F/ROLL</td>
+            <td class="tg-0pky"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">MARKS</td>
+            <td class="tg-0pky">10</td>
+            <td class="tg-0pky">5</td>
+            <td class="tg-0pky">5</td>
+            <td class="tg-0pky">10</td>
+            <td class="tg-0pky">10</td>
+            <td class="tg-0pky">10</td>
+            <td class="tg-0pky">MARKS OBTAINED</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">CLEARED IN (M1/M2/C1/C2)</td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="tg">
+        <thead>
+          <tr>
+            <th class="tg-0pky" colspan="8">SWM</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-0pky">TEST</td>
+            <td class="tg-0pky">25 MTR SWM</td>
+            <td class="tg-0pky">5 MTR JUMP </td>
+            <td class="tg-0pky" colspan="3"> (SWM HIGHER TEST)</td>
+            <td class="tg-0pky">JUMP (HIGHER TEST) </td>
+            <td class="tg-0pky"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky">50 MTR
+              SWM
+            </td>
+            <td class="tg-0pky">100 MTR
+              SWM
+            </td>
+            <td class="tg-0pky">150 MTR
+              SWM
+            </td>
+            <td class="tg-0pky">6.5 MTR JUMP</td>
+            <td class="tg-0pky"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">MARKS</td>
+            <td class="tg-0pky">15</td>
+            <td class="tg-0pky">10</td>
+            <td class="tg-0pky">5</td>
+            <td class="tg-0pky">5</td>
+            <td class="tg-0pky">5</td>
+            <td class="tg-0pky">5</td>
+            <td class="tg-0pky">MARKS OBTAINED</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">CLEARED IN (M1/M2/C1/C2)</td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="tg">
+        <thead>
+          <tr>
+            <th colspan="8" class="tg-0lax">SOT</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-0pky">GROUP</td>
+
+            <td class="tg-0pky" colspan="3"> SUPER EX</td>
+            <td class="tg-0pky">EX</td>
+            <td class="tg-0pky">GOOD </td>
+            <td class="tg-0pky">SAT </td>
+            <td class="tg-0pky"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky">S/EX-1
+            </td>
+            <td class="tg-0pky">S/EX-2
+            </td>
+            <td class="tg-0pky">S/EX-3
+            </td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">TIME</td>
+            <td class="tg-0pky">1.10 M</td>
+            <td class="tg-0pky">1.15 M</td>
+            <td class="tg-0pky">1.20 M</td>
+            <td class="tg-0pky">1.25 M</td>
+            <td class="tg-0pky">1.40 M</td>
+            <td class="tg-0pky">1.55 M</td>
+            <td class="tg-0pky"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">MARKS</td>
+            <td class="tg-0pky">30</td>
+            <td class="tg-0pky">28</td>
+            <td class="tg-0pky">26</td>
+            <td class="tg-0pky">24</td>
+            <td class="tg-0pky">18</td>
+            <td class="tg-0pky">12</td>
+            <td class="tg-0pky">MARKS OBTAINED</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">CLEARED IN (M1/M2/C1/C2)</td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="tg">
+        <thead>
+          <tr>
+            <th class="tg-0lax" colspan="4">MOTIVATION AWARDS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-0lax">MERIT CARD </td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax" rowspan="2">TOTAL MARKS IN PT </td>
+            <td class="tg-0lax" rowspan="2">225</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">HALF BLUE </td>
+            <td class="tg-0lax"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">BLUE</td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax" rowspan="2">MARKES OBTAINED </td>
+            <td class="tg-0lax" rowspan="2"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">BLAZER </td>
+            <td class="tg-0lax"><input type="text"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="box-shadow">
+    <h4 class="card-heading"> <span class="sub-menu1"> ASSESSMENT : PHYSICAL TRAINING - II TERM (EX NDA, EX ACC,
+        DE)</span></h4>
+  </div>
+  <div class="main-row row">
+
+    <div class="mat-card">
+      <div class="box-shadow">
+        <h4 class="card-heading"> <span class="sub-menu1"> PPT</span></h4>
+      </div>
+      <table class="tg">
+        <thead>
+          <tr>
+            <th class="tg-0lax" rowspan="2">TEST</th>
+            <th class="tg-0lax" colspan="3">SUPER EX</th>
+            <th class="tg-0lax">EX</th>
+            <th class="tg-0lax">GOOD</th>
+            <th class="tg-0lax">SAT</th>
+            <th class="tg-0lax"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-0lax"></td>
+            <td class="tg-0lax">S/EX-1</td>
+            <td class="tg-0lax">S/EX-2</td>
+            <td class="tg-0lax">S/EX-3</td>
+            <td class="tg-0lax"></td>
+            <td class="tg-0lax"></td>
+            <td class="tg-0lax"></td>
+            <td class="tg-0lax"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">2.4KM</td>
+            <td class="tg-0lax">7.30 M</td>
+            <td class="tg-0lax">8 M</td>
+            <td class="tg-0lax">8.30 M</td>
+            <td class="tg-0lax">9.00 M</td>
+            <td class="tg-0lax">9.30 M</td>
+            <td class="tg-0lax">10.00 M</td>
+            <td class="tg-0lax"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">TOTAL MARKS</td>
+            <td class="tg-0lax">20</td>
+            <td class="tg-0lax">19</td>
+            <td class="tg-0lax">17</td>
+            <td class="tg-0lax">15</td>
+            <td class="tg-0lax">12</td>
+            <td class="tg-0lax">9</td>
+            <td class="tg-0lax">Marks obtained</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">CLEARED IN (M1/M2/C1/C2)</td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">C/UP</td>
+            <td class="tg-0lax">18</td>
+            <td class="tg-0lax">15</td>
+            <td class="tg-0lax">12</td>
+            <td class="tg-0lax">10</td>
+            <td class="tg-0lax">08</td>
+            <td class="tg-0lax">06</td>
+            <td class="tg-0lax"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">MARKS</td>
+            <td class="tg-0lax">20</td>
+            <td class="tg-0lax">19</td>
+            <td class="tg-0lax">17</td>
+            <td class="tg-0lax">15</td>
+            <td class="tg-0lax">12</td>
+            <td class="tg-0lax">09</td>
+            <td class="tg-0lax">Marks obtained</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">CLEARED IN (M1/M2/C1/C2)</td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">TOE TOUCH</td>
+            <td class="tg-0lax">15</td>
+            <td class="tg-0lax">13</td>
+            <td class="tg-0lax">10</td>
+            <td class="tg-0lax">8</td>
+            <td class="tg-0lax">7</td>
+            <td class="tg-0lax">6</td>
+            <td class="tg-0lax"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">MARKS</td>
+            <td class="tg-0lax">20</td>
+            <td class="tg-0lax">19</td>
+            <td class="tg-0lax">17</td>
+            <td class="tg-0lax">15</td>
+            <td class="tg-0lax">12</td>
+            <td class="tg-0lax">9</td>
+            <td class="tg-0lax">Marks obtained</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">CLEARED IN (M1/M2/C1/C2)</td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">5/MTR</td>
+            <td class="tg-0lax">20</td>
+            <td class="tg-0lax">19</td>
+            <td class="tg-0lax">18</td>
+            <td class="tg-0lax">16</td>
+            <td class="tg-0lax">15</td>
+            <td class="tg-0lax">14</td>
+            <td class="tg-0lax"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">MARKS</td>
+            <td class="tg-0lax">15</td>
+            <td class="tg-0lax">14</td>
+            <td class="tg-0lax">13</td>
+            <td class="tg-0lax">12</td>
+            <td class="tg-0lax">9</td>
+            <td class="tg-0lax">6</td>
+            <td class="tg-0lax">Marks obtained</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">CLEARED IN (M1/M2/C1/C2)</td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">100 MTR</td>
+            <td class="tg-0lax">10 Sec</td>
+            <td class="tg-0lax">11 Sec</td>
+            <td class="tg-0lax">12 Sec</td>
+            <td class="tg-0lax">13 Sec</td>
+            <td class="tg-0lax">14 Sec</td>
+            <td class="tg-0lax">15 Sec</td>
+            <td class="tg-0lax"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">MARKS</td>
+            <td class="tg-0lax">10</td>
+            <td class="tg-0lax">9</td>
+            <td class="tg-0lax">8</td>
+            <td class="tg-0lax">7</td>
+            <td class="tg-0lax">6</td>
+            <td class="tg-0lax">5</td>
+            <td class="tg-0lax">Marks obtained</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">CLEARED IN (M1/M2/C1/C2)</td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">SIT/UP</td>
+            <td class="tg-0lax">55</td>
+            <td class="tg-0lax">50</td>
+            <td class="tg-0lax">45</td>
+            <td class="tg-0lax">40</td>
+            <td class="tg-0lax">35</td>
+            <td class="tg-0lax">30</td>
+            <td class="tg-0lax"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">MARKS</td>
+            <td class="tg-0lax">15</td>
+            <td class="tg-0lax">14</td>
+            <td class="tg-0lax">13</td>
+            <td class="tg-0lax">12</td>
+            <td class="tg-0lax">9</td>
+            <td class="tg-0lax">6</td>
+            <td class="tg-0lax">MARKS OBTAINED</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">CLEARED IN (M1/M2/C1/C2)</td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax"><input type="text"></td>
+          </tr>
+
+          <tr>
+            <td class="tg-0lax">TOTAL MARKS</td>
+            <td class="tg-0lax">100</td>
+            <td class="tg-0lax">94</td>
+            <td class="tg-0lax">85</td>
+            <td class="tg-0lax">76</td>
+            <td class="tg-0lax">60</td>
+            <td class="tg-0lax">44</td>
+            <td class="tg-0lax"></td>
+          </tr>
+
+        </tbody>
+      </table>
+      <table class="tg">
+        <thead>
+          <tr>
+            <th class="tg-0pky" colspan="8">IPET</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-0pky">TEST</td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky" colspan="2">MANDATORY STDS</td>
+            <td class="tg-0pky" colspan="2">HIGHER TEST</td>
+            <td class="tg-0pky"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky">III CL ROPE</td>
+            <td class="tg-0pky">BEAM(4 REP)</td>
+            <td class="tg-0pky">A/VAULT (III CL)</td>
+            <td class="tg-0pky">II CL ROPE</td>
+            <td class="tg-0pky">T/VAULT (III CL) </td>
+            <td class="tg-0pky"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">MARKS</td>
+            <td class="tg-0pky">10</td>
+            <td class="tg-0pky">10</td>
+            <td class="tg-0pky">10</td>
+            <td class="tg-0pky">10</td>
+            <td class="tg-0pky">10</td>
+            <td class="tg-0pky">Marks obtained</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">CLEARED IN (M1/M2/C1/C2)</td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="tg">
+        <thead>
+          <tr>
+            <th class="tg-0pky" colspan="8">SWM</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-0pky">TEST</td>
+            <td class="tg-0pky">35 MTR SWM</td>
+            <td class="tg-0pky">6.5 MTR JUMP </td>
+            <td class="tg-0pky" colspan="4"> SWM (HIGHER TEST)</td>
+            <td class="tg-0pky"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky">100 MTR
+              SWM
+            </td>
+            <td class="tg-0pky">150 MTR
+              SWM
+            </td>
+            <td class="tg-0pky">200 MTR
+              SWM
+            </td>
+            <td class="tg-0pky">10 MTR JUMP</td>
+            <td class="tg-0pky"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">MARKS</td>
+            <td class="tg-0pky">15</td>
+            <td class="tg-0pky">10</td>
+            <td class="tg-0pky">5</td>
+            <td class="tg-0pky">5</td>
+            <td class="tg-0pky">5</td>
+            <td class="tg-0pky">5</td>
+            <td class="tg-0pky">Marks obtained</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">CLEARED IN (M1/M2/C1/C2)</td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="tg sports">
+        <thead>
+          <th class="tg-0pky" colspan="8">CTOT</th>
+        </thead>
+        <tr>
+          <td class="tg-0lax">TEST</td>
+          <td class="tg-0lax">HAND & FOOT BRIDGE </td>
+          <td class="tg-0lax">HIGH LADDER </td>
+          <td class="tg-0lax">CIRCUS </td>
+          <td class="tg-0lax">TARZAN HANDWALK </td>
+          <td class="tg-0lax">SCRAMBLE NET </td>
+          <td class="tg-0lax">IMA LADDER </td>
+          <td class="tg-0lax"></td>
+        </tr>
+
+        <tbody>
+          <tr>
+            <td class="tg-0lax bold">MARKS</td>
+            <td class="tg-0lax">5</td>
+            <td class="tg-0lax">5</td>
+            <td class="tg-0lax">5</td>
+            <td class="tg-0lax">5</td>
+            <td class="tg-0lax">5</td>
+            <td class="tg-0lax">5</td>
+            <td class="tg-0lax">Marks obtained</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax bold">CLEARED IN (M1/M2/C1/C2)</td>
+            <td class="tg-0lax"><input type="text" name=""></td>
+            <td class="tg-0lax"><input type="text" name=""></td>
+            <td class="tg-0lax"><input type="text" name=""></td>
+            <td class="tg-0lax"><input type="text" name=""></td>
+            <td class="tg-0lax"><input type="text" name=""></td>
+            <td class="tg-0lax"><input type="text" name=""></td>
+            <td class="tg-0lax"><input type="text" name=""></td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="tg">
+        <thead>
+          <tr>
+            <th class="tg-0lax" colspan="4">MOTIVATION AWARDS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-0lax">MERIT CARD </td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax" rowspan="2">TOTAL MARKS IN PT </td>
+            <td class="tg-0lax" rowspan="2">225</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">HALF BLUE </td>
+            <td class="tg-0lax"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">BLUE</td>
+            <td class="tg-0lax"><input type="text"></td>
+            <td class="tg-0lax" rowspan="2">MARKS OBTAINED</td>
+            <td class="tg-0lax" rowspan="2"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">BLAZER </td>
+            <td class="tg-0lax"><input type="text"></td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="box-shadow">
+    <h4 class="card-heading"> <span class="sub-menu1">ASSESSMENT : PHYSICAL TRAINING - III TERM& III TECH (EX NDA, EX
+        ACC, DE)</span></h4>
+  </div>
+
+  <div class="main-row row">
+    <div class="mat-card">
+      <div class="box-shadow">
+        <h4 class="card-heading"> <span class="sub-menu1"> BPET</span></h4>
+      </div>
+      <table class="tg">
+        <thead>
+          <tr>
+            <th class="tg-c3ow" colspan="14">BPET</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-0pky">TEST</td>
+            <td class="tg-c3ow" colspan="3">SUPER EX</td>
+            <td class="tg-c3ow" colspan="3">EX</td>
+            <td class="tg-c3ow" colspan="3">GOOD</td>
+            <td class="tg-c3ow" colspan="3">SAT</td>
+            <td class="tg-0pky"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky">S/EX-1</td>
+            <td class="tg-0pky">S/EX-2</td>
+            <td class="tg-0pky">S/EX-3</td>
+            <td class="tg-0pky">EX-1</td>
+            <td class="tg-0pky">EX-2</td>
+            <td class="tg-0pky">EX-3</td>
+            <td class="tg-0pky">GD-1</td>
+            <td class="tg-0pky">GD-2</td>
+            <td class="tg-0pky">GD-3</td>
+            <td class="tg-0pky">SAT-1</td>
+            <td class="tg-0pky">SAT-2</td>
+            <td class="tg-0pky">SAT-3</td>
+            <td class="tg-0pky"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">5 KM</td>
+            <td class="tg-0pky">21.30M</td>
+            <td class="tg-0pky">22 M</td>
+            <td class="tg-0pky">22.30M</td>
+            <td class="tg-0pky">23 M</td>
+            <td class="tg-0pky">24 M</td>
+            <td class="tg-0pky">25 M</td>
+            <td class="tg-0pky">25.30 M</td>
+            <td class="tg-0pky">26 M</td>
+            <td class="tg-0pky">26.3O M</td>
+            <td class="tg-0pky">27 M</td>
+            <td class="tg-0pky">27.30 M</td>
+            <td class="tg-0pky">28 M</td>
+            <td class="tg-0pky"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">MARKS</td>
+            <td class="tg-0pky">25</td>
+            <td class="tg-0pky">24</td>
+            <td class="tg-0pky">23</td>
+            <td class="tg-0pky">22</td>
+            <td class="tg-0pky">21</td>
+            <td class="tg-0pky">20</td>
+            <td class="tg-0pky">19</td>
+            <td class="tg-0pky">17</td>
+            <td class="tg-0pky">15</td>
+            <td class="tg-0pky">14</td>
+            <td class="tg-0pky">12</td>
+            <td class="tg-0pky">10</td>
+            <td class="tg-0pky">MARSK OBTAINED</td>
+          </tr>
+          <tr>
+            <td class="tg-c3ow">CLEARED IN <br>(M1/M2/C1/C2)</td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-c3ow">60 MTR</td>
+            <td class="tg-0pky">7 Sec</td>
+            <td class="tg-0pky">8 Sec</td>
+            <td class="tg-0pky">9 sec</td>
+            <td class="tg-c3ow" colspan="3">10 sec</td>
+            <td class="tg-c3ow" colspan="3">11 Sec</td>
+            <td class="tg-c3ow" colspan="3">12 Sec</td>
+            <td class="tg-0pky"></td>
+          </tr>
+          <tr>
+            <td class="tg-c3ow">MARKS</td>
+            <td class="tg-c3ow">15</td>
+            <td class="tg-c3ow">14</td>
+            <td class="tg-c3ow">13</td>
+            <td class="tg-c3ow" colspan="3">12</td>
+            <td class="tg-c3ow" colspan="3">9</td>
+            <td class="tg-c3ow" colspan="3">6</td>
+            <td class="tg-0pky">MARKS OBTAINED</td>
+          </tr>
+          <tr>
+            <td class="tg-c3ow">CLEARED IN <br>(M1/M2/C1/C2)</td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">V/ROPE</td>
+            <td class="tg-c3ow">1st CL UP</td>
+            <td class="tg-0pky">1 st&nbsp;&nbsp;CL UP</td>
+            <td class="tg-0pky">2ND CL UP</td>
+            <td class="tg-c3ow" colspan="9" rowspan="2"> <textarea style="    text-align: center;" width="100%"
+                cols="20" class="form-control">PASS</textarea></td>
+            <td class="tg-0pky" rowspan="2"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">4 MTR CLIMB</td>
+            <td class="tg-0pky">1st CL DOWN</td>
+            <td class="tg-0pky">2ND CL DOWN</td>
+            <td class="tg-c3ow">2ND CL DOWN</td>
+          </tr>
+          <tr>
+            <td class="tg-c3ow">MARKS</td>
+            <td class="tg-c3ow">15</td>
+            <td class="tg-c3ow">14</td>
+            <td class="tg-c3ow">13</td>
+            <td class="tg-0pky" colspan="9">12</td>
+            <td class="tg-0pky">MARKS OBTAINED</td>
+          </tr>
+          <tr>
+            <td class="tg-c3ow">CLEARED IN <br>(M1/M2/C1/C2)</td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-c3ow">H/ROPE</td>
+            <td class="tg-c3ow" colspan="4">EX</td>
+            <td class="tg-c3ow" colspan="4">GOOD</td>
+            <td class="tg-c3ow" colspan="4">SAT</td>
+            <td class="tg-0pky"></td>
+          </tr>
+          <tr>
+            <td class="tg-c3ow">9 MTR</td>
+            <td class="tg-0pky" colspan="4">CLIMB ONE TIME AND 9 MTR TRAVEL AND 3 TIME UP</td>
+            <td class="tg-0pky" colspan="4">CLIMB ONE TIME AND 9 MTR TRAVEL AND 2 TIME UP</td>
+            <td class="tg-0pky" colspan="4">CLIMB ONE TIME AND 9 MTR TRAVEL </td>
+            <td class="tg-0pky"></td>
+          </tr>
+          <tr>
+            <td class="tg-c3ow">MARKS</td>
+            <td class="tg-c3ow" colspan="4">10</td>
+            <td class="tg-c3ow" colspan="4">8</td>
+            <td class="tg-c3ow" colspan="4">6</td>
+            <td class="tg-0pky">MARKS OBTAINED</td>
+          </tr>
+          <tr>
+            <td class="tg-c3ow">CLEARED IN <br>(M1/M2/C1/C2)</td>
+            <td class="tg-c3ow" colspan="4"></td>
+            <td class="tg-c3ow" colspan="4"></td>
+            <td class="tg-c3ow" colspan="4"></td>
+            <td class="tg-0pky"></td>
+          </tr>
+
+          <tr>
+            <td class="tg-c3ow">9' DITCH</td>
+            <td class="tg-c3ow" colspan="12"><textarea style="    text-align: center;" width="100%" cols="20"
+                class="form-control">PASS</textarea></td>
+            <td class="tg-0pky"></td>
+          </tr>
+          <tr>
+            <td class="tg-c3ow">MARKS</td>
+            <td class="tg-c3ow" colspan="12">10</td>
+            <td class="tg-0pky">MARKS OBTAINED</td>
+          </tr>
+          <tr>
+            <td class="tg-c3ow">CLEARED IN <br>(M1/M2/C1/C2)</td>
+            <td class="tg-0pky" colspan="12"></td>
+            <td class="tg-0pky"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">TOTAL MARKS</td>
+            <td class="tg-0pky">75</td>
+            <td class="tg-0pky">72</td>
+            <td class="tg-0pky">69</td>
+            <td class="tg-0pky">66</td>
+            <td class="tg-0pky">65</td>
+            <td class="tg-0pky">64</td>
+            <td class="tg-0pky">60</td>
+            <td class="tg-0pky">58</td>
+            <td class="tg-0pky">56</td>
+            <td class="tg-0pky">52</td>
+            <td class="tg-0pky">50 </td>
+            <td class="tg-0pky">48</td>
+            <td class="tg-0pky"><input type="text"></td>
+          </tr>
+
+        </tbody>
+      </table>
+      <table class="tg">
+        <thead>
+          <tr>
+            <th class="tg-c3ow" colspan="8">PPT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-0pky">TEST</td>
+            <td class="tg-0pky" colspan="3">SUPER EX</td>
+
+            <td class="tg-0pky">EX</td>
+            <td class="tg-0pky">GOOD</td>
+            <td class="tg-0pky">SAT</td>
+            <td class="tg-0pky"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky">S/EX-1</td>
+            <td class="tg-0pky">S/EX-2</td>
+            <td class="tg-0pky">S/EX-3</td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">2.4 KM</td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">MARKS</td>
+            <td class="tg-0pky">12</td>
+            <td class="tg-0pky">11</td>
+            <td class="tg-0pky">10</td>
+            <td class="tg-0pky">8</td>
+            <td class="tg-0pky">6</td>
+            <td class="tg-0pky">4</td>
+            <td class="tg-0pky">MARKS OBTAINED</td>
+          </tr>
+          <tr>
+            <td class="tg-c3ow">CLEARED IN<br> (M1/M2/C1/C2)</td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-c3ow">TOE TOUCH</td>
+            <td class="tg-0pky">15</td>
+            <td class="tg-0pky">13</td>
+            <td class="tg-0pky">10</td>
+            <td class="tg-0pky">8</td>
+            <td class="tg-0pky">7</td>
+            <td class="tg-0pky">6</td>
+            <td class="tg-0pky"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">MARKS</td>
+            <td class="tg-0pky">12</td>
+            <td class="tg-0pky">11</td>
+            <td class="tg-0pky">10</td>
+            <td class="tg-0pky">8</td>
+            <td class="tg-0pky">6</td>
+            <td class="tg-0pky">4</td>
+            <td class="tg-0pky">MARKS OBTAINED</td>
+          </tr>
+          <tr>
+            <td class="tg-c3ow">CLEARED IN <br>(M1/M2/C1/C2)</td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-c3ow">C/UP</td>
+            <td class="tg-0pky">18</td>
+            <td class="tg-0pky">15</td>
+            <td class="tg-0pky">12</td>
+            <td class="tg-0pky">10</td>
+            <td class="tg-0pky">8</td>
+            <td class="tg-0pky">6</td>
+            <td class="tg-0pky"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">MARKS</td>
+            <td class="tg-0pky">12</td>
+            <td class="tg-0pky">11</td>
+            <td class="tg-0pky">10</td>
+            <td class="tg-0pky">8</td>
+            <td class="tg-0pky">6</td>
+            <td class="tg-0pky">4</td>
+            <td class="tg-0pky">MARKS OBTAINED</td>
+          </tr>
+          <tr>
+            <td class="tg-c3ow">CLEARED IN <br>(M1/M2/C1/C2)</td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-c3ow">5/MTR</td>
+            <td class="tg-0pky">20</td>
+            <td class="tg-0pky">19</td>
+            <td class="tg-0pky">18</td>
+            <td class="tg-0pky">17</td>
+            <td class="tg-0pky">16</td>
+            <td class="tg-0pky">15</td>
+            <td class="tg-0pky"></td>
+          </tr>
+          <tr>
+            <td class="tg-c3ow">MARKS</td>
+            <td class="tg-0pky">11</td>
+            <td class="tg-0pky">10</td>
+            <td class="tg-0pky">9</td>
+            <td class="tg-0pky">8</td>
+            <td class="tg-0pky">6</td>
+            <td class="tg-0pky">4</td>
+            <td class="tg-0pky">MARKS OBTAINED</td>
+          </tr>
+          <tr>
+            <td class="tg-c3ow">CLEARED IN <br>(M1/M2/C1/C2)</td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-c3ow">100 MTR</td>
+            <td class="tg-0pky">10 SEC</td>
+            <td class="tg-0pky">11 SEC</td>
+            <td class="tg-0pky">12 SEC</td>
+            <td class="tg-0pky">13 SEC</td>
+            <td class="tg-0pky">14 SEC</td>
+            <td class="tg-0pky">15 SEC</td>
+            <td class="tg-0pky"></td>
+          </tr>
+          <tr>
+            <td class="tg-c3ow">MARKS</td>
+            <td class="tg-0pky">9</td>
+            <td class="tg-0pky">8</td>
+            <td class="tg-0pky">7</td>
+            <td class="tg-0pky">6</td>
+            <td class="tg-0pky">5</td>
+            <td class="tg-0pky">4</td>
+            <td class="tg-0pky">MARKS OBTAINED</td>
+          </tr>
+          <tr>
+            <td class="tg-c3ow">CLEARED IN <br>(M1/M2/C1/C2)</td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">SIT/UP</td>
+            <td class="tg-0pky">55</td>
+            <td class="tg-0pky">50</td>
+            <td class="tg-0pky">45</td>
+            <td class="tg-0pky">40</td>
+            <td class="tg-0pky">35</td>
+            <td class="tg-0pky">50</td>
+            <td class="tg-0pky"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">MARKS</td>
+            <td class="tg-0pky">9</td>
+            <td class="tg-0pky">8</td>
+            <td class="tg-0pky">7</td>
+            <td class="tg-0pky">6</td>
+            <td class="tg-0pky">5</td>
+            <td class="tg-0pky">4</td>
+            <td class="tg-0pky">MARKS OBTAINED</td>
+          </tr>
+          <tr>
+            <td class="tg-c3ow">CLEARED IN <br>(M1/M2/C1/C2)</td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">2nd CL Rope (4 Mtr Climb)</td>
+            <td class="tg-0pky" colspan="6"> <textarea style="    text-align: center;" width="100%" cols="20"
+                class="form-control">PASS</textarea></td>
+
+            <td class="tg-0pky"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">MARKS</td>
+            <td class="tg-0pky" colspan="6">10</td>
+            <td class="tg-0pky">MARKS OBTAINED</td>
+          </tr>
+          <tr>
+            <td class="tg-c3ow">CLEARED IN <br>(M1/M2/C1/C2)</td>
+            <td class="tg-0pky" colspan="6"></td>
+            <td class="tg-0pky"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">TOTAL</td>
+            <td class="tg-0pky">75</td>
+            <td class="tg-0pky">69</td>
+            <td class="tg-0pky">63</td>
+            <td class="tg-0pky">54</td>
+            <td class="tg-0pky">44</td>
+            <td class="tg-0pky">34</td>
+            <td class="tg-0pky"><input type="text"></td>
+          </tr>
+
+        </tbody>
+      </table>
+      <table class="tg">
+        <thead>
+          <tr>
+            <th class="tg-0pky" colspan="14">SWM</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-0pky">TEST</td>
+            <td class="tg-0pky">50 MTR SWM</td>
+            <td class="tg-0pky">10 MTR JUMP </td>
+            <td class="tg-0pky" colspan="4"> SWM HIGHER TEST)</td>
+            <td class="tg-0pky"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky"><input type="text"></td>
+            <td class="tg-0pky">100 MTR
+              SWM
+            </td>
+            <td class="tg-0pky">150 MTR
+              SWM
+            </td>
+            <td class="tg-0pky">200 MTR
+              SWM
+            </td>
+            <td class="tg-0pky">250 MTR SWM</td>
+            <td class="tg-0pky"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">MARKS</td>
+            <td class="tg-0pky">15</td>
+            <td class="tg-0pky">10</td>
+            <td class="tg-0pky">5</td>
+            <td class="tg-0pky">5</td>
+            <td class="tg-0pky">5</td>
+            <td class="tg-0pky">5</td>
+            <td class="tg-0pky">Marks obtained</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">CLEARED IN (M1/M2/C1/C2)</td>
+            <td class="tg-0pky" colspan="7"></td>
+
+          </tr>
+        </tbody>
+      </table>
+      <table class="tg">
+        <thead>
+          <tr>
+            <th colspan="14" class="tg-0lax">ROT</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-0lax">TEST</td>
+            <td class="tg-0lax" colspan="3">SUPER EX</td>
+            <td class="tg-0lax" colspan="3">EX</td>
+            <td class="tg-0lax" colspan="3">GOOD</td>
+            <td class="tg-0lax" colspan="3">SAT</td>
+            <td class="tg-0lax"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax"></td>
+            <td class="tg-0lax">S/EX-1</td>
+            <td class="tg-0lax">S/EX-2</td>
+            <td class="tg-0lax">S/EX-3</td>
+            <td class="tg-0lax">EX-1</td>
+            <td class="tg-0lax">EX-2</td>
+            <td class="tg-0lax">EX-3</td>
+            <td class="tg-0lax">GD-1</td>
+            <td class="tg-0lax">GD-2</td>
+            <td class="tg-0lax">GD-3</td>
+            <td class="tg-0lax">SAT-1</td>
+            <td class="tg-0lax">SAT-2</td>
+            <td class="tg-0lax">SAT-3</td>
+            <td class="tg-0lax"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">TIME</td>
+            <td class="tg-0lax">2.50 M</td>
+            <td class="tg-0lax">2.55 M</td>
+            <td class="tg-0lax">3 M</td>
+            <td class="tg-0lax">3.15 M</td>
+            <td class="tg-0lax">3.30 M</td>
+            <td class="tg-0lax">3.45 M</td>
+            <td class="tg-0lax">4 M</td>
+            <td class="tg-0lax">4.15 M</td>
+            <td class="tg-0lax">4.30 M</td>
+            <td class="tg-0lax">4.45</td>
+            <td class="tg-0lax">5 M</td>
+            <td class="tg-0lax">5.15 M</td>
+            <td class="tg-0lax"></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">MARKS</td>
+            <td class="tg-0lax">30</td>
+            <td class="tg-0lax">28</td>
+            <td class="tg-0lax">27</td>
+            <td class="tg-0lax">26</td>
+            <td class="tg-0lax">25</td>
+            <td class="tg-0lax">24</td>
+            <td class="tg-0lax">22</td>
+            <td class="tg-0lax">20</td>
+            <td class="tg-0lax">18</td>
+            <td class="tg-0lax">16</td>
+            <td class="tg-0lax">14</td>
+            <td class="tg-0lax">12</td>
+
+            <td class="tg-0lax">Marks obtained</td>
+          </tr>
+          <tr>
+            <td class="">CLEARED IN (M1/M2/C1/C2)</td>
+            <td class="tg-0pky" colspan="13"></td>
+
+          </tr>
+        </tbody>
+      </table>
+      <table class="tg">
+        <thead>
+          <tr>
+            <th class="tg-0lax" colspan="4">MOTIVATION AWARDS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-0lax">MERIT CARD </td>
+            <td class="tg-0lax"><input type="text" name=""></td>
+            <td class="tg-0lax" rowspan="2">TOTAL MARKS IN PT </td>
+            <td class="tg-0lax" rowspan="2">225</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">HALF BLUE </td>
+            <td class="tg-0lax"><input type="text" name=""></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">BLUE</td>
+            <td class="tg-0lax"><input type="text" name=""></td>
+            <td class="tg-0lax" rowspan="2">MARKES OBTAINED</td>
+            <td class="tg-0lax" rowspan="2"><input type="text" name=""></td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">BLAZER </td>
+            <td class="tg-0lax"><input type="text" name=""></td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div> -->
+<!-- </html> -->

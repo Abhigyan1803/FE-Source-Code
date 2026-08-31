@@ -1,0 +1,143 @@
+<div class="mat-new">
+    <h4 class="card-heading">
+        <!-- <button mat-icon-button (click)="goBack()">
+            <mat-icon>chevron_left</mat-icon>
+        </button> -->
+         TRG Team<span class="sub-menu1"> > {{mainTitle}}</span> <span class="sub-menu1"> {{pTitle}} </span>
+    </h4>
+</div>
+<mat-card>
+    <div class="top-br">
+        <form [formGroup]="weaponsForm">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="form-label">Weapon Name <span class="required">*</span></label>
+                    <input type="text" class="form-control" maxlength="100" formControlName="name" id="designation"
+                        placeholder="Weapon Name">
+                    <span class="validation_msg" *ngIf="f.name.errors && f.name.errors.required && isError">Weapon
+                        Name is required</span>
+                    <span class="validation_msg" *ngIf="f.name.errors && f.name.errors.pattern && isError">
+                        Only alphanumeric is allowed</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label class="form-label">I Term GPoint<span class="required">*</span></label>
+                    <input type="text" class="form-control" maxlength="100" formControlName="gPointITerm" id="designation"
+                        placeholder="Term I GPoint (Enter max point)">
+                    <span class="validation_msg" *ngIf="f.name.errors && f.name.errors.required && isError">Weapon
+                        Term I GPoint is required</span>
+                    <span class="validation_msg" *ngIf="f.name.errors && f.name.errors.pattern && isError">
+                        Only alphanumeric is allowed</span>
+                </div>
+                <div class="form-group col-md-3">
+                    <label class="form-label">II Term GPoint<span class="required">*</span></label>
+                    <input type="text" class="form-control" maxlength="100" formControlName="gPointIITerm" id="designation"
+                        placeholder="Term II GPoint (Enter max point)">
+                    <span class="validation_msg" *ngIf="f.name.errors && f.name.errors.required && isError">Weapon
+                        Term II GPoint is required</span>
+                    <span class="validation_msg" *ngIf="f.name.errors && f.name.errors.pattern && isError">
+                        Only alphanumeric is allowed</span>
+                </div>
+                <div class="form-group col-md-3">
+                    <label class="form-label">III Term GPoint<span class="required">*</span></label>
+                    <input type="text" class="form-control" maxlength="100" formControlName="gPointIIITerm" id="designation"
+                        placeholder="Term III GPoint (Enter max point)">
+                    <span class="validation_msg" *ngIf="f.name.errors && f.name.errors.required && isError">Weapon
+                        Term III GPoint is required</span>
+                    <span class="validation_msg" *ngIf="f.name.errors && f.name.errors.pattern && isError">
+                        Only alphanumeric is allowed</span>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label class="form-label">II Tech GPoint<span class="required">*</span></label>
+                    <input type="text" class="form-control" maxlength="100" formControlName="gPointIITech" id="designation"
+                        placeholder="II Tech GPoint (Enter max point)">
+                    <span class="validation_msg" *ngIf="f.name.errors && f.name.errors.required && isError">Weapon
+                        Tech II GPoint is required</span>
+                    <span class="validation_msg" *ngIf="f.name.errors && f.name.errors.pattern && isError">
+                        Only alphanumeric is allowed</span>
+                </div>
+            </div>
+
+
+            <ng-container formArrayName="wa">
+                <ng-container *ngFor="let item of weaponsForm.get('wa')['controls']; let i = index;"
+                    [formGroupName]="i">
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label class="form-label">
+                                Weapon Parameter <span class="required">*</span></label>
+                            <input type="text" class="form-control" maxlength="100" formControlName="attrName"
+                                id="designation" placeholder="Weapon Parameter ">
+                            <span class="validation_msg" *ngIf="item.get('attrName').hasError('required') && isError">
+
+                                Weapon Parameter is required</span>
+
+                            <span class="validation_msg" *ngIf="item.get('attrName').hasError('pattern') && isError">
+                                Only alphanumeric is allowed</span>
+                        </div>
+                        <div *ngIf="isTerm" class="form-group col-md-4">
+                            <label class="form-label"> Term <span class="required">*</span></label>
+                            <select id="term" type="text" class="form-control" formControlName="termId"
+                                placeholder="Term">
+                                <option value="" selected hidden disabled>Select</option>
+                                <option *ngFor="let t of terms" [value]="t.id">{{t.name}} </option>
+                            </select>
+                            <span class="validation_msg" *ngIf="item.get('termId').hasError('required') && isError">Term
+                                is required</span>
+                            <span class="validation_msg" *ngIf="item.get('termId').hasError('pattern') && isError">
+                                Only alphanumeric is allowed</span>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="form-label">Max Marks <span class="required">*</span></label>
+                            <input type="text" class="form-control" maxlength="100" formControlName="maxMarks"
+                                id="designation" placeholder="Marks">
+                            <span class="validation_msg"
+                                *ngIf="item.get('maxMarks').hasError('required') && isError">Max Marks is
+                                required</span>
+                        </div>
+                        <div class=" form-group col-md-1">
+
+                            <button (click)="deleteWeapon(i)" class="mt-23 btn btn-danger rmv"
+                                *ngIf="weaponsForm.get('wa').value.length>1">
+                                <mat-icon>remove</mat-icon>
+                            </button>
+                        </div>
+
+                    </div>
+                </ng-container>
+                <div class="row">
+                    <div class="col-md-12 pd">
+                        <button (click)="addItem()" style="float: right;" class=" btn btn-success add-gs">
+                            <mat-icon>add_circle_outline</mat-icon>
+                        </button>
+                    </div>
+
+                </div>
+
+            </ng-container>
+
+
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="form-label"> Status <span class="required">*</span></label>
+                    <select class="form-control" formControlName="status">
+                        <option value="" selected hidden disabled>Status</option>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+                    <span class="validation_msg" *ngIf="f.status.errors && f.status.errors.required && isError">Status
+                        is required</span>
+                </div>
+            </div>
+
+
+            <button *ngIf="!id" mat-raised-button (click)="addWeapons()">Add Weapon</button>
+            <button *ngIf="id" mat-raised-button (click)="updateWeapons()">Update Weapon</button>
+
+        </form>
+    </div>
+</mat-card>

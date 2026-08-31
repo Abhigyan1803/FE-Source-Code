@@ -1,0 +1,52 @@
+.btn-set {
+    display: flex;
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
+    justify-content: space-between;
+  }
+  .example-container {
+    float: left;
+    width: 100%;
+  }
+  .btn-set input{margin-right: 15px;}
+ 
+  .mt-20 {
+    float: left;
+    width: 100%;
+  }
+  .syllabus-card{
+    background-color: transparent;
+    border: none;
+  }
+  
+  .example-container {
+    height: 500px;
+  }
+  
+ .active-link{
+  background: rgb(80, 80, 80);
+  color: white;
+}
+
+a{
+  outline: none;
+}
+
+  a:hover{
+    color: rgb(188 151 83);
+  }
+  h4.card-heading button {
+    width: 30px;
+    height: 30px;
+    line-height: 28px;
+    background: transparent;
+    margin-right: 5px;
+}
+.mat-list-item{
+  padding: 0 0 0 0;
+}
+
+.mat-list-base {
+   padding-top: 0; 
+}

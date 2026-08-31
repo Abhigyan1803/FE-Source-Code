@@ -1,0 +1,753 @@
+<!---------------------------- Interview-sheet ----------------------------->
+<div class="main-content" *ngIf="isShowSheet">
+  <div class="container-fluid">
+    <div class="mat-heading">
+      <div id="top-bar" class="">
+        <h2 class="backbtn">
+          <!-- <button mat-icon-button (click)="goBack()">
+                <mat-icon>chevron_left</mat-icon>
+              </button>  -->
+          Interviews <span class="sub-menu1">
+            > {{this.type}}</span>
+        </h2>
+      </div>
+    </div>
+
+    <div class="interview-sheet">
+      <div class="mat-card mat-focus-indicator">
+
+        <table class="tg">
+          <thead>
+            <tr>
+              <th class="tg-9fba" rowspan="2"><span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000">Date</span></th>
+              <th class="tg-719i"><span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000">Details</span></th>
+              <th class="tg-54o0" rowspan="2">GC Initials with date</th>
+              <!-- <th class="tg-9fba" rowspan="2"><span style="font-weight:700;font-style:normal;text-decoration:none;color:#000">Action</span></th> -->
+            </tr>
+            <tr>
+              <th class="tg-54o0">
+                INITIAL INTERVIEW : PL CDR
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr [formGroup]="interviewFormI">
+
+              <td class="tg-0lax">
+                <!-- <input type="date" disabled max="{{maxDate}}" required formControlName="appdate"
+                    class="form-control"> -->
+                <p class="text-center">{{appdate}}</p>
+              </td>
+
+              <td class="tg-0lax"><span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">1.</span>
+                <span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">Appearance,
+                  Bg and Comn Skills</span><span class="mb-2"
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">
+                  :</span><br><br>
+                <!-- <textarea placeholder="" maxlength="1500" formControlName="appearence" disabled
+                    (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true"
+                    class="form-control ng-untouched ng-pristine ng-invalid mt-2" rows="5"></textarea> -->
+                <p>{{appearence}}</p>
+
+              </td>
+              <td class="tg-0lax">
+                <!-- <input type="text" [value]="this.interviewFormI.value.appGcInitialsWithDate == null ? CurrentDate : this.interviewFormI.value.appGcInitialsWithDate" formControlName="appGcInitialsWithDate" disabled
+                    class="form-control"> -->
+                <p class="text-center">{{appGcInitialsWithDate}}</p>
+              </td>
+
+
+
+              <!-- <td class="tg-0lax text-center"><button class="btn btn-color" (click)="addClubsubmitI('appearence')">Submit</button></td> -->
+            </tr>
+
+
+            <tr [formGroup]="interviewFormII">
+              <td class="tg-0lax">
+                <!-- <input type="date" disabled max="{{maxDate}}" formControlName="famDate"
+                    class="form-control"> -->
+                <p class="text-center">{{famDate}}</p>
+                  
+              </td>
+              <td class="tg-0lax"><span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">2.</span>
+                <span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">Family
+                  Background</span><span class="mb-2"
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">
+                  :<br>
+                  <br>
+                <p>{{familyback}}</p>
+
+                  <!-- <textarea placeholder="" disabled maxlength="1500" formControlName="familyback"
+                    (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true"
+                    class="form-control ng-untouched ng-pristine ng-invalid mt-2" rows="5"></textarea> -->
+
+                  </span>
+              </td>
+              <td class="tg-0lax">
+                <!-- <input type="text"
+                  [value]="this.interviewFormI.value.famiGcInitialsWithDate == null ? CurrentDate : this.interviewFormI.value.famiGcInitialsWithDate"
+                  formControlName="famiGcInitialsWithDate" disabled class="form-control"> -->
+                <p class="text-center">{{famiGcInitialsWithDate}}</p>
+
+                </td>
+            </tr>
+
+
+            <tr [formGroup]="interviewFormIII">
+              <td class="tg-0lax">
+                <!-- <input type="date" disabled max="{{maxDate}}" formControlName="workDate"
+                  class="form-control"> -->
+                <p class="text-center">{{workDate}}</p>
+                </td>
+              <td class="tg-0lax"><span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">3.</span>
+                <span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">Work
+                  Experience (if any</span><span class="mb-2"
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">):</span><br><br>
+                  <!-- <textarea
+                  placeholder="" maxlength="1500" formControlName="workExp" disabled
+                  (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true"
+                  class="mt-2 form-control ng-untouched ng-pristine ng-invalid" rows="5"></textarea> -->
+                <p >{{workExp}}</p>
+              </td>
+              <td class="tg-0lax">
+                <!-- <input type="text"
+                  [value]="this.interviewFormI.value.workGcInitialsWithDate == null ? CurrentDate : this.interviewFormI.value.workGcInitialsWithDate"
+                  formControlName="workGcInitialsWithDate" disabled class="form-control"> -->
+                <p class="text-center">{{workGcInitialsWithDate}}</p>
+                </td>
+            </tr>
+
+
+            <tr [formGroup]="interviewFormIV">
+              <td class="tg-0lax">
+                <!-- <input type="date" disabled max="{{maxDate}}" formControlName="iniDate"
+                  class="form-control"> -->
+                <p class="text-center">{{iniDate}}</p>
+
+                </td>
+              <td class="tg-0lax"><span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">4.</span>
+                <span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">Initial
+                  Assessment</span><span class="mb-2"
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">:</span><br><br>
+                  <!-- <textarea
+                    placeholder="" maxlength="1500" formControlName="initialAss" disabled
+                    (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true"
+                    class="mt-2 form-control ng-untouched ng-pristine ng-invalid" rows="5"></textarea> -->
+                <p >{{initialAss}}</p>
+
+              </td>
+              <td class="tg-0lax">
+                <!-- <input type="text"
+                  [value]="this.interviewFormI.value.iniGcInitialsWithDate == null ? CurrentDate : this.interviewFormI.value.iniGcInitialsWithDate"
+                  formControlName="iniGcInitialsWithDate" disabled class="form-control"> -->
+                <p class="text-center">{{iniGcInitialsWithDate}}</p>
+
+                </td>
+            </tr>
+
+
+            <tr [formGroup]="interviewFormV">
+              <td class="tg-0lax">
+                <!-- <input type="date" disabled max="{{maxDate}}" formControlName="misDate"
+                  class="form-control"> -->
+                <p class="text-center">{{misDate}}</p>
+
+                </td>
+              <td class="tg-0lax"><span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">5.</span>
+                <span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">Misc/Other
+                  Relevant Info</span><span class="mb-2"
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">:</span><br><br>
+                  <!-- <textarea
+                    placeholder="" disabled maxlength="1500" formControlName="misc"
+                    (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true"
+                    class="mt-2 form-control ng-untouched ng-pristine ng-invalid" rows="5"></textarea> -->
+                <p>{{misc}}</p>
+
+              </td>
+              <td class="tg-0lax">
+                <!-- <input type="text"
+                  [value]="this.interviewFormI.value.misGcInitialsWithDate == null ? CurrentDate : this.interviewFormI.value.misGcInitialsWithDate"
+                  formControlName="misGcInitialsWithDate" disabled class="form-control"> -->
+                <p class="text-center">{{misGcInitialsWithDate}}</p>
+
+                </td>
+            </tr>
+
+
+            <tr [formGroup]="interviewFormVI">
+              <td class="tg-0lax">
+                <!-- <input type="date" disabled max="{{maxDate}}" formControlName="anyDate"
+                  class="form-control"> -->
+                <p class="text-center">{{anyDate}}</p>
+
+                </td>
+              <td class="tg-0lax"><span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">6.</span>
+                <span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">Any
+                  Pts From the GC</span><span class="mb-2"
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">:</span><br><br>
+                  <!-- <textarea
+                    placeholder="" maxlength="1500" formControlName="anyPts" disabled
+                    (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true"
+                    class="mt-2 form-control ng-untouched ng-pristine ng-invalid" rows="5"></textarea> -->
+                <p>{{anyPts}}</p>
+
+              </td>
+              <td class="tg-0lax">
+                <!-- <input type="text"
+                  [value]="this.interviewFormI.value.anyGcInitialsWithDate == null ? CurrentDate : this.interviewFormI.value.anyGcInitialsWithDate"
+                  formControlName="anyGcInitialsWithDate" disabled class="form-control"> -->
+                <p class="text-center">{{anyGcInitialsWithDate}}</p>
+                </td>
+            </tr>
+
+
+            <tr [formGroup]="interviewFormVII">
+              <td class="tg-0lax">
+                <!-- <input type="date" disabled max="{{maxDate}}" formControlName="ihavDate"
+                  class="form-control"> -->
+                <p class="text-center">{{ihavDate}}</p>
+
+                </td>
+              <td class="tg-0lax"><span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">7.</span>
+                <span class="mb-2"
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">I
+                  have explained the trg curriculum, SOPs &amp;TrgInstrs being followed at IMA:</span><br><br>
+                  <!-- <textarea
+                    placeholder="" maxlength="1500" formControlName="iHaveExp" disabled
+                    (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true"
+                    class="form-control ng-untouched ng-pristine ng-invalid mt-2" rows="5"></textarea> -->
+                <p >{{iHaveExp}}</p>
+
+              </td>
+              <td class="tg-0lax">
+                <!-- <input type="text"
+                  [value]="this.interviewFormI.value.ihavGcInitialsWithDate == null ? CurrentDate : this.interviewFormI.value.ihavGcInitialsWithDate"
+                  formControlName="ihavGcInitialsWithDate" disabled class="form-control"> -->
+                <p class="text-center">{{ihavGcInitialsWithDate}}</p>
+
+                </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!------------------------------------- Instructions for Interviews and Counselling -------------------->
+<div class="main-content" *ngIf="isInstructions">
+  <div class="container-fluid">
+    <div class="warning-instruction">
+      <div class="mat-heading">
+        <div id="top-bar" class="">
+          <!-- <h2 class="backbtn"><button mat-icon-button (click)="goBack()">
+                  <mat-icon>chevron_left</mat-icon>
+                </button>E-Dossier <span class="sub-menu1">
+                  > Interviews > INSTRUCTIONS FOR INTERVIEWS AND COUNSELLING</span></h2> -->
+          <h2 class="backbtn">
+            <!-- <button mat-icon-button (click)="goBack()">
+                    <mat-icon>chevron_left</mat-icon>
+                  </button> -->
+                 Interviews <span class="sub-menu1">
+               > {{this.type}}</span>
+          </h2>
+        </div>
+      </div>
+      <div class="mat-card mat-focus-indicator">
+        <div class="ng-star-inserted">
+
+        </div>
+        <div class="interview-counselling-description">
+          <ol>
+            <li class="mb-2">Instructions for initial interview are as given below :-
+              <ol class="mt-2 laparent" type="a">
+                <li class="pr-2">
+                  Interview to be recorded in ink in the Offr’s own hand.
+                </li>
+                <li class="pr-2">
+                  Pl Cdr’s initial interview to be conducted within 24hrs of arr of the GC.
+                </li>
+                <li class="pr-2">Pts to be conveyed by Pl Cdr -
+                  <ol class="mt-2 laparent" type="i">
+                    <li class="mb-2 pr-2">Welcome.</li>
+                    <li class="mb-2 pr-2">Brief on gen conduct of trginclspl emphasis.</li>
+                    <li class="mb-2 pr-2">Expectations of the environment.</li>
+                    <li class="mb-2 pr-2">Adm Brief.</li>
+                    <li class="mb-2 pr-2">Ascertain if the GC has any problem.</li>
+                  </ol>
+                </li>
+                <li class="pr-2">Instrs for Coy Cdr for initial interview -
+                  <ol class="mt-2 laparent" type="i">
+                    <li class="mb-2 pr-2">Interview to be recorded in ink in the Offr’s own hand.</li>
+                    <li class="mb-2 pr-2">Coy Cdr’s initial interview to be conducted within 48hrs of arr of the GC.
+                    </li>
+                    <li class="mb-2 pr-2">Initial interview by Coy Cdr will reaffirm all the obsn of Pl Cdr.</li>
+                    <li class="mb-2 pr-2">Check whether the GC has settled down or not.</li>
+                    <li class="mb-2 pr-2">Advise him on conduct of trg.</li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+            <li class="mb-2 pr-2"><span class="mr-3"><b>Mid Term Interview.</b></span>Pl Cdr to interview the GC after
+              Mid Term Break and brief him about his performance in various fields and endorse the same. Coy Cdr to
+              guide the GC and enquire about any adm problem being faced. Cases requiring spl attention to be brought to
+              Bn Cdr’s notice.</li>
+            <li class="mb-2 pr-2"><span class="mr-3"><b>Beginning of Term Interview.</b></span>Interview to be recorded
+              in ink in the Offr’s own hand. Previous term’s performance to be highlighted and aspects requiring
+              improvement to be brought out.</li>
+            <li class="mb-2 pr-2"><span class="mr-3"><b>Special Interview.</b></span>By Coy Cdr/ Bn Cdr for GC who
+              wishes to resign and also for those who merit attention due to various reasons.</li>
+            <li class="mb-2 pr-2"><span class="mr-3"><b>Obsn Sheet.</b></span>Any significant obsn which is brought to
+              the notice of the Pl/Coy Cdr to be endorsed in this space. Good obsns should be endorsed in blue ink while
+              adverse obsns to be endorsed in red ink.Actions taken by the Pl/Coy Cdr to be mentioned in the Remarks
+              coln.</li>
+            <li class="mb-2 pr-2"><span class="mr-3"><b>Counselling.</b></span>A GC will be counselled by Pl Cdr/ Coy
+              Cdr/ BnCdr on poor performance in various fields and for not adhering to laid down norms.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!------------------------------------- Initial Interview ------------------------------>
+<div class="main-content" *ngIf="isInitial">
+  <div class="container-fluid">
+    <div class="mat-heading">
+      <div id="top-bar" class="">
+        
+        <h2 class="backbtn">
+          
+          Interviews <span class="sub-menu1">
+            > {{type}}</span>
+        </h2>
+      </div>
+    </div>
+
+    <div class="interview-sheet">
+      <div class="mat-card mat-focus-indicator">
+        <table class="tg">
+          <thead>
+            <tr>
+              <th class="tg-t2cw"><span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;">Date</span>
+              </th>
+              <th class="tg-t2cw"><span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">Details</span>
+              </th>
+              <th class="tg-t2cw"><span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">GCs
+                  Initials with date</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr [formGroup]="initialInterviewFormI">
+              <td class="tg-0lax">
+                <!-- <input type="date" disabled class="form-control ng-untouched ng-pristine ng-invalid"
+                  formControlName="date" max="{{maxDate}}" required> -->
+                <p >{{date}}</p>
+
+                </td>
+              <td class="tg-0lax">
+                <label
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">INITIAL
+                  INTERVIEW : COY CDR</label>
+                <!-- <textarea placeholder="" maxlength="1500" formControlName="initialInterview" disabled
+                  (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true"
+                  class="form-control ng-untouched ng-pristine ng-invalid" rows="3"></textarea> -->
+                <p >{{initialInterview}}</p>
+
+                  <br><br><br><br>
+                <label>Maj/Lt Col <br>Coy Cdr</label>
+                <!-- <input type="text" placeholder=""
+                  (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true"
+                  formControlName="majCol" disabled class="form-control ng-untouched ng-pristine ng-invalid mb-2"> -->
+                <p >{{majCol}}</p>
+
+              </td>
+              <td class="tg-0lax">
+                <!-- <input type="text" class="form-control ng-untouched ng-pristine ng-invalid"
+                  [value]="this.initialInterviewFormI.value.gcInitialsWithDate == null ? CurrentDate : this.initialInterviewFormI.value.gcInitialsWithDate"
+                  formControlName="gcInitialsWithDate" disabled> -->
+                <p >{{gcInitialsWithDate}}</p>
+
+                </td>
+            </tr>
+
+
+            <tr [formGroup]="initialInterviewFormII">
+              <td class="tg-0lax">
+                <!-- <input type="date" max="{{maxDate}}" disabled
+                  class="form-control ng-untouched ng-pristine ng-invalid" formControlName="date"> -->
+                <p >{{date}}</p>
+
+                </td>
+              <td class="tg-0lax">
+                <label
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">INITIAL
+                  INTERVIEW : Bn CDR</label>
+                <!-- <textarea placeholder="" maxlength="1500" formControlName="initialInterview" disabled
+                  (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true"
+                  class="form-control ng-untouched ng-pristine ng-invalid" rows="3"></textarea> -->
+                <p >{{initialInterview}}</p>
+
+                  <br><br><br><br>
+                <label>Col <br>Bn Cdr</label>
+                <!-- <input type="text" placeholder="" disabled
+                  (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true"
+                  formControlName="majCol" class="form-control ng-untouched ng-pristine ng-invalid mb-2"> -->
+                <p>{{majCol}}</p>
+
+              </td>
+              <td class="tg-0lax">
+                <!-- <input type="text" class="form-control ng-untouched ng-pristine ng-invalid"
+                  [value]="this.initialInterviewFormII.value.gcInitialsWithDate == null ? CurrentDate : this.initialInterviewFormII.value.gcInitialsWithDate"
+                  formControlName="gcInitialsWithDate" disabled> -->
+                <p >{{gcInitialsWithDate}}</p>
+
+                </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!------------------------- Begining Term Interview ---------------------------------->
+<div class="main-content" *ngIf="isBegining">
+  <div class="container-fluid">
+    <div class="mat-heading">
+      <div id="top-bar" class="">
+        
+        <h2 class="backbtn">
+          
+          Interviews <span class="sub-menu1">
+             > {{type}}</span>
+        </h2>
+      </div>
+    </div>
+    <div class="interview-sheet">
+      <div class="mat-card mat-focus-indicator">
+        <table class="tg">
+          <thead>
+            <tr>
+              <th class="tg-t2cw"><span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">Date</span>
+              </th>
+              <th class="tg-t2cw"><span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">Details</span>
+              </th>
+              <th class="tg-t2cw" colspan="2"><span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">GC
+                  Initials with date</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr [formGroup]="begInterviewFormI">
+              <td class="tg-0lax">
+                <!-- <input type="date" disabled max="{{maxDate}}" placeholder="" formControlName="date"
+                  class="form-control ng-untouched ng-pristine ng-invalid mb-2"> -->
+                <p >{{date}}</p>
+                </td>
+              <td class="tg-0lax">
+                <!-- <textarea placeholder="" disabled
+                  (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true"
+                  class="form-control ng-untouched ng-pristine ng-invalid" rows="3" maxlength="1500"
+                  formControlName="details"></textarea> -->
+                <p >{{details}}</p>
+                  <br><br><br><br>
+                <label>Capt/Maj <br>Pl Cdr</label>
+                <!-- <input type="text" placeholder="" formControlName="capt" disabled
+                  (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true"
+                  class="form-control ng-untouched ng-pristine ng-invalid mb-2"> -->
+                <p >{{capt}}</p>
+              </td>
+              <td class="tg-0lax">
+                <!-- <input type="text" placeholder=""
+                  [value]="this.begInterviewFormI.value.gcInitialsWithDate == null ? CurrentDate : this.begInterviewFormI.value.gcInitialsWithDate"
+                  formControlName="gcInitialsWithDate" disabled
+                  class="form-control ng-untouched ng-pristine ng-invalid mb-2"> -->
+                <p >{{gcInitialsWithDate}}</p>
+                </td>
+            </tr>
+            <tr [formGroup]="begInterviewFormII">
+              <td class="tg-0lax">
+                <!-- <input type="date" max="{{maxDate}}" disabled placeholder="" formControlName="date"
+                  class="form-control ng-untouched ng-pristine ng-invalid mb-2"> -->
+                  <p >{{date}}</p>
+                
+              </td>
+              <td class="tg-0lax">
+                <!-- <textarea placeholder="" maxlength="1500" formControlName="details" disabled
+                  (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true"
+                  class="form-control ng-untouched ng-pristine ng-invalid" rows="3"></textarea> -->
+                  <p >{{details}}</p>
+
+                  <br><br><br><br>
+                <label>Maj/Lt Col <br>Coy Cdr</label>
+                <!-- <input type="text" placeholder="" formControlName="capt" disabled
+                  (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true"
+                  class="form-control ng-untouched ng-pristine ng-invalid mb-2"> -->
+                  <p >{{capt}}</p>
+
+              </td>
+              <td class="tg-0lax">
+                <!-- <input type="text" placeholder=""
+                  [value]="this.begInterviewFormII.value.gcInitialsWithDate == null ? CurrentDate : this.begInterviewFormII.value.gcInitialsWithDate"
+                  formControlName="gcInitialsWithDate" disabled
+                  class="form-control ng-untouched ng-pristine ng-invalid mb-2"> -->
+                  <p >{{gcInitialsWithDate}}</p>
+                </td>
+            </tr>
+            <tr [formGroup]="begInterviewFormIII">
+              <td class="tg-0lax">
+                <!-- <input type="date" max="{{maxDate}}" disabled placeholder="" formControlName="date"
+                  class="form-control ng-untouched ng-pristine ng-invalid mb-2"> -->
+                  <p >{{date}}</p>
+
+                </td>
+              <td class="tg-0lax">
+                <!-- <textarea placeholder="" maxlength="1500" formControlName="details" disabled
+                  (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true"
+                  class="form-control ng-untouched ng-pristine ng-invalid" rows="3"></textarea> -->
+                  <p >{{details}}</p>
+
+                  <br><br><br><br>
+                <label>Col <br>Bn Cdr</label>
+                <!-- <input type="text" placeholder="" formControlName="capt" disabled
+                  (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true"
+                  class="form-control ng-untouched ng-pristine ng-invalid mb-2"> -->
+                  <p >{{capt}}</p>
+
+              </td>
+              <td class="tg-0lax">
+                <!-- <input type="text" placeholder=""
+                  [value]="this.begInterviewFormIII.value.gcInitialsWithDate == null ? CurrentDate : this.begInterviewFormIII.value.gcInitialsWithDate"
+                  formControlName="gcInitialsWithDate" disabled
+                  class="form-control ng-untouched ng-pristine ng-invalid mb-2"> -->
+                  <p >{{gcInitialsWithDate}}</p>
+
+                </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ------------------------Mid Term Interview -------------------------->
+<div class="main-content" *ngIf="isMid">
+  <div class="container-fluid">
+    <div class="mat-heading">
+      <div id="top-bar" class="">
+        
+        <h2 class="backbtn">
+          
+          Interviews <span class="sub-menu1">
+             > {{type}}</span>
+        </h2>
+      </div>
+    </div>
+
+    <div class="interview-sheet">
+      <div class="mat-card mat-focus-indicator">
+        <table class="tg">
+          <thead>
+            <tr>
+              <th class="tg-t2cw"><span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">Date</span>
+              </th>
+              <th class="tg-t2cw"><span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">Details</span>
+              </th>
+              <th class="tg-t2cw" colspan="2"><span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">GC
+                  Initials with date</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr [formGroup]="MidInterviewFormI">
+              <td class="tg-0lax">
+                <!-- <input type="date" max="{{maxDate}}" disabled placeholder="" formControlName="date"
+                  class="form-control ng-untouched ng-pristine ng-invalid mb-2"> -->
+                  <p >{{date}}</p>
+
+                </td>
+              <td class="tg-0lax">
+                <!-- <textarea placeholder="" disabled
+                  (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true"
+                  class="form-control ng-untouched ng-pristine ng-invalid" rows="3" maxlength="1500"
+                  formControlName="details"></textarea> -->
+                  <p >{{details}}</p>
+
+                  <br><br><br><br>
+                <label>Capt/Maj <br>Pl Cdr</label>
+                <!-- <input type="text" placeholder="" disabled
+                  (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true"
+                  formControlName="capt" class="form-control ng-untouched ng-pristine ng-invalid mb-2"> -->
+                  <p >{{capt}}</p>
+
+              </td>
+              <td class="tg-0lax">
+                <!-- <input type="text" placeholder=""
+                  [value]="this.MidInterviewFormI.value.gcInitialsWithDate == null ? CurrentDate : this.MidInterviewFormI.value.gcInitialsWithDate"
+                  formControlName="gcInitialsWithDate" disabled
+                  class="form-control ng-untouched ng-pristine ng-invalid mb-2"> -->
+                  <p >{{gcInitialsWithDate}}</p>
+
+                </td>
+            </tr>
+            <tr [formGroup]="MidInterviewFormII">
+              <td class="tg-0lax">
+                <!-- <input type="date" max="{{maxDate}}" disabled placeholder="" formControlName="date"
+                  class="form-control ng-untouched ng-pristine ng-invalid mb-2"> -->
+                  <p >{{date}}</p>
+
+                </td>
+              <td class="tg-0lax">
+                <!-- <textarea placeholder="" maxlength="1500" formControlName="details" disabled
+                  (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true"
+                  class="form-control ng-untouched ng-pristine ng-invalid" rows="3"></textarea> -->
+                  <p >{{details}}</p>
+
+                  <br><br><br><br>
+                <label>Maj/Lt Col <br>Coy Cdr</label>
+                <!-- <input type="text" placeholder="" formControlName="capt" disabled
+                  (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true"
+                  class="form-control ng-untouched ng-pristine ng-invalid mb-2"> -->
+                  <p >{{capt}}</p>
+
+              </td>
+              <td class="tg-0lax">
+                <!-- <input type="text" placeholder=""
+                  [value]="this.MidInterviewFormII.value.gcInitialsWithDate == null ? CurrentDate : this.MidInterviewFormII.value.gcInitialsWithDate"
+                  formControlName="gcInitialsWithDate" disabled
+                  class="form-control ng-untouched ng-pristine ng-invalid mb-2"> -->
+                  <p >{{gcInitialsWithDate}}</p>
+
+                </td>
+            </tr>
+            <tr [formGroup]="MidInterviewFormIII">
+              <td class="tg-0lax">
+                <!-- <input type="date" max="{{maxDate}}" disabled placeholder="" formControlName="date"
+                  class="form-control ng-untouched ng-pristine ng-invalid mb-2"> -->
+                  <p >{{date}}</p>
+
+                </td>
+              <td class="tg-0lax">
+                <!-- <textarea placeholder="" maxlength="1500" formControlName="details" disabled
+                  (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true"
+                  class="form-control ng-untouched ng-pristine ng-invalid" rows="3"></textarea> -->
+                  <p >{{details}}</p>
+
+                  <br><br><br><br>
+                <label>Col <br>Bn Cdr</label>
+                <!-- <input type="text" placeholder="" formControlName="capt" disabled
+                  (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true"
+                  class="form-control ng-untouched ng-pristine ng-invalid mb-2"> -->
+                  <p >{{capt}}</p>
+
+              </td>
+              <td class="tg-0lax">
+                <!-- <input type="text" placeholder=""
+                  [value]="this.MidInterviewFormIII.value.gcInitialsWithDate == null ? CurrentDate : this.MidInterviewFormIII.value.gcInitialsWithDate"
+                  formControlName="gcInitialsWithDate" disabled
+                  class="form-control ng-untouched ng-pristine ng-invalid mb-2"> -->
+                  <p >{{gcInitialsWithDate}}</p>
+
+                </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!---------------------- Special Interview -------------------------->
+<div class="main-content" *ngIf="isSpecial">
+  <div class="container-fluid">
+    <div class="mat-heading">
+      <div id="top-bar" class="">
+        
+        <h2 class="backbtn">
+          
+          Interviews <span class="sub-menu1">
+             > {{type}}</span>
+        </h2>
+      </div>
+    </div>
+
+    <div class="interview-sheet">
+      <div class="mat-card mat-focus-indicator">
+
+        <table class="tg">
+          <thead>
+            <tr>
+              <th class="tg-t2cw" rowspan="2"><span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">Date</span>
+              </th>
+              <th class="tg-t2cw"><span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">Details</span>
+              </th>
+              <th class="tg-t2cw" rowspan="2"><span
+                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">GCs
+                  Initials with date</span></th>
+            </tr>
+            <tr>
+              <th class="tg-t2cw">SPECIAL INTERVIEW</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr [formGroup]="specialInterviewFormI">
+              <td class="tg-0lax">
+                <!-- <input type="date" max="{{maxDate}}" disabled formControlName="date"
+                  class="form-control"> -->
+                  <p >{{date}}</p>
+
+                </td>
+              <td class="tg-0lax">
+                <!-- <textarea class="form-control" maxlength="1500" formControlName="specialInterview"
+                  disabled
+                  (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true"
+                  rows="3"></textarea> -->
+                  <p >{{specialInterview}}</p>
+
+                </td>
+              <td class="tg-0lax">
+                <!-- <input type="text"
+                  [value]="this.specialInterviewFormI.value.gcInitialsWithDate == null ? CurrentDate : this.specialInterviewFormI.value.gcInitialsWithDate"
+                  formControlName="gcInitialsWithDate" disabled class="form-control"> -->
+                  <p >{{gcInitialsWithDate}}</p>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
+      </div>
+    </div>
+  </div>
+</div>

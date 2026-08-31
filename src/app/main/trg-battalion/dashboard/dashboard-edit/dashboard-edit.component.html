@@ -1,0 +1,27 @@
+<div class="mat-new">
+    <h4 class="card-heading">
+        <button mat-icon-button (click)="goBack()">
+            <mat-icon>chevron_left</mat-icon>
+        </button>
+        Trg battalion  <span class="sub-menu1"> > Dashboard<span class="sub-menu1"> > {{pageTitle}}</span></span>
+    </h4>
+</div>
+<mat-card>
+    <div class="top-br">
+        <form [formGroup]="addItpppForm">
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="awards">Description <span class="char-count"> ({{descLength}}/1500) </span> <span
+                            class="required">*</span></label>
+                    <textarea matInput placeholder="Maximum 1500 Characters" class="form-control" rows="5"
+                        (input)="charCount($event)" maxlength="1500" formControlName="description"></textarea>
+                    <span class="val_msg"
+                        *ngIf="f.description.errors && f.description.errors.required && isError">*Please Enter
+                        Description</span>
+
+                </div>
+            </div>
+            <button mat-raised-button  (click)="updatePerformance()">Update</button>
+        </form>
+    </div>
+</mat-card>

@@ -1,0 +1,29 @@
+.field-icon {
+  float: right;
+  margin-left: -25px;
+  margin-top: -25px;
+  position: relative;
+  z-index: 2;
+}
+
+.custom-table-1 {
+  table-layout: auto;
+  
+  td {
+    padding: .25rem .65rem !important;
+  
+    .form-check-input {
+      margin-top: 0.25rem;
+    }
+  
+    .custom-form-check-label {
+      font-size: 13px;
+      font-weight: 400;
+    }
+  
+    &.w25 {
+      width: 30px !important;
+      border-bottom: 0 !important;
+    }
+  }
+}

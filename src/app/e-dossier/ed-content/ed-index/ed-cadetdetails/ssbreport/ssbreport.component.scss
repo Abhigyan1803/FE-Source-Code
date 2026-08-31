@@ -1,0 +1,139 @@
+.main-row {
+    margin: 0px;
+}
+.mat-heading {
+    clear: both;
+    padding-top: 10px;
+  }
+  div#top-bar {
+    background: #e1e3de;
+    padding:10px 15px;
+    color: #bb9450;
+    clear: both;
+    border-radius: 5px;
+  }
+  div#top-bar h2 {
+  font-size: 16px;
+    margin: 0;
+  }
+  .sub-menu1 {
+    color: #721a0c;
+}
+h4.card-heading {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    color: #721a0c;
+    background: #eee;
+    padding: 10px 15px;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+.box-shadow {
+    float: left;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.mat-card {
+    transition: all 0.4s ease 0s;
+    color: #37474F;
+    font-family: "Nunito Sans", sans-serif;
+    background-color: #ffffff;
+    margin-bottom: 20px !important;
+    width: 100%;
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    background: #fff;
+    padding: 20px;
+}
+.mat-card {
+    margin: 1rem 0;
+    border-radius: 8px;
+    padding: 0.875rem 1.5rem;
+    overflow: hidden;
+    transition: all 0.4s ease 0s;
+}
+.tg {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+
+.tg td {
+    border-color: #ccc;
+    border-style: solid;
+    border-width: 1px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    overflow: hidden;
+    padding: 10px 5px;
+    word-break: normal;
+    text-align: center;
+}
+
+.tg th {
+    border-color: #ccc;
+    border-style: solid;
+    border-width: 1px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    overflow: hidden;
+    padding: 10px 5px;
+    word-break: normal;
+    background: #eee;
+    text-align: center;
+    font-weight: bold;
+}
+
+.tg .tg-0pky {
+    border-color: inherit;
+    text-align: left;
+    vertical-align: top
+}
+
+td.tg-0lax.bold {
+    font-weight: bold;
+}
+
+.sports input[type="text"] {
+    width: 50px;
+    text-align: center;
+    border: 1px solid #ccc;
+    background: #fafafa;
+    border-radius: 3px;
+    height: 31px;
+}
+
+h4.red-heading {
+    font-size: 15px;
+    color: #721a0c;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+h4.main-red-heading {
+    font-size: 15px;
+    color: #721a0c;
+    font-weight: bold;
+    margin-bottom: 20px;
+    background: #eee;
+    padding: 10px 15px;
+    width: 100%;
+}
+
+p.txt-cc {
+    font-size: 12px;
+    margin-top: 13px;
+    margin-bottom: 0;
+}
+
+
+h2 button{
+    width: 30px;
+    height: 30px;
+    line-height: 28px;
+    background: #ccc;
+    margin-right: 5px;
+  }

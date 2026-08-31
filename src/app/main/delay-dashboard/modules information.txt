@@ -1,0 +1,5 @@
+* module id: 1 for trg team
+ * module id: 2 for trg battalion
+ * module id: 4 for academic department
+ * module id: 12 for adjutant branch
+ 

@@ -1,0 +1,73 @@
+<div class="mat-new">
+    <h4 class="card-heading"> <button mat-icon-button (click)="goBack()" ><mat-icon>chevron_left</mat-icon> </button> GSO-2(PGME) <span class="sub-menu1"> > Syllabus > Termwise > {{pTitle}}</span>
+        <span class="sub-menu1"> </span>
+    </h4>
+</div>
+<mat-card>
+    <div class="top-br">
+        <form [formGroup]="addSyllabusForm">
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="name">Syllabus Name<span class="required">*</span></label>
+                    <input type="text" name="name" id="date" class="form-control" formControlName="name" placeholder="Name">
+                    <span class="validation_msg" *ngIf="f.name.errors && f.name.errors.required && isError" >Please Enter Name</span> 
+                </div> 
+                <div class="form-group col-md-6">
+                    <label for="date">Date<span class="required">*</span></label>
+                    <input type="date" name="date" id="date" class="form-control" formControlName="date" [min]="minDate" [max]="maxDate" >
+                    <span class="validation_msg" *ngIf="f.date.errors && f.date.errors.required && isError" >Please Select Date</span> 
+                    <span class="validation_msg" *ngIf="f.date.errors && isLessDate && isError" >Please Enter a Valid Date</span> 
+                </div> 
+                
+
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="battalion">Term<span class="required">*</span></label>
+                    <select type="text" formControlName="term" class="form-control">
+                        <option value="" selected hidden disabled>Select</option>
+                        <option *ngFor="let t of terms" [value]="t.name">{{t.name}}</option>
+                    </select>
+                    <span class="validation_msg" *ngIf="f.term.errors && f.term.errors.required && isError" >Season Term is required</span> 
+                </div> 
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="description">Description <span class="char-count" >({{descriptionLength}}/500)  </span><span class="required">*</span> </label>
+                    <textarea name="" id="description"  class="form-control" maxlength="500" formControlName="description" placeholder="(Maximum 500 Characters)"  (input)="charCount($event,'desc')"></textarea>
+                    <span class="validation_msg" *ngIf="f.description.errors && f.description.errors.required && isError" >Please Enter Description</span> 
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="battalion">Document<span class="required">*</span></label>
+                <input type="file" #inputFile accept=".pdf,.doc,.docx" (change)="onSelectDoc($event)" id="image">
+                <a href="javascript:void(0)" *ngIf="docUrl" (click)="openDoc(docUrl)" > <mat-icon class="document_icon">description</mat-icon>  </a>
+                <span class="note">Max File Size 50 MB. (Only pdf and doc format.)</span>
+                <span class="validation_msg" *ngIf="!isDoc" >Document is required</span>
+            </div>
+
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="battalion">Status<span class="required">*</span></label>
+                    <select class="form-control" formControlName="status">
+                        <option value="" selected hidden disabled>Select</option>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+                    <span class="validation_msg" *ngIf="f.status.errors && f.status.errors.required && isError" >Status is required</span> 
+                </div>
+            </div>
+
+            <button *ngIf="!id" mat-raised-button (click)="addSyllabus()" >Add Syllabus</button>
+            <button *ngIf="id" mat-raised-button (click)="updateSyllabus()"  >Update Syllabus</button>
+
+        </form>
+    </div>
+</mat-card>
+

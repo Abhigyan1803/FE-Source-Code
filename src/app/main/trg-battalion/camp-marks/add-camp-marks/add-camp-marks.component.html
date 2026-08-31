@@ -1,0 +1,167 @@
+<div>
+    <div class="mat-new">
+        <h4 class="card-heading" *ngIf="mnc=='add'"> Add Camp Marks <span class="sub-menu1"> </span>
+        </h4>
+        <h4 class="card-heading" *ngIf="mnc=='update'">Edit Camp Marks <span class="sub-menu1"> </span>
+        </h4>
+
+    </div>
+    <mat-card>
+        <form [formGroup]="cammarkForm">
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label class="form-label">IMA No. </label>
+                    <input type="text" formControlName="serviceId" disabled maxlength="100" class="form-control">
+                </div>
+                <div class="form-group col-md-3">
+                    <label class="form-label">Rank </label>
+                    <input type="text" formControlName="cadetRank" disabled maxlength="100" class="form-control">
+                </div>
+                <div class="form-group col-md-3">
+                    <label class="form-label">Name </label>
+                    <input type="text" formControlName="username" disabled maxlength="100" class="form-control">
+                </div>
+                <div class="form-group col-md-3">
+                    <label class="form-label">Term </label>
+                    <input type="text" formControlName="termId" disabled maxlength="100" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label class="form-label">Batallion </label>
+                    <input type="text" formControlName="battalian" disabled maxlength="100" class="form-control">
+                </div>
+                <div class="form-group col-md-3">
+                    <label class="form-label">CoY </label>
+                    <input type="text" formControlName="company" disabled maxlength="100" class="form-control">
+
+                </div>
+                <div class="form-group col-md-3">
+                    <label class="form-label">Course </label>
+                    <input type="text" formControlName="course" disabled maxlength="100" class="form-control">
+                </div>
+                <div class="form-group col-md-3">
+                    <label class="form-label">GC Appt </label>
+                    <select placeholder="" class="form-control" formControlName="gcAppt">
+                        <option disabled selected hidden></option>
+                        <option *ngFor="let t of gcappt" [value]="t.id">{{t.gcApptName}} </option>
+                    </select>
+                    
+                </div>
+                <div class="form-group col-md-3" >
+                    <label class="form-label">Exercise Type </label>
+                    <select placeholder="" class="form-control" (change)="changenew($event.target.value)"
+                        formControlName="exerciseType">
+                        <option disabled selected hidden></option>
+                        <option *ngFor="let t of exerciseType" [value]="t.id">{{t.type}} </option>
+                    </select>
+                </div>
+               
+            </div>
+            <br>
+            <div class="row234 new-cls" *ngIf="isShown"  >
+                <div >
+                <div class="example-container" *ngIf="mnc=='add'">
+                    <div  class="example-table-container" class="col-md-12">
+                      
+                        <div formArrayName="campSubjectResult"  class="tab-newcls">
+                            <table *ngIf="isShown" style="margin-left: 0px;
+                            width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <td>No.</td>
+                                        <td>Subject</td>
+                                        <td>Total Marks</td>
+                                        <td>Obtained Marks</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let mr of getCSubjectRes1.controls;let i=index">
+                                        <ng-container [formGroupName]="i">
+                                            <td> {{i+1}} </td>
+                                            <td> {{mr.value.subjectName}} </td>
+                                            <td> {{mr.value.totalMarks}} </td>
+                                            <td>
+                                                <input  min="0" oninput="this.value = 
+                                                !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null" formControlName="obtainedMarks"  class="form-control"
+                                                    (focus)="onFocusEvent($event.target.value)"
+                                                    on-focusout="onChange($event.target.value,mr.value.totalMarks,i)" maxlength="2"
+                                                    (keypress)="keyPress($event)">
+                                            </td>
+                                        </ng-container>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td></td>
+                                        <td>Total</td>
+                                        <td>{{getTotal()}}</td>
+                                        <td>{{totalmarkst}}</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+    
+                <div formArrayName="campSubjectResult" *ngIf="mnc=='update'" class="tab-newcls">
+                    <table style="margin-left: 0px;
+                    width: 100%;">
+                        <thead>
+                            <tr>
+                                <td>No.</td>
+                                <td>Subject</td>
+                                <td>Total Marks</td>
+                                <td>Obtained Marks</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let mr of getCSubjectRes.controls;let i=index">
+                                <ng-container [formGroupName]="i">
+                                    <td> {{i+1}} </td>
+                                    <td> {{mr.value.subjectName}} </td>
+                                    <td> {{mr.value.totalmarks}} </td>
+                                    <td>
+                                        <input  min="0" oninput="this.value = 
+                                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null" formControlName="obtainedMarks"  class="form-control"
+                                            (focus)="onFocusEvent($event.target.value)"
+                                            on-focusout="onChange($event.target.value,mr.value.totalmarks,i)" maxlength="2"
+                                            (keypress)="keyPress($event)">
+                                    </td>
+                                </ng-container>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td>Total</td>
+                                <td>{{updatetotalmarks}}</td>
+                                <td>{{totalmarkst}}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div  class="form-group col-md-12 remarkdiv"  >
+                    <label class="form-label">Remarks </label>
+                    <textarea matInput placeholder="" formControlName="remarks" class="form-control remarkheight"
+                        maxlength="1500"></textarea>
+                        <div >
+                  
+                </div>
+                </div>
+            </div>
+            <div *ngIf="mnc=='update'" class="form-group col-md-2"
+            style="float: right;margin: 9px 0;padding: 0;">
+            <button mat-raised-button (click)="confirm()" style="float: right;">CONFIRM</button>
+        </div>
+        <div *ngIf="mnc=='add'"   class="form-group col-md-2 submitbutton" style="float: right;margin: 9px 0;padding: 0;">
+            <button *ngIf="isShown"  mat-raised-button (click)="submit()" style="float: right;">Submit</button>
+        </div>
+        </form>
+
+
+    </mat-card>
+</div>

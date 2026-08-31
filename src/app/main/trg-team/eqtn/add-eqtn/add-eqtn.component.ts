@@ -1,0 +1,473 @@
+import { ChangeDetectorRef, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AdminService } from 'app/service/admin/admin.service';
+import { SharedService } from 'app/service/shared.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { TrgTeamService } from 'app/service/trg-team/trg-team.service';
+
+@Component({
+  selector: 'ms-add-eqtn',
+  templateUrl: './add-eqtn.component.html',
+  styleUrls: ['./add-eqtn.component.scss']
+})
+export class AddEqtnComponent implements OnInit {
+
+  id: string = '';
+  termid: string = '';
+  totalss: number = 0;
+  eqtnForm: FormGroup = new FormGroup({});
+  dRILLAttemptResult1: any;
+
+  constructor(
+    private dialog: MatDialog,
+    // private spinner: NgxSpinnerService,
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
+    private router: Router,
+    private adminservice: AdminService,
+    private sharedservice: SharedService, private cdref: ChangeDetectorRef,
+    private activeRoute: ActivatedRoute,private TrgTeamService:TrgTeamService) {
+
+    this.eqtnForm = this.fb.group({
+      serviceId: [{ disabled: true }, Validators.required],
+      battalian: [{ disabled: true }, Validators.required],
+      company: [{ disabled: true }, Validators.required],
+      termSession: [{ disabled: true }, Validators.required],
+      course: [{ disabled: true }, Validators.required],
+      cadetRank: [{ disabled: true }, Validators.required],
+      username: [{ disabled: true }, Validators.required],
+      remarks: ['', Validators.required],
+      termId: ['', Validators.required],
+      trgEQTNSubResult: this.fb.array([]),
+
+    })
+  }
+
+  public get getCSubjectRes() {
+    return this.eqtnForm.get('trgEQTNSubResult') as FormArray;
+  }
+  public get getCSubjectRes1() {
+    return this.eqtnForm.get('trgEQTNSubResult') as FormArray;
+  }
+  genSubRec() {
+    return this.fb.group({
+      id: [''],
+      obtainedMarks: [''],
+      serviceId: [this.eqtnForm.value.serviceId],
+      status: ['1'],
+      subjectId: [''],
+      subjectName: [''],
+      termId: [this.eqtnForm.value.termId],
+      totalMarks: ['']
+    })
+  }
+  serId
+  genSubRec1() {
+    return this.fb.group({
+      // id: [''],
+      // drillType:[''],
+      // obtainedMarks: [{value: '', disabled: true }, Validators.required,],
+      obtainedMarks: [''],
+      serviceId: [this.serId],
+      status: ['1'],
+      subjectId: [''],
+      subjectName: [''],
+      termId: [this.eqtnForm.value.termId],
+      totalMarks: ['']
+    })
+  }
+
+
+  displayedColumns: string[] = ['id', 'subjectName', 'totalMarks', 'MarksObtained'];
+  dataSource;
+  Campmarks: any[] = [];
+  Campmark1: any[] = [];
+
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
+  ngOnInit(): void {
+    // this.spinner.show();
+    if (this.router.url.includes('id'), ('termid')) {
+      this.id = this.route.snapshot.queryParamMap.get('id');
+      this.termid = this.route.snapshot.queryParamMap.get('termid');
+    }
+    
+    if (this.router.url.includes('add-eqtn')) {
+      // this.spinner.show();
+      this.adminservice.getDrillMarks(this.id).subscribe(
+        res => {
+          if (res.status == 'OK') {
+            this.serId=res.object.serviceId
+            console.log(this.serId,"id")
+            // this.spinner.hide();
+            this.eqtnForm.patchValue({
+              serviceId: res.object.serviceId,
+              battalian: res.object.battalian,
+              company: res.object.company,
+              course: res.object.course,
+              username: res.object.name,
+              termId: res.object.term,
+            })
+          } else {
+            this.adminservice.openSnackbar(res.message)
+            // this.spinner.hide();
+          }
+        }
+      )
+
+
+      var getForm = {
+        id: this.id,
+        termid: this.termid
+      }
+      var serviceId = getForm.id
+      var termId =  this.termid
+      console.log(termId,"hhhh")
+      this.TrgTeamService.getEqtn(serviceId, termId).subscribe(
+        res => {
+
+          if (res.message == "update") {
+            this.mnc = "update"
+            // this.spinner.hide()
+            this.Campmark1 = res.object;
+            this.updatetotalmarks = res.object.totalMarks;
+            this.totalmarkst = res.object.obtainedMarks;
+            // this.obtainedmarks = res.object.CampSubjectResult;
+            this.drilleditid = res.object.id;
+            console.log(this.Campmark1, "<<<<<")
+            let cmrks = res.object.trgEQTNSubResult;
+            const drillResult = this.sortArrayOfObjects(cmrks, "id", "ascending")
+
+            cmrks.forEach(e => {
+              e.id = e.id;
+              console.log("eeee===>>", e);
+              this.getCSubjectRes.push(this.genSubRec())
+            });
+            this.eqtnForm.patchValue({
+              trgEQTNSubResult: drillResult,
+            })
+
+            // console.log(this.obtainedmarks, "obtainedmarks")
+            // this.dataSource = new MatTableDataSource(res.object.trgEQTNSubResult);
+            this.eqtnForm.patchValue({
+              remarks: res.object.remarks,
+            })
+            this.tempArr1 = [];
+            this.cdref.detectChanges();
+          }
+          else if (res.message == "add") {
+            // this.spinner.hide()
+            this.totalmarkst = 0;
+            // this.cammarkForm.value.campSubjectResult = []
+            this.mnc = "add";
+            this.Campmarks = res.object;
+            this.eqtnForm.value.trgEQTNSubResult = []
+            this.mnc = "add";
+            // this.isShown = true
+            this.Campmarks = res.object;
+            let cmrks = res.object;
+            console.log("drill===>>", cmrks);
+            const drillResult = this.sortArrayOfObjects(cmrks, "id", "ascending")
+            cmrks.forEach(e => {
+              e.subjectId=e.id;
+              console.log("eeee===>>", e);
+              this.getCSubjectRes1.push(this.genSubRec1())
+            });
+            this.eqtnForm.patchValue({
+              trgEQTNSubResult: drillResult
+            })
+            this.dataSource = new MatTableDataSource(res.object);
+            this.cdref.detectChanges();
+          }
+          else {
+            this.adminservice.openSnackbar(res.message)
+            // this.spinner.hide();
+          }
+        }
+      )
+    }
+  }
+
+  sortArrayOfObjects = <T>(
+    data: T[],
+    keyToSort: keyof T,
+    direction: 'ascending' | 'descending' | 'none',
+  ) => {
+    if (direction === 'none') {
+      return data
+    }
+    const compare = (objectA: T, objectB: T) => {
+      const valueA = objectA[keyToSort]
+      const valueB = objectB[keyToSort]
+
+      if (valueA === valueB) {
+        return 0
+      }
+
+      if (valueA > valueB) {
+        return direction === 'ascending' ? 1 : -1
+      } else {
+        return direction === 'ascending' ? -1 : 1
+      }
+    }
+
+    return data.slice().sort(compare)
+  }
+
+  serviceId
+  termId
+  Campmarks1
+  updateobtainedmarks
+  mnc = "add"
+  obtainedmarks: any[] = []
+  updatetotalmarks
+  test1
+  tempArr1: any = [];
+  drilleditid
+  tempObj1: any = [];
+  // Change to data add or edit case//
+  changenew(e: any) {
+    let frmArray = this.eqtnForm.get('trgEQTNSubResult') as FormArray;
+    frmArray.clear();
+    this.serviceId = this.eqtnForm.value.serviceId
+    this.termId = this.eqtnForm.value.term
+    // this.spinner.show()
+    this.adminservice.getSubjectMarks_List(this.serviceId, this.termId, e).subscribe(res => {
+      if (res.message == "update") {
+        this.mnc = "update"
+        // this.spinner.hide()
+        this.Campmark1 = res.object;
+        this.updatetotalmarks = res.object.totalMarks;
+        this.totalmarkst = res.object.totalObtainedMarks;
+        this.obtainedmarks = res.object.trgEQTNSubResult;
+        this.drilleditid = res.object.campMarksResultId;
+        console.log(this.drilleditid, "drilleditid")
+        let cmrks = res.object.trgEQTNSubResult;
+        cmrks.forEach(e => {
+          e.id = e.campMarksSubId;
+          console.log("eeee===>>", e);
+          this.getCSubjectRes.push(this.genSubRec())
+        });
+        this.eqtnForm.patchValue({
+          trgEQTNSubResult: cmrks
+        })
+
+        console.log(this.obtainedmarks, "obtainedmarks")
+        this.dataSource = new MatTableDataSource(res.object.trgEQTNSubResult);
+        this.eqtnForm.patchValue({
+          remarks: res.object.remarks,
+          gcAppt: res.object.gcAppt,
+        })
+        this.tempArr1 = [];
+        this.cdref.detectChanges();
+      }
+      else if (res.message == "add") {
+        // this.spinner.hide()
+        this.totalmarkst = 0;
+        this.eqtnForm.value.trgEQTNSubResult = []
+        this.mnc = "add";
+        this.Campmarks = res.object;
+        this.eqtnForm.controls['subject'].setValue('');
+        this.eqtnForm.controls['gcAppt'].setValue('');
+        this.eqtnForm.controls['remarks'].setValue('');
+        this.dataSource = new MatTableDataSource(res.object);
+        this.cdref.detectChanges();
+      }
+    },
+      err => {
+        // this.spinner.hide()
+        this.adminservice.openSnackbar("Some Error Occured.");
+      }
+    )
+  }
+  ngAfterViewInit() {
+  }
+
+  getTotal() {
+    return this.Campmarks.map(t => t.totalMarks).reduce((acc, value) => acc + value, 0);
+  }
+
+  keyPress(event: any) {
+    const pattern = /[0-9\+\-\ ]/;
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+    }
+  }
+
+  viewCamp(element) {
+    if (this.router.url.includes('main/trg-battalion'))
+      this.router.navigate(['/main/admin/trg-battalion/camp-marks/view-camp-marks'], { queryParams: { id: element.id } })
+    if (this.router.url.includes('main/trg-battalion'))
+      this.router.navigate(['/main/admin/trg-battalion/camp-marks/view-camp-marks'], { queryParams: { id: element.id } })
+  }
+  totalmarkst: number = 0;
+  totalmarks1: number = 0;
+  test
+  onChange(value, totalMarks,index) {
+    console.log(value, "value")
+    console.log(totalMarks, "totalMarks")
+    console.log(index, "index")
+    if (value > totalMarks || value == NaN || value == '') {
+      this.adminservice.openSnackbar("Obtained marks is greater then Total marks")
+      this.getCSubjectRes1.controls[index].get('obtainedMarks').setValue('');
+
+      // console.log(value, "index=", +index);
+      value = 0
+      // this.totalmarkst = 0
+    }
+    this.totalmarkst += parseInt(value);
+    this.test = value
+  }
+
+  onFocusEvent(value1) {
+    if (value1 == NaN || value1 == '' || value1 == undefined) {
+      value1 = 0;
+    }
+    this.totalmarkst -= parseInt(value1);
+    if (this.totalmarkst == NaN) {
+      this.totalmarkst = 0
+    }
+    console.log(this.totalmarkst)
+
+  }
+
+  total
+  totalmarks22
+  subId
+  subTotalMarks
+  SubResultArr: any[] = [];
+  totalMarks
+  acx
+  aa
+  subjectmark
+  tempArr = [];
+  getMarks(i, e) {
+    if (this.tempArr[i] == undefined || this.tempArr[i] == '') {
+      this.tempArr.push(e);
+    } else {
+      this.tempArr[i] = e;
+    }
+  }
+  attemptvalue
+  attemptChange(e) {
+    this.attemptvalue = e
+  }
+  dRILLAttemptResult
+  isError;
+
+  submit() {
+    if (this.eqtnForm.invalid) {
+      this.isError = true;
+      this.adminservice.openSnackbar("Please Fill All Required Fields")
+    }
+    else{
+
+    var indexT = 0;
+    // this.Campmarks.forEach(weapon => {
+    //   var marksData = {
+    //     subjectId: weapon.id,
+    //     serviceId: this.drillForm.value.serviceId,
+    //     obtainedMarks: this.tempArr[indexT],
+    //     termId: 1,
+    //     totalMarks: weapon.totalMark,
+    //     status: 1,
+    //   }
+    //   this.drillForm.value.trgEQTNSubResult.push(marksData);
+    //   indexT++;
+    //})
+   
+    this.totalMarks = Object.assign({}, this.eqtnForm.value, { obtainedMarks: this.totalmarkst, totalMarks: this.getTotal(), status: 1, termId:this.eqtnForm.value.termId });
+    var formdata = this.totalMarks
+    delete formdata.battalian;
+    delete formdata.cadetRank;
+    delete formdata.company;
+    delete formdata.course;
+    delete formdata.subject;
+    delete formdata.termSession;
+    delete formdata.subject;
+    delete formdata.term;
+    delete formdata.username;
+    delete formdata.subject1;
+    delete formdata.grading;
+    delete formdata.attempt;
+    this.eqtnForm.value.trgEQTNSubResult = [];
+    this.tempArr = [];
+    // console.log(formdata,"final");
+    for (let i = 0; i < formdata.trgEQTNSubResult.length; i++) {
+      delete formdata.trgEQTNSubResult[i].subjectName
+      }
+
+    console.log(formdata, "finalresult");
+    this.TrgTeamService.addEqtn(formdata).subscribe(
+      res => {
+        if (res.message == 'OK') {
+          this.adminservice.openSnackbar("Eqtn Added Successfully");
+          // this.spinner.hide()
+        }
+        err => {
+          // this.spinner.hide()
+          this.adminservice.openSnackbar("Some Error Occured.");
+        }
+      }
+    )
+     if (this.router.url.includes('trg-team'))
+       this.router.navigate(['/main/trg-team/eqtn']);
+  }
+}
+
+  totalMarks1
+  confirm() {
+    var indexT = 0;
+    this.eqtnForm.value == this.totalMarks1
+    // var attemptGrading = {
+    //   serviceId: this.drillForm.value.serviceId,
+    //   attempt: this.drillForm.value.attempt,
+    //   grading: this.drillForm.value.grading,
+    //   termId: 1,
+    //   status: 1,
+    // }
+    this.totalMarks1 = Object.assign({}, this.eqtnForm.value, { obtainedMarks: this.totalmarkst, totalMarks: this.updatetotalmarks, status: 1, termId:this.eqtnForm.value.termId, id: this.drilleditid });
+    
+    // this.totalMarks1 = Object.assign({}, this.drillForm.value, { dRILLAttemptResult: attemptGrading });
+    var formdata = this.totalMarks1
+    delete formdata.battalian;
+    delete formdata.cadetRank;
+    delete formdata.company;
+    delete formdata.course;
+    delete formdata.subject;
+    delete formdata.termSession;
+    delete formdata.subject;
+    delete formdata.term;
+    delete formdata.username;
+    delete formdata.subject1;
+    delete formdata.grading;
+    delete formdata.attempt;
+    this.eqtnForm.value.trgEQTNSubResult = [];
+    console.log(formdata)
+    this.TrgTeamService.updateEqtn(formdata).subscribe(
+      res => {
+        if (res.message == 'OK') {
+          this.adminservice.openSnackbar("update Marks Updated Successfully");
+        }
+        else {
+          err => {
+            // this.spinner.hide()
+            this.adminservice.openSnackbar("Some Error Occured.");
+          }
+
+        }
+      }
+    )
+    if (this.router.url.includes('trg-team'))
+        this.router.navigate(['/main/trg-team/eqtn']);
+  
+  }
+}
+

@@ -1,0 +1,68 @@
+<div class="mat-new">
+    <h4 class="card-heading">
+        <button mat-icon-button (click)="goBack()">
+            <mat-icon>chevron_left</mat-icon>
+        </button>
+        Admin ST & WTT
+    </h4>
+</div>
+
+<mat-card>
+    <!-- <ng-container *ngFor="let weapon of weaponList"> -->
+    <form [formGroup]="addParamForm">
+
+        <div class="gene-card-content pad-t-none">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover table-middle th-fw-light mb-0">
+                    <thead>
+                        <tr>
+                            <th>Term</th>
+                            <th>Spot Test </th>
+                            <th>WTT </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div  class="form-group ">
+                                    <!-- <label class="form-label"> Term <span class="required">*</span></label> -->
+                                    <select id="term" type="text" class="form-control" formControlName="termId"
+                                        placeholder="Term">
+                                        <option value="" selected hidden disabled>Select</option>
+                                        <option *ngFor="let t of terms" [value]="t.id">{{t.name}} </option>
+                                    </select>
+                                    <span class="val_msg" *ngIf="f.termId.errors && f.termId.errors.required && isError" >Please Select TermId</span>
+
+                                </div>
+                            </td>
+                            <td><input class="form-control" placeholder="Spot Test max Marks"
+                                    formControlName="spotTestMark" type="text">
+                                    <span class="val_msg" *ngIf="f.spotTestMark.errors && f.spotTestMark.errors.required && isError" >Please Enter Sport Test Marks</span>
+                                </td>
+                            <td><input class="form-control" placeholder="WTT max Marks " formControlName="wttMark"
+                                    type="text">
+                                    <span class="val_msg" *ngIf="f.wttMark.errors && f.wttMark.errors.required && isError" >Please Enter WTT Marks</span>
+                                </td>
+
+
+                        </tr>
+                        <tr>
+
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+
+        <button mat-raised-button (click)="addSUBJECT()">ADD Marks</button>
+    </form>
+    <!-- </ng-container> -->
+
+
+
+</mat-card>

@@ -1,0 +1,153 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12" style="margin-bottom: 50px;">
+            <div class="conta-box" style="margin: 0px auto 0;width: 100%;display: table;">
+                <ul>
+                    <span class="photu"><img [src]="IP+bgs.image" (error)="noImg($event)" class="org_img"></span>
+                    <li class="director">
+                        <a href="javascript:void(0)">BGS<br> <span>({{bgs?.gsRank || '-'}} {{bgs?.name || '-'}}
+                                {{bgs?.award ||
+                                ''}})</span> <br> <span>
+                                <!-- Since Jan 2020 -->
+                            </span></a>
+                    </li>
+
+                    <div class="space" style="height: 100px !important;"></div>
+                    <div class="dev">
+                    </div>
+                </ul>
+
+                <div class="align">
+                    <div class="top_border">
+
+                    </div>
+
+                    <ul class="three">
+                        <li>
+                            <div class="space"></div>
+                            <span class="photu"><img [src]="IP+colgs.image" (error)="noImg($event)" class="org_img"></span>
+                            <div class="director" style="height: 125px;">
+                                <a href="javascript:void(0)">COL GS <br> <span> ({{colgs?.gsRank || '-'}} {{colgs?.name
+                                        || '-'}}
+                                        {{colgs?.award || '-'}})</span> <br> 
+                                        <!-- <span> Since Feb 2019 </span> <br> <span>Reliver Posted </span> -->
+                                </a>
+                            </div>
+
+                        </li>
+                        <li>
+                            <div class="space"></div>
+                            <span class="photu"><img [src]="IP+oicit.image" (error)="noImg($event)" class="org_img"></span>
+                            <div class="director singiii">
+                                <a href="javascript:void(0)">OIC IT <span> ({{oicit?.gsRank || '-'}} {{oicit?.name ||
+                                        '-'}}
+                                        {{oicit?.award || ''}})</span> <br>
+                                         <!-- <span> Since Aug 2020</span> -->
+                                </a>
+                            </div>
+
+                        </li>
+                        <li>
+                            <div class="space"></div>
+                            <span class="photu"><img [src]="IP+securityOfficer.image" (error)="noImg($event)"
+                                    class="org_img"></span>
+                            <div class="director singiii">
+                                <a href="javascript:void(0)">SECURITY OFFR <br> <span> ({{securityOfficer?.gsRank ||
+                                        '-'}}
+                                        {{securityOfficer?.name || '-'}} {{securityOfficer?.award || ''}})</span> <br>
+                                    <!-- <span>COL 152 Inf BN
+                                        (TA) (SIKH) </span> <br> <span>
+                                        Unit arr Since Sep 2018
+                                    </span>  -->
+                                </a>
+                            </div>
+
+                        </li>
+                        <li>
+                            <div class="space"></div>
+                            <span class="photu"><img [src]="IP+pro.image" (error)="noImg($event)" class="org_img"></span>
+                            <div class="director singiii">
+                                <a href="javascript:void(0)">PRO <br> <span> ({{pro?.gsRank || '-'}} {{pro?.name ||
+                                        '-'}} {{pro?.award ||
+                                        ''}})</span> <br> 
+                                        <!-- <span> Since Oct 2020 </span> -->
+                                </a>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="space" style="position: relative; left: -418px; z-index: -1;"> </div>
+                <div class="align">
+                    <div class="top_border">
+
+                    </div>
+                    <ul class="three">
+                        <li>
+                            <div class="space"></div>
+                            <span class="photu"><img [src]="IP+gso1coord.image" (error)="noImg($event)"
+                                    class="org_img"></span>
+                            <div class="director singiii">
+                                <a href="javascript:void(0)">GSO-1 (COORD) <br> <span> ({{gso1coord?.gsRank || '-'}}
+                                        {{gso1coord?.name ||
+                                        '-'}} {{gso1coord?.award || ''}})</span> <br>
+                                    <!-- <span>
+                                        Since Oct 2020
+                                    </span> -->
+                                </a>
+                            </div>
+
+                        </li>
+                        <li>
+                            <div class="space"></div>
+                            <span class="photu"><img [src]="IP+gso1sd.image" (error)="noImg($event)"
+                                    class="org_img"></span>
+                            <div class="director singiii">
+                                <a href="javascript:void(0)">GSO-1 (SD & Security) & OIC POP <br> <span>
+                                        ({{gso1sd?.gsRank || '-'}}
+                                        {{gso1sd?.name || '-'}} {{gso1sd?.award || ''}})</span> <br>
+                                    <!-- <span>
+                                        Since Oct 2020
+                                    </span> -->
+                                </a>
+                            </div>
+
+                        </li>
+                        <li>
+                            <div class="space"></div>
+                            <span class="photu"><img [src]="IP+gso1int.image" (error)="noImg($event)"
+                                    class="org_img"></span>
+                            <div class="director singiii">
+                                <a href="javascript:void(0)">GSO-1 (INT) OIC Printing Press & OIC COVID Cell <br> <span>
+                                        ({{gso1int?.gsRank || '-'}} {{gso1int?.name || '-'}}
+                                        {{gso1int?.award || ''}})</span> <br>
+                                    <!-- <span>
+                                        Since Oct 2020
+                                    </span> -->
+                                </a>
+                            </div>
+
+                        </li>
+                        <li>
+                            <div class="space"></div>
+                            <span class="photu"><img [src]="IP+gso2stats.image" (error)="noImg($event)"
+                                    class="org_img"></span>
+                            <div class="director singiii">
+                                <a href="javascript:void(0)">GSO-2 (STATS)<br> <span> ({{gso2stats?.gsRank || '-'}}
+                                        {{gso2stats?.name
+                                        || '-'}}
+                                        {{gso2stats?.award || ''}})</span> <br>
+                                    <!-- <span>
+                                        Since Oct 2020
+                                    </span> -->
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+      
+    </div>
+    </div>

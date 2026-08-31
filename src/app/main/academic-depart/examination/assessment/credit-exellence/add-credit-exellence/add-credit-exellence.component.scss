@@ -1,0 +1,93 @@
+.row.ima_clas {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 12px;
+    background: #eee;
+    margin-top: -12px;
+    padding-top: 10px;
+}
+
+.common_cls button {
+    margin: 0px 10px;
+    padding: 0px 12px;
+    width: 100px;
+}
+.common_cls {
+    display: flex;
+}
+.next-button{
+    float: right;
+}
+span.not_cls {
+    font-size: 12px;
+    color: #333;
+    font-weight: 600;
+}
+span.col-md-12.not_msg {
+    font-weight: 600;
+    color: #afabab !important;
+    margin-bottom: 9px;
+    font-size: 13px;
+    letter-spacing: .3px;
+}
+
+.remarkdiv{
+    flex:9%;
+}
+.remarkheight{
+    float:right;
+    height:20%;
+}
+.submitbutton{
+    float: right;
+    margin: 10px 0px;
+    padding: 0;
+}
+.submitbutton  button.mat-focus-indicator.mat-raised-button.mat-button-base {
+    background: #721a0c;
+    color: #fff;
+    font-size: 15px;
+    float: right;
+}
+textarea.form-control.textarea-33.ng-pristine.ng-valid.ng-touched {
+    box-shadow: 2px 2px 2px #ccc;
+}
+// table {
+//     width:100%;
+//   }
+//   table {
+//     font-family: arial, sans-serif;
+//     border-collapse: collapse;
+//     width: 100%;
+//   }
+  
+//   td, th {
+//     border: 1px solid #dddddd;
+//     text-align: left;
+//     padding: 8px;
+//   }
+  
+//   tr:nth-child(even) {
+//     background-color: #dddddd;
+//   }
+.form-group.col-md-12.remarkdiv {
+    margin-top: 15px;
+}
+.example-container.ng-star-inserted {
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 15px 0px;
+    box-shadow: 2px 2px 5px 2px #ccc;
+    background: #fafafa;
+}
+.form-group.col-md-12.remarkdiv {
+    padding: 0px;
+}
+table {
+    border: 1px solid #ccc;
+}
+.row1.row234 {
+    border: 1px solid #ccc;
+    padding: 15px 0px;
+    box-shadow: 2px 2px 5px 2px #ccc;
+    background: #fafafa;
+}

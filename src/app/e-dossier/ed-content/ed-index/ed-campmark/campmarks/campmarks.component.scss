@@ -1,0 +1,134 @@
+// .row.ima_clas {
+//     border-bottom: 1px solid #ccc;
+//     margin-bottom: 12px;
+//     background: #eee;
+//     margin-top: -12px;
+//     padding-top: 10px;
+// }
+// .common_cls button {
+//     margin: 0px 10px;
+//     padding: 0px 12px;
+//     width: 100px;
+// }
+// .common_cls {
+//     display: flex;
+// }
+// .next-button{
+//     float: right;
+// }
+// span.not_cls {
+//     font-size: 12px;
+//     color: #333;
+//     font-weight: 600;
+// }
+// span.col-md-12.not_msg {
+//     font-weight: 600;
+//     color: #afabab !important;
+//     margin-bottom: 9px;
+//     font-size: 13px;
+//     letter-spacing: .3px;
+// }
+div#top-bar {
+    background: #4c5041;
+    padding: 5px 15px;
+    color: #fff;
+}
+
+div#top-bar h2 {
+    font-size: 19px;
+}
+
+.mat-card:not([class*=mat-elevation-z]) {
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+}
+
+.mat-new {
+    padding: 0.875;
+}
+
+h4.card-heading {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    color: #721a0c;
+    background: #eee;
+    padding: 10px 15px;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+.mat-card {
+    /*margin: 1rem;*/
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.4s ease 0s;
+    padding: 0.875rem 0.875rem !important;
+}
+
+.mat-card:hover {
+    box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+}
+
+.form-control {
+    box-shadow: 1px 1px 4px #ccc;
+}
+
+.tg {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 0px auto;
+    width: 100%;
+}
+
+.tg td {
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    overflow: hidden;
+    padding: 15px;
+    word-break: normal;
+}
+
+.tg th {
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: normal;
+    overflow: hidden;
+    padding: 15px;
+    word-break: normal;
+}
+
+.tg .tg-l71o {
+    font-style: italic;
+    font-weight: bold;
+    text-align: right;
+    vertical-align: middle;
+}
+
+.tg .tg-lqy6 {
+    text-align: right;
+    vertical-align: middle;
+}
+
+.tg .tg-akbm {
+    font-weight: bold;
+    text-align: left;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+.tg .tg-0lax {
+    text-align: left;
+    vertical-align: middle;
+}
+
+.tg .tg-l2oz {
+    font-weight: bold;
+    text-align: right;
+    vertical-align: middle;
+}

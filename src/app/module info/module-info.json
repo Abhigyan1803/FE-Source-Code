@@ -1,0 +1,604 @@
+{
+    "message": "Record found successfully",
+    "status": "OK",
+    "object": [
+        {
+            "id": 1,
+            "moduleName": "TRG Team",
+            "status": 1,
+            "isCreate": false,
+            "isUpdate": false,
+            "isView": false,
+            "isDelete": false,
+            "isModule": false,
+            "subModules": [
+                {
+                    "id": 1,
+                    "subModuleName": "GSO-2 Training",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 2,
+                    "subModuleName": "GSO-2(PGME)",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 3,
+                    "subModuleName": "GSO-2(ASSESSMENT",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 4,
+                    "subModuleName": "Adventure Cell",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 5,
+                    "subModuleName": "Weapon Traning",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 6,
+                    "subModuleName": "Runback",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 7,
+                    "subModuleName": "Route March",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 8,
+                    "subModuleName": "MR Prac",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 9,
+                    "subModuleName": "PT",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 10,
+                    "subModuleName": "EQTN",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 11,
+                    "subModuleName": "OQEQTN",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 12,
+                    "subModuleName": "Sports",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "moduleName": "Trg Batallion",
+            "status": 1,
+            "isCreate": false,
+            "isUpdate": false,
+            "isView": false,
+            "isDelete": false,
+            "isModule": false,
+            "subModules": [
+                {
+                    "id": 13,
+                    "subModuleName": "BRO",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 14,
+                    "subModuleName": "BDO",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 15,
+                    "subModuleName": "Assignments of Duties ",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 16,
+                    "subModuleName": "GC Database",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 17,
+                    "subModuleName": "OQ Marks",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 18,
+                    "subModuleName": "Camp Marks",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 19,
+                    "subModuleName": "Run Back",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 20,
+                    "subModuleName": "Route March",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 21,
+                    "subModuleName": "MR Prac",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 22,
+                    "subModuleName": "Parade States of GCs",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 23,
+                    "subModuleName": "Location State of Officers",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "moduleName": "Adm Branch",
+            "status": 1,
+            "isCreate": false,
+            "isUpdate": false,
+            "isView": false,
+            "isDelete": false,
+            "isModule": false,
+            "subModules": []
+        },
+        {
+            "id": 4,
+            "moduleName": "Academic Department",
+            "status": 1,
+            "isCreate": false,
+            "isUpdate": false,
+            "isView": false,
+            "isDelete": false,
+            "isModule": false,
+            "subModules": [
+                {
+                    "id": 24,
+                    "subModuleName": "SUBJECTS",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 25,
+                    "subModuleName": "SYLLABUS",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 26,
+                    "subModuleName": "ASSIGNMENTS",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 27,
+                    "subModuleName": "EXAMINATION",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 28,
+                    "subModuleName": "PUBLICATIONS",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 29,
+                    "subModuleName": "ACHIEVEMENTS",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 30,
+                    "subModuleName": "CLUBs",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 31,
+                    "subModuleName": "SOPs/General Instructions",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 32,
+                    "subModuleName": "COUNSELLORS",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "moduleName": "File Transfer System",
+            "status": 1,
+            "isCreate": false,
+            "isUpdate": false,
+            "isView": false,
+            "isDelete": false,
+            "isModule": false,
+            "subModules": []
+        },
+        {
+            "id": 6,
+            "moduleName": "E-Dossier",
+            "status": 1,
+            "isCreate": false,
+            "isUpdate": false,
+            "isView": false,
+            "isDelete": false,
+            "isModule": false,
+            "subModules": []
+        },
+        {
+            "id": 7,
+            "moduleName": "About Us section",
+            "status": 1,
+            "isCreate": false,
+            "isUpdate": false,
+            "isView": false,
+            "isDelete": false,
+            "isModule": false,
+            "subModules": []
+        },
+        {
+            "id": 8,
+            "moduleName": "GC Screen",
+            "status": 1,
+            "isCreate": false,
+            "isUpdate": false,
+            "isView": false,
+            "isDelete": false,
+            "isModule": false,
+            "subModules": []
+        },
+        {
+            "id": 9,
+            "moduleName": "Role Management",
+            "status": 1,
+            "isCreate": false,
+            "isUpdate": false,
+            "isView": false,
+            "isDelete": false,
+            "isModule": false,
+            "subModules": []
+        },
+        {
+            "id": 10,
+            "moduleName": "GS Branch",
+            "status": 1,
+            "isCreate": false,
+            "isUpdate": false,
+            "isView": false,
+            "isDelete": false,
+            "isModule": false,
+            "subModules": [
+                {
+                    "id": 33,
+                    "subModuleName": "Coord",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 34,
+                    "subModuleName": "Stats",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 35,
+                    "subModuleName": "Security",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 36,
+                    "subModuleName": "IT & Communication ",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                }
+            ]
+        },
+        {
+            "id": 11,
+            "moduleName": "ACC Wing",
+            "status": 1,
+            "isCreate": false,
+            "isUpdate": false,
+            "isView": false,
+            "isDelete": false,
+            "isModule": false,
+            "subModules": []
+        },
+        {
+            "id": 12,
+            "moduleName": "Adjutant Branch",
+            "status": 1,
+            "isCreate": false,
+            "isUpdate": false,
+            "isView": false,
+            "isDelete": false,
+            "isModule": false,
+            "subModules": [
+                {
+                    "id": 37,
+                    "subModuleName": "ARO",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 38,
+                    "subModuleName": "Adjutant Orders",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 39,
+                    "subModuleName": "General Instruction",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 40,
+                    "subModuleName": "Academy Parade State",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 41,
+                    "subModuleName": "Officers Parade/Location State",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 42,
+                    "subModuleName": "Social List",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 43,
+                    "subModuleName": "Record of Service",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 44,
+                    "subModuleName": "Drill Compition",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 45,
+                    "subModuleName": "Drill Marks",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                },
+                {
+                    "id": 46,
+                    "subModuleName": "Punishments",
+                    "status": 1,
+                    "isCreate": false,
+                    "isUpdate": false,
+                    "isView": false,
+                    "isDelete": false,
+                    "isSubModule": false
+                }
+            ]
+        }
+    ],
+    "authToken": null
+}

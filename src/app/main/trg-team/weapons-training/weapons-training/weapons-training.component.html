@@ -1,0 +1,338 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="mat-heading">
+      <div id="top-bar" class="">
+        <h2>Weapons Training <span class="sub-menu1">
+            > {{type}}</span></h2>
+      </div>
+    </div>
+    <div class="academics">
+      <div class="mat-card mat-focus-indicator">
+        <form class="ng-untouched ng-pristine ng-invalid wtfilter">
+          <div class="row">
+            <div class="form-group col-md-3">
+              <label for="battalion">Battalion</label>
+              <select id="battalion" name="battalion" (change)="battalionSelected($event.target.value)" class="form-control">
+                <option value="0" selected>Select</option>
+                <option *ngFor="let b of battalionList" [value]="b.shortName"> {{b.shortName}}</option>
+              </select>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="company">Company</label>
+              <select id="company" class="form-control" name="company"  (change)="companySelected($event.target.value)">
+                <option value="0" selected>Select</option>
+                <option *ngFor="let c of companyList" [value]="c.name"> {{c.name}}</option>
+              </select>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="rank">Search</label>
+                <input placeholder="IMA NO." formcontrolname="" type="text" name="serviceid" [(ngModel)]="serviceid" (keyup)="serviceSearch($event.target.value)"
+                  class="form-control ng-untouched ng-pristine ng-invalid">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <label>&nbsp;</label>
+              <button type="button" mat-raised-button (click)="edSearch()">Search</button>
+              <!-- <button mat-raised-button (click)="clearSearch()" >Clear</button> -->
+            </div>
+          </div>
+        </form>
+        <form class="oq-matrix-form">
+          <table class="tg">
+            <thead>
+              <tr>
+                <th class="tg-qnnc" rowspan="3">S. No.</th>
+                <th class="tg-qnnc" rowspan="3">IMA No.</th>
+                <th class="tg-qnnc" rowspan="3">Course</th>
+                <th class="tg-qnnc" rowspan="3">Name</th>
+                <th class="tg-qnnc" rowspan="3">Rank</th>
+                <th class="tg-qnnc" rowspan="3">Bn/Coy</th>
+                <th class="tg-qnnc" colspan="65">Subjects</th>
+              </tr>
+              <tr>
+                <th *ngFor="let weaponName of weaponList" class="tg-qnnc" [attr.colspan]="weaponName.wa.length + 3">
+                  {{weaponName.name}}</th>
+                <th class="tg-qnnc" colspan="10">Main Result</th>
+              </tr>
+              <tr>
+                <ng-container *ngFor="let subWeaponName of weaponList">
+                  <ng-container *ngFor="let waName of subWeaponName.wa">
+                    <th class="tg-qnnc">{{waName.attrName}} <br>Marks
+                     ({{waName.maxMarks}})
+                    </th>
+
+                  </ng-container>
+                  <th class="tg-qnnc"> Total  <br>Marks
+                    ({{subWeaponName.totalMaxMarks}}) </th>
+                  <th class="tg-qnnc">Std</th>
+                  <th class="tg-qnnc" style="width:65px;">G/Pt <br> ({{subWeaponName.gPointITerm}})</th>
+                  <!-- <th class="tg-qnnc">Remark</th> -->
+
+                </ng-container>
+
+                <th class="tg-qnnc" *ngFor="let weaponName of weaponList">{{weaponName.name}}</th>
+
+                <th class="tg-qnnc">WTT <br>Marks (40)</th>
+                <th class="tg-qnnc">Spot Test <br>Marks (40)</th>
+                <th class="tg-qnnc">Grand Total</th>
+                <th class="tg-qnnc" style="max-width:130px;">Remark</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let weapon of WTCadetList; let weaponIndex = index">
+                <td class="tg-c3ow">{{ weaponIndex + 1}}</td>
+                <td class="tg-c3ow">{{ weapon.serviceId }}</td>
+                <td class="tg-0pky">{{ weapon.course }}</td>
+                <td class="tg-c3ow">{{ weapon.name }}</td>
+                <td class="tg-c3ow">
+                  <p *ngIf="weapon.nationality=='India'">GC</p>
+                  <p *ngIf="weapon.nationality !='India'">FGC</p>
+                </td>
+                <td class="tg-c3ow">{{weapon.battalian}}/{{ weapon.company}}</td>
+
+                <ng-container
+                  *ngFor="let wtSubject of weapon.weaponTrainingResult.cadetWTMainResultlist; let wtSubjectIndex = index">
+                  <td class="tg-c3ow"
+                    *ngFor="let wtSubSubject of wtSubject.cadetWTResultlist; let wtSubSubjectIndex = index">
+                    <div class="d-flex">
+                      <ng-container>
+                        <input type="text" class="form-control d-inline" value="{{wtSubSubject.marks}}"
+                          id="{{weaponIndex}}{{wtSubjectIndex}}{{wtSubSubjectIndex}}"
+                          (focus)="onFocusEvent($event,$event.target.value, wtSubSubject.maxMarks, wtSubSubject.subjectId,weaponIndex, wtSubjectIndex, wtSubSubjectIndex)"
+                          min="0" (keypress)="keyPress($event)"
+                          on-focusout="onChange($event,$event.target.value, wtSubSubject.maxMarks, wtSubSubject.subjectId,weaponIndex, wtSubjectIndex, wtSubSubjectIndex)">
+                      </ng-container>
+
+                    </div>
+
+                  </td>
+                  <td class="tg-0pky">
+                    <input type="text" class="form-control" disabled id="{{weaponIndex}}{{wtSubjectIndex}}"
+                      value="{{ wtSubject.marks }}">
+                  </td>
+                  <td class="tg-0pky">
+                    <input type="text" class="form-control" style="width: 95px;" disabled
+                      id="std{{weaponIndex}}{{wtSubjectIndex}}" [value]="wtSubject.std">
+                  </td>
+                  <td class="tg-0pky">
+                    <input type="text" class="form-control" style="width: 65px;" disabled
+                      id="gpoint{{weaponIndex}}{{wtSubjectIndex}}" value="{{ wtSubject.gPoint }}">
+                  </td>
+                  <!-- <td class="tg-0pky">
+                    <input type="text" class="form-control" style="width: 125px;"
+                      id="remark{{weaponIndex}}{{wtSubjectIndex}}" value="{{ wtSubject.remark }}">
+                  </td> -->
+                </ng-container>
+
+                <td style="border-color: darkgray;"
+                  *ngFor="let wtSubject of weapon.weaponTrainingResult.cadetWTMainResultlist; let wtSubjectIndex = index">
+                  <input disabled style="width: 93px;border-color: darkgray;" type="text" class="form-control d-inline"
+                    id="_gp{{weaponIndex}}{{wtSubjectIndex}}" value="{{ wtSubject.gPoint }}" min="0"
+                    (keypress)="keyPress($event)">
+                </td>
+                <td class="tg-0pky">
+                  <input type="text" class="form-control" on-focusout="onChange1($event.target.value,weaponIndex)"
+                    (focus)="onFocusEvent1($event.target.value,weaponIndex)" style="width: 100px;"
+                    id="wtt{{weaponIndex}}{{wtSubjectIndex}}" value="{{weapon.weaponTrainingResult.wtt}}">
+                </td>
+                <td class="tg-0pky">
+                  <input type="text" class="form-control" on-focusout="onChange2($event.target.value,weaponIndex)"
+                    (focus)="onFocusEvent2($event.target.value,weaponIndex)" style="width: 100px;"
+                    id="spot{{weaponIndex}}{{wtSubjectIndex}}" value="{{weapon.weaponTrainingResult.spotTest}}">
+                </td>
+                <td class="tg-0pky">
+                  <input type="text" class="form-control" style="width: 100px;" disabled
+                    id="grandT{{weaponIndex}}{{wtSubjectIndex}}" value="{{ weapon.weaponTrainingResult.grandTotal }}">
+                </td>
+                <td class="tg-0pky">
+                  <input type="text" class="form-control" style="width: 106px;"
+                    on-focusout="onChangeRemark($event.target.value,weaponIndex)"
+                    id="remark{{weaponIndex}}{{wtSubjectIndex}}" value="{{weapon.weaponTrainingResult.remark}}">
+                </td>
+
+                <div *ngIf="!weapon.weaponTrainingResult">
+                  <div *ngFor="let size of wtSubject;let ser=index;">
+                    <td class="tg-c3ow">
+                      <input type="text" class="form-control" formControlName="obtainedMarks">
+                    </td>
+                    <td *ngIf="ser+1 == wtSubject.length" class="tg-c3ow">{{obtainedTotalMarks}}</td>
+                  </div>
+                </div>
+              </tr>
+              <tr>
+                <td class="mat-cell" style="text-align: center;" *ngIf="! WTCadetList?.length" colspan="68">
+                  <div>No Record Found</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+        <div class="btn-sec mt-3 mb-3 text-right">
+          <button type="button" disabled mat-raised-button (click)="openPopup()" *ngIf="! WTCadetList?.length">Preview</button>
+                  <button type="button" mat-raised-button (click)="openPopup()" *ngIf="WTCadetList?.length > 0">Preview</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable custom-lg" role="document">
+    <div class="modal-content p-3">
+      <div class="modal-header">
+        <h5 class="modal-title">Review</h5>
+      </div>
+      <div class="modal-body">
+       Are you Sure you want to submit ?
+      </div>
+      <div class="modal-footer">
+        <button mat-raised-button type="button" class="btn-dark" (click)="closePopup()">Back</button>
+        <button type="button" mat-raised-button (click)="confirm()">Save</button>
+
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+
+  <div class="modal-dialog modal-lg modal-dialog-scrollable custom-lg" role="document">
+    <div class="modal-content p-3">
+      <div class="modal-header">
+        <h5 class="modal-title">Review</h5>
+      </div>
+      <div class="modal-body">
+        <table class="tg">
+          <thead>
+            <tr>
+              <th class="tg-qnnc" rowspan="3">S. No.</th>
+              <th class="tg-qnnc" rowspan="3">IMA No.</th>
+              <th class="tg-qnnc" rowspan="3">Course</th>
+              <th class="tg-qnnc" rowspan="3">Name</th>
+              <th class="tg-qnnc" rowspan="3">Rank</th>
+              <th class="tg-qnnc" rowspan="3">Bn/Coy</th>
+              <th class="tg-qnnc" colspan="65">Subjects</th>
+            </tr>
+            <tr>
+              <th *ngFor="let weaponName of weaponList" class="tg-qnnc" [attr.colspan]="weaponName.wa.length + 3">
+                {{weaponName.name}}</th>
+              <th class="tg-qnnc" colspan="10">Main Result</th>
+            </tr>
+            <tr>
+              <ng-container *ngFor="let subWeaponName of weaponList">
+                <ng-container *ngFor="let waName of subWeaponName.wa">
+                  <th class="tg-qnnc">{{waName.attrName}} <br>Marks
+                   ({{waName.maxMarks}})
+                  </th>
+
+                </ng-container>
+                <th class="tg-qnnc"> Total  <br>Marks
+                  ({{subWeaponName.totalMaxMarks}}) </th>
+                <th class="tg-qnnc">Std</th>
+                <th class="tg-qnnc" style="width:65px;">G/Pt <br> ({{subWeaponName.gPointITerm}})</th>
+                <!-- <th class="tg-qnnc">Remark</th> -->
+
+              </ng-container>
+
+              <th class="tg-qnnc" *ngFor="let weaponName of weaponList">{{weaponName.name}}</th>
+
+              <th class="tg-qnnc">WTT <br>Marks (40)</th>
+              <th class="tg-qnnc">Spot Test <br>Marks (40)</th>
+              <th class="tg-qnnc">Grand Total</th>
+              <th class="tg-qnnc" style="max-width:130px;">Remark</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let weapon of WTCadetList; let weaponIndex = index">
+              <td class="tg-c3ow">{{ weaponIndex + 1}}</td>
+              <td class="tg-c3ow">{{ weapon.serviceId }}</td>
+              <td class="tg-0pky">{{ weapon.course }}</td>
+              <td class="tg-c3ow">{{ weapon.name }}</td>
+              <td class="tg-c3ow">
+                <p *ngIf="weapon.nationality=='India'">GC</p>
+                <p *ngIf="weapon.nationality !='India'">FGC</p>
+              </td>
+              <td class="tg-c3ow">{{weapon.battalian}}/{{ weapon.company}}</td>
+
+              <ng-container
+                *ngFor="let wtSubject of weapon.weaponTrainingResult.cadetWTMainResultlist; let wtSubjectIndex = index">
+                <td class="tg-c3ow"
+                  *ngFor="let wtSubSubject of wtSubject.cadetWTResultlist; let wtSubSubjectIndex = index">
+                  <div class="d-flex">
+                    <ng-container>
+                      <input type="text" disabled class="form-control d-inline" value="{{wtSubSubject.marks}}"
+                        id="{{weaponIndex}}{{wtSubjectIndex}}{{wtSubSubjectIndex}}"
+                        (focus)="onFocusEvent($event,$event.target.value, wtSubSubject.maxMarks, wtSubSubject.subjectId,weaponIndex, wtSubjectIndex, wtSubSubjectIndex)"
+                        min="0" (keypress)="keyPress($event)"
+                        on-focusout="onChange($event,$event.target.value, wtSubSubject.maxMarks, wtSubSubject.subjectId,weaponIndex, wtSubjectIndex, wtSubSubjectIndex)">
+                    </ng-container>
+
+                  </div>
+
+                </td>
+                <td class="tg-0pky">
+                  <input type="text" class="form-control" disabled id="{{weaponIndex}}{{wtSubjectIndex}}"
+                    value="{{ wtSubject.marks }}">
+                </td>
+                <td class="tg-0pky">
+                  <input type="text" class="form-control" style="width: 95px;" disabled
+                    id="std{{weaponIndex}}{{wtSubjectIndex}}" [value]="wtSubject.std">
+                </td>
+                <td class="tg-0pky">
+                  <input type="text" class="form-control" style="width: 65px;" disabled
+                    id="gpoint{{weaponIndex}}{{wtSubjectIndex}}" value="{{ wtSubject.gPoint }}">
+                </td>
+                <!-- <td class="tg-0pky">
+                  <input type="text" class="form-control" style="width: 125px;"
+                    id="remark{{weaponIndex}}{{wtSubjectIndex}}" value="{{ wtSubject.remark }}">
+                </td> -->
+              </ng-container>
+
+              <td style="border-color: darkgray;"
+                *ngFor="let wtSubject of weapon.weaponTrainingResult.cadetWTMainResultlist; let wtSubjectIndex = index">
+                <input disabled style="width: 93px;border-color: darkgray;" type="text" class="form-control d-inline"
+                  id="_gp{{weaponIndex}}{{wtSubjectIndex}}" value="{{ wtSubject.gPoint }}" min="0"
+                  (keypress)="keyPress($event)">
+              </td>
+              <td class="tg-0pky">
+                <input type="text" disabled class="form-control" on-focusout="onChange1($event.target.value,weaponIndex)"
+                  (focus)="onFocusEvent1($event.target.value,weaponIndex)" style="width: 100px;"
+                  id="wtt{{weaponIndex}}{{wtSubjectIndex}}" value="{{weapon.weaponTrainingResult.wtt}}">
+              </td>
+              <td class="tg-0pky">
+                <input type="text" disabled class="form-control" on-focusout="onChange2($event.target.value,weaponIndex)"
+                  (focus)="onFocusEvent2($event.target.value,weaponIndex)" style="width: 100px;"
+                  id="spot{{weaponIndex}}{{wtSubjectIndex}}" value="{{weapon.weaponTrainingResult.spotTest}}">
+              </td>
+              <td class="tg-0pky">
+                <input type="text" disabled class="form-control" style="width: 100px;" disabled
+                  id="grandT{{weaponIndex}}{{wtSubjectIndex}}" value="{{ weapon.weaponTrainingResult.grandTotal }}">
+              </td>
+              <td class="tg-0pky">
+                <input type="text" disabled class="form-control" style="width: 106px;"
+                  on-focusout="onChangeRemark($event.target.value,weaponIndex)"
+                  id="remark{{weaponIndex}}{{wtSubjectIndex}}" value="{{weapon.weaponTrainingResult.remark}}">
+              </td>
+
+              <div *ngIf="!weapon.weaponTrainingResult">
+                <div *ngFor="let size of wtSubject;let ser=index;">
+                  <td class="tg-c3ow">
+                    <input type="text" class="form-control" formControlName="obtainedMarks">
+                  </td>
+                  <td *ngIf="ser+1 == wtSubject.length" class="tg-c3ow">{{obtainedTotalMarks}}</td>
+                </div>
+              </div>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button mat-raised-button type="button" class="btn-dark" (click)="closePopup()">Back</button>
+        <button type="button" mat-raised-button (click)="confirm()">Submit</button>
+
+      </div>
+    </div>
+  </div>
+</div>

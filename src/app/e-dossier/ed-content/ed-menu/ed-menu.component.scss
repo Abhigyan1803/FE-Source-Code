@@ -1,0 +1,103 @@
+
+div#top-bar {
+    padding:5px 15px;
+  }
+  .ima-logo{
+      display: flex;
+      align-items: center;
+  }
+  .ima-logo .title{
+      text-transform: capitalize;
+      font-size: 15px;
+      margin: 0 0 0 15px;
+      color: #721a0c;
+      font-weight: bold;
+  }
+  .lms-logo {
+      align-items: center;
+      padding: 20px 0;
+  }
+  .logo-header{
+      color: #721a0c;
+      font-weight: bold;
+      font-size: 40px;
+      text-shadow: none;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-decoration: none;
+  }
+  
+  .mat-card:not([class*=mat-elevation-z]) {
+      box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  }
+  .mat-new {
+      padding: 0!important;
+      clear: both;
+  }
+  .mat-new-inner {
+      padding: 0.875rem 0!important;
+  }
+  
+  h4.card-heading {
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+      color: #fff;
+      background: #721a0c;
+      padding: 5px 15px;
+      border-radius: unset;
+      font-weight: 600;
+  }
+  .mat-new-inner h4.card-heading{
+      color: #fff;
+      background: #a9823d;
+      text-align: center;
+      font-size: 20px;
+      padding: 10px 0;
+  }
+   .mat-card {
+    margin: 1rem;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.4s ease 0s;
+    //   padding: 0.875rem 0rem !important;
+      background-color: #fff;
+  }
+   .mat-card:hover {
+      box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+  }
+  .index-data {
+      display: flex;
+  }
+  .details h3 {
+      color: #721a0c;
+  }
+  .icon-img {
+      text-align: center;
+      width: 36%;
+  }
+  .icon-img img {
+      width: 100%;
+      height: auto;
+      max-width: 35%;
+  }
+  .service-id input#result {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+}
+
+.list-group-item{
+    border: none;
+}
+.details .list-group-item{
+    border: none;
+    padding: 0.3rem 1.25rem;
+    color:#0000CD;
+    font-weight:600;
+
+}
+.details .list-group-item a:hover{
+    color:#0000CD;
+text-decoration: underline;
+}

@@ -1,0 +1,284 @@
+
+<div class="main-content">
+  <div class="container-fluid">
+      <!-- <div id="top-bar" class="row">
+          <h2>EQTN</h2>
+      </div> -->
+    
+      <div class="mat-heading">
+        <div id="top-bar" class="">
+          
+          <h2>
+            <button mat-icon-button (click)="goBack()">
+              <mat-icon>chevron_left</mat-icon>
+            </button>
+            <span class="sub-menu1">E-Dossier 
+            > Overall Assessment > EQTN</span></h2>
+      </div>
+      </div>
+
+      <div class="mat-card mat-focus-indicator">
+      <div class="service-id mb-2 mx-5 row">
+        <form class="ng-untouched ng-pristine ng-invalid">
+          <div class="row">
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="rank">Ima No.</label>
+                <input placeholder="No"  type="text" disabled id="eqtnID" class="form-control ng-untouched ng-pristine ng-invalid">
+              </div>
+            </div>  
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="rank">Rank</label>
+                <input placeholder="Rank"  type="text" disabled id="eqtnRk" class="form-control ng-untouched ng-pristine ng-invalid">
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="rank">Name</label>
+                <input placeholder="Name"  type="text" disabled id="eqtnName" class="form-control ng-untouched ng-pristine ng-invalid">
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="rank">Term</label>
+                <input placeholder="Term"  type="text" disabled id="eqtnTermName" class="form-control ng-untouched ng-pristine ng-invalid">
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="rank">Coy</label>
+                <input placeholder="Coy"  type="text" disabled id="eqtnComp" class="form-control ng-untouched ng-pristine ng-invalid">
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="rank">Bn</label>
+                <input placeholder="Bn"  type="text" disabled id="eqtnBn" class="form-control ng-untouched ng-pristine ng-invalid">
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      </div>
+      <div class="eqtn mb-5">
+          <div class="mat-card mat-focus-indicator">
+              <!-- <div class="ng-star-inserted">
+                  <div class="mat-new mb-4">
+                      <h4 class="card-heading">EQTN</h4>
+                  </div>
+              </div> -->
+              <mat-card *ngIf="Campmark1.length==0" style=" margin: auto; width: 100%;text-align: center;padding-top: 80px;">
+                <img src="assets/img/empty-no-data.png" >
+              </mat-card>
+           
+              <form [formGroup]="eqtnForm">
+                  <div formArrayName="trgEQTNSubResult"  *ngIf="this.termid==1 || this.termid == 2 || this.termid == 3" class="mb-5">
+               <div *ngIf="TermFetch == 1" class="tg">
+                <h3>I-Term</h3>
+                <table>
+                  <thead>
+                      <tr>
+                          <th class="tg-1pqm" rowspan="2"><span
+                                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000">S
+                                  No </span></th>
+                          <th class="tg-xakg" rowspan="2"><span
+                                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000">Test</span>
+                          </th>
+                          <th class="tg-xakg" rowspan="2"><span
+                                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000">Max Marks</span>
+                          </th>
+                          <th class="tg-xakg" ><span
+                                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000">Marks Obtained</span></th>
+                          <!-- <th class="tg-xakg"><span
+                                    style="font-weight:700;font-style:normal;text-decoration:none;color:#000">Remarks</span></th>
+                                     -->
+                      </tr>
+                      <tr>
+                        
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let mr of getCSubjectRes.controls;let i=index">
+                          <ng-container [formGroupName]="i">
+                              <td> {{i+1}} </td>
+                              <td> {{mr.value.subjectName}} </td>
+                              <td> <b>{{mr.value.totalMarks}}</b> </td>
+                              
+                              <td>
+                                  <input min="0" disabled oninput="this.value = 
+                          !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                                      formControlName="obtainedMarks" class="form-control"
+                                      (focus)="onFocusEvent($event.target.value,mr.controls.totalMarks.value)"
+                                      on-focusout="onChange($event.target.value,mr.controls.totalMarks.value,i)"
+                                      maxlength="2" (keypress)="keyPress($event)">
+                              </td>
+                             <!-- <td><input class="form-control" disabled
+                              formControlName="remarks"    ></td> -->
+                          </ng-container>
+                      </tr>
+                      
+                      <tr>
+                          <td class="tg-amwm" colspan="2"><span
+                                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">Total</span>
+                          </td>
+                         
+                          <td class="tg-amwm"><span
+                                  style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">{{updatetotalmarks}}</span>
+                          </td>
+                          <td class="tg-0lax"><b>{{totalmarkst}}</b></td>
+                         
+                      </tr>
+                    
+                      
+                     
+                  </tbody>
+            </table>
+             
+               </div>
+                   
+                  <!-- <button  mat-raised-button (click)="confirm(1)">CONFIRM</button> -->
+
+                  </div>
+                
+                   <div formArrayName="trgEQTNSubResult2" *ngIf="termid==2 || termid==3" class="mb-5">
+                   <div *ngIf="TermFetch == 1 && TermFetch1 == 2">
+                    <h3>II-Term</h3>
+                    <table class="tg">
+                      <thead>
+                          <tr>
+                              <th class="tg-1pqm" rowspan="2"><span
+                                      style="font-weight:700;font-style:normal;text-decoration:none;color:#000">S
+                                      No </span></th>
+                              <th class="tg-xakg" rowspan="2"><span
+                                      style="font-weight:700;font-style:normal;text-decoration:none;color:#000">Events</span>
+                              </th>
+                              <th class="tg-xakg" rowspan="2"><span
+                                      style="font-weight:700;font-style:normal;text-decoration:none;color:#000">Marks</span>
+                              </th>
+                              <th class="tg-xakg" colspan="3"><span
+                                      style="font-weight:700;font-style:normal;text-decoration:none;color:#000">MARKS
+                                      OBTAINED</span></th>
+                          </tr>
+                          <!-- <tr>
+                            
+                              <th class="tg-xakg"  colspan="4"><span
+                                      style="font-weight:700;font-style:normal;text-decoration:none;color:#000">II
+                                      TERM</span></th>
+                    
+                          </tr> -->
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let mr of getCSubjectRes2.controls;let i=index">
+                              <ng-container [formGroupName]="i">
+                                  <td> {{i+1}} </td>
+                                  <td> {{mr.value.subjectName}} </td>
+                                  <td> {{mr.value.totalMarks}} </td>
+                                  <td colspan="4">
+                                      <input min="0" oninput="this.value = 
+                              !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                                          formControlName="obtainedMarks" class="form-control" disabled
+                                          (focus)="onFocusEvent($event.target.value,mr.controls.totalMarks.value)"
+                                          on-focusout="onChange($event.target.value,mr.controls.totalMarks.value,i)"
+                                          maxlength="2" (keypress)="keyPress($event)">
+                                  </td>
+                                  
+                              </ng-container>
+                          </tr>
+                          
+                          <tr>
+                              <td class="tg-amwm" colspan="2"><span
+                                      style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">Total</span>
+                              </td>
+                              <td class="tg-amwm"><span
+                                      style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">{{updatetotalmarks}}</span>
+                              </td>
+                              <td class="tg-0lax">{{totalmarkst1}}</td>
+                          </tr>
+                         
+                          
+                         
+                      </tbody>
+                  </table>
+                   </div>
+                  
+                     
+                  <button *ngIf="id=='2'" mat-raised-button (click)="confirm(2)">CONFIRM</button>
+
+                  </div>
+                
+                   <div formArrayName="trgEQTNSubResult3" *ngIf="termid==3" class="mb-5">
+                 
+                 <div *ngIf="TermFetch == 1 && TermFetch1 == 2 && TermFetch2 == 3" >
+                  <h3>III-Term</h3>
+                  <table class="tg">
+                      <thead>
+                          <tr>
+                              <th class="tg-1pqm" rowspan="2"><span
+                                      style="font-weight:700;font-style:normal;text-decoration:none;color:#000">S
+                                      No </span></th>
+                              <th class="tg-xakg" rowspan="2"><span
+                                      style="font-weight:700;font-style:normal;text-decoration:none;color:#000">Events</span>
+                              </th>
+                              <th class="tg-xakg" rowspan="2"><span
+                                      style="font-weight:700;font-style:normal;text-decoration:none;color:#000">Marks</span>
+                              </th>
+                              <th class="tg-xakg" colspan="3"><span
+                                      style="font-weight:700;font-style:normal;text-decoration:none;color:#000">MARKS
+                                      OBTAINED</span></th>
+                          </tr>
+                          <!-- <tr>
+                              
+                              <th class="tg-xakg"><span
+                                      style="font-weight:700;font-style:normal;text-decoration:none;color:#000">III
+                                      TERM</span></th>
+                          </tr> -->
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let mr of getCSubjectRes3.controls;let i=index">
+                              <ng-container [formGroupName]="i">
+                                  <td> {{i+1}} </td>
+                                  <td> {{mr.value.subjectName}} </td>
+                                  <td> {{mr.value.totalMarks}} </td>
+                                  <td colspan="4">
+                                      <input min="0" oninput="this.value = 
+                              !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                                          formControlName="obtainedMarks" class="form-control" disabled
+                                          (focus)="onFocusEvent($event.target.value,mr.controls.totalMarks.value)"
+                                          on-focusout="onChange($event.target.value,mr.controls.totalMarks.value,i)"
+                                          maxlength="2" (keypress)="keyPress($event)">
+                                  </td>
+                                  
+                              </ng-container>
+                          </tr>
+                          
+                          <tr>
+                              <td class="tg-amwm" colspan="2"><span
+                                      style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">Total</span>
+                              </td>
+                              <td class="tg-amwm"><span
+                                      style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">{{updatetotalmarks1}}</span>
+                              </td>
+                              <td class="tg-0lax">{{totalmarkst2}}</td>
+                          </tr>
+                         
+                        
+                      </tbody>
+                  </table>
+                 </div>
+                
+                  </div> 
+             
+             
+             
+                  <div *ngIf="mnc=='update'" class="form-group col-md-2 submitbutton"
+                  >
+               
+                  <!-- <button *ngIf="id=='3'" mat-raised-button  (click)="confirm(3)">CONFIRM</button> -->
+              </div>
+              </form>
+          </div>
+      </div>
+      
+  </div>
+</div>

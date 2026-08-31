@@ -1,0 +1,101 @@
+<div class="filter mb-3">
+  <div class="ng-star-inserted">
+    <div class="mat-new-inner mt-4">
+      <h4 class="card-heading">E-Dossier</h4>
+    </div>
+  </div>
+  <div class="container">
+    <form class="ng-untouched ng-pristine ng-invalid" [formGroup]="EDForm">
+      <div class="row">
+        <div class="form-group col-md-3">
+          <label class="form-label"> Term </label>
+          <select id="term" type="text" class="form-control" (change)="termChange($event.target.value)"
+            placeholder="Term">
+            <option value="" selected hidden disabled>Select</option>
+            <option *ngFor="let t of terms" [value]="t.id">{{t.name}} </option>
+          </select>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="battalion">Battalion</label>
+          <select id="battalion" (change)="battalionSelected($event.target.value)" class="form-control">
+            <option value="" selected hidden disabled>Select</option>
+            <option *ngFor="let b of battalionList" [value]="b.id"> {{b.shortName}} Bn</option>
+          </select>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="company">Company</label>
+          <select id="company" class="form-control" (change)="companySelected($event.target.value)">
+            <option value="" selected hidden disabled>Select</option>
+            <option *ngFor="let c of companyList" [value]="c.name"> {{c?.name || ''}}</option>
+          </select>
+        </div>
+
+
+
+        <div class="col-md-3 mb-3">
+          <label class="form-label"> &nbsp; </label>
+          <button type="button" class="btn btn-danger" (click)="edSearch()">Search</button>
+        </div>
+      </div>
+    </form>
+
+    
+    <table class="tg">
+      <thead>
+        <tr>
+          <th class="tg-1pqm">S. No.</th>
+          <th class="tg-t7dr"><span style="font-weight:bold">IMA No.</span></th>
+          <th class="tg-t7dr"><span style="font-weight:bold">Rank</span></th>
+          <th class="tg-t7dr"><span style="font-weight:bold">Name</span></th>
+          <th class="tg-t7dr"><span style="font-weight:bold">Term</span></th>
+          <th class="tg-t7dr"><span style="font-weight:bold">Battalion</span></th>
+          <th class="tg-t7dr"><span style="font-weight:bold">Company</span></th>
+          <th class="tg-t7dr"><span style="font-weight:bold">Course No</span></th>
+        </tr>
+
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of edCadetList;let j = index;">
+          <td class="tg-baqh">{{j+1}}</td>
+          <td class="tg-baqh"><a href="javascript:void(0)" [routerLink]="['/e-dossior/ed-content/Ed-menu']"
+              (click)="sID(i.serviceId,i.name,i.termId,i.company,i.battalian,i.nationality,i.courseSerNo,i.termId,i.termName,i)"><b>{{i.serviceId}}</b></a>
+          </td>
+          <td class="tg-baqh">
+            <a href="javascript:void(0)" [routerLink]="['/e-dossior/ed-content/Ed-menu']"
+              *ngIf="i.nationality=='India'">GC</a>
+            <a href="javascript:void(0)" [routerLink]="['/e-dossior/ed-content/Ed-menu']"
+              *ngIf="i.nationality !='India'">FGC</a>
+          </td>
+          <td class="tg-baqh"><a href="javascript:void(0)" [routerLink]="['/e-dossior/ed-content/Ed-menu']"
+              (click)="sID(i.serviceId,i.name,i.termId,i.company,i.battalian,i.nationality,i.courseSerNo,i.termId,i.termName,i)">{{i.name}}</a>
+          </td>
+
+          <td class="tg-baqh"><a href="javascript:void(0)" [routerLink]="['/e-dossior/ed-content/Ed-menu']"
+              (click)="sID(i.serviceId,i.name,i.termId,i.company,i.battalian,i.nationality,i.courseSerNo,i.termId,i.termName,i)">{{i.termName}}</a>
+          </td>
+          <td class="tg-baqh"><a href="javascript:void(0)" [routerLink]="['/e-dossior/ed-content/Ed-menu']"
+              (click)="sID(i.serviceId,i.name,i.termId,i.company,i.battalian,i.nationality,i.courseSerNo,i.termId,i.termName,i)">{{i.battalian}}
+              Bn</a>
+          </td>
+          <td class="tg-baqh"><a href="javascript:void(0)" [routerLink]="['/e-dossior/ed-content/Ed-menu']"
+              (click)="sID(i.serviceId,i.name,i.termId,i.company,i.battalian,i.nationality,i.courseSerNo,i.termId,i.termName,i)">{{i.company}}</a>
+          </td>
+
+          <td class="tg-baqh"><a href="javascript:void(0)"
+              [routerLink]="['/e-dossior/ed-content/Ed-menu']">{{i.courseSerNo}}</a></td>
+
+        </tr>
+        <tr *ngIf="! edCadetList?.length">
+          <td class="mat-cell" style="text-align: center;" colspan="8">
+            <div *ngIf="! edCadetList?.length">No Record Found</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="">
+      <mat-paginator #myPaginator [length]="resultsLength" [pageSizeOptions]="[25]" showFirstLastButtons>
+      </mat-paginator>
+
+    </div>
+  </div>
+</div>

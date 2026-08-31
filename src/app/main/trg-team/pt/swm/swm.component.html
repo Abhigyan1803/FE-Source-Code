@@ -1,0 +1,234 @@
+<div class="mat-new">
+    <h4 class="card-heading">PT <span class="sub-menu1"> > {{term}} > {{subject}} </span>
+        <div class="pull-right" *ngIf="finalSubmissionDate"> Last Date for Marks Submission : {{finalSubmissionDate | date:'dd MMM yyyy'}} </div>
+    </h4>
+</div>
+
+<mat-card>
+    <!-- <form class="ng-untouched ng-pristine ng-invalid"> -->
+        <div class="row">
+
+            
+            <div class="form-group col-md-4">
+                <label for="battalion">Battalion</label>
+                <select id="battalion" (change)="battalionSelected($event.target.value)" class="form-control"
+                  [(ngModel)]="battalionId"  >
+                    <option value="" selected hidden disabled>Select</option>
+                    <option *ngFor="let b of battalionList" [value]="b.id"> {{b.shortName}} Bn</option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="company">Company</label>
+                <select id="company" class="form-control" (change)="companySelected($event.target.value)"
+                [(ngModel)]="companyId" >
+                    <option value="" selected hidden disabled>Select</option>
+                    <option *ngFor="let c of companyList" [value]="c.id"> {{c?.name || ''}}</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="rank">Search</label>
+                    <input placeholder="IMA Number/Service Id" formcontrolname="" type="text" [(ngModel)]="serviceId"
+                        class="form-control ng-untouched ng-pristine ng-invalid">
+                </div>
+            </div>
+
+            <!-- <div class="col-md-3">
+                <div class="form-group">
+                    <label for="rank">Attempt Type</label>
+                    <select id="company" class="form-control">
+                        <option *ngFor="let att of attemtTypes" [value]="at"> {{att}}</option>
+                    </select>
+                </div>
+            </div> -->
+
+
+
+        </div>
+       
+         <div style="float: right;" >
+            <button mat-raised-button (click)="search()" >Submit</button>
+            <button mat-raised-button (click)="clearSearch()" >Clear</button>
+        </div>
+    <!-- </form> -->
+
+</mat-card>
+<mat-card class="ppt-table table-card">
+
+    <div class="list-spinner text-center" *ngIf="!cadetList.length && showSpinner">
+        <div class="spinner-border " role="status"    >
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <div  *ngIf="!cadetList.length && !showSpinner" class="text-center">
+        <h5> {{statusMsg}}</h5> 
+    </div>
+  
+    <table class="tg" *ngIf="cadetList.length" >
+        <thead class="table-head">
+            <tr>
+                <th class="tg-qnnc" rowspan="3">S. No.</th>
+                <th class="tg-qnnc" rowspan="3">IMA No.</th>
+                <th class="tg-qnnc" rowspan="3">Rank</th>
+                <th class="tg-qnnc" rowspan="3">Name</th>
+                <th class="tg-qnnc" rowspan="3">Course</th>
+
+                <ng-container *ngIf="termId == 1 || termId == 7" >
+                    <th class="tg-qnnc" colspan="3" rowspan="2" >25 MTR SWM (MM-{{I_Term_MM._25Mtr}}) </th>
+                    <th class="tg-qnnc" colspan="3" rowspan="2" >5 MTR JUMP (MM-{{I_Term_MM._5MtrJump}}) </th>
+
+                    <th class="tg-qnnc" colspan="9"  >SWM <br> (HIGHER TEST) </th>
+                    <th class="tg-qnnc" colspan="3" >JUMP <br> (HIGHER TEST) </th>
+                </ng-container>
+
+
+                <ng-container *ngIf="termId == 2" >
+                    <th class="tg-qnnc" colspan="3" rowspan="2" >35 MTR SWM (MM-{{II_Term_MM._35Mtr}}) </th>
+                    <th class="tg-qnnc" colspan="3" rowspan="2" >6.5 MTR JUMP (MM-{{II_Term_MM._6_5MtrJump}}) </th>
+                    <th class="tg-qnnc" colspan="9"  >SWM <br> (HIGHER TEST) </th>
+                    <th class="tg-qnnc" colspan="3" >JUMP <br> (HIGHER TEST) </th>
+                </ng-container>
+
+                <ng-container *ngIf="termId == 3" >
+                    <th class="tg-qnnc" colspan="3" rowspan="2" >50 MTR SWM (MM-{{III_Term_MM._50Mtr}}) </th>
+                    <th class="tg-qnnc" colspan="3" rowspan="2" >10 MTR JUMP (MM-{{III_Term_MM._10MtrJump}}) </th>
+                    <th class="tg-qnnc" colspan="12"  >SWM <br> (HIGHER TEST) </th>
+
+                </ng-container>
+
+
+                <th class="tg-qnnc" rowspan="3">Total (MM-{{totalMM}})</th>
+
+            </tr>
+
+            <tr *ngIf="termId == 1 || termId == 7" >
+                <th class="tg-qnnc" colspan="3"> 50 MTR SWM (MM-{{I_Term_MM._50Mtr}})</th>
+                <th class="tg-qnnc" colspan="3"> 100 MTR SWM (MM-{{I_Term_MM._100Mtr}}) </th>
+                <th class="tg-qnnc" colspan="3"> 150 MTR SWM (MM-{{I_Term_MM._150Mtr}}) </th>
+                <th class="tg-qnnc" colspan="3"> 6.5 MTR Jump (MM-{{I_Term_MM._6_5MtrJump}})</th>
+            </tr>
+
+            
+            <tr *ngIf="termId == 2" >
+                <th class="tg-qnnc" colspan="3"> 100 MTR SWM (MM-{{II_Term_MM._100Mtr}})</th>
+                <th class="tg-qnnc" colspan="3"> 150 MTR SWM (MM-{{II_Term_MM._150Mtr}}) </th>
+                <th class="tg-qnnc" colspan="3"> 200 MTR SWM (MM-{{II_Term_MM._200Mtr}}) </th>
+                <th class="tg-qnnc" colspan="3"> 10 MTR Jump (MM-{{II_Term_MM._10MtrJump}})</th>
+            </tr>
+
+            <tr *ngIf="termId == 3" >
+                <th class="tg-qnnc" colspan="3"> 100 MTR SWM (MM-{{III_Term_MM._100Mtr}})</th>
+                <th class="tg-qnnc" colspan="3"> 150 MTR SWM (MM-{{III_Term_MM._150Mtr}}) </th>
+                <th class="tg-qnnc" colspan="3"> 200 MTR SWM (MM-{{III_Term_MM._200Mtr}}) </th>
+                <th class="tg-qnnc" colspan="3"> 250 MTR SWM (MM-{{III_Term_MM._250Mtr}})</th>
+            </tr>
+
+
+            <tr>
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <th>Grade</th>
+
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <th>Grade</th>
+
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <th>Grade</th>
+
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <th>Grade</th>
+
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <th>Grade</th>
+
+                <th>Attempt Type</th>
+                <th>Obtained Marks</th>
+                <th>Grade</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody *ngIf="cadetList.length">
+            <tr *ngFor="let cadet of cadetList;let i=index">
+                <td> {{i+1}} </td>
+                <td> {{cadet.serviceId}} </td>
+                <td>
+                    <span *ngIf="cadet.nationality == 'India'">GC</span>
+                    <span *ngIf="cadet.nationality != 'India'">FGC</span>
+                </td>
+                <td class="name-coloumn"> {{cadet.name}} </td>
+                <td> {{cadet.course}} </td>
+
+                <ng-container *ngFor="let sub of cadet.edossierPtResult.edossierPtSubjectResult;let j=index">
+                    <td>
+                        <span *ngIf="!hasAccess"> {{sub.lastAttemptType}} </span>
+                        <select *ngIf="hasAccess" id="company" class="form-control" [(ngModel)]="sub.lastAttemptType">
+                            <option value="" selected hidden disabled>--</option>
+                            <!-- <option *ngFor="let att of attemtTypes" [value]="att"> {{att}}</option> -->
+                            <option value="M1">M1</option>
+                            <!-- <option [disabled]="!sub.m1ObtainedMarks" value="M2">M2</option>
+                            <option [disabled]="!sub.m2ObtainedMarks" value="C1">C1</option>
+                            <option [disabled]="!sub.c1ObtainedMarks" value="C2">C2</option> -->
+                            <option  value="M2">M2</option>
+                            <option  value="C1">C1</option>
+                            <option  value="C2">C2</option>
+                        </select>
+                    </td>
+                    <td>
+                        <span *ngIf="sub.lastAttemptType == 'M1' && !hasAccess "> {{sub.m1ObtainedMarks}} </span>
+                        <span *ngIf="sub.lastAttemptType == 'M2' && !hasAccess "> {{sub.m2ObtainedMarks}} </span>
+                        <span *ngIf="sub.lastAttemptType == 'C1' && !hasAccess "> {{sub.c1ObtainedMarks}} </span>
+                        <span *ngIf="sub.lastAttemptType == 'C2' && !hasAccess "> {{sub.c2ObtainedMarks}} </span>
+
+                        <input *ngIf="sub.lastAttemptType == 'M1' && hasAccess " (keypress)="onlyNum($event)"
+                            (focusout)="patchNumbers($event,sub,i,j,'M1')" maxlength="2" name="" id=""
+                            class="form-control" [(ngModel)]="sub.m1ObtainedMarks">
+                        <input *ngIf="sub.lastAttemptType == 'M2' && hasAccess" (keypress)="onlyNum($event)"
+                            (focusout)="patchNumbers($event,sub,i,j,'M2')" maxlength="2" name="" id=""
+                            class="form-control" [(ngModel)]="sub.m2ObtainedMarks">
+                        <input *ngIf="sub.lastAttemptType == 'C1' && hasAccess" (keypress)="onlyNum($event)"
+                            (focusout)="patchNumbers($event,sub,i,j,'C1')" maxlength="2" name="" id=""
+                            class="form-control" [(ngModel)]="sub.c1ObtainedMarks">
+                        <input *ngIf="sub.lastAttemptType == 'C2' && hasAccess" (keypress)="onlyNum($event)"
+                            (focusout)="patchNumbers($event,sub,i,j,'C2')" maxlength="2" name="" id=""
+                            class="form-control" [(ngModel)]="sub.c2ObtainedMarks">
+                    </td>
+                    <td>
+                        <span *ngIf="sub.resultGrade">
+                            {{sub.resultGrade}}
+                        </span>
+                    </td>
+
+                </ng-container>
+
+                <td>
+                    <span *ngIf="cadet.edossierPtResult.ptTotalMarks">
+                        {{cadet.edossierPtResult.ptTotalMarks}}
+                    </span>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+
+    <!-- <div class="">
+        <mat-paginator #myPaginator [length]="resultsLength" [pageSizeOptions]="[25]" showFirstLastButtons>
+        </mat-paginator>
+    </div> -->
+
+    <br>
+    <div *ngIf="hasAccess" class="pull-right mb-4 " >
+        <button mat-raised-button (click)="submitResult()" [disabled]="!cadetList.length">
+            Submit
+        </button>
+    </div>
+
+</mat-card>

@@ -1,0 +1,298 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="mat-heading">
+      <div id="top-bar" class="">
+        <h2 class="backbtn"><button mat-icon-button (click)="goBack()">
+          <mat-icon>chevron_left</mat-icon>
+        </button>E-Dossier <span class="sub-menu1">
+          > Overall Assessment > SERVICE SUBJECTS (MIL SKILLS DEVP)</span></h2>
+    </div>
+    <div class="academics">
+      <div class="mat-card mat-focus-indicator">
+        <div class="service-id mb-2 mx-1 row">
+            
+          <form class="ng-untouched ng-pristine ng-invalid">
+            <div class="row">
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="rank">IMA No.</label>
+                  <input placeholder="No"  type="text" disabled id="subServiceID" class="form-control ng-untouched ng-pristine ng-invalid">
+                </div>
+              </div>  
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="rank">Rank</label>
+                  <input placeholder="Rank"  type="text" disabled id="subrank" class="form-control ng-untouched ng-pristine ng-invalid">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="rank">Name</label>
+                  <input placeholder="Name"  type="text" disabled id="subName" class="form-control ng-untouched ng-pristine ng-invalid">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="rank">Term</label>
+                  <input placeholder="Term"  type="text" disabled id="subtName" class="form-control ng-untouched ng-pristine ng-invalid">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="rank">Bn</label>
+                  <input placeholder="Bn"  type="text" disabled id="subBn" class="form-control ng-untouched ng-pristine ng-invalid">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="rank">Coy</label>
+                  <input placeholder="Coy"  type="text" disabled id="subComp" class="form-control ng-untouched ng-pristine ng-invalid">
+                </div>
+              </div>
+              
+            </div>
+          </form>
+      </div>
+        <!-- <div class="ng-star-inserted">
+          <div class="mat-new mb-4">
+            <h4 class="card-heading">SERVICE SUBJECTS (MIL SKILLS DEVP)</h4>
+          </div>
+        </div> -->
+        <div *ngIf="this.termId==1 || this.termId == 2 || this.termId == 3">
+          <h3>I-Term</h3>
+          <table class="tg mb-3">
+            <thead>
+              <tr>
+                <th class="tg-0y56" rowspan="3">SUBJECTS</th>
+                <th class="tg-qnnc" colspan="4">I TERM</th>
+              </tr>
+              <tr>
+                <th class="tg-qnnc" colspan="2">MID TERM</th>
+                <th class="tg-qnnc" colspan="2">FINAL</th>
+  
+              </tr>
+              <tr>
+                <th class="tg-qnnc">Max Marks</th>
+                <th class="tg-qnnc">Marks Obtained</th>
+                <th class="tg-qnnc">Max Marks</th>
+                <th class="tg-qnnc">Marks Obtained</th>
+              </tr>
+            </thead>
+            <tbody [formGroup]="termIServiceForm">
+              <tr>
+                <td class="tg-c3ow">BMT-I</td>
+                <td class="tg-c3ow">100</td>
+                <td class="tg-0pky"><input type="text" disabled class="form-control" formControlName="midObtainedMarks"></td>
+                <td class="tg-c3ow">100</td>
+                <td class="tg-0pky"><input type="text" disabled  class="form-control" formControlName="finalObtainedMarks" ></td>
+              </tr>
+              <tr>
+                <td class="tg-c3ow">BMT-II</td>
+                <td class="tg-c3ow">NA</td>
+                <td class="tg-0pky"></td>
+                <td class="tg-c3ow">150</td>
+                <td class="tg-0pky"><input type="text" disabled class="form-control" formControlName="bmt2ObtainedMarks"></td>
+              </tr>
+              <tr>
+                <td class="tg-c3ow">MR</td>
+                <td class="tg-c3ow">NA</td>
+                <td class="tg-0pky"></td>
+                <td class="tg-c3ow">25</td>
+                <td class="tg-0pky"><input type="text" disabled class="form-control" formControlName="mrPracObtainedMarks"></td>
+              </tr>
+  
+              <tr>
+                <td class="tg-c3ow"><b>Total</b></td>
+                <td class="tg-c3ow"  colspan="2"></td>
+                <!-- <td class="tg-0pky"><input type="text" disabled class="form-control" formControlName="totalObtainedMarks1"></td> -->
+                <td class="tg-c3ow"><b>375</b></td>
+                <td class="tg-0pky">{{this.x}}</td>
+                <!-- <td class="tg-0pky"><input type="text" disabled class="form-control" formControlName="totalObtainedMarks"></td> -->
+  
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- term II -->
+        <div *ngIf="this.termId==2 || this.termId == 3">
+          <h3>II-Term</h3>
+
+          <table class="tg top-space mb-3">
+            <thead>
+              <tr>
+                <th class="tg-0y56" rowspan="3">SUBJECTS</th>
+                <th class="tg-qnnc" colspan="4">II TERM</th>
+              </tr>
+              <tr>
+                <th class="tg-qnnc" colspan="2">MID TERM</th>
+                <th class="tg-qnnc" colspan="2">FINAL</th>
+  
+              </tr>
+              <tr>
+                <th class="tg-qnnc">Max Marks</th>
+                <th class="tg-qnnc">Marks Obtained</th>
+                <th class="tg-qnnc">Max Marks</th>
+                <th class="tg-qnnc">Marks Obtained</th>
+              </tr>
+            </thead>
+            <tbody [formGroup]="termIIServiceForm">
+              <tr>
+                <td class="tg-c3ow">BMT-I</td>
+                <td class="tg-c3ow">100</td>
+                <td class="tg-0pky"><input type="text" disabled class="form-control" formControlName="midObtainedMarks"></td>
+                <td class="tg-c3ow">100</td>
+                <td class="tg-0pky"><input type="text" disabled class="form-control" formControlName="finalObtainedMarks"></td>
+              </tr>
+              <tr>
+                <td class="tg-c3ow">BMT-II</td>
+                <td class="tg-c3ow">NA</td>
+                <td class="tg-0pky"></td>
+                <td class="tg-c3ow">150</td>
+                <td class="tg-0pky"><input type="text" disabled class="form-control" formControlName="bmt2ObtainedMarks"></td>
+              </tr>
+              <tr>
+                <td class="tg-c3ow">MR</td>
+                <td class="tg-c3ow">NA</td>
+                <td class="tg-0pky"></td>
+                <td class="tg-c3ow">25</td>
+                <td class="tg-0pky"><input type="text" disabled class="form-control" formControlName="mrPracObtainedMarks"></td>
+              </tr>
+              <tr>
+                <td class="tg-c3ow"><b>Total</b></td>
+                <td class="tg-c3ow" colspan="2"></td>
+                <td class="tg-c3ow"><b>375</b></td>
+                <td class="tg-0pky">{{this.y}}</td>
+              </tr>
+              <!-- <tr>
+                <td class="tg-c3ow"><b>Total</b></td>
+                <td class="tg-0pky"><input type="text" disabled class="form-control" ></td>
+                <td class="tg-0pky"><input type="text" disabled class="form-control" formControlName="totalObtainedMarks1"></td>
+                <td class="tg-c3ow"><b>375</b></td>
+                <td class="tg-0pky"><input type="text" disabled class="form-control" formControlName="totalObtainedMarks"></td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+
+
+        <!-- tech II -->
+        <div *ngIf="X==null && Y ==null">
+          <h3>II-Tech</h3>
+
+          <table class="tg top-space mb-3">
+            <thead>
+              <tr>
+                <th class="tg-0y56" rowspan="3">SUBJECTS</th>
+                <th class="tg-qnnc" colspan="4">II TECH</th>
+              </tr>
+              <tr>
+                <th class="tg-qnnc" colspan="2">MID TERM</th>
+                <th class="tg-qnnc" colspan="2">FINAL</th>
+              </tr>
+              <tr>
+                <th class="tg-qnnc">Max Marks</th>
+                <th class="tg-qnnc">Marks Obtained</th>
+                <th class="tg-qnnc">Max Marks</th>
+                <th class="tg-qnnc">Marks Obtained</th>
+              </tr>
+            </thead>
+            <tbody [formGroup]="techIIServiceForm">
+              <tr>
+                <td class="tg-c3ow">BMT-I</td>
+                <td class="tg-c3ow">100</td>
+                <td class="tg-0pky"><input type="text" disabled class="form-control" formControlName="midObtainedMarks"></td>
+                <td class="tg-c3ow">100</td>
+                <td class="tg-0pky"><input type="text" disabled class="form-control" formControlName="finalObtainedMarks"></td>
+              </tr>
+              <tr>
+                <td class="tg-c3ow">BMT-II</td>
+                <td class="tg-c3ow">NA</td>
+                <td class="tg-0pky"></td>
+                <td class="tg-c3ow">150</td>
+                <td class="tg-0pky"><input type="text" disabled class="form-control" formControlName="bmt2ObtainedMarks"></td>
+              </tr>
+              <tr>
+                <td class="tg-c3ow">MR</td>
+                <td class="tg-c3ow">NA</td>
+                <td class="tg-0pky"></td>
+                <td class="tg-c3ow">25</td>
+                <td class="tg-0pky"><input type="text" disabled class="form-control" formControlName="mrPracObtainedMarks"></td>
+              </tr>
+              <tr>
+                <td class="tg-c3ow"><b>Total</b></td>
+                <td class="tg-c3ow" colspan="2">-</td>
+                <td class="tg-c3ow"><b>375</b></td>
+                <td class="tg-0pky">{{this.z}}</td>
+              </tr>
+              <!-- <tr>
+                <td class="tg-c3ow"><b>Total</b></td>
+                <td class="tg-0pky"><input type="text" disabled class="form-control"></td>
+                <td class="tg-0pky"><input type="text" disabled class="form-control" formControlName="totalObtainedMarks1"></td>
+                <td class="tg-c3ow"><b>375</b></td>
+                <td class="tg-0pky"><input type="text" disabled class="form-control" formControlName="totalObtainedMarks"></td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+       
+
+
+
+        <!-- term III -->
+        <div *ngIf="termId == 3">
+          <h3>III-Term</h3>
+
+          <table class="tg top-space mb-3" >
+            <thead>
+              <tr>
+                <th class="tg-0y56" rowspan="3">SUBJECTS</th>
+                <th class="tg-qnnc" colspan="4">III TERM</th>
+              </tr>
+              <tr>
+                <!-- <th class="tg-qnnc" colspan="2">MID TERM</th> -->
+                <th class="tg-qnnc" colspan="2">FINAL</th>
+              </tr>
+              <tr>
+                <!-- <th class="tg-qnnc">Max Marks</th> -->
+                <!-- <th class="tg-qnnc">Marks Obtained</th> -->
+                <th class="tg-qnnc">Max Marks</th>
+                <th class="tg-qnnc">Marks Obtained</th>
+              </tr>
+            </thead>
+            <tbody [formGroup]="termIIIServiceForm">
+              <tr>
+                <td class="tg-c3ow">BMT-I</td>
+                <td class="tg-c3ow">200</td>
+                <td class="tg-0pky"><input type="text" disabled class="form-control" formControlName="finalObtainedMarks"></td>
+              </tr>
+              <tr>
+                <td class="tg-c3ow">BMT-II</td>
+                <td class="tg-c3ow">150</td>
+                <td class="tg-0pky"><input type="text" disabled class="form-control" formControlName="bmt2ObtainedMarks"></td>
+
+              </tr>
+              <tr>
+                <td class="tg-c3ow">MR</td>
+                <td class="tg-c3ow">25</td>
+                <td class="tg-0pky"><input type="text" disabled class="form-control" formControlName="mrPracObtainedMarks"></td>
+              </tr>
+              <tr>
+                <td class="tg-c3ow"><b>Total</b></td>
+                <td class="tg-c3ow"><b>375</b></td>
+                <td class="tg-0pky">{{this.k}}</td>
+                <!-- <td class="tg-0pky"><input type="text" disabled class="form-control" formControlName="totalObtainedMarks"></td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+        <p class="m-4">* GC failing in subject is liable for relegation.</p>
+        <!-- <div class="text-right">
+          <button class="btn btn-color mt-2">Submit</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

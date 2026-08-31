@@ -1,0 +1,145 @@
+<div class="main-content">
+    <div class="container-fluid">
+
+
+        <div class="mat-heading">
+            <div id="top-bar" class="">
+              <h2>
+                <button mat-icon-button (click)="goBack()">
+                  <mat-icon>chevron_left</mat-icon>
+                </button>
+                 <span class="sub-menu1">
+                  E-Dossier > Assessment > AUTOBIOGRAPHY</span></h2>
+          </div>
+          </div>
+
+          <div class="mat-card mat-focus-indicator">
+            <div class="service-id mb-2 mx-0">
+                <!-- <div class="input_id col-md-6">
+                    <b> Service Id :</b> <input type="text" disabled id="clubServiceID" class="form-control mt-2">
+                </div>
+                <div class="input_id col-md-6">
+                    <b> Name :</b> <input type="text" disabled id="clubName" class="form-control mt-2">
+                </div> -->
+                <form class="ng-untouched ng-pristine ng-invalid">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label for="rank">Ima No.</label>
+                        <input placeholder="No"  type="text" disabled id="autobiographyID" class="form-control ng-untouched ng-pristine ng-invalid">
+                      </div>
+                    </div>  
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label for="rank">Rank</label>
+                        <input placeholder="Rank"  type="text" disabled id="autobiographyRk" class="form-control ng-untouched ng-pristine ng-invalid">
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label for="rank">Name</label>
+                        <input placeholder="Name"  type="text" disabled id="autobiographyName" class="form-control ng-untouched ng-pristine ng-invalid">
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label for="rank">Term</label>
+                        <input placeholder="Term"  type="text" disabled id="autobiographyTermName" class="form-control ng-untouched ng-pristine ng-invalid">
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label for="rank">Bn</label>
+                        <input placeholder="Bn"  type="text" disabled id="autobiographyBn" class="form-control ng-untouched ng-pristine ng-invalid">
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label for="rank">Coy</label>
+                        <input placeholder="Coy"  type="text" disabled id="autobiographyComp" class="form-control ng-untouched ng-pristine ng-invalid">
+                      </div>
+                    </div>
+                    
+                  </div>
+                </form>
+            </div>
+          </div>
+        <div class="autobiography">
+
+
+            <div class="mat-card mat-focus-indicator">
+
+                <!-- <div class="ng-star-inserted">
+                    <div class="mat-new mb-4">
+                        <h4 class="card-heading">AUTOBIOGRAPHY</h4>
+                    </div>
+                </div> -->
+
+
+
+
+                <form [formGroup]="autobioForm">
+                    <div class="biography-data">
+                        <ol>
+                            <li class="mb-3"><b>General/Self</b>
+                                <textarea placeholder="" formControlName="general" class="form-control ng-untouched ng-pristine
+                                    ng-invalid"></textarea>
+                                    <span class="val_msg" *ngIf="f.general.errors && f.general.errors.required && isError" >Please Enter General</span>
+                                  </li>
+                            <li class="mb-3"><b>Special Achievements (Games,
+                                    adventure activities, extra co- curricular
+                                    activities and participation in NCC)</b>
+                                <textarea placeholder="" formControlName="specialAchivement" class="form-control ng-untouched ng-pristine
+                                    ng-invalid">
+                                  </textarea>
+                                  <span class="val_msg" *ngIf="f.specialAchivement.errors && f.specialAchivement.errors.required && isError" >Please Enter Achievements</span>
+                                </li>
+
+                            <li class="mb-3"><b>Strength</b><textarea placeholder="" formControlName="strength" class="form-control ng-untouched ng-pristine
+                                    ng-invalid"></textarea>
+                                    <span class="val_msg" *ngIf="f.strength.errors && f.strength.errors.required && isError" >Please Enter Strength</span>
+                                  </li>
+                            <li class="mb-3"><b>Weaknesses</b><textarea placeholder="" formControlName="weakness" class="form-control ng-untouched ng-pristine
+                                    ng-invalid"></textarea>
+                                    <span class="val_msg" *ngIf="f.weakness.errors && f.weakness.errors.required && isError" >Please Enter Weakness</span>
+                                  </li>
+
+                            <li class="mb-3">
+
+                                <label for="declartion">
+                                <input type="checkbox" id="declartion" name=""  (change)="onChange($event)" formControlName="isDeclared" checked>
+                                    
+                                    I hereby
+                                    certify that to the best of my knowledge and
+                                    belief the above particulars are, in all
+                                    respect, correct and true</label>
+                                    <span class="val_msg" *ngIf="f.isDeclared.errors && f.isDeclared.errors.required && isError" >Please Accept the Terms & Conditions</span>
+
+                            </li>
+                        </ol>
+                        <div class="date mr-4 ml-4">
+                            <div class="row">
+                                <div class="col-md-3">
+                                  <div class="form-group">
+                                    <label for="rank">Date<span class="required">*</span></label>
+                                    <input type="date" id="date" formControlName="date"  class="form-control">
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+                <!-- <button mat-raised-button (click)="addAutobio()">Submit</button> -->
+
+                <button mat-raised-button class="pull-right" type="submit"  (click)="onSubmit()">Submit</button>
+             
+
+
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

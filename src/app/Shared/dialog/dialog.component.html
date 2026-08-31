@@ -1,0 +1,155 @@
+
+<!-- <ng-container></ng-container> -->
+
+<ng-container *ngIf="data.type == 'document' || data.type =='img' || data.type == 'text' ">
+    <div class="realte">
+        <b>{{data.title}} </b>
+        <button class="event_close" mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <!-- <div class="waiting" *ngIf="!loadedContent && data.type == ('document' || 'img') ">
+      
+        <div class="text-center">
+            <div class="spinner-grow" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+
+        </div>
+
+        <p class="please">Please wait....</p>
+    </div> -->
+
+    <div mat-dialog-content class="mat-typography mat_custom">
+        
+        <div *ngIf="data.type == 'document'">
+
+            <!-- <ngx-doc-viewer *ngIf="ext == 'pdf'" [url]="data.url" viewer="url" (loaded)="contentLoaded()" style="width:100%; height:120vh !important;">
+            </ngx-doc-viewer> -->
+            <!-- <div>
+                <h3>USING OBJECT</h3>
+                <object *ngIf="ext == '.pdf'" [data]="data.url" width="1230" height="700" ></object>
+            </div> -->
+            <div>
+                <span>
+                    <a href="javascript:void(0)" (click)="openInNewTab(data.url.changingThisBreaksApplicationSecurity)" >
+                        <mat-icon matTooltip="Open in New Tab" >open_in_new</mat-icon>
+                    </a>
+                </span>
+
+                <iframe id="iFrame" style="width: 100%; height: 600px;" *ngIf="ext == '.pdf'" [src]="data.url" frameborder="0"></iframe>
+            </div>
+
+            <!-- <ngx-doc-viewer *ngIf="ext != 'pdf'" [url]="data.url" viewer="google" googleCheckContentLoaded=true (loaded)="contentLoaded()"
+                disableContent="popout" googleCheckInterval=3000 style="width:100%; height:120vh !important;">
+            </ngx-doc-viewer> -->
+        </div>
+
+        <div *ngIf="data.type == 'img'" class="image">
+            <img [src]="data.url" alt="" class="preview-img" (load)="contentLoaded()">
+        </div>
+        
+        <div *ngIf="data.type == 'text'">
+            <label for="Answer">Answer</label>
+            <div [innerHTML]="data.url"></div>
+            <br>
+
+            <form [formGroup]="addassignmentForm">
+                <!-- <label for="InstructorMark">InstructorMark</label>
+                <input id="name" type="text" class="form-control" placeholder="InstructorMark"
+                    formControlName="instructorMark">
+                <br> -->
+                <label for="Remark">Remark</label>
+                <textarea matInput placeholder="Remark" class="form-control" formControlName="remark"></textarea>
+                <br>
+                <button mat-raised-button *ngIf="data.remark==null" (click)="submit()">Submit</button>
+                <button mat-raised-button *ngIf="data.remark!==null" (click)="submit()">Update</button>
+
+            </form>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="data.type == 'video'" >
+    <div class="realte">
+        
+        <b>{{data.title}} </b>
+        <button class="event_close" mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button>
+
+    </div>
+            
+    <a href="javascript:void(0)" (click)="openInNewTab(data.url.changingThisBreaksApplicationSecurity)" >
+        <mat-icon matTooltip="Open in New Tab" >open_in_new</mat-icon>
+    </a>
+    <div mat-dialog-content class="mat-typography mat_custom">
+        <iframe [src]="data.url" style="width: 1200px; height: 500px;" frameborder="0"></iframe>
+    </div>
+
+</ng-container>
+
+<ng-container *ngIf="data.type == 'confirmation'">
+    <div mat-dialog-title class="realte">
+        <b>{{data.title}} </b>
+        <button class="event_close" mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <div mat-dialog-content class="mat-typography mat_custom">
+        <div>
+            <strong>Season Term :</strong> {{data?.object?.seasonTerm}}
+        </div>
+        <div>
+            <strong> Year : </strong>{{data?.object?.year}}
+        </div>
+        <div>
+            <strong>Start Date:</strong> {{data?.object?.startDate | date:'dd MMM y, EEEE'}} <br>
+        </div>
+        <div>
+            <strong>End Date:</strong> {{data?.object?.endDate | date:'dd MMM y, EEEE'}}
+        </div>
+
+    </div>
+    <div mat-dialog-actions style="display: flex;justify-content: flex-end;padding: 5px 20px;">
+        <button mat-raised-button [mat-dialog-close]="true" cdkFocusInitial>Confirm</button>
+        <button mat-button (click)="onNoClick()">Cancel</button>
+    </div>
+
+</ng-container>
+
+
+
+
+
+
+<ng-container *ngIf="data.type == 'awardee'">
+    <div class="realte top-head">
+        <b>{{data.title}} </b>
+        <button class="event_close" mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <div mat-dialog-content class="mat-typography mat_custom">
+
+        <!-- <img [src]="data?.object?.officerImage" alt="" width="200px" height="200px"> -->
+
+        <h3> {{data?.object?.officerRank | titlecase}} {{data?.object?.officerName | titlecase}} <span
+                *ngIf="data.object.recognition">({{data?.object?.recognition | uppercase}}) </span> </h3>
+        <!-- <h5> {{data?.object?.officerRegiment || "-" | titlecase}}, {{data?.object?.officerBattalion || "-" | titlecase}} Bn </h5> -->
+        <!-- <h3> Awarded {{data?.object?.awardMedal || "-" }} at {{data?.object?.yearAwarded || "-" | titlecase}}</h3> -->
+
+        <h4> </h4>
+
+        <section>
+            <p>
+                {{data?.object?.description }}
+            </p>
+        </section>
+
+    </div>
+
+</ng-container>

@@ -1,0 +1,322 @@
+
+h1, h2, h3, h4 {
+    line-height: 1.1;
+    margin: 0;
+}
+/* h2{
+    font-size: 22.6px;
+}
+h3{
+    font-size: 22.464px;
+} */
+body{
+    line-height: 1.5;
+}
+.pg-header.fade-in-bottom p {
+    margin: 0;
+    text-shadow: none;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 25px;
+}
+.pg-header {
+    text-shadow: rgb(0 0 0 / 70%) 1px 0px 1px;
+    width: 100%;
+    padding-bottom: 0.7rem;
+    text-align: center;
+}
+.pg-header h1 {
+        margin-bottom: 10px;
+    font-size: 22px;
+    font-weight: 500;
+    color: #721a0c;
+}
+.pg-header h3 {
+    font-size: 22.46px;
+    font-weight: 800;
+
+}
+.crest-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.crest-line img {
+    max-height: 60px;
+    margin: 0px 0.4rem;
+}
+.param-vir.crest-line div {
+    background-color: #a9823d;
+    margin: 15px 0px;
+}
+.crest-line div {
+    max-width: 80px;
+    min-width: 80px;
+    max-height: 3px;
+    min-height: 3px;
+    background-color: rgb(117, 8, 11);
+    border-radius: 0.3rem;
+}
+.param-vir.crest-line img {
+    margin: 1rem;
+}
+
+/* .other-awardees{
+    padding: 2rem !important;
+} */
+.crest-line img {
+    max-height: 60px;
+    margin: 0px 0.4rem;
+}
+.param_vir_chakra.page-card {
+    background-color: transparent;
+    box-shadow: none;
+    transition: all 1s cubic-bezier(0.2, 1, 0.3, 1) 0s;
+    
+}
+.page-card .item-media {
+    object-fit: fill;
+    text-align: center;
+}
+.param_vir_chakra.page-card .use-img {
+    border-color: #a9823d;
+        opacity: 1;
+}
+.page-card {
+    border: none;
+    box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+    padding: 1rem 1rem;
+    background-color: rgb(255, 255, 255);
+}
+.use-img {
+        border-radius: 3%;
+    width: 130px;
+    height: 130px;
+    border: 2px solid rgb(117, 8, 11);
+    transition: transform 1s cubic-bezier(0.2, 1, 0.3, 1) 0s;
+    background: #eee;
+    margin: auto !important;
+}
+.param_vir_chakra .card-body {
+    border: none;
+    text-shadow: rgb(0 0 0 / 70%) 1px 0px 1px;
+    padding-bottom: 0px;
+}
+.card-body {
+       flex: 1 1 auto;
+    padding: 1rem;
+    text-align: center;
+    
+    }
+.maha_vir_chakra .card-body {
+	border-bottom: 2px dotted #721a0c;
+    border-top: 2px dotted #721a0c;
+    margin-top: 15px;
+}
+.card-body .card-title {
+    margin: 0px;
+}
+.card-title h2 {
+    color: #2d321f;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: none;
+    margin-bottom: 5px;
+}
+#pills-tab li.nav-item {
+    margin: 0px 5px;
+    border-radius: 4px;
+    width: 165px;
+}
+.card-title h3 {
+    font-weight: 500;
+    font-size: 13px;
+}
+.read-more{
+    padding: 10px 20px;
+    border: 0;
+    color: #fff;
+    font-weight: 500;
+    background: #721a0c;
+    border-radius: 5px;
+    font-size: 13px;
+    margin: 10px 0px 0;
+    box-shadow: 2px 2px 2px #ccc;
+    font-size: 14px;
+}
+.vaadin-button-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+    text-shadow: inherit;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.btn-main{
+    border: 0;
+    border-bottom: 1px solid yellow;
+    padding: 1px 6px;
+    font-size: 19.2px;
+    font-weight: bold;
+    color: #182739F0;
+}
+.inner-shadow-container{
+    box-shadow: rgb(50 50 93 / 25%) 0px 30px 60px -12px inset, rgb(70 54 54 / 30%) 0px 18px 36px -18px inset;
+    background-color: rgb(238, 238, 238);
+}
+.pt-3 {
+    padding-top: 3rem !important;
+}
+.p-2 {
+    padding: 2rem !important;
+}
+.p-2 {
+    padding: 2rem !important;
+}
+.py-2 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+}
+.chakra-card .col-md-3{
+    margin-bottom: 20px;
+}
+.chakra_award{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-bottom: 1px solid lightgray;
+}
+.chakra_award h4{
+    font-size: 19.2px;
+    font-weight: 600;
+    padding-top:5px;
+}
+.carousel-indicators li{
+	width: 15px;
+    height: 15px;
+    border: 0;
+    border-radius: 50%;
+    border: 0px;
+    background: #721a0c;
+}
+.carousel-indicators {
+    bottom: -45px;
+}
+@media (min-width: 1200px){
+    .container{
+        max-width: 1320px;
+    }
+}
+.card-body p {
+    font-size: 13px;
+    margin: 5px 0px;
+}
+img.per-use {
+    position: absolute;
+    width: 34px;
+    top: 0px;
+    left: 5px;
+}
+.tbbb {
+    margin: 0 auto;
+    display: table;
+    width: 100%;
+}
+
+.nav-pills .nav-link {
+    border-radius: .25rem;
+    color: #333;
+}
+.nav-pills .nav-link, .nav-pills .show>.nav-link {
+    color: #721a0c;
+    background-color: transparent;
+    padding: 0;
+    font-weight: 600;
+    text-align: center;
+    border-top: 2px solid #ccc;
+    border-radius: 0;
+    border-bottom: 2px solid #ccc;
+    background: #eee;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    font-size: 14px;
+}
+
+.nav-link.active{
+	background-color: #a9823d !important;
+    color: #fff!important;
+}
+ul#pills-tab {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+.page-card.maha_vir_chakra {
+    background: #fafafa;
+    height: 370px;
+}
+img.img-dd {
+    height: 55px;
+    margin: 0 auto 15px;
+    display: table;
+}
+
+
+
+
+
+.gc-modal .modal-header {
+    padding: 5px 10px;
+    background: #721a0c;
+    color: #fff;
+    display: flex;
+    align-items: center;
+ }
+ .gc-modal h4.modal-title {
+    font-size: 15px;
+ }
+ .gc-modal button.close {
+ color: #fff;
+    opacity: 1;
+    font-weight: 200;
+    font-size: 30px;
+    padding: 15px 10px 21px;
+ }
+ .gc-modal .modal-dialog {
+    max-width: 800px !important;
+ }
+ button.close:focus {
+    outline: none;
+ }
+.card-param{
+     height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.param-read-more{
+    background: #721a0c;
+    color: #fff;
+    font-size: 15px;
+    margin-top: 15px;
+}
+
+.card-footer{
+    background:#ffffff
+}
+.card-title{
+    font-weight: 700 !important;
+    font-size: 13px;
+    text-shadow: none;
+    color: #721a0c;
+}
+.slick-slide {
+    padding: 0px 8px;
+}

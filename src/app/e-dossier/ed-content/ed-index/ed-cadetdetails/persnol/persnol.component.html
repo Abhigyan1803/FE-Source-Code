@@ -1,0 +1,574 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="mat-heading">
+            <div id="top-bar" class="">
+              <h2>
+                <button mat-icon-button (click)="goBack()">
+                    <mat-icon>chevron_left</mat-icon>
+                  </button> <span class="sub-menu1">
+                    E-Dossier > Assessment > Personal Details</span></h2>
+          </div>
+          </div>
+          <div class="mat-card mat-focus-indicator">
+            <div class="service-id mb-2 mx-0">
+                <!-- <div class="input_id col-md-6">
+                    <b> Service Id :</b> <input type="text" disabled id="clubServiceID" class="form-control mt-2">
+                </div>
+                <div class="input_id col-md-6">
+                    <b> Name :</b> <input type="text" disabled id="clubName" class="form-control mt-2">
+                </div> -->
+                <form class="ng-untouched ng-pristine ng-invalid">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label for="rank">Ima No.</label>
+                        <input placeholder="No"  type="text" disabled id="autobiographyID" class="form-control ng-untouched ng-pristine ng-invalid">
+                      </div>
+                    </div>  
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label for="rank">Rank</label>
+                        <input placeholder="Rank"  type="text" disabled id="autobiographyRk" class="form-control ng-untouched ng-pristine ng-invalid">
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label for="rank">Name</label>
+                        <input placeholder="Name"  type="text" disabled id="autobiographyName" class="form-control ng-untouched ng-pristine ng-invalid">
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label for="rank">Term</label>
+                        <input placeholder="Term"  type="text" disabled id="autobiographyTermName" class="form-control ng-untouched ng-pristine ng-invalid">
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label for="rank">Bn</label>
+                        <input placeholder="Bn"  type="text" disabled id="autobiographyBn" class="form-control ng-untouched ng-pristine ng-invalid">
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label for="rank">Coy</label>
+                        <input placeholder="Coy"  type="text" disabled id="autobiographyComp" class="form-control ng-untouched ng-pristine ng-invalid">
+                      </div>
+                    </div>
+                    
+                  </div>
+                </form>
+            </div>
+          </div>
+        <div class="persional-detail">
+            <div class="mat-card mat-focus-indicator">
+                <!-- <div class="ng-star-inserted">
+                    <div class="mat-new">
+                        <h4 class="card-heading">PERSONAL DETAILS</h4>
+                    </div>
+                </div> -->
+                <form [formGroup]="persnolForm">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                        <div class=" col-md-3 diimage">
+                            <div class="img-div">
+                                <img  [src]="previewImg"   alt="">
+                            </div>
+                        </div>
+                       
+                        
+                        <div class="col-md-9">
+                            <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">Academy No</label>
+                                <input placeholder="Academy No" formControlName="academyNo" type="text" class="form-control ng-untouched ng-pristine ng-invalid" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">Name</label>
+                                <input placeholder="Name" formControlName="name" type="text" class="form-control ng-untouched ng-pristine ng-invalid" disabled>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">Name in Hindi</label>
+                                <input placeholder="Name in Hindi" formControlName="" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                            </div>
+                        </div> -->
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">Course</label>
+                                <input placeholder="Course" formControlName="course" type="text" class="form-control ng-untouched ng-pristine ng-invalid" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">Type of Entry</label>
+                                <input placeholder="Type of Entry" formControlName="entry" type="text" class="form-control ng-untouched ng-pristine ng-invalid" disabled>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">Date of Arrival</label>
+                                <input placeholder="Dt of Arrival" formcontrolname="" type="text" class="form-control ng-untouched ng-pristine ng-invalid" disabled >
+                            </div>
+                        </div> -->
+                        <!-- <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">Pl</label>
+                                <input placeholder="Pl" formControlName="panImg" type="text" class="form-control ng-untouched ng-pristine ng-invalid" disabled>
+                            </div>
+                        </div> -->
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">Coy/Bn</label>
+                                <input placeholder="Coy/Bn" formControlName="company" type="text" class="form-control ng-untouched ng-pristine ng-invalid" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">DOB</label>
+                                <input placeholder="DOB" formControlName="dob" type="text" class="form-control ng-untouched ng-pristine ng-invalid" disabled>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">Age on Joining</label>
+                                <input placeholder="Age on Joining" formcontrolname="" type="text" class="form-control ng-untouched ng-pristine ng-invalid" >
+                            </div>
+                        </div> -->
+                        <!-- <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">Place of Birth</label>
+                                <input placeholder="Place of Birth" formControlName="birthPlace" type="text" class="form-control ng-untouched ng-pristine ng-invalid" disabled>
+                            </div>
+                        </div> -->
+                        <!-- <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">Domicile</label>
+                                <input placeholder="Domicile" formcontrolname="" type="text" class="form-control ng-untouched ng-pristine ng-invalid" disabled>
+                            </div>
+                        </div> -->
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">Religion</label>
+                                <input placeholder="Religion" formControlName="religion" type="text" class="form-control ng-untouched ng-pristine ng-invalid" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">Nationality</label>
+                                <input placeholder="Nationality" formControlName="nationality" type="text" class="form-control ng-untouched ng-pristine ng-invalid" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">UPSC Roll No</label>
+                                <input placeholder="UPSC Roll No" formControlName="upscRollNo" type="text" class="form-control ng-untouched ng-pristine ng-invalid" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">SSB No</label>
+                                <input placeholder="SSB No" formControlName="ssbSerNo" type="text" class="form-control ng-untouched ng-pristine ng-invalid" disabled >
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">SSB Plan</label>
+                                <input placeholder="SSB Plan" formControlName="ssbPlan" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">Identity Marks</label>
+                                <input placeholder="Iden Mks" formControlName="identificationMarks" type="text" class="form-control ng-untouched ng-pristine ng-invalid" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">Blood Group</label>
+                                <input placeholder="Blood Gp" formControlName="bloodGroup" type="text" class="form-control ng-untouched ng-pristine ng-invalid" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">Name of Father(Guardian, if father not alive)</label>
+                                <input type="text" placeholder="Name of Father" formControlName="fatherName" type="text" class="form-control ng-untouched ng-pristine ng-invalid" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">Father's add (Guardian, if father not alive)</label>
+                                <textarea placeholder="Father's add" formControlName="address_of_next_of_kin_showing_rel" class="form-control ng-untouched ng-pristine ng-invalid" disabled></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">Father's Profession</label>
+                                <input placeholder="Father’s Profession" formControlName="father_profession" type="text" class="form-control ng-untouched ng-pristine ng-invalid" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">Monthly Income</label>
+                                <input placeholder="Monthly Income" formControlName="monthlyIncome" type="text" class="form-control ng-untouched ng-pristine ng-invalid" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">Family Monthly income</label>
+                                <input placeholder="Family Monthly income" formControlName="monthlyIncome" type="text" class="form-control ng-untouched ng-pristine ng-invalid" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">Married/Single</label>
+                                <input placeholder="Married/Single" formControlName="maritalStatus" type="text" class="form-control ng-untouched ng-pristine ng-invalid" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">Spouse Name</label>
+                                <input placeholder="Spouse Name" formControlName="spouseName" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">No of Children</label>
+                                <input placeholder="No of Children" formControlName="noOfChild" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="rank">Permanent Add</label>
+                                <textarea placeholder="Permanent Add" formcontrolname="" rows="3" class="form-control ng-untouched ng-pristine ng-invalid"></textarea>
+                            </div>
+                        </div> -->
+                        <!-- <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">Phone No (Parents)</label>
+                                <input placeholder="Phone No" formcontrolname="" type="text" class="form-control ng-untouched ng-pristine ng-invalid" disabled>
+                            </div>
+                        </div> -->
+                        <!-- <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="rank">E-mail ID (GC)</label>
+                                <input placeholder="E-mail" formcontrolname="" type="text" class="form-control ng-untouched ng-pristine ng-invalid" disabled>
+                            </div>
+                        </div> -->
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="ng-star-inserted">
+                        <div class="mat-new mat-new-inner">
+                            <h4 class="card-heading">Details of Previous Occupation </h4>
+                        </div>
+                    </div>
+                    <div class="mat-card inner-mat-card mat-focus-indicator">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="rank"> Post & Org</label>
+                                    <input placeholder=" Post & Org" formControlName="postAndOrg" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="rank">Period</label>
+                                    <input placeholder="Period" formcontrolname="" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                                </div>
+                            </div> -->
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="rank">Pay</label>
+                                    <input placeholder="Pay" formControlName="pay" type="number" (keypress)="keyPress($event)" class="form-control ng-untouched ng-pristine ng-invalid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ng-star-inserted">
+                        <div class="mat-new mat-new-inner">
+                            <h4 class="card-heading">Details of Previous Service in Armed Forces (If any)</h4>
+                        </div>
+                    </div>
+                    <div class="mat-card inner-mat-card mat-focus-indicator">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="rank">Arm/Service</label>
+                                    <input placeholder="Arm/Service" formControlName="armAndService" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="rank">Period</label>
+                                    <input placeholder="Period" formcontrolname="" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                                </div>
+                            </div> -->
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="rank">Medal/Award</label>
+                                    <input placeholder="Medal/Award" formControlName="medalAward" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ng-star-inserted">
+                        <div class="mat-new mat-new-inner">
+                            <h4 class="card-heading">Applicable to Ex NDA/Ex ACC Cadets</h4>
+                        </div>
+                    </div>
+                    <div class="mat-card inner-mat-card mat-focus-indicator">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="rank">Appt</label>
+                                    <input placeholder="Appt" formControlName="appt" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="rank">Merit</label>
+                                    <input placeholder="Merit" formControlName="merit" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="rank">FGPA</label>
+                                    <input placeholder="FGPA" formControlName="fGPA" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="rank">Achievements</label>
+                                    <input placeholder="Achievements" formControlName="achievements" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ng-star-inserted">
+                        <div class="mat-new mat-new-inner">
+                            <h4 class="card-heading">Applicable to Ex ACC Cadets</h4>
+                        </div>
+                    </div>
+                    <div class="mat-card inner-mat-card mat-focus-indicator">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="rank">Details of Spouse (if any)</label>
+                                    <input placeholder="Details of Spouse" formControlName="spouseDetails" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="rank">Date of Marriage</label>
+                                    <input placeholder="Date of Marriage" formControlName="marriageDate" type="date" class="form-control ng-untouched ng-pristine ng-invalid" max="{{Date}}" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="rank">DO Part II Order No</label>
+                                    <input placeholder="DO Part II Order No" formControlName="orderNo" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ng-star-inserted">
+                        <div class="mat-new mat-new-inner">
+                            <h4 class="card-heading">Applicable to FGCs</h4>
+                        </div>
+                    </div>
+                    <div class="mat-card inner-mat-card mat-focus-indicator">
+                        <div class="row">
+                            <!-- <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="rank">Country</label>
+                                    <input placeholder="Country" formcontrolname="" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                                </div>
+                            </div> -->
+                            <!-- <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="rank">Passport No.</label>
+                                    <input placeholder="Passport No" formcontrolname="" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                                </div>
+                            </div> -->
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="rank">Visa Expiry Date</label>
+                                    <input placeholder="Visa Expiry Dt" formControlName="visaExpiredDate" type="date" class="form-control ng-untouched ng-pristine ng-invalid" min="{{Date}}" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="rank">Details of NOK</label>
+                                    <textarea placeholder="Details of NOK" formControlName="detailsOfNOk" class="form-control ng-untouched ng-pristine ng-invalid"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ng-star-inserted">
+                        <div class="mat-new">
+                            <h4 class="card-heading"> Relative serving in Armed Forces (State his Unit)</h4>
+                        </div>
+                    </div>
+                    <div class="mat-card inner-mat-card mat-focus-indicator">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="rank">Rank</label>
+                                    <input placeholder="Rank" formControlName="rankType" type="text" class="form-control ng-untouched ng-pristine ng-invalid" disabled>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="rank">Name</label>
+                                    <input placeholder="Name" formControlName="rankName" type="text" class="form-control ng-untouched ng-pristine ng-invalid" disabled>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="rank">Relation</label>
+                                    <input placeholder="Relation" formControlName="relation" type="text" class="form-control ng-untouched ng-pristine ng-invalid"disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ng-star-inserted">
+                        <div class="mat-new mat-new-inner">
+                            <h4 class="card-heading">Misc Details (All)</h4>
+                        </div>
+                    </div>
+                    <div class="mat-card inner-mat-card mat-focus-indicator">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="rank">Mobile No</label>
+                                    <input placeholder="Mobile No" formControlName="contactNo" type="text" class="form-control ng-untouched ng-pristine ng-invalid" disabled>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="rank">Pan Card No</label>
+                                    <input placeholder="Pan Card No" formcontrolname="" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                                </div>
+                            </div> -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="rank">Bank Account No</label>
+                                    <input placeholder="Bank Account No" formControlName="bankAccountNo" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="rank">Identity Card No</label>
+                                    <input placeholder="Identity Card No" formcontrolname="" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="ng-star-inserted">
+                        <div class="mat-new mat-new-inner">
+                            <h4 class="card-heading">FAMILY BACKGROUND (Details of Parents, Brothers and Sisters)</h4>
+                        </div>
+                    </div>
+                     <div class="mat-card inner-mat-card mat-focus-indicator">
+                        <table class="tg">
+                            <thead>
+                                <tr>
+                                    <th class="tg-cjmp">S. No.</th>
+                                    <th class="tg-ratz">Name</th>
+                                    <th class="tg-ratz">Relationship</th>
+                                    <th class="tg-ratz">Occupation with Details</th>
+                                    <th class="tg-ratz">Current Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="tg-0pky"><input type="text" formControlName="serialNo"  class="form-control" readonly></td>
+                                    <td class="tg-0pky"><input type="text" formControlName="fatherName"  class="form-control" readonly></td>
+                                    <td class="tg-0pky"><input type="text" formControlName="relation" class="form-control" readonly></td>
+                                    <td class="tg-0pky"><input type="text" formControlName="father_profession" class="form-control" readonly></td>
+                                    <td class="tg-0pky"><input type="text" formControlName="currentStatus" class="form-control" readonly></td>
+                                </tr>
+                              </tbody>
+                        </table>
+                    </div>
+                     <div class="ng-star-inserted">
+                        <div class="mat-new mat-new-inner">
+                            <h4 class="card-heading">EDUCATION/TECHNICAL QUALIFICATION (Details of Graduation, Post Graduation and Technical Qualification to be given)</h4>
+                        </div>
+                    </div>
+                    <div class="mat-card inner-mat-card mat-focus-indicator">
+                        <div formArrayName="cadetEducation">
+                        <table class="tg">
+                            <thead>
+                                <tr>
+                                    <th class="tg-cjmp">S. No.</th>
+                                    <th class="tg-ratz">Qualification</th>
+                                    <th class="tg-ratz">Name of College</th>
+                                    <th class="tg-ratz">University</th>
+                                    <th class="tg-ratz">Subjects</th>
+                                    <th class="tg-ratz">Marks (%)</th>
+                                    <th class="tg-ratz">Div</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- <tr *ngFor="let item of persnolForm.get('cadetEducation').controls;let i = index;"> -->
+                                   <tr *ngFor="let item of getControls(); let i = index">
+                                    <ng-container [formGroupName]="i">
+                                        <td>
+                                            {{i+1}}
+                                        </td>
+                                        <td>
+                                            <input type="text" formControlName="examination"
+                                               
+                                                class="form-control" readonly>
+                                        </td>
+                                        <td>
+                                            <input type="text" formControlName="schoolCollege"
+                                               
+                                                class="form-control" readonly>
+                                        </td>
+                                        <td>
+                                            <input type="text" formControlName="university"
+                                              
+                                                class="form-control" readonly>
+                                        </td>
+                                        <td>
+                                            <input type="text" formControlName="subjectTaken"
+                                               
+                                                class="form-control" readonly>
+                                        </td>
+                                        <td>
+                                            <input type="text" formControlName="percentage"
+                                               
+                                                class="form-control" readonly>
+                                        </td>
+                                        <td>
+                                            <input type="text" formControlName="divisionClass"
+                                              
+                                                class="form-control" readonly>
+                                        </td>
+                                
+                                    
+
+                                    </ng-container>
+
+                                </tr>
+                               </tbody>
+                        </table>
+                        </div>
+                    </div>
+                    <button mat-raised-button (click)="update()">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

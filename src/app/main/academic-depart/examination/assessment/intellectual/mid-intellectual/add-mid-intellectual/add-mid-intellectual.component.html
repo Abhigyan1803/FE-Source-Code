@@ -1,0 +1,252 @@
+<!-- <div>
+    <div class="mat-new">
+        <h4 class="card-heading" *ngIf="mnc=='add'"> Add Drill Marks <span class="sub-menu1"> </span>
+        </h4>
+        <h4 class="card-heading" *ngIf="mnc=='update'">Edit Drill Marks <span class="sub-menu1"> </span>
+        </h4>
+
+    </div>
+    <mat-card>
+        <form [formGroup]="intellectualMidMarkForm">
+            <div class="row1 row234">
+                <div class="example-container" *ngIf="mnc=='add'">
+                    <div class="example-table-container" class="col-md-12">
+                        <div formArrayName="intellectualSkillsSubResult"  class="tab-newcls">
+                            <table  style="margin-left: 0px;
+                            width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <td>No.</td>
+                                        <td>Subject</td>
+                                        <td>Total Marks</td>
+                                        <td>Obtained Marks</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let mr of getCSubjectRes1.controls;let i=index">
+                                        <ng-container [formGroupName]="i">
+                                            <td> {{i+1}} </td>
+                                            <td> {{mr.value.subjectName}} </td>
+                                            <td> {{mr.value.totalMarks}} </td>
+                                            <td>
+                                                <input  min="0" oninput="this.value = 
+                                                !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null" formControlName="obtainedMarks"  class="form-control"
+                                                    (focus)="onFocusEvent($event.target.value)"
+                                                    on-focusout="onChange($event.target.value,mr.value.totalMarks,i)" maxlength="2"
+                                                    (keypress)="keyPress($event)">
+                                            </td>
+                                        </ng-container>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td></td>
+                                        <td>Total</td>
+                                        <td>{{getTotal()}}</td>
+                                        <td>{{totalmarkst}}</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div formArrayName="intellectualSkillsSubResult" *ngIf="mnc=='update'" class="col-md-12">
+                    <table style="margin-left: 0px;
+                    width: 100%;width: 100%;border: 1px solid #ccc;box-shadow: 3px 3px 3px #ccc;">
+                        <thead>
+                            <tr>
+                                <td>No.</td>
+                                <td>Subject</td>
+                                <td>Total Marks</td>
+                                <td>Obtained Marks</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let mr of getCSubjectRes.controls;let i=index">
+                                <ng-container [formGroupName]="i">
+                                    <td> {{i+1}} </td>
+                                    <td> {{mr.value.subjectName}} </td>
+                                    <td> {{mr.value.totalMarks}} </td>
+
+                                    <td>
+                                        <input  min="0" oninput="this.value = 
+                                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null" formControlName="obtainedMarks"  class="form-control"
+                                            (focus)="onFocusEvent($event.target.value,mr.controls.totalMarks.value)"
+                                            on-focusout="onChange($event.target.value,mr.controls.totalMarks.value,i)" maxlength="2"
+                                            (keypress)="keyPress($event)">
+                                    </td>
+                                </ng-container>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td>Total</td>
+                                <td>{{updatetotalmarks}}</td>
+                                <td>{{totalmarkst}}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+                <div class="form-group col-md-12 remarkdiv">
+                    <div *ngIf="mnc=='add'" class="form-group col-md-2 submitbutton">
+                        <button mat-raised-button (click)="submit()">Submit</button>
+                    </div>
+                    <div *ngIf="mnc=='update'" class="form-group col-md-2 submitbutton"
+                        >
+                        <button mat-raised-button (click)="confirm()">CONFIRM</button>
+                    </div>
+                </div>
+            
+
+        </form>
+
+
+    </mat-card>
+</div> -->
+
+
+
+
+
+
+<div class="main-content">
+    <div class="container-fluid">
+        <!-- <div id="top-bar" class="row">
+            <h2>MID-INTELLECTUAL SKILLS > {{term}} > {{type}}</h2>
+        </div> -->
+        <div class="eqtn mb-5">
+            <div class="mat-card mat-focus-indicator">
+                <div class="ng-star-inserted">
+                    <div class="mat-new mb-4">
+                        <h4 class="card-heading"> INTELLECTUAL SKILLS > {{term}} > Mid-Term</h4>
+                    </div>
+                </div>
+                <form [formGroup]="intellectualMidMarkForm">
+                    <div formArrayName="intellectualSkillsSubResult" *ngIf="mnc=='add'">
+                        <table class="tg">
+                            <thead>
+                                <tr>
+                                    <th class="tg-1pqm" rowspan="2"><span
+                                            style="font-weight:700;font-style:normal;text-decoration:none;color:#000">S
+                                            No </span></th>
+                                    <th class="tg-xakg" rowspan="2"><span
+                                            style="font-weight:700;font-style:normal;text-decoration:none;color:#000">Subject</span>
+                                    </th>
+                                    <th class="tg-xakg" rowspan="2"><span
+                                            style="font-weight:700;font-style:normal;text-decoration:none;color:#000">Marks</span>
+                                    </th>
+                                    <th class="tg-xakg" colspan="3"><span
+                                            style="font-weight:700;font-style:normal;text-decoration:none;color:#000">MARKS
+                                            OBTAINED</span></th>
+                                </tr>
+                             
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let mr of getCSubjectRes1.controls;let i=index">
+                                    <ng-container [formGroupName]="i">
+                                        <td> {{i+1}} </td>
+                                        <td> {{mr.value.subjectName}} </td>
+                                        <td> {{mr.value.midTotalMarks}} </td>
+                                        <td colspan="4">
+                                            <input min="0" oninput="this.value = 
+                                    !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                                                formControlName="midObtainedMarks" class="form-control"
+                                                (focus)="onFocusEvent($event.target.value,mr.controls.midTotalMarks.value)"
+                                                on-focusout="onChange($event.target.value,mr.controls.midTotalMarks.value,i)"
+                                                maxlength="2" (keypress)="keyPress($event)">
+                                        </td>
+                                        
+                                    </ng-container>
+                                </tr>
+                                
+                                <tr>
+                                    <td class="tg-amwm" colspan="2"><span
+                                            style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">Total</span>
+                                    </td>
+                                    <td class="tg-amwm"><span
+                                            style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">{{getTotal()}}</span>
+                                    </td>
+                                    <td class="tg-0lax">{{totalmarkst}}</td>
+                                </tr>
+                               
+                               
+                               
+                            </tbody>
+                        </table>
+                        <br>
+
+                    </div>
+                    <br>
+                    <br>
+                    <div formArrayName="intellectualSkillsSubResult" *ngIf="mnc=='update'">
+                        <table class="tg">
+                            <thead>
+                                <tr>
+                                    <th class="tg-1pqm" rowspan="2"><span
+                                            style="font-weight:700;font-style:normal;text-decoration:none;color:#000">S
+                                            No </span></th>
+                                    <th class="tg-xakg" rowspan="2"><span
+                                            style="font-weight:700;font-style:normal;text-decoration:none;color:#000">Events</span>
+                                    </th>
+                                    <th class="tg-xakg" rowspan="2"><span
+                                            style="font-weight:700;font-style:normal;text-decoration:none;color:#000">Marks</span>
+                                    </th>
+                                    <th class="tg-xakg" colspan="3"><span
+                                            style="font-weight:700;font-style:normal;text-decoration:none;color:#000">MARKS
+                                            OBTAINED</span></th>
+                                </tr>
+                              
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let mr of getCSubjectRes.controls;let i=index">
+                                    <ng-container [formGroupName]="i">
+                                        <td> {{i+1}} </td>
+                                        <td> {{mr.value.subjectName}} </td>
+                                        <td> {{mr.value.midTotalMarks}} </td>
+                                        
+                                        <td colspan="4">
+                                            <input min="0" oninput="this.value = 
+                                    !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                                                formControlName="midObtainedMarks" class="form-control"
+                                                (focus)="onFocusEvent($event.target.value,mr.controls.midTotalMarks.value)"
+                                                on-focusout="onChange($event.target.value,mr.controls.midTotalMarks.value,i)"
+                                                maxlength="2" (keypress)="keyPress($event)">
+                                        </td>
+                                    </ng-container>
+                                </tr>
+                                
+                                <tr>
+                                    <td class="tg-amwm" colspan="2"><span
+                                            style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">Total</span>
+                                    </td>
+                                    <td class="tg-amwm"><span
+                                            style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">{{updatetotalmarks}}</span>
+                                    </td>
+                                    <td class="tg-0lax">{{totalmarkst}}</td>
+                                </tr>
+                               
+                               
+                               
+                            </tbody>
+                        </table>
+                        <br>
+
+                    </div>
+                    
+                        <div *ngIf="mnc=='add'" class="form-group col-md-2">
+                            <button mat-raised-button (click)="submit()">Submit</button>
+                        </div>
+                        <div *ngIf="mnc=='update'" class="form-group col-md-2 submitbutton"
+                            >
+                            <button mat-raised-button (click)="confirm()">CONFIRM</button>
+                        </div>
+                
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

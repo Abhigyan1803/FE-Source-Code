@@ -1,0 +1,107 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="mat-heading">
+            <div id="top-bar" class="">
+                <h2 class="backbtn"><button mat-icon-button (click)="goBack()">
+                    <mat-icon>chevron_left</mat-icon>
+                  </button>E-Dossier <span class="sub-menu1">
+                > OBSN Sheet > OBSN SHEET All TERM</span></h2>
+          </div>
+          </div>
+        <div class="obsn-sheet">
+            <div class="mat-card mat-focus-indicator">
+                <!-- <div class="ng-star-inserted">
+                    <div class="mat-new">
+                        <h4 class="card-heading">OBSN SHEET: ALL TERMS</h4>
+                    </div>
+                </div> -->
+                <form class="ng-untouched ng-pristine ng-invalid">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="rank">IMA No.</label>
+                                <input placeholder="No" formcontrolname="" disabled id="cadetServiceId" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                            </div>
+                        </div>	
+                        <div class="col-md-2">
+                            <div class="form-group">
+                              <label for="rank">Term</label>
+                              <input placeholder="Term"  type="text" disabled id="cadettermname" class="form-control ng-untouched ng-pristine ng-invalid">
+                            </div>
+                          </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="rank">Rank</label>
+                                <input placeholder="Rank" formcontrolname="" disabled id="cadetRank" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="rank">Name</label>
+                                <input placeholder="Name" formcontrolname="" disabled id="cadetName" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="rank">Bn</label>
+                                <input placeholder="Bn" formcontrolname="" disabled id="battalionName" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="rank">Coy</label>
+                                <input placeholder="Coy" formcontrolname="" disabled id="companyName" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                            </div>
+                        </div>
+                        
+                    </div>
+                </form>
+                <form [formGroup]="obsnDetailsFormI">
+                    <table class="tg">
+                        <thead>
+                          <tr>
+                            <th class="tg-t7dr">S NO</th>
+                            <th class="tg-t7dr">Date</th>
+                            <th class="tg-t7dr">Term</th>
+                            <th class="tg-t7dr">Obsn</th>
+                            <th class="tg-t7dr">Remarks</th>
+                            <th class="tg-t7dr" colspan="2">Sig of Pl Cdr</th>
+                          </tr>
+                        </thead>
+                        <tbody formArrayName="obsnForm">
+                          <tr *ngFor="let item of getForm.controls; let i=index;let l=last"
+                          [formGroupName]="i">
+                            <td class="tg-0lax">{{i+1}}</td>
+                            <td class="tg-0lax" ><input type="Date" min="{{minDate}}" class="form-control" formControlName="date"></td>
+                            <td class="tg-0lax"><div class="form-group" >
+                                  <!-- <select class="custom-select" id="">
+                                    <option selected>Choose...</option>
+                                    <option value="1">TERM-I</option>
+                                    <option value="2">TERM-II</option>
+                                    <option value="3">TECH-II</option>
+                                    <option value="3">TERM-III</option>
+                                  </select> -->
+                                  <select id="term" type="text" class="form-control" formControlName="termId" (change)="termChange($event.target.value)"
+                    placeholder="Term">
+                    <option value="" selected hidden disabled >Select</option>
+                    <option *ngFor="let t of terms" [value]="t.id">{{t.name}} </option>
+                </select>
+                                </div>
+                            </td>
+                            <td class="tg-0lax"><input type="text" class="form-control" formControlName="obsn"></td>
+                            <td class="tg-0lax"><input type="text" class="form-control" formControlName="remarks"></td>
+                            <td class="tg-0lax"><input type="text" class="form-control" formControlName="sigOfPiCdr"></td>
+                            <td class="tg-0lax" *ngIf="obsnDetailsFormI.controls.obsnForm.controls.length > 1"><button (click)="removeAForm(i)" class="btn btn-danger">Delete</button></td>
+                          </tr>
+                        </tbody>
+                        </table>
+                </form>
+                
+                <button type="button" (click)="addForm()" class="btn btn-color pull-right mt-2"><mat-icon>add_circle_outline</mat-icon>
+                </button>
+                <button class="btn btn-color mt-2" (click)="addObsnsubmit1()">Submit</button>
+                
+            </div>
+        </div>
+    </div>
+</div>

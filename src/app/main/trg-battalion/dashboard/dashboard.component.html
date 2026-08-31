@@ -1,0 +1,172 @@
+<div class="mat-new">
+    <h4 class="card-heading"> Dashboard <span class="sub-menu1"> </span> </h4>
+</div>
+
+<mat-card>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 cap-img">
+                <img [src]="IP+Myimage">
+            </div>
+            <div class="col-md-9 hding">
+                <h4>History of the battalion</h4>
+                <p>{{Myhistory}}</p>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-12 hding text-center">
+                <h4 style="margin-top: 20px;">{{userDetails.name}} Battalion</h4>
+
+            </div>
+
+            <div class="col-md-12">
+                <div class="conta-box" style="margin: 0px auto 0;width: 100%;display: table;">
+                    <ul>
+                        <span class="photu"><img (error)="noImg($event)" [src]="IP+bnCdr.image" class="org_img"></span>
+                        <li class="director">
+                            <a href="javascript:void(0)">BN Cdr <br> <span>{{bnCdr.name}}</span></a>
+                        </li>
+
+                        <div class="space" style="height: 200px !important;"></div>
+                        <div class="dev">
+                            
+                            <div class="inerr">
+                                <div class="sp1"></div>
+                                <span class="photu"><img (error)="noImg($event)" [src]="IP+aq.image"
+                                        class="org_img"></span>
+                                <li class="director">
+                                    <a href="javascript:void(0)">AQ <br> <span>{{aq.name}}</span></a>
+                                </li>
+                            </div>
+                        </div>
+                    </ul>
+
+                    <div class="align">
+                        <div class="top_border"></div>
+
+                        <ul class="three">
+                            <li>
+                                <div class="space"></div>
+                                <span class="photu"><img (error)="noImg($event)" [src]="IP+coyCmdrs[0]?.image"
+                                        class="org_img"></span>
+                                <div class="director">
+                                    <a href="#">{{abc}} Cdr<br> <span>
+                                            {{coyCmdrs[0]?.name || "-"}}</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="space"></div>
+                                <span class="photu"><img (error)="noImg($event)" [src]="IP+coyCmdrs[1]?.image"
+                                        class="org_img"></span>
+                                <div class="director">
+                                    <a href="#">{{abc1}} Cdr<br> <span>
+                                            {{coyCmdrs[1]?.name || "-"}}</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="space"></div>
+                                <span class="photu"><img (error)="noImg($event)" [src]="IP+coyCmdrs[2]?.image"
+                                        class="org_img"></span>
+                                <div class="director">
+                                    <a href="#">{{abc2}} Cdr<br> <span>
+                                            {{coyCmdrs[2]?.name || "-"}}</span></a>
+                                </div>
+                            </li>
+                            <!-- <li>
+                                <div class="space"></div>
+                                <span class="photu"><img (error)="noImg($event)" [src]="IP+coyCmdrs[3]?.image"
+                                        class="org_img"></span>
+                                <div class="director">
+                                    <a href="#">{{abc3}} Cdr<br> <span>
+                                            {{coyCmdrs[3]?.name || "-"}}</span></a>
+                                </div>
+                            </li> -->
+                        </ul>
+
+                    </div>
+                </div>
+
+
+                <div class="new_row container">
+                    <div class="row">
+                        <!-- <div class="col-md-3 hding new-boder">
+                            <h4>Gallantry Awardees</h4>
+                            <div class="scrollar">
+                                <div *ngFor="let n of awardeesList" class="parent_row">
+                                    <img  (error)="noImg($event)" [src]="IP+n.image" class="img_class">
+                                    <div class="name_cls">
+                                        <div>
+                                            <h5>{{n.rank}} {{n.name}}</h5> 
+                                            <h6>{{n.company.name}}</h6>
+                                        </div>
+                                        <div>
+                                            <p>{{n.award}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <!-- <div class="col-md-6 ">
+                            <div class="hding new-boder">
+                                <h4>GC Activities and Programmes</h4>
+                                <div id="demo" *ngIf="activities.length" class="carousel slide" data-ride="carousel">
+                                    <div class="w3-content w3-section img-slider" style="max-width: 100%;height: auto;">
+                                        <div class="carousel-inner">
+                                            <ng-container *ngIf="activities.length">
+                                                <ngx-slick-carousel class="carousel" #slickModal="slick-carousel"
+                                                    [config]="slideConfig">
+                                                    <div  ngxSlickItem *ngFor="let b of activities" class="slide">
+                                                        <img [src]="IP+b.image" alt="" width="100%" height="100%" >
+                                                    </div>
+                                                </ngx-slick-carousel>
+                                            </ng-container>
+                                        </div>
+                                        <ng-container *ngIf="!activities.length">
+                                            <h4 class="no_data">No activities are added!</h4>
+                                        </ng-container>
+
+                                    </div>
+
+                                  
+
+                                </div>
+
+
+
+                            </div>
+                        </div> -->
+
+
+                        <div class="col-md-3 hding new-boder" *ngFor="let a of performanceList">
+                            <h4>Performance Highlights  <mat-icon (click)="edit(a.id)">
+                                edit
+                            </mat-icon></h4>
+                          
+                            <div class="scrollar">
+                                <div   class="parent_row">
+                                    <!-- <img (error)="noImg($event)"  [src]="a.image" class="img_class"> -->
+                                    <div class="name_cls border">
+                                        <h5>{{a.company}}</h5>
+                                        <p>{{a.description}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+</mat-card>

@@ -1,0 +1,84 @@
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="mat-heading">
+        <div id="top-bar" class="">
+          <h2 class="backbtn"><button mat-icon-button (click)="goBack()">
+            <mat-icon>chevron_left</mat-icon>
+          </button>E-Dossier <span class="sub-menu1">
+            > Interviews > SPECIAL INTERVIEW</span></h2>
+        </div>
+      </div>
+      
+      <div class="interview-sheet">
+        <div class="mat-card mat-focus-indicator">
+          <!-- <div class="ng-star-inserted">
+            <div class="mat-new">
+              <h4 class="card-heading">SPECIAL INTERVIEW</h4>
+            </div>
+          </div> -->
+          <form class="ng-untouched ng-pristine ng-invalid">
+            <div class="row">
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="rank">IMA No.</label>
+                  <input placeholder="No"  type="text" disabled id="spcadetServiceId" class="form-control ng-untouched ng-pristine ng-invalid">
+                </div>
+              </div>  
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="rank">Rank</label>
+                  <input placeholder="Rank"  type="text" disabled id="spcadetRank" class="form-control ng-untouched ng-pristine ng-invalid">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="rank">Name</label>
+                  <input placeholder="Name"  type="text" disabled id="spcadetName" class="form-control ng-untouched ng-pristine ng-invalid">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="rank">Term</label>
+                  <input placeholder="Term"  type="text" disabled id="sptermName" class="form-control ng-untouched ng-pristine ng-invalid">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="rank">Bn</label>
+                  <input placeholder="Bn"  type="text" disabled id="spbattalionName" class="form-control ng-untouched ng-pristine ng-invalid">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="rank">Coy</label>
+                  <input placeholder="Coy"  type="text" disabled id="spcompanyName" class="form-control ng-untouched ng-pristine ng-invalid">
+                </div>
+              </div>
+              
+            </div>
+          </form>
+            <table class="tg">
+            <thead>
+              <tr>
+                <th class="tg-t2cw" rowspan="2"><span style="font-weight:700;font-style:normal;text-decoration:underline;color:#000;background-color:transparent">Date</span></th>
+                <th class="tg-t2cw"><span style="font-weight:700;font-style:normal;text-decoration:underline;color:#000;background-color:transparent">Details</span></th>
+                <th class="tg-t2cw" rowspan="2"><span style="font-weight:700;font-style:normal;text-decoration:underline;color:#000;background-color:transparent">GCs Initials with date</span></th>
+              </tr>
+              <tr> <th class="tg-t2cw">SPECIAL INTERVIEW</th></tr>
+            </thead>
+            <tbody>
+              <tr [formGroup]="interviewFormI">
+                <td class="tg-0lax"><input type="date" max="{{maxDate}}" formControlName="date" class="form-control"></td>
+                <td class="tg-0lax"><textarea class="form-control"  maxlength="1500"
+                  formControlName="specialInterview" (keypress)="$event.keyCode === 32 && !$event.target.value.length ? $event.preventDefault() : true" rows="3"></textarea></td>
+                <td class="tg-0lax"><input type="text"  formControlName="gcInitialsWithDate" disabled class="form-control"></td>
+              </tr>
+            </tbody>
+            </table>
+            <div class="text-right">
+              <button class="btn btn-color mt-2" (click)="addClubsubmitI()">Submit</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>

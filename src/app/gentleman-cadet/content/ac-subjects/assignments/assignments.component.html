@@ -1,0 +1,331 @@
+<div>
+    <!-- <mat-toolbar> -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="">
+            <a class="navbar-brand "> <strong> <span class="asgnmt" >Assignment : </span><span class="paper-name">{{subject}}</span> </strong> </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" routerLinkActive="active-paper">
+                    <button style="outline: none;" mat-button [matMenuTriggerFor]="paper1">
+                        Paper 1 <mat-icon>expand_more</mat-icon>
+                    </button>
+                    <mat-menu #paper1="matMenu">
+                        <a href="javascript:void(0)" mat-menu-item
+                            [routerLink]="['/gc/content/ac-subjects/assignments/Paper 1/Military History']">
+                            <button style="outline: none;" mat-button>
+                                Military History
+                            </button>
+                        </a>
+                        <a href="javascript:void(0)" mat-menu-item
+                            [routerLink]="['/gc/content/ac-subjects/assignments/Paper 1/Military Geography']">
+                            <button style="outline: none;" mat-button>Military Geography</button>
+                        </a>
+                    </mat-menu>
+
+
+                </li>
+                <li class="nav-item" routerLinkActive="active-paper">
+                    <button style="outline: none;" mat-button [matMenuTriggerFor]="paper2">Paper 2 <mat-icon>expand_more
+                        </mat-icon></button>
+                    <mat-menu #paper2="matMenu">
+                        <a href="javascript:void(0)" mat-menu-item
+                            [routerLink]="['/gc/content/ac-subjects/assignments/Paper 2/CAIR']">
+                            <button style="outline: none;" mat-button>CAIR</button>
+                        </a>
+                        <a href="javascript:void(0)" mat-menu-item
+                            [routerLink]="['/gc/content/ac-subjects/assignments/Paper 2/BS']">
+                            <button style="outline: none;" mat-button>BS</button>
+                        </a>
+                    </mat-menu>
+                </li>
+                <li class="nav-item" routerLinkActive="active-paper">
+                    <button style="outline: none;" mat-button [matMenuTriggerFor]="paper3">Paper 3 <mat-icon>expand_more
+                        </mat-icon> </button>
+                    <mat-menu #paper3="matMenu">
+                        <a href="javascript:void(0)" mat-menu-item
+                            [routerLink]="['/gc/content/ac-subjects/assignments/Paper 3/Science and Warfare']">
+                            <button style="outline: none;" mat-button>Science & Warfare</button>
+                        </a>
+                    </mat-menu>
+                </li>
+                <li class="nav-item" routerLinkActive="active-paper">
+                    <button style="outline: none;" mat-button [matMenuTriggerFor]="paper4">Paper 4 <mat-icon>expand_more
+                        </mat-icon> </button>
+                    <mat-menu #paper4="matMenu">
+                        <a href="javascript:void(0)" mat-menu-item
+                            [routerLink]="['/gc/content/ac-subjects/assignments/Paper 4/SWT']">
+                            <button style="outline: none;" mat-button>SWT</button>
+                        </a>
+                    </mat-menu>
+
+                </li>
+                <li class="nav-item" routerLinkActive="active-paper">
+
+                    <button style="outline: none;" mat-button [matMenuTriggerFor]="paper5">Paper 5 <mat-icon>expand_more
+                        </mat-icon> </button>
+                    <mat-menu #paper5="matMenu">
+                        <a href="javascript:void(0)" mat-menu-item
+                            [routerLink]="['/gc/content/ac-subjects/assignments/Paper 5/ECS']">
+                            <button style="outline: none;" mat-button>ECS</button>
+                        </a>
+                    </mat-menu>
+
+
+
+                </li>
+                <li class="nav-item" routerLinkActive="active-paper">
+                    <button style="outline: none;" mat-button [matMenuTriggerFor]="paper6">Paper 6 <mat-icon>expand_more
+                        </mat-icon> </button>
+                    <mat-menu #paper6="matMenu">
+
+                        <a href="javascript:void(0)" mat-menu-item
+                            [routerLink]="['/gc/content/ac-subjects/assignments/Paper 6/IT']">
+                            <button style="outline: none;" mat-button>IT</button>
+
+                        </a>
+                    </mat-menu>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+        <!-- 
+              <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+              </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </div>
+        </nav>
+             -->
+
+
+
+    </nav>
+
+
+
+
+
+
+    <!-- <button mat-button [matMenuTriggerFor]="paper1">Paper 1</button>
+        <mat-menu #paper1="matMenu">
+            <a href="javascript:void(0)" mat-menu-item
+                [routerLink]="['/gc/content/ac-subjects/assignments/Paper 1/Military History']">
+                <button mat-button>Military History</button>
+            </a>
+            <a href="javascript:void(0)" mat-menu-item
+                [routerLink]="['/gc/content/ac-subjects/assignments/Paper 1/Military Geography']">
+                <button mat-button>Military Geography</button>
+            </a>
+        </mat-menu>
+
+        <button mat-button [matMenuTriggerFor]="paper2">Paper 2</button>
+        <mat-menu #paper2="matMenu">
+            <a href="javascript:void(0)" mat-menu-item
+                [routerLink]="['/gc/content/ac-subjects/assignments/Paper 2/CAIR']">
+                <button mat-button>CAIR</button>
+            </a>
+            <a href="javascript:void(0)" mat-menu-item
+                [routerLink]="['/gc/content/ac-subjects/assignments/Paper 2/BS']">
+                <button mat-button>BS</button>
+            </a>
+        </mat-menu>
+
+        <button mat-button [matMenuTriggerFor]="paper3">Paper 3</button>
+        <mat-menu #paper3="matMenu">
+            <a href="javascript:void(0)" mat-menu-item
+                [routerLink]="['/gc/content/ac-subjects/assignments/Paper 3/Science and Warfare']">
+                <button mat-button>Science & Warfare</button>
+            </a>
+        </mat-menu>
+
+        <button mat-button [matMenuTriggerFor]="paper4">Paper 4</button>
+        <mat-menu #paper4="matMenu">
+            <a href="javascript:void(0)" mat-menu-item
+                [routerLink]="['/gc/content/ac-subjects/assignments/Paper 4/SWT']">
+                <button mat-button>SWT</button>
+            </a>
+        </mat-menu>
+
+        <button mat-button [matMenuTriggerFor]="paper5">Paper 5</button>
+        <mat-menu #paper5="matMenu">
+            <a href="javascript:void(0)" mat-menu-item
+                [routerLink]="['/gc/content/ac-subjects/assignments/Paper 5/ECS']">
+                <button mat-button>ECS</button>
+            </a>
+        </mat-menu>
+
+        <button mat-button [matMenuTriggerFor]="paper6">Paper 6</button>
+        <mat-menu #paper6="matMenu">
+            <a href="javascript:void(0)" mat-menu-item
+                [routerLink]="['/gc/content/ac-subjects/assignments/Paper 6/IT']">
+                <button mat-button>IT</button>
+
+            </a>
+        </mat-menu> -->
+
+
+
+
+    <!-- </mat-toolbar> -->
+    <div class="alert-warning note p-2" *ngIf="!assignments.length" >
+       <strong>Note:</strong> Please Don't Change the page untill you submit your Answer.
+    </div>
+    <!-- <mat-card *ngIf="!assignments.length">
+        <div class="text-center">
+            <img src="assets\img\no_data_available.png" alt="">
+        </div>
+    </mat-card> -->
+    <ng-container >
+
+        <div *ngFor="let a of assignments;let i=index" class="m-2">
+            <mat-accordion>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <h4>
+                                {{a.assignment}}
+
+                            </h4>
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <div class="question">
+                        <div class="col-md-1">
+                            <span>
+                                <h5>Question: </h5>
+                               
+                            </span>
+                            <span>
+                                <h5>Questions In File: </h5>
+                               
+                            </span>
+                           
+                        </div>
+
+                        <div class="col-md-11">
+                            <p [innerHTML]="a.question"></p>
+                            <a  *ngIf="a.file!==null" href="javascript:void(0)" (click)="openDoc(a)" >
+                                <mat-icon>description</mat-icon>
+                            </a> 
+                        </div>
+                    </div>
+
+                    <!-- <div class="question">
+                        <div class="col-md-1">
+                            <span>
+                                <h5>Questions File: </h5>
+                                
+                            </span>
+                           
+                        </div>
+
+                        <div class="col-md-11">
+                            <a  href="javascript:void(0)" (click)="openDoc(a)" >
+                                <mat-icon>description</mat-icon>
+                            </a>  
+                        </div>
+                    </div> -->
+
+                    <div class="col">
+                        <span>
+                            <h5>Last Submission Date:- {{a.lastSubmissionDate}} </h5>
+                            <p ></p>
+
+                            
+                        </span>
+                       
+                    </div>
+
+                    <div class="col">
+
+                    </div>
+                
+                   
+
+                   
+                    <!-- {{a | json}} -->
+                    <div>
+                        <ckeditor *ngIf="!a.isAnswered" [(ngModel)]="cadetAnsArr[i].answer" (change)="onChange($event)"
+                            (mouseover)="movementEvent($event,'mouseover')"
+                            (mouseout)="movementEvent($event,'mouseout')" (click)="movementEvent($event,'click')">
+                        </ckeditor>
+                        <br>
+                    
+                        <div *ngIf="a.isAnswered" class="question">
+                            <div class="col-md-2">
+
+                                <h5>Answer You Submitted : </h5>
+                                <h5>Answer You Submitted By File: </h5>
+
+                            </div>
+                            <div class="col-md-10">
+                                <p [innerHTML]="a.answer"></p>
+                                <a  *ngIf="a.file!==null" href="javascript:void(0)" (click)="openDoc1(a)">
+                                    <mat-icon>description</mat-icon>
+                                </a>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-2">
+
+                        </div>
+                        <div class="form-group col" *ngIf="!a.isAnswered"  >
+                            <label class="form-label">Answer File Upload</label>
+                              <input type="file" #inputFile accept=".pdf,.doc,.docx"   (change)="upload1($event)" id="image">
+                              <span class="note">Max File Size 50 MB. (Only pdf and doc format.)</span>
+                              
+                          </div>
+                        <div style="float: right;" class="mt-2">
+                            <button mat-raised-button  *ngIf="!a.isAnswered" [disabled]="submissionDate<currentDate" (click)="submitAnswer(i)">
+                                Submit
+                            </button>
+                        </div>
+
+                    </div>
+                
+                </mat-expansion-panel>
+            </mat-accordion>
+
+
+        </div>
+
+    </ng-container>
+</div>

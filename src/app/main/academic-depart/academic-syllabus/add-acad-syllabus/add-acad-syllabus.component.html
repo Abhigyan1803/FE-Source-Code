@@ -1,0 +1,53 @@
+<div class="mat-new">
+    <h4 class="card-heading">
+      <button mat-icon-button (click)="goBack()">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      Syllabus <span class="sub-menu1">  <span class="sub-menu1"> > {{term}} > {{paper}} > {{sTitle}} > {{pageTitle}}</span></span>
+    </h4>
+  </div>
+  <mat-card>
+    <div class="top-br">
+      <form [formGroup]="addAcadSyllabus">
+
+        <div class="row">
+            <div class="form-group col-md-6">
+               <label for="position">Name<span class="required">*</span></label>
+               <input id="name" type="text" class="form-control" maxlength="100" formControlName="name"
+               placeholder="Name">
+                <span class="validation_msg"
+                    *ngIf="f.name.errors && f.name.errors.required && isError">Please Enter Name</span>
+            </div>
+        </div> 
+
+
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="form-label">Document<span class="required">*</span></label>
+                <input type="file" #inputFile accept=".pdf,.doc,.docx, .ppt, .pptx" (change)="onSelectDoc($event)" id="image">
+                <mat-icon  class="document_icon" *ngIf="url" (click)="openDoc(url)"> description</mat-icon>
+                <span class="note">Max File Size 200 MB. (Only PDF/DOC/DOCX/PPT/PPTX format.)
+                  <!-- {{url}} -->
+                </span>
+                <span class="validation_msg" *ngIf="!isDoc && isError">Document is required</span>
+            </div>
+        </div>
+  
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label class="form-label"> Status <span class="required">*</span></label>
+            <select class="form-control" formControlName="status">
+              <option value="" selected hidden disabled>Select</option>
+              <option value="1">Active</option>
+              <option value="0">Inactive</option>
+            </select>
+            <span class="validation_msg" *ngIf="f.status.errors && f.status.errors.required && isError">Status is required</span>
+          </div>
+        </div>
+  
+        <button *ngIf="!id" mat-raised-button (click)="addSyllabus()">Add Syllabus</button>
+        <button *ngIf="id" mat-raised-button (click)="update()">Update Syllabus</button>
+  
+      </form>
+    </div>
+  </mat-card>

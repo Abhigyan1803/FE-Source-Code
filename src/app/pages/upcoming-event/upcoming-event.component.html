@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <div class="row" id="top-baner">
+   
+    </div>
+   </div>
+   
+   <div class="container-fluid">
+    <div class="row">
+   <div class="container py-5">
+   
+       <div class="row">
+           <div class="col-lg-12 app-12 mx-auto">
+               <div class="dates">
+                 <input class="col-md-3" type="text" name="" placeholder="From">
+                 <p class="">to</p>
+                 <input class="col-md-3" type="text" name="" placeholder="To">
+                 <p class="">or</p>
+                 <select class="col-md-4">
+                   <option>This Week</option>
+                   <option>This Month</option>
+                   <option>This Day</option>
+                 </select>
+                 <button class="sub col-md-1" type="submit">Submit</button>
+               </div>
+               <!-- List group-->
+               <ul class="list-group ">
+                   <!-- list group item-->
+                   
+                   <li class="list-group-item shadow" *ngFor="let e of eventsList">
+                       <!-- Custom content-->
+                       <img src="{{e.image}}" width="200" class="">
+                       <div class="media1">
+                           <div class="media-body">
+                            <span class="dates">{{e.eventDate | date}}</span>
+
+                               <h5 class="mt-0 font-weight-bold">{{e.title}}</h5> 
+                               <p class="">{{e.description}}</p>
+                               <div class="d-flex align-items-center justify-content-between mt-1">
+                                   <h6 class="font-weight-bold"><i class="fa fa-clock-o"></i> {{e.eventDate | date:'shortTime'}}</h6>
+                                  
+                               </div>
+                           </div>
+                           
+                       </div> <!-- End -->
+   
+                   </li> <!-- End -->
+                   <!-- list group item-->
+                    <!-- End -->
+                   <!-- list group item -->
+                   
+                   <!-- list group item -->
+                   
+               </ul> <!-- End -->
+           </div>
+       </div>
+   </div>
+    </div>
+   </div>
+   

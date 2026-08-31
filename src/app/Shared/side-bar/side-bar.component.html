@@ -1,0 +1,219 @@
+<div class="sidebar-panel gene-sidenav" fxLayout="column">
+   <mat-toolbar class="sidebar-logo">
+      <div class="gene-logo">
+         <a href="javascript:void(0)">
+            <div class="logo-sign inline-block">
+               <h1>{{templateTitle}}</h1>
+               <!-- <img src="assets/img/logo-sign.png" width="30" height="30"> -->
+            </div>
+
+            <!-- <div class="logo-text inline-block"><img src="assets/img/logo-text.png" width="90" height="27"></div> -->
+         </a>
+      </div>
+   </mat-toolbar>
+
+   <mat-divider></mat-divider>
+
+   <perfect-scrollbar>
+      <div class="sidebar-container">
+         <!-- 
+         <div class="gene-user-thumb text-center">
+            <img class="img-responsive img-circle" src="assets/img/pro-thumb.jpg" width="107" height="107" alt="user list image">
+            <div class="gene-user-name">John Hobbs</div>
+         </div> 
+         -->
+         <div class="sidenav-scrollbar-container" fxLayout="column">
+
+            <ng-container>
+               <mat-nav-list fxLayout="column" menuToggleDirective class="navigation">
+                  <mat-list-item menuToggleLink *ngFor="let menuitem of menuList;let h=index">
+
+                     <a menuToggle class="gene-relative" mat-ripple [routerLink]="['/'+ menuitem.state]"
+                        routerLinkActive="active-link" *ngIf="menuitem.type === 'link'">
+                        <!-- <mat-icon>{{ menuitem.icon }}</mat-icon> -->
+                        <span>{{ menuitem.name | translate }}</span>
+                        <ng-container *ngIf="menuitem.label">
+                           <span class="sidebar-label">{{ menuitem.label}}</span>
+                        </ng-container>
+                     </a>
+
+                     <mat-divider></mat-divider>
+
+                     <span></span>
+
+                     <!-- sub menu l1 -->
+
+                     <a menuToggle class="gene-relative" mat-ripple href="javascript:void(0)"
+                        *ngIf="menuitem.type === 'sub'">
+                        <!-- <mat-icon>{{ menuitem.icon }}</mat-icon> -->
+                        <span>{{ menuitem.name }}</span>
+                        <ng-container *ngIf="menuitem.label">
+                           <span class="sidebar-label">{{ menuitem.label}}</span>
+                        </ng-container>
+                        <span fxFlex></span>
+                        <mat-icon class="menu-caret">chevron_right</mat-icon>
+                     </a>
+                     <mat-divider></mat-divider>
+
+                     <mat-nav-list class="sub-menu" *ngIf="menuitem.type === 'sub'">
+
+                        <mat-list-item *ngFor="let childitem of menuitem.children;let i=index" routerLinkActive="open">
+
+                           <a [routerLink]="['/'+menuitem.state+'/'+childitem.state ]" *ngIf="childitem.type === 'link'"
+                              routerLinkActive="active-link" class="gene-relative" mat-ripple>
+                              {{ childitem.name | translate }}
+                              <ng-container *ngIf="childitem.label">
+                                 <span class="sidebar-label">{{childitem.label}}</span>
+                              </ng-container>
+                           </a>
+                           <mat-divider></mat-divider>
+
+                           <!-- sub menu l2 -->
+                           <a class="gene-relative" mat-ripple href="javascript:void(0)"
+                              (click)="openSubMenu2('sub-menu2'+h+i,'menu-caret'+h+i)" *ngIf="childitem.type === 'sub'">
+                              <!-- <mat-icon>{{ menuitem.icon }}</mat-icon> -->
+                              <span>{{ childitem.name | translate }}</span>
+                              <ng-container *ngIf="menuitem.label">
+                                 <span class="sidebar-label">{{ childitem.label}}</span>
+                              </ng-container>
+                              <span fxFlex></span>
+                              <mat-icon style="margin: 0 0 0 0;" class="'menu-caret'+h+i" [id]="'menu-caret'+h+i">
+                                 chevron_right</mat-icon>
+                           </a>
+                           <mat-divider></mat-divider>
+
+                           <mat-nav-list style="display: none;" [id]="'sub-menu2'+h+i" class="sub-menu-2"
+                              *ngIf="childitem.type === 'sub'">
+                              <mat-list-item *ngFor="let childitem2 of childitem.children;let j=index"
+                                 routerLinkActive="open">
+
+                                 <a [routerLink]="['/'+menuitem.state+'/'+childitem.state +'/'+childitem2.state ]"
+                                    *ngIf="childitem2.type === 'link'" routerLinkActive="active-link"
+                                    class="gene-relative" mat-ripple>
+                                    {{ childitem2.name }}
+                                    <ng-container *ngIf="childitem.label">
+                                       <span class="sidebar-label">{{childitem2.label}}</span>
+                                    </ng-container>
+                                 </a>
+                                 <mat-divider></mat-divider>
+
+                                 <a class="gene-relative" mat-ripple href="javascript:void(0)"
+                                    (click)="openSubMenu3('sub-menu3'+h+i+j,'menu-caret'+h+i+j)"
+                                    *ngIf="childitem2.type === 'sub'">
+                                    <!-- <mat-icon>{{ menuitem.icon }}</mat-icon> -->
+                                    <span>{{ childitem2.name }}</span>
+                                    <ng-container *ngIf="menuitem.label">
+                                       <span class="sidebar-label">{{ childitem2.label}}</span>
+                                    </ng-container>
+                                    <span fxFlex></span>
+                                    <mat-icon style="margin: 0 0 0 0;" class="'menu-caret'+h+i+j"
+                                       [id]="'menu-caret'+h+i+j">chevron_right
+                                    </mat-icon>
+                                 </a>
+
+                                 <mat-nav-list style="display: none;" [id]="'sub-menu3'+h+i+j" class="sub-menu-3"
+                                    *ngIf="childitem.type === 'sub'">
+                                    <mat-list-item *ngFor="let childitem3 of childitem2.children;let k=index"
+                                       routerLinkActive="open">
+                                       <a *ngIf="childitem3.type === 'link'"
+                                          [routerLink]="['/'+menuitem.state+'/'+childitem.state +'/'+childitem2.state +'/'+childitem3.state ]"
+                                          routerLinkActive="active-link" class="gene-relative" mat-ripple>
+                                          {{ childitem3.name }}
+                                          <ng-container *ngIf="childitem.label">
+                                             <span class="sidebar-label">{{childitem3.label}}</span>
+                                          </ng-container>
+                                       </a>
+                                       <mat-divider></mat-divider>
+
+
+                                       <a class="gene-relative" mat-ripple href="javascript:void(0)"
+                                          (click)="openSubMenu3('sub-menu4'+h+i+j+k,'menu-caret'+h+i+j+k)"
+                                          *ngIf="childitem3.type === 'sub'">
+                                          <!-- <mat-icon>{{ menuitem.icon }}</mat-icon> -->
+                                          <span>{{ childitem3.name }}</span>
+                                          <ng-container *ngIf="menuitem.label">
+                                             <span class="sidebar-label">{{ childitem3.label}}</span>
+                                          </ng-container>
+                                          <span fxFlex></span>
+                                          <mat-icon style="margin: 0 0 0 0;" class="'menu-caret'+h+i+j+k"
+                                             [id]="'menu-caret'+h+i+j+k">chevron_right
+                                          </mat-icon>
+                                       </a>
+
+
+                                       <mat-nav-list style="display: none;" [id]="'sub-menu4'+h+i+j+k"
+                                          class="sub-menu-3" *ngIf="childitem3.type === 'sub'">
+                                          <mat-list-item *ngFor="let childitem4 of childitem3.children; let l=index"
+                                             routerLinkActive="open">
+                                             <a *ngIf="childitem4.type === 'link'"
+                                                [routerLink]="['/'+menuitem.state+'/'+childitem.state +'/'+childitem2.state +'/'+childitem3.state+'/'+childitem4.state ]"
+                                                routerLinkActive="active-link" class="gene-relative" mat-ripple>
+                                                {{ childitem4.name }}
+                                                <ng-container *ngIf="childitem.label">
+                                                   <span class="sidebar-label">{{childitem4.label}}</span>
+                                                </ng-container>
+                                             </a>
+                                             <mat-divider></mat-divider>
+
+                                             <a class="gene-relative" mat-ripple href="javascript:void(0)"
+                                                (click)="openSubMenu3('sub-menu5'+h+i+j+k+l,'menu-caret'+h+i+j+k+l)"
+                                                *ngIf="childitem4.type === 'sub'">
+                                                <!-- <mat-icon>{{ menuitem.icon }}</mat-icon> -->
+                                                <span>{{ childitem4.name }}</span>
+                                                <ng-container *ngIf="menuitem.label">
+                                                   <span class="sidebar-label">{{ childitem4.label}}</span>
+                                                </ng-container>
+                                                <span fxFlex></span>
+                                                <mat-icon style="margin: 0 0 0 0;" class="'menu-caret'+h+i+j+k+l"
+                                                   [id]="'menu-caret'+h+i+j+k+l">chevron_right
+                                                </mat-icon>
+                                             </a>
+
+                                             <mat-nav-list style="display: none;" [id]="'sub-menu5'+h+i+j+k+l"
+                                                class="sub-menu-3" *ngIf="childitem4.type === 'sub'">
+                                                <mat-list-item *ngFor="let childitem5 of childitem4.children"
+                                                   routerLinkActive="open">
+                                                   <a *ngIf="childitem5.type === 'link'"
+                                                      [routerLink]="['/'+menuitem.state+'/'+childitem.state +'/'+childitem2.state +'/'+childitem3.state+'/'+childitem4.state+'/'+childitem5.state ]"
+                                                      routerLinkActive="active-link" class="gene-relative" mat-ripple>
+                                                      {{ childitem5.name }}
+                                                      <ng-container *ngIf="childitem.label">
+                                                         <span class="sidebar-label">{{childitem5.label}}</span>
+                                                      </ng-container>
+                                                   </a>
+                                                   <mat-divider></mat-divider>
+                                                </mat-list-item>
+                                             </mat-nav-list>
+
+
+
+
+
+
+
+
+                                          </mat-list-item>
+                                       </mat-nav-list>
+
+                                    </mat-list-item>
+                                 </mat-nav-list>
+
+
+                              </mat-list-item>
+                           </mat-nav-list>
+
+
+                        </mat-list-item>
+
+                     </mat-nav-list>
+                  </mat-list-item>
+                  <mat-divider></mat-divider>
+
+               </mat-nav-list>
+            </ng-container>
+
+
+         </div>
+      </div>
+   </perfect-scrollbar>
+</div>

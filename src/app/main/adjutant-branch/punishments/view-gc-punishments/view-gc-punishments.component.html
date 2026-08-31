@@ -1,0 +1,184 @@
+<div class="mat-new">
+    <h4 class="card-heading">
+        <button mat-icon-button (click)="goBack()">
+            <mat-icon>chevron_left</mat-icon>
+        </button> Adjutant Branch <span class="sub-menu1"> > GC's Punishments</span> <span class="sub-menu1"> > View
+            Punishments
+        </span>
+    </h4>
+</div>
+<mat-card>
+
+    <div class="m-2">
+
+        <div class="row">
+            <div class="ml-2 col-md-2 detail-head ">
+                <span> <b>Rank </b> </span>
+            </div>
+            <div class="ml-2 col-md-2 detail-head">
+                <span> <b>Name </b> </span>
+            </div>
+            <div class="ml-2 col-md-2 detail-head">
+                <span> <b>IMA Number </b> </span>
+            </div>
+            <div class="ml-2 col-md-2 detail-head">
+                <span> <b>Battalion </b> </span>
+            </div>
+            <div class="ml-2 col-md-2 detail-head">
+                <span> <b>Company </b> </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="ml-2 col-md-2 border cadet-detail ">
+                <span>{{cadetDetails.rank}} </span>
+            </div>
+            <div class="ml-2 col-md-2 border cadet-detail">
+                <span>{{cadetDetails.name}}</span>
+            </div>
+            <div class="ml-2 col-md-2 border cadet-detail">
+                <span>{{cadetDetails.serviceId}}</span>
+            </div>
+            <div class="ml-2 col-md-2 border cadet-detail">
+                <span>{{cadetDetails.battalian}} Bn</span>
+            </div>
+
+            <div class="ml-2 col-md-2 border cadet-detail">
+                <span>{{cadetDetails.company}}</span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="top-br mb-2">
+        <form [formGroup]="addPunishmentForm" (ngSubmit)="addPunishment()">
+
+            <div class="row">
+
+                <div class="form-group col-md-6">
+                    <label for="position">Offence<span class="required">*</span></label>
+                    <input id="" type="text" class="form-control" maxlength="100" formControlName="offence"
+                        placeholder="Offence">
+                    <span class="validation_msg" *ngIf="f.offence.errors && f.offence.errors.required && isError">Please
+                        Enter Offence</span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="position">Date<span class="required">*</span></label>
+                    <input id="date" type="date" class="form-control" formControlName="date">
+                    <span class="validation_msg" *ngIf="f.date.errors && f.date.errors.required && isError">Please
+                        Select Date</span>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="form-group col-md-6">
+                    <label for="position">Punishment Awarded<span class="required">*</span></label>
+                    <input id="" type="text" class="form-control" maxlength="100" formControlName="punshmentAwarded"
+                        placeholder="Punishment Awarded">
+                    <span class="validation_msg"
+                        *ngIf="f.punshmentAwarded.errors && f.punshmentAwarded.errors.required && isError">Please
+                        Enter Punishment Awarded</span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="position">Total Punishments<span class="required">*</span></label>
+                    <input id="points" type="text" class="form-control" maxlength="100" formControlName="points"
+                        placeholder="Points">
+                    <span class="validation_msg" *ngIf="f.points.errors && f.points.errors.required && isError">Please
+                        Enter Total Punishments</span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="position">Awarded By<span class="required">*</span></label>
+                    <input id="awardedBy" type="text" class="form-control" formControlName="awardedBy"
+                        placeholder="Officer's Name">
+                    <span class="validation_msg"
+                        *ngIf="f.awardedBy.errors && f.awardedBy.errors.required && isError">Please Enter Name</span>
+                </div>
+
+            </div>
+
+
+            <!-- <div class="row">
+                <div class="form-group col-md-6">       
+                <label for="status" class="form-label">Status <span class="required">*</span></label>
+                  <select name="" id="status" class="form-control" required formControlName="status" >
+                    <option value="" disabled selected hidden >Select</option>
+                    <option value="1">Active</option>
+                    <option value="0">Inactive</option>
+                  </select>
+                  <span  class="validation_msg"  *ngIf="f.status.touched && f.status.invalid" >*Please Select Status</span>
+                </div>
+              </div> -->
+            <div class="text-right">
+                <button mat-raised-button (click)="goBack()">Back</button>
+                <button mat-raised-button>Submit</button>
+            </div>
+        </form>
+    </div>
+    <div>
+        <div class="mat-new mat-new-internal">
+            <h4 class="card-heading card-heading-internal">
+
+                <span class="sub-menu1"> Punishments Awarded</span>
+            </h4>
+        </div>
+
+        <div *ngIf="!punishmentsList.length" class="text-center">
+            <h5>
+                No Punishments Awarded.
+            </h5>
+        </div>
+
+        <table class="table" *ngIf="punishmentsList.length">
+            <thead>
+                <tr>
+                    <th>Sr. No.</th>
+                    <th>Date</th>
+                    <th>Offence</th>
+                    <th>Total Punishments</th>
+                    <th>Punishment Awarded</th>
+                    <th>Awarded By</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of punishmentsList; let i=index">
+                    <td> {{i+1}} </td>
+                    <td> {{p.date | date:'dd MMM yyyy'}} </td>
+                    <td> {{p.offence}} </td>
+                    <td> {{p.points}} </td>
+                    <td> {{p.punshmentAwarded}} </td>
+                    <td> {{p.awardedBy}} </td>
+                    <td>
+                        <button mat-icon-button (click)="openDialog(p)">
+                            <mat-icon>
+                                edit
+                            </mat-icon>
+                        </button>
+                    </td>
+                    <td>
+                        <button mat-icon-button (click)="delete(p)">
+                            <mat-icon>
+                                delete
+                            </mat-icon>
+                        </button>
+                    </td>
+
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-right">Total</td>
+                    <td>
+                        <h4>{{totalPoints}}</h4>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>

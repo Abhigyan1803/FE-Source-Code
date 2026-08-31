@@ -1,0 +1,97 @@
+
+<div class="mat-new">
+    <h4 class="card-heading">
+      <button mat-icon-button (click)="goBack()" ><mat-icon>chevron_left</mat-icon> </button>
+      GS Branch <span class="sub-menu1"> > IT & Communication > Complaints & Requirement > IT ><span class="sub-menu1"> > {{pageTitle}}</span></span>
+    </h4>
+  </div>
+  <mat-card>
+    <div class="top-br">
+      <form [formGroup]="addComplaintsForm">
+  
+        <div class="row">
+
+            <div class="form-group col-md-6">
+               <label for="position">Title</label>
+               <input id="title" readonly type="text" class="form-control" maxlength="100" formControlName="title"
+               placeholder="Title">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="position">Address</label>
+              <input id="title" readonly type="text" class="form-control" maxlength="100" formControlName="address"
+              placeholder="address">
+               
+           </div>
+
+        </div> 
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="requestType" readonly>Request Type</label>
+                <select name="" id="" class="form-control " disabled formControlName="requestType">
+                  <option value="" disabled selected hidden>Request Type</option>
+                  <option value="Requirement">Requirement </option>
+                  <option value="Complaint">Complaint</option>
+                </select>
+                
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="requestNature" >Nature of Request</label>
+                <select name="" id="" class="form-control " disabled formControlName="requestNature">
+                  <option value="" readonly disabled selected hidden>Request Nature</option>
+                  <option value="IT">IT</option>
+                  <option value="Communication">Communication</option>
+                </select>
+                
+              </div>
+       </div> 
+
+       
+
+        <div class="row">
+                 <div class="form-group col-md-12">
+            <label for="details" >Details </label>
+            <!-- <input type="text" id="awards" class="form-control"  maxlength="100" formControlName="awards" placeholder="Awards"> -->
+            <textarea readonly matInput placeholder="Maximum 1500 Characters" class="form-control"  (input)="charCount($event,'desc')" maxlength="1500" formControlName="details"></textarea>
+            <span class="val_msg" *ngIf="f.details.errors && f.details.errors.required && isError" >*Please Enter Details</span>
+
+             </div>
+        </div> 
+
+        <div >
+          <label class="form-label">Document</label>
+            <a *ngIf="docUrl" href="javascript:void(0)" (click)="openDoc(docUrl)">
+            <mat-icon  class="document_icon" >description</mat-icon>
+            </a>
+        </div>
+  
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="requestStatus">Request Status</label>
+            <select name="" id="" class="form-control " formControlName="requestStatus">
+              <option value="" disabled selected hidden>Request status</option>
+              <option value="Pending">Pending</option>
+              <option value="Completed">Completed/Resolved</option>
+              <option value="Rejected">Rejected</option>
+            </select>
+          </div>
+        </div>
+  
+        <div class="row">
+            <div class="form-group col-md-12">
+            <label for="remarks">Remarks <span class="char-count" >   ({{RemarksLength}}/1500)  </span> </label>
+            <textarea matInput placeholder="Maximum 500 Characters" class="form-control"  (input)="charCount($event,'remarks')" maxlength="1500" formControlName="remarks"></textarea>
+               <!-- <input id="title" type="text" class="form-control" maxlength="100" formControlName="name"
+               placeholder="Title"> -->
+                <span class="validation_msg"
+                    *ngIf="f.remarks.errors && f.remarks.errors.required && isError">Please Enter title</span>
+            </div>
+        </div> 
+  
+        <!-- <button mat-raised-button *ngIf="pageTitle=='Add Complaints'" (click)="addComplaints()">ADD Complaints</button> -->
+        <button mat-raised-button (click)="updateComplaints()">Update</button>
+  
+      </form>
+    </div>
+  </mat-card>

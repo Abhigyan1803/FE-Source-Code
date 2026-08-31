@@ -1,0 +1,128 @@
+<div>
+ 
+    <section class="ftco-section ftco-degree-bg">
+        <div *ngIf="!blog">
+            <mat-card *ngIf="!dataAvailable" style="margin-left: 0px; margin-right: 0px;">
+                <img src="assets\img\empty-no-data.png" style="margin: 0 auto; display: table;">
+            </mat-card>
+        </div>
+        <div *ngIf="blog != null" class="container">
+            <div class="row">
+                <div class="col-lg-8 ftco-animate fadeInUp ftco-animated bImg">
+                    <img *ngIf="blog.blogImage" [src]="IP+blog.blogImage" width="100%">
+                    <h2 class="mt-2 mb-3">{{blog.title | titlecase}}</h2>
+
+                    <!-- <div class="date"><span> </span> </div>  -->
+                    <div class="date">
+                        {{blog.createdAt | date:'dd MMM y'}} | {{blog.author | titlecase}}
+                        <span class="reaed-tim"> | {{blog.minutesOfReading}}</span>
+                    </div>
+
+                    <!-- <ul class="date">
+                        <li><span>{{blog.createdAt | date:'dd MMM y'}} </span></li>
+                        <li>{{blog.author | titlecase}} <span class="reaed-tim"> | {{blog.minutesOfReading}}</span></li>
+                    </ul> -->
+
+                    <p [innerHTML]="blog.description"></p>
+                    <h2>Document</h2>
+                    <div *ngIf="blog.docs" >
+                        <!-- <div class="waiting" *ngIf="!loadedContent">
+                        
+                            <div class="text-center">
+                                <div class="spinner-grow" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                    
+                            </div>
+                    
+                            <p class="please">Please wait....</p>
+                        </div>
+
+                        <ngx-doc-viewer [url]="blog.docs" (loaded)="contentLoaded()" style="width:100%; height:120vh !important;">
+                        </ngx-doc-viewer> -->
+                        <!-- <mat-icon (click)="window.open('_blank',blog.docs)" >
+                            open_in_new
+                        </mat-icon > -->
+                    
+                        <iframe style="width: 800px; height: 700px;" [src]="blog.docs" frameborder="0"></iframe>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4 sidebar pl-lg-5 ftco-animate fadeInUp ftco-animated">
+                    <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
+                        <div class="categories">
+                            <!-- <h3>Army</h3> -->
+                            <h2 _ngcontent-ilt-c406="" class="rht-hd">Other Categories</h2>
+                            <ul>
+                                <li *ngFor="let cat of blogCategory"><a href="javascript:void(0)"
+                                        (click)="viewCat(cat)">{{cat}}
+                                        <!-- <span class="ion-ios-arrow-forward"></span> -->
+                                    </a></li>
+                                <!-- <li><a href="#">Force <span class="ion-ios-arrow-forward"></span></a></li>
+                            <li><a href="#">Army Events <span class="ion-ios-arrow-forward"></span></a></li>
+                            <li><a href="#">New Army<span class="ion-ios-arrow-forward"></span></a></li>
+                            <li><a href="#">Army Quize <span class="ion-ios-arrow-forward"></span></a></li> -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
+                        <h3>Recent Blog</h3>
+                        <ng-container *ngFor="let r of recentBlogs">
+                            <div *ngIf="r" class="block-21 mb-4 d-flex" (click)="readBlog(r)" >
+                                <a  *ngIf="r.blogImage" class="blog-img mr-4" style="background-image:url({{IP+r.blogImage}})"></a>
+                                
+                                <a *ngIf="!r.blogImage" class="blog-img mr-4">
+                                    <img src="assets/img/default-doc-image.jpg" alt="">
+                                </a>
+                                <div class="text">
+                                    <h3 class="heading"><a href="javascript:void(0)">{{r.title}}</a></h3>
+                                    <div class="meta">
+                                        <div><a href="javascript:void(0)"><span class="icon-calendar"></span>
+                                                {{r.createdAt | date:'d MMM y'}}</a></div>
+                                        <div><a href="javascript:void(0)"><span class="icon-person"></span>
+                                                {{r.author}}</a></div>
+                                        <div><a href="javascript:void(0)"><span class="icon-chat"></span>
+                                                {{r.minutesOfReading}}</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+
+
+                        <!-- <div class="block-21 mb-4 d-flex">
+                            <a class="blog-img mr-4" style="background-image:url(blog/images/a3.jpg)"></a>
+                            <div class="text">
+                                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the
+                                        blind texts</a></h3>
+                                <div class="meta">
+                                    <div><a href="#"><span class="icon-calendar"></span> Nov. 14, 2019</a></div>
+                                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
+                                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- <div class="block-21 mb-4 d-flex">
+                            <a class="blog-img mr-4" style="background-image:url(blog/images/a4.jpg)"></a>
+                            <div class="text">
+                                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the
+                                        blind texts</a></h3>
+                                <div class="meta">
+                                    <div><a href="#"><span class="icon-calendar"></span> Nov. 14, 2019</a></div>
+                                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
+                                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="sidebar-box ftco-animate fadeInUp ftco-animated">
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>

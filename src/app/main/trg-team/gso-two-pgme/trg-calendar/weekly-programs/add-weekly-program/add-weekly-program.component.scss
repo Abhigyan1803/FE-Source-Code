@@ -1,0 +1,82 @@
+.remove-btn{
+    color: #ffff;
+    background-color: rgb(214, 61, 61);
+}
+.add-btn{
+    color: #ffff;
+    background-color: rgb(57, 151, 57);
+
+}
+.btn-fhj {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
+    margin-right: 15px;
+    margin-top: 15px;
+
+}
+.inner-nfs.form-group {
+    display: flex;
+    flex-wrap: wrap;
+}
+.add-new-btn {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 15px;
+}
+.inner-pts {
+    width: 100%;
+    display: flex;
+    padding-top: 10px;
+    background: #eee;
+    border-radius: 2px;
+    margin-bottom: 15px;
+    box-shadow: 1px 1px 4px #ccc;
+}
+.bod-ts.ng-star-inserted {
+    border-top: 1px solid #ccc;
+    padding-top: 16px;
+}
+.inf-f {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+}
+.add-btn.cus-btn {
+    width: 40px;
+    height: 40px;
+    background: #4c5041;
+}
+.cus-btn mat-icon {
+    line-height: 29px!important;
+    font-size: 20px;
+}
+
+.remove-btn {
+    width: 40px;
+    height: 40px;
+    background: #721a0c;
+    margin-bottom: 15px;
+}
+.remove-btn mat-icon {
+    line-height: 29px!important;
+    font-size: 20px;
+}
+.border {
+    border: 1px solid #dee2e6!important;
+    margin-bottom: 15px;
+    box-shadow: 1px 1px 4px #ccc;
+}
+.inner-nfs{ 
+    width: 100%;
+    // display: flex;
+    padding-top: 10px;
+    background: #eee;
+    border-radius: 2px;
+    margin-bottom: 15px;
+    box-shadow: 1px 1px 4px #ccc;
+}

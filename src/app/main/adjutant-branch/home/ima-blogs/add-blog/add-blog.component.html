@@ -1,0 +1,114 @@
+<div class="mat-new">
+    <h4 class="card-heading">
+        <button mat-icon-button (click)="goBack()">
+            <mat-icon>chevron_left</mat-icon>
+        </button>  IMA Blog<span class="sub-menu1"> > {{pageName}} </span> <span class="sub-menu1">
+            </span>
+    </h4>
+</div>
+<mat-card>
+    <div class="top-br">
+        <form [formGroup]="addBlogForm">
+           
+            <div class="row">
+
+                <div class="form-group col-md-6">
+                    <label for="title">Title <span class="required">*</span></label>
+                    <input type="text" id="title" class="form-control" maxlength="100" 
+                    [disabled]="disableForm"
+                    placeholder="IMA Blog Title" required formControlName="title">
+                    <span class="validation_msg" *ngIf="f.title.errors && isError">Please Enter Title</span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="category">Category <span class="required">*</span></label>
+                    <select #categorySelector id="category" class="form-control" (change)="categorySelected($event.target.value)"
+                    [attr.disabled]="disableForm ? 'disabled' : null" 
+                     placeholder="IMA Blog Category" >
+                        <option value="" selected hidden disabled>Select</option>
+                        <option *ngFor="let c of blogCategory" [value]="c">{{c}} </option>
+                    </select>
+                    <span class="validation_msg" *ngIf="f.category.errors && isError">Please Enter Category</span>
+                </div>
+
+                <div class="form-group col-md-6" *ngIf="otherCategory" >
+                    <label for="category">Category Name<span class="required">*</span></label>
+                    <input type="text" id="category" class="form-control" maxlength="100" placeholder="IMA Blog Category" required
+                    [disabled]="disableForm" formControlName="category">
+                    <span class="validation_msg" *ngIf="f.category.errors && isError">Please Enter Category</span>
+                </div>
+
+                <!-- <div class="form-group col-md-6">
+                    <label for="author">Author <span class="required">*</span></label>
+                    <input type="text" id="author" class="form-control" maxlength="100" placeholder="Author Name of Blog" required
+                        formControlName="author">
+                    <span class="validation_msg" *ngIf="f.author.errors && isError">Please Enter Author Name</span>
+                </div> -->
+            </div>
+
+            <!-- <div class="row">
+              
+             <div class="form-group col-md-6">
+                    <label for="minutesOfReading">Minutes of Reading <span class="required">*</span></label>
+                    <input type="text" id="minutesOfReading" class="form-control" maxlength="100" placeholder="Minutes of Reading" required
+                        formControlName="minutesOfReading">
+                    <span class="validation_msg" *ngIf="f.minutesOfReading.errors && isError">Please Enter Author Name</span>
+                </div> 
+            </div> -->
+
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="title">Write Your Blog 
+                        <!-- <span class="char-count"> ({{descLength}}/3000) </span>  -->
+                        <span
+                            class="required">*</span></label>
+                            
+                            <ckeditor [readOnly]="disableForm"  formControlName="description"  (change)="onChange($event)" (mouseover)="eventFired($event,'mouseover')"
+                            (mouseout)="eventFired($event,'mouseout')" (click)="eventFired($event,'click')">
+                        </ckeditor>
+                    <!-- <textarea [disabled]="disableForm" class="form-control" maxlength="3000" placeholder="Maximum 3000 Characters" required
+                        formControlName="description" (input)="charCount($event,'description')"></textarea> -->
+                    <span class="validation_msg" *ngIf="f.description.errors && isError">Please Write Something.</span>
+                </div>
+            </div>
+
+            <div class="form-group" *ngIf="!disableForm">
+                <label class="form-label">Image (Optional)</label>
+                <input #file type="file" accept="image/*" (change)="onSelectImage($event)" id="image">
+                <span class="size_info">Max Image Size 50 MB. (Image size must be 200px * 150px)</span>
+                <div *ngIf="previewImg" class="preview_image"> <img [src]="previewImg" alt=""></div>
+            </div>
+            <div class="form-group" *ngIf="!disableForm">
+                <label class="form-label">Document (Optional)</label>
+                <input #document type="file" accept="application/pdf" (change)="onSelectDocument($event)" id="image">
+                <span class="size_info">Only PDF and Maximum Size 150 MB.</span>
+                <div *ngIf="previewDoc" class="preview_image"> 
+                    <a (click)="openDoc(previewDoc)" >
+                        <mat-icon>
+                            description
+                        </mat-icon>
+                    </a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="status" class="form-label">Status <span class="required">*</span></label>
+                    <select name="" id="status" class="form-control" required formControlName="status">
+                        <option value="" disabled selected hidden>Select</option>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+                    <span class="validation_msg" *ngIf="f.status.touched && f.status.invalid">*Please Select
+                        Status</span>
+                </div>
+            </div>
+
+            <div  >
+            <button mat-raised-button *ngIf="!id" (click)="addBlog()">Add</button>
+            <button mat-raised-button *ngIf="id" (click)="updateBlog()" [disabled]="addBlogForm.disabled">Update</button>
+            </div>
+            
+        </form>
+    </div>
+</mat-card>

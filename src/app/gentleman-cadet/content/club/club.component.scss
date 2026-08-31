@@ -1,0 +1,20 @@
+.btn-set {
+    display: flex;
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
+    justify-content: space-between;
+}
+.example-container {
+    float: left;
+    width: 100%;
+}
+.btn-set input{margin-right: 15px;}
+mat-card {
+    margin-top: 20px;
+    min-height: 460px;
+}
+.mt-20 {
+    float: left;
+    width: 100%;
+}

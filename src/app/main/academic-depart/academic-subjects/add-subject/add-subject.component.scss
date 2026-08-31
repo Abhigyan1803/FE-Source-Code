@@ -1,0 +1,70 @@
+.mat-panel11 h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+.mat-panel11 mat-expansion-panel {
+    margin-bottom: 11px;
+    background: #eee;
+}
+.mat-panel11 .mat-expansion-panel .mat-expansion-panel {
+    background: #fff!important;
+}
+
+
+.add-btn-div{
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    margin: 0 0 15px 0;
+}
+
+.remove-btn-div{
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    // margin: 0 0 15px 0;
+
+}
+
+.add-btn.cus-btn {
+    width: 40px;
+    height: 40px;
+    background: #4c5041;
+}
+.cus-btn mat-icon {
+    line-height: 29px!important;
+    font-size: 20px;
+    color: #fff;
+}
+
+
+.remove-btn {
+    width: 40px;
+    height: 40px;
+    background: #721a0c;
+    margin-bottom: 15px;
+}
+.remove-btn mat-icon {
+    line-height: 29px!important;
+    font-size: 20px;
+    color: #fff;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    // border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: #4c5041;
+    width: 200px;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    color: #fff !important;
+    border-radius: 0.2rem;
+}

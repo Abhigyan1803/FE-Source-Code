@@ -1,0 +1,16 @@
+.mat-dialog-content {
+    display: block;
+    margin: 0;
+    padding: 0 24px;
+    max-height: 65vh;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.mat-dialog-title {
+    margin: 20px 0 0 23px;
+    display: block;
+}
+.mat-dialog-actions{
+    margin-right: 20px;
+    margin-top: 50px;
+}

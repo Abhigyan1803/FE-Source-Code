@@ -1,0 +1,1277 @@
+<div style="padding-top: 15px;width: 100%;float:left;background: url(white.png);    margin-bottom: 60px;">
+
+    <div id="center_section" class="container-fluid">
+        <section>
+            <div class=" my-4">
+
+                <div class="pg-header fade-in-bottom">
+                    <h1>The Param Vir Chakra Awardees</h1>
+
+                    <p>
+                        The Param Vir Chakra (PVC) is India's highest military decoration,<br>
+                        awarded for displaying distinguished acts of valour during wartime.
+                    </p>
+
+                    <div class="param-vir crest-line">
+                        <div></div>
+                    </div>
+                </div>
+                <!--Carousel Wrapper-->
+                <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+                    <!--Indicators-->
+                    <!-- <ol class="carousel-indicators">
+                        <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+                        <li data-target="#multi-item-example" data-slide-to="1"></li>
+
+                    </ol> -->
+                    <!--/.Indicators-->
+
+                    <!--Slides-->
+                    <div class="carousel-inner" role="listbox">
+
+                        <!--First slide-->
+                        <div class="carousel-item active">
+                            <div *ngIf="!paramveerChakra.length" class="text-center">
+                                <h4>No Records Available</h4>
+                            </div>
+                            <ngx-slick-carousel *ngIf="paramveerChakra.length" class="carousel"
+                                #slickModal="slick-carousel" [config]="slideConfig">
+
+                                <div ngxSlickItem *ngFor="let c of paramveerChakra;let i=index" style="float:left">
+                                    <div class="card card-param mb-2">
+                                        <!-- <img src="assets/img/backgrount_tiranga_img.jpg" style="
+                                                                                height: 320px;
+                                                                                position: absolute;
+                                                                                opacity: .1;
+                                                                                object-fit: cover;
+                                                                            "> -->
+                                        <div class="page-card mr-1 param_vir_chakra">
+                                            <div class="item-media">
+                                                <img class="per-use" src="assets/img/param_vir_chakra.png"
+                                                    alt="Line Break">
+                                                <img class="use-img" alt="" (error)="noImg($event)"
+                                                    [src]="IP+c.officerImage">
+                                                <div class="media-links"></div>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="card-title">
+                                                    <h2>{{c.officerRank | titlecase}} {{c.officerName | titlecase}}
+                                                        <span *ngIf="c.recognition">({{c?.recognition || "" |
+                                                            uppercase}})</span> </h2>
+                                                    <p>{{c.officerRegiment | titlecase}}, {{c.officerBattalion |
+                                                        titlecase}}
+                                                        Bn </p>
+                                                    <h3>Year: {{c.yearAwarded}}
+
+                                                    </h3>
+
+                                                </div>
+
+                                                <div class="flex flex-row justify-center align-items-center py-1">
+                                                    <button class="param-read-more" mat-raised-button
+                                                        (click)="readMore(c)">Citation</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </ngx-slick-carousel>
+
+
+                            <!-- <div *ngFor="let c of paramveerChakra;let i=index" class="col-md-3" style="float:left">
+                                <div class="card mb-2">
+                                    <img src="assets/img/backgrount_tiranga_img.jpg" style="
+                                                height: 336px;
+                                                position: absolute;
+                                                opacity: .1;
+                                                object-fit: cover;
+                                            ">
+                                    <div class="page-card mr-1 param_vir_chakra">
+                                        <div class="item-media">
+                                            <img class="per-use" src="assets/img/param_vir_chakra.png" alt="Line Break">
+                                            <img class="use-img" alt="" (error)="noImg($event)" [src]="c.officerImage">
+                                            <div class="media-links"></div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <h2>{{c.officerRank | titlecase}} {{c.officerName | titlecase}} </h2>
+                                                <p>{{c.officerRegiment | titlecase}}, {{c.officerBattalion | titlecase}}
+                                                    Bn </p>
+                                                <h3>Year: {{c.yearAwarded}}
+
+                                                </h3>
+
+                                            </div>
+
+                                            <div class="flex flex-row justify-center align-items-center py-1">
+                                                <button mat-raised-button (click)="readMore(c)">Citation</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+
+
+                        </div>
+
+                        <!--/.First slide-->
+
+                        <!--Second slide-->
+                        <!-- <div class="carousel-item">
+
+                            <div class="col-md-3" style="float:left">
+                                <div class="card mb-2">
+                                    <img src="https://u7.uidownload.com/vector/65/347/vector-indian-flag-stylish-wave-illustration-for-independence-day-background-vector-ai-eps.jpg"
+                                        style="
+    height: 336px;
+    position: absolute;
+    opacity: .1;
+    object-fit: cover;
+">
+                                    <div class="page-card mr-1 param_vir_chakra">
+                                        <div class="item-media">
+                                            <img class="per-use" src="assets/img/param_vir_chakra.png" alt="Line Break">
+                                            <img class="use-img" alt="GURBACHAN SINGH SALARIA"
+                                                src="https://cdn.iconscout.com/icon/free/png-256/army-3148686-2621216.png">
+                                            <div class="media-links"></div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <h2>Capt Gurbachan Singh Salaria </h2>
+                                                <p>POSTHUMOUS, Unit 3/1 GR, Course-10, SQN-B</p>
+                                                <h3>Year: 1961
+                                             
+                                                </h3>
+
+                                            </div>
+
+                                            <div class="flex flex-row justify-center align-items-center py-1">
+                                                <button class="read-more">Citation</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3" style="float:left">
+                                <div class="card mb-2">
+                                    <img src="https://u7.uidownload.com/vector/65/347/vector-indian-flag-stylish-wave-illustration-for-independence-day-background-vector-ai-eps.jpg"
+                                        style="
+    height: 336px;
+    position: absolute;
+    opacity: .1;
+    object-fit: cover;
+">
+                                    <div class="page-card mr-1 param_vir_chakra">
+                                        <div class="item-media">
+                                            <img class="per-use" src="assets/img/param_vir_chakra.png" alt="Line Break">
+                                            <img class="use-img" alt="GURBACHAN SINGH SALARIA"
+                                                src="https://cdn.iconscout.com/icon/free/png-256/army-3148686-2621216.png">
+                                            <div class="media-links"></div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <h2>Capt Gurbachan Singh Salaria </h2>
+                                                <p>POSTHUMOUS, Unit 3/1 GR, Course-10, SQN-B</p>
+                                                <h3>Year: 1961
+                                          
+                                                </h3>
+
+                                            </div>
+
+                                            <div class="flex flex-row justify-center align-items-center py-1">
+                                                <button class="read-more">Citation</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3" style="float:left">
+                                <div class="card mb-2">
+                                    <img src="https://u7.uidownload.com/vector/65/347/vector-indian-flag-stylish-wave-illustration-for-independence-day-background-vector-ai-eps.jpg"
+                                        style="
+    height: 336px;
+    position: absolute;
+    opacity: .1;
+    object-fit: cover;
+">
+                                    <div class="page-card mr-1 param_vir_chakra">
+                                        <div class="item-media">
+                                            <img class="per-use" src="assets/img/param_vir_chakra.png" alt="Line Break">
+                                            <img class="use-img" alt="GURBACHAN SINGH SALARIA"
+                                                src="https://cdn.iconscout.com/icon/free/png-256/army-3148686-2621216.png">
+                                            <div class="media-links"></div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <h2>Capt Gurbachan Singh Salaria </h2>
+                                                <p>POSTHUMOUS, Unit 3/1 GR, Course-10, SQN-B</p>
+                                                <h3>Year: 1961
+                                      
+                                                </h3>
+
+                                            </div>
+
+                                            <div class="flex flex-row justify-center align-items-center py-1">
+                                                <button class="read-more">Citation</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3" style="float:left">
+                                <div class="card mb-2">
+                                    <img src="https://u7.uidownload.com/vector/65/347/vector-indian-flag-stylish-wave-illustration-for-independence-day-background-vector-ai-eps.jpg"
+                                        style="
+    height: 336px;
+    position: absolute;
+    opacity: .1;
+    object-fit: cover;
+">
+                                    <div class="page-card mr-1 param_vir_chakra">
+                                        <div class="item-media">
+                                            <img class="per-use" src="assets/img/param_vir_chakra.png" alt="Line Break">
+                                            <img class="use-img" alt="GURBACHAN SINGH SALARIA"
+                                                src="https://cdn.iconscout.com/icon/free/png-256/army-3148686-2621216.png">
+                                            <div class="media-links"></div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <h2>Capt Gurbachan Singh Salaria </h2>
+                                                <p>POSTHUMOUS, Unit 3/1 GR, Course-10, SQN-B</p>
+                                                <h3>Year: 1961
+                                       
+                                                </h3>
+
+                                            </div>
+
+                                            <div class="flex flex-row justify-center align-items-center py-1">
+                                                <button class="read-more">Citation</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div> -->
+                        <!--/.Second slide-->
+
+
+
+                    </div>
+                    <!--/.Slides-->
+
+                </div>
+            </div>
+            <!--/.Carousel Wrapper-->
+        </section>
+        <section>
+            <div class="container">
+                <div class="pg-header fade-in-bottom" style="margin-top: 80px;">
+                    <h1>Awardees</h1>
+                    <p>
+                        Honouring the Courage and Sacrifice of Our Bravehearts
+                    </p>
+                    <div class="param-vir crest-line">
+                        <div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="tbbb">
+
+                    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav nav-pills mb-3" id="pills-tab"
+                        role="tablist">
+
+                        <li [ngbNavItem]="1" class="nav-item" (click)="getGallantryAwardees('Ashoka Chakra')">
+                            <img class="img-dd" src="assets/img/ashokchakra.png">
+                            <a ngbNavLink class="nav-link" id="pills-contact-tab" data-toggle="pill"
+                                href="javascript:void(0)" role="tab" aria-controls="pills-contact"
+                                aria-selected="false">Ashoka Chakra</a>
+                            <ng-template ngbNavContent>
+                                <div style="margin-top: 40px;">
+                                    <div *ngIf="!ashokChakra.length" class="text-center">
+                                        <h4>No Records Available</h4>
+                                    </div>
+                                    <div class="tab-pane fade show active" id="sysm" role="tabpanel"
+                                        aria-labelledby="pills-home-tab">
+                                        <div class="row" style="margin-top: 40px;">
+
+                                            <div *ngFor="let a of ashokChakra;let i=index" class="col-md-3">
+                                                <div class="page-card card text-center maha_vir_chakra">
+                                                    <div class="item-media">
+                                                        <img class="use-img" alt="" (error)="noImg($event)"
+                                                            [src]="IP+a.officerImage">
+                                                        <div class="media-links"></div>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="card-title">
+                                                            <h2>
+
+                                                                {{a.officerRank | titlecase}} {{a.officerName |
+                                                                titlecase}} <span
+                                                                    *ngIf="a.recognition">({{a?.recognition || "" |
+                                                                    uppercase}})</span>
+                                                            </h2>
+                                                            <h3>
+                                                                {{a.officerRegiment | titlecase}}, {{a.officerBattalion
+                                                                | titlecase }} Bn
+                                                            </h3>
+                                                            <h3>Year: {{a.yearAwarded}}
+
+                                                            </h3>
+
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="card-footer flex flex-row justify-center align-items-center py-1">
+                                                        <button class="read-more"
+                                                            (click)="readMore(a)">Citation</button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </ng-template>
+                        </li>
+
+                        <li [ngbNavItem]="2" (click)="getGallantryAwardees('SYSM')">
+                            <img class="img-dd" src="assets/img/sysm.png">
+                            <a ngbNavLink class="nav-link" id="pills-home-tab" href="javascript:void(0)" role="tab"
+                                aria-controls="pills-home" aria-selected="true">SYSM</a>
+
+                            <ng-template ngbNavContent>
+                                <div style="margin-top: 40px;">
+                                    <div *ngIf="!sysm.length" class="text-center">
+                                        <h4>No Records Available</h4>
+                                    </div>
+                                    <div class="" id="sysm" role="tabpanel" aria-labelledby="pills-home-tab">
+                                        <div class="row" style="margin-top: 40px;">
+
+                                            <div *ngFor="let a of sysm;let i=index" class="col-md-3">
+                                                <div class="page-card card text-center maha_vir_chakra">
+                                                    <div class="item-media">
+                                                        <img class="use-img" alt="" (error)="noImg($event)"
+                                                            [src]="IP+a.officerImage">
+                                                        <div class="media-links"></div>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="card-title">
+                                                            <h2>
+
+                                                                {{a.officerRank | titlecase}} {{a.officerName |
+                                                                titlecase}} <span
+                                                                    *ngIf="a.recognition">({{a?.recognition || "" |
+                                                                    uppercase}})</span>
+
+                                                            </h2>
+                                                            <h3>
+                                                                {{a.officerRegiment | titlecase}}, {{a.officerBattalion
+                                                                | titlecase }} Bn
+
+                                                            </h3>
+                                                            <h3>Year: {{a.yearAwarded}}
+
+                                                            </h3>
+
+                                                        </div>
+
+                                                    </div>
+                                                    <div
+                                                        class="flex card-footer flex-row justify-center align-items-center py-1">
+                                                        <button class="read-more"
+                                                            (click)="readMore(a)">Citation</button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </ng-template>
+
+                        </li>
+
+                        <li [ngbNavItem]="3" class="nav-item" (click)="getGallantryAwardees('Mahavir Chakra')">
+                            <img class="img-dd" src="assets/img/mvc.png">
+                            <a ngbNavLink class="nav-link" id="pills-profile-tab" data-toggle="pill"
+                                href="javascript:void(0)" role="tab" aria-controls="pills-profile"
+                                aria-selected="false">Mahavir Chakra</a>
+
+                            <ng-template ngbNavContent>
+                                <div style="margin-top: 40px;">
+                                    <div *ngIf="!mahaveerChakra.length" class="text-center">
+                                        <h4>No Records Available</h4>
+                                    </div>
+                                    <div class="tab-pane fade show active" id="sysm" role="tabpanel"
+                                        aria-labelledby="pills-home-tab">
+                                        <div class="row" style="margin-top: 40px;">
+
+                                            <div *ngFor="let a of mahaveerChakra;let i=index" class="col-md-3">
+                                                <div class="page-card card text-center maha_vir_chakra">
+                                                    <div class="item-media">
+                                                        <img class="use-img" alt="" (error)="noImg($event)"
+                                                            [src]="IP+a.officerImage">
+                                                        <div class="media-links"></div>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="card-title">
+                                                            <h2>
+
+                                                                {{a.officerRank | titlecase}} {{a.officerName |
+                                                                titlecase}} <span
+                                                                    *ngIf="a.recognition">({{a?.recognition || "" |
+                                                                    uppercase}})</span>
+
+                                                            </h2>
+                                                            <h3>
+                                                                {{a.officerRegiment | titlecase}}, {{a.officerBattalion
+                                                                | titlecase }} Bn
+
+                                                            </h3>
+                                                            <h3>Year: {{a.yearAwarded}}
+
+                                                            </h3>
+
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="flex card-footer flex-row justify-center align-items-center py-1">
+                                                        <button class="read-more"
+                                                            (click)="readMore(a)">Citation</button>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </ng-template>
+
+                        </li>
+
+                        <li [ngbNavItem]="4" class="nav-item" (click)="getGallantryAwardees('Kirti Chakra')">
+                            <img class="img-dd" src="assets/img/kc.png">
+                            <a ngbNavLink class="nav-link" id="pills-contact-tab" data-toggle="pill"
+                                href="javascript:void(0)" role="tab" aria-controls="pills-contact"
+                                aria-selected="false">Kirti Chakra</a>
+
+                            <ng-template ngbNavContent>
+                                <div style="margin-top: 40px;">
+                                    <div *ngIf="!keertiChakra.length" class="text-center">
+                                        <h4>No Records Available</h4>
+                                    </div>
+                                    <div class="tab-pane fade show active" id="sysm" role="tabpanel"
+                                        aria-labelledby="pills-home-tab">
+                                        <div class="row" style="margin-top: 40px;">
+
+                                            <div *ngFor="let a of keertiChakra;let i=index" class="col-md-3">
+                                                <div class="page-card card text-center maha_vir_chakra">
+                                                    <div class="item-media">
+                                                        <img class="use-img" alt="" (error)="noImg($event)"
+                                                            [src]="IP+a.officerImage">
+                                                        <div class="media-links"></div>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="card-title">
+                                                            <h2>
+
+                                                                {{a.officerRank | titlecase}} {{a.officerName |
+                                                                titlecase}} <span
+                                                                    *ngIf="a.recognition">({{a?.recognition || "" |
+                                                                    uppercase}})</span>
+
+                                                            </h2>
+                                                            <h3>
+                                                                {{a.officerRegiment | titlecase}}, {{a.officerBattalion
+                                                                | titlecase }} Bn
+
+                                                            </h3>
+                                                            <h3>Year: {{a.yearAwarded}}
+
+                                                            </h3>
+
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="flex card-footer flex-row justify-center align-items-center py-1">
+                                                        <button class="read-more"
+                                                            (click)="readMore(a)">Citation</button>
+                                                    </div>
+
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </ng-template>
+                        </li>
+
+                        <li [ngbNavItem]="5" class="nav-item" (click)="getGallantryAwardees('UYSM')">
+                            <img class="img-dd" src="assets/img/uysm4.png">
+                            <a ngbNavLink class="nav-link" id="pills-contact-tab" data-toggle="pill"
+                                href="javascript:void(0)" role="tab" aria-controls="pills-contact"
+                                aria-selected="false">UYSM</a>
+
+                            <ng-template ngbNavContent>
+                                <div style="margin-top: 40px;">
+                                    <div *ngIf="!uysm.length" class="text-center">
+                                        <h4>No Records Available</h4>
+                                    </div>
+                                    <div class="tab-pane fade show active" id="sysm" role="tabpanel"
+                                        aria-labelledby="pills-home-tab">
+                                        <div class="row" style="margin-top: 40px;">
+
+                                            <div *ngFor="let a of uysm;let i=index" class="col-md-3">
+                                                <div class="page-card card text-center  maha_vir_chakra">
+                                                    <div class="item-media">
+                                                        <img class="use-img" alt="" (error)="noImg($event)"
+                                                            [src]="IP+a.officerImage">
+                                                        <div class="media-links"></div>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="card-title">
+                                                            <h2>
+
+                                                                {{a.officerRank | titlecase}} {{a.officerName |
+                                                                titlecase}} <span
+                                                                    *ngIf="a.recognition">({{a?.recognition || "" |
+                                                                    uppercase}})</span>
+
+                                                            </h2>
+                                                            <h3>
+                                                                {{a.officerRegiment | titlecase}}, {{a.officerBattalion
+                                                                | titlecase }} Bn
+
+                                                            </h3>
+                                                            <h3>Year: {{a.yearAwarded}}
+
+                                                            </h3>
+
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="flex card-footer flex-row justify-center align-items-center py-1">
+                                                        <button class="read-more"
+                                                            (click)="readMore(a)">Citation</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </ng-template>
+
+                        </li>
+
+                        <li [ngbNavItem]="6" class="nav-item" (click)="getGallantryAwardees('Vir Chakra')">
+                            <img class="img-dd" src="assets/img/vir.png">
+                            <a ngbNavLink class="nav-link" id="pills-contact-tab" data-toggle="pill"
+                                href="javascript:void(0)" role="tab" aria-controls="pills-contact"
+                                aria-selected="false">Vir Chakra</a>
+                            <ng-template ngbNavContent>
+                                <div style="margin-top: 40px;">
+                                    <div *ngIf="!veerChakra.length" class="text-center">
+                                        <h4>No Records Available</h4>
+                                    </div>
+                                    <div class="tab-pane fade show active" id="sysm" role="tabpanel"
+                                        aria-labelledby="pills-home-tab">
+                                        <div class="row" style="margin-top: 40px;">
+
+                                            <div *ngFor="let a of veerChakra;let i=index" class="col-md-3">
+                                                <div class="page-card card text-center maha_vir_chakra">
+                                                    <div class="item-media">
+                                                        <img class="use-img" alt="" (error)="noImg($event)"
+                                                            [src]="IP+a.officerImage">
+                                                        <div class="media-links"></div>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="card-title">
+                                                            <h2>
+
+                                                                {{a.officerRank | titlecase}} {{a.officerName |
+                                                                titlecase}} <span
+                                                                    *ngIf="a.recognition">({{a?.recognition || "" |
+                                                                    uppercase}})</span>
+
+                                                            </h2>
+                                                            <h3>
+                                                                {{a.officerRegiment | titlecase}}, {{a.officerBattalion
+                                                                | titlecase }} Bn
+
+                                                            </h3>
+                                                            <h3>Year: {{a.yearAwarded}}
+
+                                                            </h3>
+
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="flex card-footer flex-row justify-center align-items-center py-1">
+                                                        <button class="read-more"
+                                                            (click)="readMore(a)">Citation</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </ng-template>
+                        </li>
+
+                        <li [ngbNavItem]="7" class="nav-item" (click)="getGallantryAwardees('Shaurya Chakra')">
+                            <img class="img-dd" src="assets/img/sh.png">
+                            <a ngbNavLink class="nav-link" id="pills-contact-tab" data-toggle="pill"
+                                href="javascript:void(0)" role="tab" aria-controls="pills-contact"
+                                aria-selected="false">Shaurya Chakra</a>
+
+
+                            <ng-template ngbNavContent>
+                                <div style="margin-top: 40px;">
+                                    <div *ngIf="!shauryaChakra.length" class="text-center">
+                                        <h4>No Records Available</h4>
+                                    </div>
+                                    <div class="tab-pane fade show active" id="sysm" role="tabpanel"
+                                        aria-labelledby="pills-home-tab">
+                                        <div class="row" style="margin-top: 40px;">
+
+                                            <div *ngFor="let a of shauryaChakra;let i=index" class="col-md-3">
+                                                <div class="page-card card text-center maha_vir_chakra">
+                                                    <div class="item-media">
+                                                        <img class="use-img" (error)="noImg($event)" alt=""
+                                                            [src]="IP+a.officerImage">
+                                                        <div class="media-links"></div>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="card-title">
+                                                            <h2>
+
+                                                                {{a.officerRank | titlecase}} {{a.officerName |
+                                                                titlecase}} <span
+                                                                    *ngIf="a.recognition">({{a?.recognition || "" |
+                                                                    uppercase}})</span>
+
+                                                            </h2>
+                                                            <h3>
+                                                                {{a.officerRegiment | titlecase}}, {{a.officerBattalion
+                                                                | titlecase }} Bn
+
+                                                            </h3>
+                                                            <h3>Year: {{a.yearAwarded}}
+
+                                                            </h3>
+
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="flex card-footer flex-row justify-center align-items-center py-1">
+                                                        <button class="read-more"
+                                                            (click)="readMore(a)">Citation</button>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </ng-template>
+
+                        </li>
+
+
+                    </ul>
+
+                    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+                    <div class="tab-content" id="pills-tabContent">
+
+                        <!-- <div  class="tab-pane fade show active" id="sysm" role="tabpanel"
+                            aria-labelledby="pills-home-tab">
+                            <div class="row" style="margin-top: 40px;" >
+
+                                <div class="col-md-3"  >
+                                    <div class="page-card maha_vir_chakra">
+                                        <div class="item-media">
+                                            <img class="use-img" alt=""
+                                                src="https://cdn.iconscout.com/icon/free/png-256/army-3148686-2621216.png">
+                                            <div class="media-links"></div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <h2>
+                                                    2/LT BHAGWAN DUTT DOGRA
+                                                    
+                                                </h2>
+                                                <h3>
+                                                 UNIT INF, COURSE-20, SQN-C
+                                                
+                                                </h3>
+                                                <h3>Year: 1964
+                                                 
+                                                </h3>
+                                                <div class="flex flex-row justify-center align-items-center py-1">
+                                                    <button mat-button class="read-more">Citation</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div> -->
+
+
+
+
+
+                        <!-- <div class="tab-pane fade" id="mahavir_chakra" role="tabpanel"
+                            aria-labelledby="pills-profile-tab">
+                            <div class="row" style="    margin-top: 40px;">
+                                <div class="col-md-3">
+                                    <div class="page-card maha_vir_chakra">
+                                        <div class="item-media">
+                                            <img class="use-img" alt="GURBACHAN SINGH SALARIA"
+                                                src="https://cdn.iconscout.com/icon/free/png-256/army-3148686-2621216.png">
+                                            <div class="media-links"></div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <h2>
+                                                    2/LT BHAGWAN DUTT DOGRAI
+                                                    
+                                                </h2>
+                                                <h3>
+                                                    UNIT INF, COURSE-20, SQN-C
+                                                    
+                                                </h3>
+                                                <h3>Year: 1964
+                                                    
+                                                </h3>
+                                                <div class="flex flex-row justify-center align-items-center py-1">
+                                                    <button class="read-more">Citation</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="page-card maha_vir_chakra">
+                                        <div class="item-media">
+                                            <img class="use-img" alt="GURBACHAN SINGH SALARIA"
+                                                src="https://cdn.iconscout.com/icon/free/png-256/army-3148686-2621216.png">
+                                            <div class="media-links"></div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <h2>
+                                                    2/LT BHAGWAN DUTT DOGRA
+                                                    
+                                                </h2>
+                                                <h3>
+                                                    UNIT INF, COURSE-20, SQN-C
+                                                    
+                                                </h3>
+                                                <h3>Year: 1964
+                                                    
+                                                </h3>
+                                                <div class="flex flex-row justify-center align-items-center py-1">
+                                                    <button class="read-more">Citation</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="page-card maha_vir_chakra">
+                                        <div class="item-media">
+                                            <img class="use-img" alt="GURBACHAN SINGH SALARIA"
+                                                src="https://cdn.iconscout.com/icon/free/png-256/army-3148686-2621216.png">
+                                            <div class="media-links"></div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <h2>
+                                                    2/LT BHAGWAN DUTT DOGRA
+                                                    
+                                                </h2>
+                                                <h3>
+                                                    UNIT INF, COURSE-20, SQN-C
+                                                    
+                                                </h3>
+                                                <h3>Year: 1964
+                                                    
+                                                </h3>
+                                                <div class="flex flex-row justify-center align-items-center py-1">
+                                                    <button class="read-more">Citation</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="page-card maha_vir_chakra">
+                                        <div class="item-media">
+                                            <img class="use-img" alt="GURBACHAN SINGH SALARIA"
+                                                src="https://cdn.iconscout.com/icon/free/png-256/army-3148686-2621216.png">
+                                            <div class="media-links"></div>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <h2>
+                                                    2/LT BHAGWAN DUTT DOGRA
+                                                    
+                                                </h2>
+                                                <h3>
+                                                    UNIT INF, COURSE-20, SQN-C
+                                                    
+                                                </h3>
+                                                <h3>Year: 1964
+                                                    
+                                                </h3>
+                                                <div class="flex flex-row justify-center align-items-center py-1">
+                                                    <button class="read-more">Citation</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row" style="    margin-top: 40px;">
+                                <div class="col-md-3">
+                                    <div class="page-card maha_vir_chakra">
+                                        <div class="item-media">
+                                            <img class="use-img" alt="GURBACHAN SINGH SALARIA"
+                                                src="https://cdn.iconscout.com/icon/free/png-256/army-3148686-2621216.png">
+                                            <div class="media-links"></div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <h2>
+                                                    2/LT BHAGWAN DUTT DOGRA
+                                                    
+                                                </h2>
+                                                <h3>
+                                                    UNIT INF, COURSE-20, SQN-C
+                                                    
+                                                </h3>
+                                                <h3>Year: 1964
+                                                    
+                                                </h3>
+                                                <div class="flex flex-row justify-center align-items-center py-1">
+                                                    <button class="read-more">Citation</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="page-card maha_vir_chakra">
+                                        <div class="item-media">
+                                            <img class="use-img" alt="GURBACHAN SINGH SALARIA"
+                                                src="https://cdn.iconscout.com/icon/free/png-256/army-3148686-2621216.png">
+                                            <div class="media-links"></div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <h2>
+                                                    2/LT BHAGWAN DUTT DOGRA
+                                                </h2>
+                                                <h3>
+                                                    UNIT INF, COURSE-20, SQN-C
+                                                </h3>
+                                                <h3>Year: 1964
+                                                </h3>
+                                                <div class="flex flex-row justify-center align-items-center py-1">
+                                                    <button class="read-more">Citation</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="page-card maha_vir_chakra">
+                                        <div class="item-media">
+                                            <img class="use-img" alt="GURBACHAN SINGH SALARIA"
+                                                src="https://cdn.iconscout.com/icon/free/png-256/army-3148686-2621216.png">
+                                            <div class="media-links"></div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <h2>
+                                                    2/LT BHAGWAN DUTT DOGRA
+                                                </h2>
+                                                <h3>
+                                                    UNIT INF, COURSE-20, SQN-C
+                                                </h3>
+                                                <h3>Year: 1964
+                                                </h3>
+                                                <div class="flex flex-row justify-center align-items-center py-1">
+                                                    <button class="read-more">Citation</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="page-card maha_vir_chakra">
+                                        <div class="item-media">
+                                            <img class="use-img" alt="GURBACHAN SINGH SALARIA"
+                                                src="https://cdn.iconscout.com/icon/free/png-256/army-3148686-2621216.png">
+                                            <div class="media-links"></div>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <h2>
+                                                    2/LT BHAGWAN DUTT DOGRA
+                                                </h2>
+                                                <h3>
+                                                    UNIT INF, COURSE-20, SQN-C
+                                                </h3>
+                                                <h3>Year: 1964
+                                                </h3>
+                                                <div class="flex flex-row justify-center align-items-center py-1">
+                                                    <button class="read-more">Citation</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div> -->
+
+                        <!-- <div class="tab-pane fade" id="kirti_chakra" role="tabpanel"
+                            aria-labelledby="pills-contact-tab">
+                            <div class="row" style="    margin-top: 40px;">
+                                <div class="col-md-3">
+                                    <div class="page-card maha_vir_chakra">
+                                        <div class="item-media">
+                                            <img class="use-img" alt="GURBACHAN SINGH SALARIA"
+                                                src="https://cdn.iconscout.com/icon/free/png-256/army-3148686-2621216.png">
+                                            <div class="media-links"></div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <h2>
+                                                    2/LT BHAGWAN DUTT DOGRA
+                                                    
+                                                </h2>
+                                                <h3>
+                                                    UNIT INF, COURSE-20, SQN-C
+                                                    
+                                                </h3>
+                                                <h3>Year: 1964
+                                                    
+                                                </h3>
+                                                <div class="flex flex-row justify-center align-items-center py-1">
+                                                    <button class="read-more">Citation</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="page-card maha_vir_chakra">
+                                        <div class="item-media">
+                                            <img class="use-img" alt="GURBACHAN SINGH SALARIA"
+                                                src="https://cdn.iconscout.com/icon/free/png-256/army-3148686-2621216.png">
+                                            <div class="media-links"></div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <h2>
+                                                    2/LT BHAGWAN DUTT DOGRA
+                                                    
+                                                </h2>
+                                                <h3>
+                                                    UNIT INF, COURSE-20, SQN-C
+                                                    
+                                                </h3>
+                                                <h3>Year: 1964
+                                                    
+                                                </h3>
+                                                <div class="flex flex-row justify-center align-items-center py-1">
+                                                    <button class="read-more">Citation</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="page-card maha_vir_chakra">
+                                        <div class="item-media">
+                                            <img class="use-img" alt="GURBACHAN SINGH SALARIA"
+                                                src="https://cdn.iconscout.com/icon/free/png-256/army-3148686-2621216.png">
+                                            <div class="media-links"></div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <h2>
+                                                    2/LT BHAGWAN DUTT DOGRA
+                                                    
+                                                </h2>
+                                                <h3>
+                                                    UNIT INF, COURSE-20, SQN-C
+                                                    
+                                                </h3>
+                                                <h3>Year: 1964
+                                                    
+                                                </h3>
+                                                <div class="flex flex-row justify-center align-items-center py-1">
+                                                    <button class="read-more">Citation</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="page-card maha_vir_chakra">
+                                        <div class="item-media">
+                                            <img class="use-img" alt="GURBACHAN SINGH SALARIA"
+                                                src="https://cdn.iconscout.com/icon/free/png-256/army-3148686-2621216.png">
+                                            <div class="media-links"></div>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <h2>
+                                                    2/LT BHAGWAN DUTT DOGRA
+                                                    
+                                                </h2>
+                                                <h3>
+                                                    UNIT INF, COURSE-20, SQN-C
+                                                    
+                                                </h3>
+                                                <h3>Year: 1964
+                                                    
+                                                </h3>
+                                                <div class="flex flex-row justify-center align-items-center py-1">
+                                                    <button class="read-more">Citation</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row" style="    margin-top: 40px;">
+                                <div class="col-md-3">
+                                    <div class="page-card maha_vir_chakra">
+                                        <div class="item-media">
+                                            <img class="use-img" alt="GURBACHAN SINGH SALARIA"
+                                                src="https://cdn.iconscout.com/icon/free/png-256/army-3148686-2621216.png">
+                                            <div class="media-links"></div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <h2>
+                                                    2/LT BHAGWAN DUTT DOGRA
+                                                    
+                                                </h2>
+                                                <h3>
+                                                    UNIT INF, COURSE-20, SQN-C
+                                                    
+                                                </h3>
+                                                <h3>Year: 1964
+                                                    
+                                                </h3>
+                                                <div class="flex flex-row justify-center align-items-center py-1">
+                                                    <button class="read-more">Citation</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="page-card maha_vir_chakra">
+                                        <div class="item-media">
+                                            <img class="use-img" alt="GURBACHAN SINGH SALARIA"
+                                                src="https://cdn.iconscout.com/icon/free/png-256/army-3148686-2621216.png">
+                                            <div class="media-links"></div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <h2>
+                                                    2/LT BHAGWAN DUTT DOGRA
+                                                    
+                                                </h2>
+                                                <h3>
+                                                    UNIT INF, COURSE-20, SQN-C
+                                                    
+                                                </h3>
+                                                <h3>Year: 1964
+                                                    
+                                                </h3>
+                                                <div class="flex flex-row justify-center align-items-center py-1">
+                                                    <button class="read-more">Citation</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="page-card maha_vir_chakra">
+                                        <div class="item-media">
+                                            <img class="use-img" alt="GURBACHAN SINGH SALARIA"
+                                                src="https://cdn.iconscout.com/icon/free/png-256/army-3148686-2621216.png">
+                                            <div class="media-links"></div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <h2>
+                                                    2/LT BHAGWAN DUTT DOGRA
+                                                    
+                                                </h2>
+                                                <h3>
+                                                    UNIT INF, COURSE-20, SQN-C
+                                                    
+                                                </h3>
+                                                <h3>Year: 1964
+                                                    
+                                                </h3>
+                                                <div class="flex flex-row justify-center align-items-center py-1">
+                                                    <button class="read-more">Citation</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="page-card maha_vir_chakra">
+                                        <div class="item-media">
+                                            <img class="use-img" alt="GURBACHAN SINGH SALARIA"
+                                                src="https://cdn.iconscout.com/icon/free/png-256/army-3148686-2621216.png">
+                                            <div class="media-links"></div>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <h2>
+                                                    2/LT BHAGWAN DUTT DOGRA
+                                                    
+                                                </h2>
+                                                <h3>
+                                                    UNIT INF, COURSE-20, SQN-C
+                                                    
+                                                </h3>
+                                                <h3>Year: 1964
+                                                    
+                                                </h3>
+                                                <div class="flex flex-row justify-center align-items-center py-1">
+                                                    <button class="read-more">Citation</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div> -->
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+</div>
+
+
+
+
+
+
+<div class="modal gc-modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Modal Heading</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                software like Aldus PageMaker including versions of Lorem Ipsum.
+            </div>
+        </div>
+    </div>
+</div>

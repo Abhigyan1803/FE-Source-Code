@@ -1,0 +1,84 @@
+
+<div class="container-fluid occasion-data">
+    <div class="row">
+        <div class="container py-5">
+
+            <div class="row">
+                <div class="col-lg-12 app-12 mx-auto">
+                    <!-- List group-->
+                    <mat-card *ngIf="!specialOccasions.length" >
+                        <div class="text-center" >
+                            NO UPCOMING OCCASIONS.
+                        </div>
+                    </mat-card>
+                    <ul *ngIf="specialOccasions.length" class="list-group ">
+
+                        <li class="list-group-item shadow" *ngFor="let o of specialOccasions">
+                            <ng-container *ngIf="o.type=='oBday'">
+                                <img src="assets/img/bday img.jpg" alt="Generic placeholder image" width="200" class="">
+                                <div class="media1">
+                                    <div class="media-body">
+
+                                        <span class="dates">{{o.date | date:'dd MMMM'}}</span>
+                                        <h5 class="mt-0 font-weight-bold">Happy Birthday</h5>
+                                        <p class="">{{o.oName}}</p>
+                                        <div class="d-flex align-items-center justify-content-between mt-1">
+                                            <h6 class="font-weight-bold">{{o.department}}</h6>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </ng-container>
+
+                            <ng-container *ngIf="o.type == 'sBday'">
+
+                                <!-- Custom content-->
+                                <img src="assets/img/bday img 1.jpg" alt="Generic placeholder image" width="200"
+                                    class="">
+                                <div class="media1">
+                                    <!-- <div class="media-body">
+                          <span class="dates">{{o.date |date:'d MMMM, y'}}</span>
+                            <h5 class="mt-0 font-weight-bold">Happy Birthday</h5> 
+                            <p class="">{{o.oName}}</p>
+                            <div class="d-flex align-items-center justify-content-between mt-1">
+                                <h6 class="font-weight-bold">{{o.department}}</h6>
+                            </div>
+                        </div> -->
+                                    <div class="media-body">
+                                        <span class="dates">{{o.date |date:'dd MMMM'}}</span>
+                                        <h5 class="">Happy Birthday</h5>
+                                        <p class="">{{o.sName}} {{o.relation}} {{o.oName}}</p>
+                                        <div class="d-flex align-items-center justify-content-between mt-1">
+                                            <h6 class="font-weight-bold">{{o.department}}</h6>
+
+
+                                        </div>
+                                    </div>
+                                </div> <!-- End -->
+                            </ng-container>
+
+                            <ng-container *ngIf="o.type == 'wedd'">
+
+                                <!-- Custom content-->
+                                <img src="assets/img/anniversary img.jpg" alt="Generic placeholder image" width="200"
+                                    class="">
+                                <div class="media1">
+                                    <div class="media-body">
+                                        <span class="dates">{{o.date |date:'dd MMMM'}}</span>
+                                        <h5 class="">Happy Wedding Anniversary</h5>
+                                        <p class=""> Congarulations {{o.oName}} & {{o.sName}}</p>
+                                        <div class="d-flex align-items-center justify-content-between mt-1">
+                                            <h6 class="font-weight-bold">{{o.department}}</h6>
+                                        </div>
+                                    </div>
+                                </div> <!-- End -->
+                            </ng-container>
+
+                        </li>
+                    </ul> <!-- End -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

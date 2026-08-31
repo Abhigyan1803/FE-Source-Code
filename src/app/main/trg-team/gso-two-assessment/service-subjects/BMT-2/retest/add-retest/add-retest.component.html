@@ -1,0 +1,57 @@
+<div class="mat-new">
+    <h4 class="card-heading"><button mat-icon-button (click)="goBack()" ><mat-icon>chevron_left</mat-icon> </button> BMT-2 <span class="sub-menu1"> > Retest > {{title}} </span>
+        <span class="sub-menu1"> </span>
+    </h4>
+</div>
+
+<mat-card>
+    <div class="top-br">
+        <form [formGroup]="addNominalForm" >
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="form-label">Name </label>
+                    <input type="text" formControlName="name"  class="form-control">
+                    <span class="validation_msg" *ngIf="f.name.errors && f.name.errors.required && isError" >Name is required</span>   
+                </div>
+             
+            </div>
+
+           
+
+            
+                <div class="form-group">
+                    <label class="form-label">Document<span class="required">*</span></label>
+                      <input type="file" #inputFile accept=".pdf,.doc,.docx" (change)="onSelectDoc($event)" id="image">
+                      <mat-icon *ngIf="docUrl" class="document_icon" (click)="openDoc(docUrl)" >description</mat-icon>
+                      <span class="note">Max File Size 50 MB. (Only pdf and doc format.)</span>
+                      <span class="validation_msg" *ngIf="!isDoc && isError" >Document is required</span>  
+                  </div>
+            
+            <div class="form-group col-md-6">
+                <label for="position" hidden>Type<span class="required">*</span></label>
+                <input id="name" type="text" hidden class="form-control" maxlength="100" formControlName="studyMaterialType"
+                placeholder="Name">
+                 <span class="validation_msg"
+                     *ngIf="f.studyMaterialType.errors && f.studyMaterialType.errors.required && isError">Please Enter type</span>
+             </div>
+            
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="form-label">Status <span class="required">*</span></label>
+                    <select class="form-control" formControlName="status">
+                        <option value="" selected hidden disabled>Status</option>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+                    <span class="validation_msg" *ngIf="f.status.errors && f.status.errors.required && isError" >Status is required</span>   
+                </div>
+            </div>
+
+
+
+            <button *ngIf="title == 'Add Mark'" mat-raised-button (click)="submit()"  >Add </button>
+            <button *ngIf="title == 'View Mark'" mat-raised-button (click)="updateNominal()"  >Update </button>
+
+        </form>
+    </div>
+</mat-card>

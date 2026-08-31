@@ -1,0 +1,178 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="mat-heading">
+            <div id="top-bar" class="">
+              <h2>E-Dossier<span class="sub-menu1">
+                > WEAPON TRAINING</span></h2>
+          </div>
+          </div>
+        <div class="weapon-training">
+
+            <div class="mat-card mat-focus-indicator">
+
+                <!-- <div class="ng-star-inserted">
+                    <div class="mat-new mb-4">
+                        <h4 class="card-heading">WEAPON TRAINING</h4>
+                    </div>
+                </div> -->
+                <form class="ng-untouched ng-pristine ng-invalid">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="rank">Ima No.</label>
+                                <input placeholder="No" formcontrolname="" disabled id="WTcadetServiceId" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                            </div>
+                        </div>	
+                        <div class="col-md-2">
+                            <div class="form-group">
+                              <label for="rank">Term</label>
+                              <input placeholder="Term"  type="text" disabled id="WTcadettermname" class="form-control ng-untouched ng-pristine ng-invalid">
+                            </div>
+                          </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="rank">Rank</label>
+                                <input placeholder="Rank" formcontrolname="" disabled id="WTcadetRank" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="rank">Name</label>
+                                <input placeholder="Name" formcontrolname="" disabled id="WTcadetName" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="rank">Bn</label>
+                                <input placeholder="Bn" formcontrolname="" disabled id="WTbattalionName" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="rank">Coy</label>
+                                <input placeholder="Coy" formcontrolname="" disabled id="WTcompanyName" type="text" class="form-control ng-untouched ng-pristine ng-invalid">
+                            </div>
+                        </div>
+                        
+                    </div>
+                </form>
+                
+                <form >
+                    <div class="col-md-12">
+                        <div>
+
+                            <ng-container *ngFor="let weapon of WTCadetList; let mainIndex = index">
+                                <table class="tg">
+                                    <thead>
+                                        <tr>
+                                            <th class="tg-1pqm" rowspan="2"><span
+                                                    style="font-weight:700;font-style:normal;text-decoration:none;color:#000">S
+                                                    No </span></th>
+                                            <th class="tg-xakg" rowspan="2"><span
+                                                    style="font-weight:700;font-style:normal;text-decoration:none;color:#000">Subject</span>
+                                            </th>
+                                            <th class="tg-xakg" rowspan="2"><span
+                                                    style="font-weight:700;font-style:normal;text-decoration:none;color:#000">Marks</span>
+                                            </th>
+                                            <th class="tg-xakg" colspan="3"><span
+                                                    style="font-weight:700;font-style:normal;text-decoration:none;color:#000">MARKS
+                                                    OBTAINED</span></th>
+                                        </tr>
+                                        <tr>
+                                            <th class="tg-xakg" colspan="4"><span
+                                                    style="font-weight:700;font-style:normal;text-decoration:none;color:#000">{{romanize(mainIndex + 1)}}
+                                                    TERM</span></th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                            *ngFor="let wtSubject of weapon.cadetWTMainResultlist; let wtSubjectIndex = index">
+
+                                            <td> {{wtSubjectIndex +1}} </td>
+                                            <td>{{wtSubject.weaponName}} </td>
+                                            <td> {{wtSubject.maxMarks}} </td>
+                                            <td colspan="4">
+                                                <input min="0" disabled class="form-control d-inline"
+                                                    value="{{wtSubject.marks}}">
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                        <td class="tg-amwm" colspan="2"><span
+                                                style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">Total</span>
+                                        </td>
+                                        <td class="tg-amwm"><span
+                                                style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent">{{obtainedSubjectmarks}}</span>
+                                        </td>
+                                        <td class="tg-0lax"><input min="0" disabled class="form-control d-inline"
+                                            value="{{obtainedSubjectmarks}}"></td>
+                                    </tr>
+
+
+
+                                    </tbody>
+                                </table>
+                                <br>
+                            </ng-container>
+                            <!-- <button *ngIf="terid=='1'" mat-raised-button (click)="confirm(1)">CONFIRM</button> -->
+
+                        </div>
+
+                        <div class="border acc_doc">
+                            <div class="ng-star-inserted">
+                                <div class="mat-new inner-mat-new mb-4">
+                                    <h4 class="card-heading">FIRING STD</h4>
+                                </div>
+                            </div>
+                            <div class="firing-study p-3">
+                                <p><b>MM</b> - 70% and above, <b>1st</b> - 60% to 69%, <b>SS</b> - 40% to 59%,
+                                    <b>FAIL</b> - Below 40%
+                                </p>
+                            </div>
+                        </div>
+                        <div class="ng-star-inserted">
+                            <div class="mat-new mb-4">
+                                <h4 class="card-heading">WT MOTIVATION BADGE</h4>
+                            </div>
+                        </div>
+                        <table class="tg">
+                            <thead>
+                                <tr>
+                                    <th class="tg-kln5" colspan="5">I Term</th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr [formGroup]="motivationFormI">
+                                    <td class="tg-0lax"><input type="text" class="form-control"  class="form-control" formControlName="badge1" ></td>
+                                    <td class="tg-0lax"><input type="text" class="form-control"  class="form-control" formControlName="badge2"></td>
+                                    <td class="tg-0lax"><input type="text" class="form-control"  class="form-control" formControlName="badge3"></td>
+                                    <td class="tg-0lax"><input type="text" class="form-control"  class="form-control" formControlName="badge4"></td>
+                                    <td> <button mat-raised-button (click)="addMotivationsubmit1()">Submit</button></td>
+                                </tr>
+                               
+                            </tbody>
+                        </table>
+                       
+
+                    </div>
+
+
+                </form>
+
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+    </div>
+
+</div>

@@ -1,0 +1,211 @@
+<!-- <table *ngFor="let menu of Menu">
+	<tr>
+		<td>{{menu.menuName}}</td>
+		<td>-</td>
+	</tr>
+	<tr *ngFor="let subMenu of menu.subMenuList">
+		<td></td>
+		<td> {{ subMenu.subMenuName }} </td>
+  
+	</tr>
+</table> -->
+
+
+
+    <div class="links" style="clear: both;">
+        <div class="ng-star-inserted">
+            <div class="mat-new-inner">
+                <h4 class="card-heading">E-Dossier</h4>
+            </div>
+        </div>
+        <div class="container">
+        <div class="mat-card mat-focus-indicator">
+            <div class="service-id mb-2">
+                <form class="ng-untouched ng-pristine ng-invalid">
+                    <div class="row">
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="rank">Ima No.</label>
+                          <input placeholder="No"  type="text" disabled id="result" class="form-control ng-untouched ng-pristine ng-invalid">
+                        </div>
+                      </div>  
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="rank">Rank</label>
+                          <input placeholder="Rank"  type="text" disabled id="rk" class="form-control ng-untouched ng-pristine ng-invalid">
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="rank">Name</label>
+                          <input placeholder="Name"  type="text" disabled id="name" class="form-control ng-untouched ng-pristine ng-invalid">
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="rank">Term</label>
+                          <input placeholder="Term"  type="text" disabled id="tname" class="form-control ng-untouched ng-pristine ng-invalid">
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="rank">Bn</label>
+                          <input placeholder="Bn"  type="text" disabled id="bn" class="form-control ng-untouched ng-pristine ng-invalid">
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="rank">Coy</label>
+                          <input placeholder="Coy"  type="text" disabled id="cp" class="form-control ng-untouched ng-pristine ng-invalid">
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </form>
+                
+                <!-- <div class="input_id col-md-6">
+                    <b> IMA No. :</b> <input type="text" disabled id="result" class="form-control mt-2">
+                </div>
+                <div class="input_id col-md-6">
+                    <b> Name :</b> <input type="text" disabled id="name" class="form-control mt-2">
+                </div> -->
+            </div>
+        </div>
+        <div class="mat-card mat-focus-indicator">
+            <div class="index-list mt-3">
+
+                <div class="row">
+                    <div class="col-md-6 index-data mb-5" *ngFor="let menu of Menu">
+                        <div class="icon-img">
+                            <img src="{{IP+menu.iconUrl}}" alt="Cadet Icon">
+                        </div>
+                        <div class="details">
+                            <h3><b>{{menu.menuName}}</b></h3>
+                            <ul *ngFor="let subMenu of menu.subMenuList; let index=index" class="list-group" >
+                                <li class="list-group-item" >
+                                {{index+1}}.  <a (click)="OnclickSubmenuLink({name: menu.menuName, time: subMenu.subMenuName});"
+                                        style="cursor: pointer;" target="_blank">
+                                        {{subMenu.subMenuName}}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-6 index-data mb-5">
+                <div class="icon-img">
+                    <img src="http://65.2.78.179:8080/E-dossier-html/images/google-docs.png" alt="Details Icon">
+                </div>
+                <div class="details">
+                    <h3><b>Other Details</b></h3>
+                    <ol>
+                      <li><a href="http://65.2.78.179:8080/E-dossier-html/club.html" target="_blank">Club</a></li>
+                      <li><a href="http://65.2.78.179:8080/E-dossier-html/Hike.html" target="_blank">Hike</a></li>
+                      <li><a href="http://65.2.78.179:8080/E-dossier-html/Lve.html" target="_blank">LVE</a></li>
+                  </ol>
+              </div>
+            </div>
+            <div class="col-md-6 index-data mb-5">
+                <div class="icon-img">
+                    <img src="http://65.2.78.179:8080/E-dossier-html/images/google-docs.png" alt="Assessment Icon">
+                </div>
+                <div class="details">
+                    <h3><b>Overall Assessment</b></h3>
+                    <ol>
+                        <li><a href="http://65.2.78.179:8080/E-dossier-html/assetment-gc.html" target="_blank">Assessment GC</a></li>
+                         <li><a href="http://65.2.78.179:8080/E-dossier-html/assetment-oq-matrix.html" target="_blank">Assessment OQ Matrix</a></li>
+                         <li><a href="http://65.2.78.179:8080/E-dossier-html/pt-1.html" target="_blank">PT</a></li>
+                    <li><a href="http://65.2.78.179:8080/E-dossier-html/sports&games.html" target="_blank">Sports</a></li>
+                    <li><a href="http://65.2.78.179:8080/E-dossier-html/drill.html" target="_blank">Drill</a></li>
+                      <li><a href="http://65.2.78.179:8080/E-dossier-html/weapon-training.html" target="_blank">WT</a></li>
+                      <li><a href="http://65.2.78.179:8080/E-dossier-html/academics.html" target="_blank">Academic</a></li>
+                      <li><a href="http://65.2.78.179:8080/E-dossier-html/service-subjects.html" target="_blank">Service Subjects</a></li>
+                      <li><a href="http://65.2.78.179:8080/E-dossier-html/leadership-matrix.html" target="_blank">Leadership Matrix</a></li>
+                      <li><a href="http://65.2.78.179:8080/E-dossier-html/eqtn.html" target="_blank">EQTN</a></li>
+                  </ol>
+              </div>
+            </div>
+            <div class="col-md-6 index-data mb-5">
+                <div class="icon-img">
+                    <img src="http://65.2.78.179:8080/E-dossier-html/images/camp.png" alt="Camp Icon">
+                </div>
+                <div class="details">
+                    <h3><b>Camp Marks</b></h3>
+                    <ol>
+                      <li><a href="http://65.2.78.179:8080/E-dossier-html/camps.html" target="_blank">Camp Marks</a></li>
+                      <li><a href="http://65.2.78.179:8080/E-dossier-html/assessment-matrix-camp.html" target="_blank">Assessment Matrix</a></li>
+                  </ol>
+              </div>
+          </div>
+          <div class="col-md-6 index-data mb-5">
+              <div class="icon-img">
+                    <img src="http://65.2.78.179:8080/E-dossier-html/images/interview.png" alt="Interview Icon">
+                </div>
+                <div class="details">
+                    <h3><b>Interviews</b></h3>
+                    <ol>
+                      <li><a href="http://65.2.78.179:8080/E-dossier-html/interview-sheet.html" target="_blank">Interview Sheet</a></li>
+                      <li><a href="http://65.2.78.179:8080/E-dossier-html/instructions-for-interviews-counselling.html" target="_blank">Instructions for Interviews and Counselling</a></li>
+                      <li><a href="http://65.2.78.179:8080/E-dossier-html/initial-interview.html" target="_blank">Initial Interview</a></li>
+                      <li><a href="http://65.2.78.179:8080/E-dossier-html/begining-term-interview.html" target="_blank">Begining Term Interview</a></li>
+                      <li><a href="http://65.2.78.179:8080/E-dossier-html/mid-term-interview.html" target="_blank">Mid Term Interview</a></li>
+                      <li><a href="http://65.2.78.179:8080/E-dossier-html/special-interview.html" target="_blank">Special Interview</a></li>
+                  </ol>
+                </div>
+          </div>
+           <div class="col-md-6 index-data mb-5">
+               <div class="icon-img">
+                    <img src="http://65.2.78.179:8080/E-dossier-html/images/google-docs.png" alt="Sheet Icon">
+                </div>
+                <div class="details">
+                    <h3><b>OBSN Sheet</b></h3>
+                    <ol>
+                      <li><a href="http://65.2.78.179:8080/E-dossier-html/obsn-sheet-all-term.html" target="_blank">OBSN Sheet</a></li>
+                  </ol>
+              </div>
+          </div>
+          <div class="col-md-6 index-data mb-5">
+              <div class="icon-img">
+                    <img src="http://65.2.78.179:8080/E-dossier-html/images/interview.png" alt="Counselling Icon">
+                </div>
+                <div class="details">
+                    <h3><b>Counselling</b></h3>
+                    <ol>
+                      <li><a href="http://65.2.78.179:8080/E-dossier-html/counselling-all-term.html" target="_blank">Counselling All Terms</a></li>
+                  </ol>
+              </div>
+          </div>
+          <div class="col-md-6 index-data mb-5">
+              <div class="icon-img">
+                    <img src="http://65.2.78.179:8080/E-dossier-html/images/warning.png" alt="Warning Icon">
+                </div>
+                <div class="details">
+                    <h3><b>Warning</b></h3>
+                    <ol>
+                         <li><a href="http://65.2.78.179:8080/E-dossier-html/instructions-for-warning.html" target="_blank">Instructions for warning</a></li>
+                        <li><a href="http://65.2.78.179:8080/E-dossier-html/warning-pl-cdr.html" target="_blank">Warning PI Cdr</a></li>
+                        <li><a href="http://65.2.78.179:8080/E-dossier-html/warning-coy-cdr.html" target="_blank">Warning Coy Cdr</a></li>
+                        <li><a href="http://65.2.78.179:8080/E-dossier-html/warning-bn-cdr.html" target="_blank">Warning Bn Cdr</a></li>
+                        <li><a href="http://65.2.78.179:8080/E-dossier-html/warning-dcci.html" target="_blank">Warning Dcci</a></li>
+                  </ol>
+              </div>
+          </div>
+          <div class="col-md-6 index-data mb-5">
+              <div class="icon-img">
+                    <img src="http://65.2.78.179:8080/E-dossier-html/images/edit.png" alt="Record Icon">
+                </div>
+                <div class="details">
+                    <h3><b>Records</b></h3>
+                    <ol>
+                      <li><a href="http://65.2.78.179:8080/E-dossier-html/MED-Records.html" target="_blank">Med Records</a></li>
+                      <li><a href="http://65.2.78.179:8080/E-dossier-html/discp-Records.html" target="_blank">Discp Records</a></li>
+                      <li><a href="http://65.2.78.179:8080/E-dossier-html/weight-in-records.html" target="_blank">Weigh in Records</a></li>
+                  </ol>
+              </div>
+          </div> -->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+.mat-heading {
+  clear: both;
+  padding-top: 10px;
+}
+div#top-bar {
+  background: #e1e3de;
+  padding:10px 15px;
+  color: #bb9450;
+  clear: both;
+  border-radius: 5px;
+}
+div#top-bar h2 {
+font-size: 16px;
+  margin: 0;
+  text-transform: uppercase;
+
+}
+.sub-menu1 {
+  color: #721a0c;
+}
+.main-content{
+  min-height: 45vw;
+}
+.mat-card:not([class*=mat-elevation-z]) {
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+}
+.mat-new {
+    padding: 0.875rem 0 0 !important;
+}
+h4.card-heading {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    color: #721a0c;
+    background: #eee;
+    padding: 10px 15px;
+    border-radius: 3px;
+    font-weight: 600;
+}
+ .mat-card {
+ 	margin: 1rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.4s ease 0s;
+    padding: 0.875rem 0.875rem !important;
+}
+ .mat-card:hover {
+    box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+}
+.backbtn button {
+  width: 30px;
+  height: 30px;
+  line-height: 28px;
+  background: #ccc;
+  margin-right: 5px;
+}
+.tg  {border-collapse:collapse;border-spacing:0;margin:0px auto;width: 100%}
+.tg td{border-color:#c6c4c4;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:1rem;
+  overflow:hidden;padding:15px;word-break:normal;}
+.tg th{border-color:#c6c4c4;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:1rem;
+  font-weight:normal;overflow:hidden;padding:15px;word-break:normal;font-weight: bold;}
+.tg .tg-cjmp{background-color:#c6c4c4;border-color:#000000;color:#000000;font-size:1rem;text-align:center;vertical-align:top}
+.tg .tg-ratz{background-color:#c6c4c4;border-color:#000000;text-align:center;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:center;vertical-align:top}
+button.btn-color {
+    background: #742923;
+    color: #fff;
+}
+button.btn-color:hover, button.btn-color:focus {
+    color: #fff;
+}
+.disableCls {
+    pointer-events: none;
+   }
+   .hide{
+       display: none;
+   }

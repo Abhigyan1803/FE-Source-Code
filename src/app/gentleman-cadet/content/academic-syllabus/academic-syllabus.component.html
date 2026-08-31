@@ -1,0 +1,469 @@
+<div class="maincontent">
+    <div class="container-fluid mt-20">
+
+
+
+
+        <div class="mat-new">
+            <h4 class="card-heading breadcrum"> Syllabus > <span class="sub-menu1"> Academic Subjects </span> </h4>
+        </div>
+       
+            <mat-tab-group  (focusChange)="syllabusTabChanged($event)">
+                <mat-tab label="Paper 1" >
+
+                    <mat-tab-group (focusChange)="suubjectChanged('Paper 1',$event)" [(selectedIndex)]="selectedIndex" >
+                        <mat-tab label="Military History" >
+                            <div class="example-container ">
+                                <div class="example-table-container">
+                                    <table mat-table [dataSource]="dataSource" (matSortChange)="sortData($event)" matSort>
+                    
+                                        <ng-container matColumnDef="number">
+                                            <th mat-header-cell *matHeaderCellDef>S.No.</th>
+                                            <td mat-cell *matCellDef="let element;let i = index;">
+                                                {{i +1 + (myPaginator.pageIndex * myPaginator.pageSize)}} </td>
+                                        </ng-container>
+                    
+                                        <ng-container matColumnDef="date">
+                                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+                                            <td mat-cell *matCellDef="let element"> {{element.createdAt|date:'d MMMM, y' || "-" }} </td>
+                                        </ng-container>
+                    
+                    
+                                        <ng-container matColumnDef="name">
+                                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                                            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                        </ng-container>
+                    
+                                        <!-- Description Column -->
+                                        <ng-container matColumnDef="document">
+                                            <th mat-header-cell *matHeaderCellDef> Document </th>
+                                            <td class="act-btn" mat-cell *matCellDef="let element">
+                                                <a href="javascript:void(0)" (click)="openDoc(element)">
+                                                    <mat-icon>description</mat-icon>
+                                                </a>
+                                            </td>
+                                        </ng-container>
+                    
+                                     
+                    
+                    
+                    
+                                        <ng-container matColumnDef="view">
+                                            <th mat-header-cell *matHeaderCellDef> View </th>
+                                            <td class="act-btn" mat-cell *matCellDef="let element"> <a href="javascript:void(0)"
+                                                    (click)="viewsyllabus(element.id)">
+                                                    <mat-icon>visibility</mat-icon>
+                                                </a> </td>
+                                        </ng-container>
+                    
+                                        <tr mat-header-row *matHeaderRowDef="displayedColumns sticky: true"></tr>
+                                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                        <tr class="mat-row" *matNoDataRow>
+                                            <td class="mat-cell" style="text-align: center;" colspan="10">No Record Found</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                    
+                    
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="Military Geography" >
+                            <div class="example-container ">
+                                <div class="example-table-container">
+                                    <table mat-table [dataSource]="dataSource" (matSortChange)="sortData($event)" matSort>
+                    
+                                        <ng-container matColumnDef="number">
+                                            <th mat-header-cell *matHeaderCellDef>S.No.</th>
+                                            <td mat-cell *matCellDef="let element;let i = index;">
+                                                {{i +1 + (myPaginator.pageIndex * myPaginator.pageSize)}} </td>
+                                        </ng-container>
+                    
+                                        <ng-container matColumnDef="date">
+                                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+                                            <td mat-cell *matCellDef="let element"> {{element.createdAt|date:'d MMMM, y' || "-" }} </td>
+                                        </ng-container>
+                    
+                    
+                                        <ng-container matColumnDef="name">
+                                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                                            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                        </ng-container>
+                    
+                                        <!-- Description Column -->
+                                        <ng-container matColumnDef="document">
+                                            <th mat-header-cell *matHeaderCellDef> Document </th>
+                                            <td class="act-btn" mat-cell *matCellDef="let element">
+                                                <a href="javascript:void(0)" (click)="openDoc(element)">
+                                                    <mat-icon>description</mat-icon>
+                                                </a>
+                                            </td>
+                                        </ng-container>
+                    
+                                     
+                    
+                    
+                    
+                                        <ng-container matColumnDef="view">
+                                            <th mat-header-cell *matHeaderCellDef> View </th>
+                                            <td class="act-btn" mat-cell *matCellDef="let element"> <a href="javascript:void(0)"
+                                                    (click)="viewsyllabus(element.id)">
+                                                    <mat-icon>visibility</mat-icon>
+                                                </a> </td>
+                                        </ng-container>
+                    
+                                        <tr mat-header-row *matHeaderRowDef="displayedColumns sticky: true"></tr>
+                                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                        <tr class="mat-row" *matNoDataRow>
+                                            <td class="mat-cell" style="text-align: center;" colspan="10">No Record Found</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                    
+                    
+                            </div>
+                        </mat-tab>
+                    </mat-tab-group>
+
+
+
+                   
+        
+                </mat-tab>
+                <mat-tab label="Paper 2" >
+                    <mat-tab-group  (focusChange)="suubjectChanged('Paper 2',$event)" [(selectedIndex)]="selectedIndex" >
+                        <mat-tab label="CAIR" >
+                            <div class="example-container ">
+                                <div class="example-table-container">
+                                    <table mat-table [dataSource]="dataSource" (matSortChange)="sortData($event)" matSort>
+                    
+                                        <ng-container matColumnDef="number">
+                                            <th mat-header-cell *matHeaderCellDef>S.No.</th>
+                                            <td mat-cell *matCellDef="let element;let i = index;">
+                                                {{i +1 + (myPaginator.pageIndex * myPaginator.pageSize)}} </td>
+                                        </ng-container>
+                    
+                                        <ng-container matColumnDef="date">
+                                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+                                            <td mat-cell *matCellDef="let element"> {{element.createdAt|date:'d MMMM, y' || "-" }} </td>
+                                        </ng-container>
+                    
+                    
+                                        <ng-container matColumnDef="name">
+                                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                                            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                        </ng-container>
+                    
+                                        <!-- Description Column -->
+                                        <ng-container matColumnDef="document">
+                                            <th mat-header-cell *matHeaderCellDef> Document </th>
+                                            <td class="act-btn" mat-cell *matCellDef="let element">
+                                                <a href="javascript:void(0)" (click)="openDoc(element)">
+                                                    <mat-icon>description</mat-icon>
+                                                </a>
+                                            </td>
+                                        </ng-container>
+                    
+                                     
+                    
+                    
+                    
+                                        <ng-container matColumnDef="view">
+                                            <th mat-header-cell *matHeaderCellDef> View </th>
+                                            <td class="act-btn" mat-cell *matCellDef="let element"> <a href="javascript:void(0)"
+                                                    (click)="viewsyllabus(element.id)">
+                                                    <mat-icon>visibility</mat-icon>
+                                                </a> </td>
+                                        </ng-container>
+                    
+                                        <tr mat-header-row *matHeaderRowDef="displayedColumns sticky: true"></tr>
+                                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                        <tr class="mat-row" *matNoDataRow>
+                                            <td class="mat-cell" style="text-align: center;" colspan="10">No Record Found</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                    
+                    
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="BS" >
+                            <div class="example-container ">
+                                <div class="example-table-container">
+                                    <table mat-table [dataSource]="dataSource" (matSortChange)="sortData($event)" matSort>
+                    
+                                        <ng-container matColumnDef="number">
+                                            <th mat-header-cell *matHeaderCellDef>S.No.</th>
+                                            <td mat-cell *matCellDef="let element;let i = index;">
+                                                {{i +1 + (myPaginator.pageIndex * myPaginator.pageSize)}} </td>
+                                        </ng-container>
+                    
+                                        <ng-container matColumnDef="date">
+                                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+                                            <td mat-cell *matCellDef="let element"> {{element.createdAt|date:'d MMMM, y' || "-" }} </td>
+                                        </ng-container>
+                    
+                    
+                                        <ng-container matColumnDef="name">
+                                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                                            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                        </ng-container>
+                    
+                                        <!-- Description Column -->
+                                        <ng-container matColumnDef="document">
+                                            <th mat-header-cell *matHeaderCellDef> Document </th>
+                                            <td class="act-btn" mat-cell *matCellDef="let element">
+                                                <a href="javascript:void(0)" (click)="openDoc(element)">
+                                                    <mat-icon>description</mat-icon>
+                                                </a>
+                                            </td>
+                                        </ng-container>
+                    
+                                     
+                    
+                    
+                    
+                                        <ng-container matColumnDef="view">
+                                            <th mat-header-cell *matHeaderCellDef> View </th>
+                                            <td class="act-btn" mat-cell *matCellDef="let element"> <a href="javascript:void(0)"
+                                                    (click)="viewsyllabus(element.id)">
+                                                    <mat-icon>visibility</mat-icon>
+                                                </a> </td>
+                                        </ng-container>
+                    
+                                        <tr mat-header-row *matHeaderRowDef="displayedColumns sticky: true"></tr>
+                                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                        <tr class="mat-row" *matNoDataRow>
+                                            <td class="mat-cell" style="text-align: center;" colspan="10">No Record Found</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                    
+                    
+                            </div>
+                        </mat-tab>
+                    </mat-tab-group>
+
+                 
+                </mat-tab>
+                <mat-tab label="Paper 3" >
+                    <div class="example-container ">
+                        <div class="example-table-container">
+                            <table mat-table [dataSource]="dataSource" (matSortChange)="sortData($event)" matSort>
+            
+                                <ng-container matColumnDef="number">
+                                    <th mat-header-cell *matHeaderCellDef>S.No.</th>
+                                    <td mat-cell *matCellDef="let element;let i = index;">
+                                        {{i +1 + (myPaginator.pageIndex * myPaginator.pageSize)}} </td>
+                                </ng-container>
+            
+                                <ng-container matColumnDef="date">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.createdAt|date:'d MMMM, y' || "-" }} </td>
+                                </ng-container>
+            
+            
+                                <ng-container matColumnDef="name">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                </ng-container>
+            
+                                <!-- Description Column -->
+                                <ng-container matColumnDef="document">
+                                    <th mat-header-cell *matHeaderCellDef> Document </th>
+                                    <td class="act-btn" mat-cell *matCellDef="let element">
+                                        <a href="javascript:void(0)" (click)="openDoc(element)">
+                                            <mat-icon>description</mat-icon>
+                                        </a>
+                                    </td>
+                                </ng-container>
+            
+                             
+            
+            
+            
+                                <ng-container matColumnDef="view">
+                                    <th mat-header-cell *matHeaderCellDef> View </th>
+                                    <td class="act-btn" mat-cell *matCellDef="let element"> <a href="javascript:void(0)"
+                                            (click)="viewsyllabus(element.id)">
+                                            <mat-icon>visibility</mat-icon>
+                                        </a> </td>
+                                </ng-container>
+            
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns sticky: true"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                <tr class="mat-row" *matNoDataRow>
+                                    <td class="mat-cell" style="text-align: center;" colspan="10">No Record Found</td>
+                                </tr>
+                            </table>
+                        </div>
+            
+            
+                    </div>
+                </mat-tab>
+                <mat-tab label="Paper 4" >
+                    <div class="example-container ">
+                        <div class="example-table-container">
+                            <table mat-table [dataSource]="dataSource" (matSortChange)="sortData($event)" matSort>
+            
+                                <ng-container matColumnDef="number">
+                                    <th mat-header-cell *matHeaderCellDef>S.No.</th>
+                                    <td mat-cell *matCellDef="let element;let i = index;">
+                                        {{i +1 + (myPaginator.pageIndex * myPaginator.pageSize)}} </td>
+                                </ng-container>
+            
+                                <ng-container matColumnDef="date">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.createdAt|date:'d MMMM, y' || "-" }} </td>
+                                </ng-container>
+            
+            
+                                <ng-container matColumnDef="name">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                </ng-container>
+            
+                                <!-- Description Column -->
+                                <ng-container matColumnDef="document">
+                                    <th mat-header-cell *matHeaderCellDef> Document </th>
+                                    <td class="act-btn" mat-cell *matCellDef="let element">
+                                        <a href="javascript:void(0)" (click)="openDoc(element)">
+                                            <mat-icon>description</mat-icon>
+                                        </a>
+                                    </td>
+                                </ng-container>
+            
+                             
+            
+            
+            
+                                <ng-container matColumnDef="view">
+                                    <th mat-header-cell *matHeaderCellDef> View </th>
+                                    <td class="act-btn" mat-cell *matCellDef="let element"> <a href="javascript:void(0)"
+                                            (click)="viewsyllabus(element.id)">
+                                            <mat-icon>visibility</mat-icon>
+                                        </a> </td>
+                                </ng-container>
+            
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns sticky: true"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                <tr class="mat-row" *matNoDataRow>
+                                    <td class="mat-cell" style="text-align: center;" colspan="10">No Record Found</td>
+                                </tr>
+                            </table>
+                        </div>
+            
+            
+                    </div>
+                </mat-tab>
+                <mat-tab label="Paper 5" >
+                    <div class="example-container ">
+                        <div class="example-table-container">
+                            <table mat-table [dataSource]="dataSource" (matSortChange)="sortData($event)" matSort>
+            
+                                <ng-container matColumnDef="number">
+                                    <th mat-header-cell *matHeaderCellDef>S.No.</th>
+                                    <td mat-cell *matCellDef="let element;let i = index;">
+                                        {{i +1 + (myPaginator.pageIndex * myPaginator.pageSize)}} </td>
+                                </ng-container>
+            
+                                <ng-container matColumnDef="date">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.createdAt|date:'d MMMM, y' || "-" }} </td>
+                                </ng-container>
+            
+            
+                                <ng-container matColumnDef="name">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                </ng-container>
+            
+                                <!-- Description Column -->
+                                <ng-container matColumnDef="document">
+                                    <th mat-header-cell *matHeaderCellDef> Document </th>
+                                    <td class="act-btn" mat-cell *matCellDef="let element">
+                                        <a href="javascript:void(0)" (click)="openDoc(element)">
+                                            <mat-icon>description</mat-icon>
+                                        </a>
+                                    </td>
+                                </ng-container>
+            
+                             
+            
+            
+            
+                                <ng-container matColumnDef="view">
+                                    <th mat-header-cell *matHeaderCellDef> View </th>
+                                    <td class="act-btn" mat-cell *matCellDef="let element"> <a href="javascript:void(0)"
+                                            (click)="viewsyllabus(element.id)">
+                                            <mat-icon>visibility</mat-icon>
+                                        </a> </td>
+                                </ng-container>
+            
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns sticky: true"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                <tr class="mat-row" *matNoDataRow>
+                                    <td class="mat-cell" style="text-align: center;" colspan="10">No Record Found</td>
+                                </tr>
+                            </table>
+                        </div>
+            
+            
+                    </div>
+                </mat-tab>
+                <mat-tab label="Paper 6" >
+                    <div class="example-container ">
+                        <div class="example-table-container">
+                            <table mat-table [dataSource]="dataSource" (matSortChange)="sortData($event)" matSort>
+            
+                                <ng-container matColumnDef="number">
+                                    <th mat-header-cell *matHeaderCellDef>S.No.</th>
+                                    <td mat-cell *matCellDef="let element;let i = index;">
+                                        {{i +1 + (myPaginator.pageIndex * myPaginator.pageSize)}} </td>
+                                </ng-container>
+            
+                                <ng-container matColumnDef="date">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.createdAt|date:'d MMMM, y' || "-" }} </td>
+                                </ng-container>
+            
+            
+                                <ng-container matColumnDef="name">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                </ng-container>
+            
+                                <ng-container matColumnDef="document">
+                                    <th mat-header-cell *matHeaderCellDef> Document </th>
+                                    <td class="act-btn" mat-cell *matCellDef="let element">
+                                        <a href="javascript:void(0)" (click)="openDoc(element)">
+                                            <mat-icon>description</mat-icon>
+                                        </a>
+                                    </td>
+                                </ng-container>
+            
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns sticky: true"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                <tr class="mat-row" *matNoDataRow>
+                                    <td class="mat-cell" style="text-align: center;" colspan="10">No Record Found</td>
+                                </tr>
+                            </table>
+                        </div>
+            
+            
+                    </div>
+                </mat-tab>
+            
+            </mat-tab-group>
+            <div>
+                <mat-paginator #myPaginator [pageSizeOptions]="[10,20,50,100]" showFirstLastButtons></mat-paginator>
+        
+            </div>
+     
+        
+
+
+
+
+    </div>
+</div>
+    

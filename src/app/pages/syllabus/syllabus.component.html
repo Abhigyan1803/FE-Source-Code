@@ -1,0 +1,456 @@
+<div style="width: 100%;float:left;background: url(white.png);    margin-bottom: 60px;">
+    <div id="center_section" class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Syllabus</h4>
+                <p></p>
+
+           
+
+
+                <mat-tab-group (focusChange)="mainSyllabusChanged($event)" mat-stretch-tabs
+                    class="example-stretched-tabs mat-elevation-z4" animationDuration="0ms">
+                    <mat-tab label="Service Subjects">
+                        <mat-tab-group (focusChange)="serviceSubjectTermChanged($event)" [(selectedIndex)]="selectedTermIndex" >
+
+                            <mat-tab label="I Term" >
+
+                                <mat-tab-group (focusChange)="serviceSubSyllabusChanged($event)" [(selectedIndex)]="selectedSerSubIndex" >
+                                    <!-- <mat-tab label="Soldierly">
+                                        <ms-syllabus-table></ms-syllabus-table>
+                                    </mat-tab>
+                                    <mat-tab label="Scholarly">
+                                        <ms-syllabus-table></ms-syllabus-table>
+                                    </mat-tab>
+                                    <mat-tab label="Leaderly">
+                                        <ms-syllabus-table></ms-syllabus-table>
+                                    </mat-tab>
+                                    <mat-tab label="Gentlemanly">
+                                        <ms-syllabus-table></ms-syllabus-table>
+                                    </mat-tab> -->
+                                    <mat-tab label="BMT-1">
+                                        <ms-syllabus-table></ms-syllabus-table>
+                                    </mat-tab>
+                                    <mat-tab label="BMT-2">
+                                        <mat-tab-group (focusChange)="bmt2SyllabusChanged($event)" > 
+                                            <mat-tab label="Map Reading">
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                            <mat-tab label="Radio Telephony">
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                            <mat-tab label="Field Engineering">
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                            <mat-tab label="O&A and I&S">
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                            <mat-tab label="Financial Management">
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                            <mat-tab label="Leadership Trg">
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                        </mat-tab-group>
+                                    </mat-tab>
+
+
+                                </mat-tab-group>
+
+                            </mat-tab>
+
+                            <mat-tab label="II Term" >
+
+                                <mat-tab-group (focusChange)="serviceSubSyllabusChanged($event)"  [(selectedIndex)]="selectedSerSubIndex">
+                                    <!-- <mat-tab label="Soldierly">
+                                        <ms-syllabus-table></ms-syllabus-table>
+                                    </mat-tab>
+                                    <mat-tab label="Scholarly">
+                                        <ms-syllabus-table></ms-syllabus-table>
+                                    </mat-tab>
+                                    <mat-tab label="Leaderly">
+                                        <ms-syllabus-table></ms-syllabus-table>
+                                    </mat-tab>
+                                    <mat-tab label="Gentlemanly">
+                                        <ms-syllabus-table></ms-syllabus-table>
+                                    </mat-tab> -->
+                                    <mat-tab label="BMT-1">
+                                        <ms-syllabus-table></ms-syllabus-table>
+                                    </mat-tab>
+                                    <mat-tab label="BMT-2">
+                                        <mat-tab-group (focusChange)="bmt2SyllabusChanged($event)" > 
+                                            <mat-tab label="Map Reading">
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                            <mat-tab label="Radio Telephony">
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                            <mat-tab label="Field Engineering">
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                            <mat-tab label="O&A and I&S">
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                            <mat-tab label="Financial Management">
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                            <mat-tab label="Leadership Trg">
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                        </mat-tab-group>
+                                    </mat-tab>
+
+
+                                </mat-tab-group>
+
+                            </mat-tab>
+
+                            <mat-tab label="II Tech" >
+
+                                <mat-tab-group (focusChange)="serviceSubSyllabusChanged($event)">
+                                    <!-- <mat-tab label="Soldierly">
+                                        <ms-syllabus-table></ms-syllabus-table>
+                                    </mat-tab>
+                                    <mat-tab label="Scholarly">
+                                        <ms-syllabus-table></ms-syllabus-table>
+                                    </mat-tab>
+                                    <mat-tab label="Leaderly">
+                                        <ms-syllabus-table></ms-syllabus-table>
+                                    </mat-tab>
+                                    <mat-tab label="Gentlemanly">
+                                        <ms-syllabus-table></ms-syllabus-table>
+                                    </mat-tab> -->
+                                    <mat-tab label="BMT-1">
+                                        <ms-syllabus-table></ms-syllabus-table>
+                                    </mat-tab>
+                                    <mat-tab label="BMT-2">
+                                        <mat-tab-group (focusChange)="bmt2SyllabusChanged($event)" > 
+                                            <mat-tab label="Map Reading">
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                            <mat-tab label="Radio Telephony">
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                            <mat-tab label="Field Engineering">
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                            <mat-tab label="O&A and I&S">
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                            <mat-tab label="Financial Management">
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                            <mat-tab label="Leadership Trg">
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                        </mat-tab-group>
+                                    </mat-tab>
+
+
+                                </mat-tab-group>
+
+                            </mat-tab>
+
+                            <mat-tab label="III Term" >
+
+                                <mat-tab-group (focusChange)="serviceSubSyllabusChanged($event)">
+                                    <!-- <mat-tab label="Soldierly">
+                                        <ms-syllabus-table></ms-syllabus-table>
+                                    </mat-tab>
+                                    <mat-tab label="Scholarly">
+                                        <ms-syllabus-table></ms-syllabus-table>
+                                    </mat-tab>
+                                    <mat-tab label="Leaderly">
+                                        <ms-syllabus-table></ms-syllabus-table>
+                                    </mat-tab>
+                                    <mat-tab label="Gentlemanly">
+                                        <ms-syllabus-table></ms-syllabus-table>
+                                    </mat-tab> -->
+                                    <mat-tab label="BMT-1">
+                                        <ms-syllabus-table></ms-syllabus-table>
+                                    </mat-tab>
+                                    <mat-tab label="BMT-2">
+                                        <mat-tab-group (focusChange)="bmt2SyllabusChanged($event)" > 
+                                            <mat-tab label="Map Reading">
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                            <mat-tab label="Radio Telephony">
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                            <mat-tab label="Field Engineering">
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                            <mat-tab label="O&A and I&S">
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                            <mat-tab label="Financial Management">
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                            <mat-tab label="Leadership Trg">
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                        </mat-tab-group>
+                                    </mat-tab>
+
+
+                                </mat-tab-group>
+
+                            </mat-tab>
+                        </mat-tab-group>
+                    </mat-tab>
+
+
+
+
+
+                    <mat-tab label="Academic Subjects">
+
+                        <mat-tab-group (focusChange)="termChanged($event)" [(selectedIndex)]="selectedTermIndex">
+                            <mat-tab label="I Term">
+                                <mat-tab-group (focusChange)="paperChanged($event)"
+                                    [(selectedIndex)]="selectedPaperIndex">
+                                    <mat-tab label="Paper 1" >
+                                        <mat-tab-group (focusChange)="acadSyllSubjectChanged($event)" [(selectedIndex)]="selectedSubjectIndex" >
+                                            <mat-tab label="Military History" >
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                            <mat-tab label="Military Geography" >
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                                
+                                            </mat-tab>
+                                        </mat-tab-group>
+
+                                    </mat-tab>
+                                    <mat-tab label="Paper 2">
+                                        <mat-tab-group (focusChange)="acadSyllSubjectChanged($event)" [(selectedIndex)]="selectedSubjectIndex" >
+                                            <mat-tab label="CAIR" >
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                            <mat-tab label="BS" >
+                                                <ms-syllabus-table></ms-syllabus-table>
+                                            </mat-tab>
+                                        </mat-tab-group>
+
+                                    </mat-tab>
+                                    <mat-tab label="Paper 3">
+                                        <div>
+                                            <h3>Science & Warfare</h3>
+                                        </div>
+                                        <ms-syllabus-table></ms-syllabus-table>
+
+                                    </mat-tab>
+                                    <mat-tab label="Paper 4">
+                                        <div>
+                                            <h3>SWT</h3>
+                                        </div>
+                                        <ms-syllabus-table></ms-syllabus-table>
+
+                                    </mat-tab>
+                                    <mat-tab label="Paper 5">
+                                        <div>
+                                            <h3>ECS</h3>
+                                        </div>
+                                        <ms-syllabus-table></ms-syllabus-table>
+
+                                    </mat-tab>
+                                    <mat-tab label="Paper 6">
+                                        <div>
+                                            <h3>IT</h3>
+                                        </div>
+                                        <ms-syllabus-table></ms-syllabus-table>
+
+                                    </mat-tab>
+
+                                </mat-tab-group>
+                            </mat-tab>
+
+                            <mat-tab label="II Term">
+                                <mat-tab-group (focusChange)="paperChanged($event)"
+                                [(selectedIndex)]="selectedPaperIndex">
+                                <mat-tab label="Paper 1" >
+                                    <mat-tab-group (focusChange)="acadSyllSubjectChanged($event)" [(selectedIndex)]="selectedSubjectIndex" >
+                                        <mat-tab label="Military History" >
+                                            <ms-syllabus-table></ms-syllabus-table>
+                                        </mat-tab>
+                                        <mat-tab label="Military Geography" >
+                                            <ms-syllabus-table></ms-syllabus-table>
+                                            
+                                        </mat-tab>
+                                    </mat-tab-group>
+
+                                </mat-tab>
+                                <mat-tab label="Paper 2">
+                                    <mat-tab-group (focusChange)="acadSyllSubjectChanged($event)" [(selectedIndex)]="selectedSubjectIndex" >
+                                        <mat-tab label="CAIR" >
+                                            <ms-syllabus-table></ms-syllabus-table>
+                                        </mat-tab>
+                                        <mat-tab label="BS" >
+                                            <ms-syllabus-table></ms-syllabus-table>
+                                        </mat-tab>
+                                    </mat-tab-group>
+
+                                </mat-tab>
+                                <mat-tab label="Paper 3">
+                                    <div>
+                                        <h3>Science & Warfare</h3>
+                                    </div>
+                                    <ms-syllabus-table></ms-syllabus-table>
+
+                                </mat-tab>
+                                <mat-tab label="Paper 4">
+                                    <div>
+                                        <h3>SWT</h3>
+                                    </div>
+                                    <ms-syllabus-table></ms-syllabus-table>
+
+                                </mat-tab>
+                                <mat-tab label="Paper 5">
+                                    <div>
+                                        <h3>ECS</h3>
+                                    </div>
+                                    <ms-syllabus-table></ms-syllabus-table>
+
+                                </mat-tab>
+                                <mat-tab label="Paper 6">
+                                    <div>
+                                        <h3>IT</h3>
+                                    </div>
+                                    <ms-syllabus-table></ms-syllabus-table>
+
+                                </mat-tab>
+
+                            </mat-tab-group>
+                            </mat-tab>
+
+                            <mat-tab label="II Tech">
+                                <mat-tab-group (focusChange)="paperChanged($event)"
+                                [(selectedIndex)]="selectedPaperIndex">
+                                <mat-tab label="Paper 1" >
+                                    <mat-tab-group (focusChange)="acadSyllSubjectChanged($event)" [(selectedIndex)]="selectedSubjectIndex" >
+                                        <mat-tab label="Military History" >
+                                            <ms-syllabus-table></ms-syllabus-table>
+                                        </mat-tab>
+                                        <mat-tab label="Military Geography" >
+                                            <ms-syllabus-table></ms-syllabus-table>
+                                            
+                                        </mat-tab>
+                                    </mat-tab-group>
+
+                                </mat-tab>
+                                <mat-tab label="Paper 2">
+                                    <mat-tab-group (focusChange)="acadSyllSubjectChanged($event)" [(selectedIndex)]="selectedSubjectIndex" >
+                                        <mat-tab label="CAIR" >
+                                            <ms-syllabus-table></ms-syllabus-table>
+                                        </mat-tab>
+                                        <mat-tab label="BS" >
+                                            <ms-syllabus-table></ms-syllabus-table>
+                                        </mat-tab>
+                                    </mat-tab-group>
+
+                                </mat-tab>
+                                <mat-tab label="Paper 3">
+                                    <div>
+                                        <h3>Science & Warfare</h3>
+                                    </div>
+                                    <ms-syllabus-table></ms-syllabus-table>
+
+                                </mat-tab>
+                                <mat-tab label="Paper 4">
+                                    <div>
+                                        <h3>SWT</h3>
+                                    </div>
+                                    <ms-syllabus-table></ms-syllabus-table>
+
+                                </mat-tab>
+                                <mat-tab label="Paper 5">
+                                    <div>
+                                        <h3>ECS</h3>
+                                    </div>
+                                    <ms-syllabus-table></ms-syllabus-table>
+
+                                </mat-tab>
+                                <mat-tab label="Paper 6">
+                                    <div>
+                                        <h3>IT</h3>
+                                    </div>
+                                    <ms-syllabus-table></ms-syllabus-table>
+
+                                </mat-tab>
+
+                            </mat-tab-group>
+                            </mat-tab>
+
+
+                            <mat-tab label="III Term">
+                                <mat-tab-group (focusChange)="paperChanged($event)"
+                                [(selectedIndex)]="selectedPaperIndex">
+                                <mat-tab label="Paper 1" >
+                                    <mat-tab-group (focusChange)="acadSyllSubjectChanged($event)" [(selectedIndex)]="selectedSubjectIndex" >
+                                        <mat-tab label="Military History" >
+                                            <ms-syllabus-table></ms-syllabus-table>
+                                        </mat-tab>
+                                        <mat-tab label="Military Geography" >
+                                            <ms-syllabus-table></ms-syllabus-table>
+                                            
+                                        </mat-tab>
+                                    </mat-tab-group>
+
+                                </mat-tab>
+                                <mat-tab label="Paper 2">
+                                    <mat-tab-group (focusChange)="acadSyllSubjectChanged($event)" [(selectedIndex)]="selectedSubjectIndex" >
+                                        <mat-tab label="CAIR" >
+                                            <ms-syllabus-table></ms-syllabus-table>
+                                        </mat-tab>
+                                        <mat-tab label="BS" >
+                                            <ms-syllabus-table></ms-syllabus-table>
+                                        </mat-tab>
+                                    </mat-tab-group>
+
+                                </mat-tab>
+                                <mat-tab label="Paper 3">
+                                    <div>
+                                        <h3>Science & Warfare</h3>
+                                    </div>
+                                    <ms-syllabus-table></ms-syllabus-table>
+
+                                </mat-tab>
+                                <mat-tab label="Paper 4">
+                                    <div>
+                                        <h3>SWT</h3>
+                                    </div>
+                                    <ms-syllabus-table></ms-syllabus-table>
+
+                                </mat-tab>
+                                <mat-tab label="Paper 5">
+                                    <div>
+                                        <h3>ECS</h3>
+                                    </div>
+                                    <ms-syllabus-table></ms-syllabus-table>
+
+                                </mat-tab>
+                                <mat-tab label="Paper 6">
+                                    <div>
+                                        <h3>IT</h3>
+                                    </div>
+                                    <ms-syllabus-table></ms-syllabus-table>
+
+                                </mat-tab>
+
+                            </mat-tab-group>
+                            </mat-tab>
+                        </mat-tab-group>
+
+
+                    </mat-tab>
+                </mat-tab-group>
+
+
+
+
+
+            </div>
+        </div>
+        <br><br>
+    </div>
+
+</div>

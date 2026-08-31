@@ -1,0 +1,164 @@
+<div class="mat-new">
+    <h4 class="card-heading"> <button mat-icon-button (click)="goBack()">
+            <mat-icon>chevron_left</mat-icon>
+        </button>Weapons Training ><span class="sub-menu1"> Add Training Result </span>
+    </h4>
+</div>
+
+<mat-card>
+    <mat-tab-group [selectedIndex]="activeTab" (selectedIndexChange)="tabChanged($event)">
+        <!-- <ng-container *ngFor="let weapon of weaponList"> -->
+        <form [formGroup]="weaponMarksForm">
+            <ng-container formArrayName="cadetWTMainResultlist">
+                <ng-container *ngFor="let result of cadetWTMainResultlist.controls; let i=index" formGroupName="{{i}}">
+                    <mat-tab class="tab_color"  [label]="result['controls'].name.value">
+                        <div class="gene-card-content pad-t-none">
+                          
+                            <div class="table-responsive">
+
+                                <table class="table table-hover table-middle th-fw-light mb-0">
+                                    <thead>
+                                        <tr>
+                                            <!-- <ng-container *ngFor="let att of weapon.wa">
+                                                <th *ngIf="att.termId==1">
+                                                    {{att.attrName}}
+                                                </th>
+                                            </ng-container> -->
+                                            <ng-container formArrayName="cadetWTResultlist">
+                                                <ng-container  *ngFor="let category1 of marksInputControl(i).controls; let j=index"
+                                                formGroupName="{{j}}">
+                                                   
+                                                   <th>{{category1['controls'].attrName.value}}<br>
+                                                   ({{category1['controls'].maxMarks.value}})</th>
+
+                                                </ng-container>
+                                            </ng-container>
+                                            
+                                            
+                                              
+                                           
+                                            <th>Total<br>
+                                                ({{result['controls'].maxMarks.value}})</th>
+                                            <th class="ex_cls">Std</th>
+                                            <!-- <th>G/Pt </th> -->
+                                            <th>G/Pt <br>
+                                                ({{result['controls'].maxGPoint.value }})
+                                            </th>
+                                            <th class="ex_cls">Remark</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <ng-container formArrayName="cadetWTResultlist">
+                                                <ng-container  *ngFor="let category1 of marksInputControl(i).controls; let j=index"
+                                                formGroupName="{{j}}">
+                                                    <td *ngIf="resultAlreadyExist"><input class="form-control"  (focus)="onChange($event.target.value,i,category1['controls'].maxMarks.value,j)" (focusout)="onFocusOutEvent($event.target.value,i,category1['controls'].maxMarks.value,j)" formControlName="marks" (keypress)="keyPress($event)" type="text" min="0">
+                                                    </td>
+                                                    <td *ngIf="!resultAlreadyExist"><input class="form-control"  (focus)="onChangeAdd($event.target.value,i,category1['controls'].maxMarks.value,j)" (focusout)="onFocusOutEventAdd($event.target.value,i,category1['controls'].maxMarks.value,j)" formControlName="marks" (keypress)="keyPress($event)" type="text" min="0">
+                                                    </td>
+                                                </ng-container>
+                                            </ng-container>
+                                            
+                                            <td><input class="form-control" placeholder="total" formControlName="marks" [value]="result['controls'].marks.value"
+                                                    type="text" readonly></td>
+                                            <td class="ex_cls"> <input class="form-control" placeholder="std" formControlName="std"
+                                                    type="text"></td>
+                                            <td> <input class="form-control" placeholder="gpt" formControlName="gPoint" [value]="result['controls'].gPoint.value"
+                                                    readonly></td>
+                                            <td class="ex_cls"><input class="form-control " placeholder="remark"
+                                                    formControlName="remark" type="text"></td>
+
+             
+
+                <!-- <ng-container *ngFor="let att of weapon.wa">
+                                            <td *ngIf="att.termId==1">
+                                                <input class="form-control"  type="text">
+                                            </td>
+                                         </ng-container> -->
+
+
+                </tr>
+
+                </tbody>
+
+                </table>
+
+                </div>
+                </div>
+
+                </mat-tab>
+            </ng-container>
+          
+            
+            </ng-container>
+            <mat-tab class="tab_color" label="Main Result">
+                <div class="gene-card-content pad-t-none">
+                  
+                    <div class="table-responsive">
+                        <table class="table table-hover table-middle th-fw-light mb-0">
+                            <thead>
+                                <tr>
+                                    <ng-container formArrayName="cadetWTMainResultlist">
+                                        <ng-container *ngFor="let cadetWTMainResultlist of cadetWTMainResultlist.controls; let i=index"
+                                            formGroupName="{{i}}">
+                                            <th>{{cadetWTMainResultlist['controls'].name.value}}</th>
+                                        </ng-container>
+                                    </ng-container>
+
+                                    <!-- <th>WTT ({{WTT.wttMark}})</th> -->
+                                    <!-- <th>Spot Test ({{WTT.spotTestMark}})</th> -->
+                                    <th>Grand Total</th>
+                                    <th>Remark</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <ng-container>
+                                        <ng-container *ngFor="let cadetWTMainResultlist of tempObj">
+                                            <td><input class="form-control" [value]="cadetWTMainResultlist.total" type="text" readonly>
+                                            </td>
+                                        </ng-container>
+                                    </ng-container>
+
+
+                                    <td><input class="form-control"  (focus)="onChange1($event.target.value)" (focusout)="onFocusOutEvent1($event.target.value)"  placeholder="WTT" formControlName="wtt" (keypress)="keyPress($event)" type="text"></td>
+                                    <td><input class="form-control"  (focus)="onChange1($event.target.value)" (focusout)="onFocusOutEvent1($event.target.value)"   placeholder="Spot test" formControlName="spotTest" (keypress)="keyPress($event)" type="text"></td>
+                                   
+                                    <td><input class="form-control" placeholder="total" formControlName="grandTotal"
+                                         [value]="grandTotal" type="text" readonly></td>
+                                    <td><input class="form-control" placeholder="remark" formControlName="remark"
+                                            type="text"></td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+        </div>
+        </div>
+
+        <div *ngIf="show" style="float: right;">
+
+            <button *ngIf="!resultAlreadyExist" mat-raised-button (click)="enterMarks()">Submit</button>
+            <button *ngIf="resultAlreadyExist" mat-raised-button (click)="updateProgram()">Update </button>
+    
+          </div>
+
+          
+        </mat-tab>
+            
+        </form>
+        <!-- </ng-container> -->
+    </mat-tab-group>
+
+
+    <div class="row">
+        <div class="col-md-12 mt-4">
+            <!-- <button mat-raised-button (click)="back()" *ngIf="activeTab!=0">back</button> -->
+            <button mat-raised-button (click)="next()" *ngIf="this.AddTotal!=0 || resultAlreadyExist" style="float: right;">Next</button>
+            <!-- <button mat-raised-button  (click)="enterMarks()" style="float: right;">Submit</button> -->
+        </div>
+    </div>
+</mat-card>
+
+

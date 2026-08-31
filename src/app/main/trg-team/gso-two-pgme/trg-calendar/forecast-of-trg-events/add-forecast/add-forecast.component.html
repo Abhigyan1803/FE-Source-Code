@@ -1,0 +1,96 @@
+<div class="mat-new">
+    <h4 class="card-heading"><button mat-icon-button (click)="goBack()"><mat-icon>chevron_left</mat-icon> </button> GSO-2(PGME)<span class="sub-menu1"> > TRG Calendar > Forecast of TRG Events </span> <span
+            class="sub-menu1"> > {{pageTitle}} </span>
+    </h4>
+</div>
+<mat-card>
+    <div class="top-br">
+        <form [formGroup]="addForecastForm">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="battalion">Date<span class="required">*</span></label>
+                    <input type="date" class="form-control" [min]="minDate" [max]="maxDate" formControlName="date" >
+                    <span class="validation_msg" *ngIf="f.date.errors && f.date.errors.required && isError" >Please Select Date</span>
+                    <span class="validation_msg" *ngIf="f.date.errors && isLessDate && isError" >Please Select Valid Date</span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="battalion">Week</label>
+                    <select type="week" class="form-control" formControlName="week">
+                        <option value="" selected hidden disabled>Select</option>
+                        <option *ngFor="let w of weeks" [value]="w.name" >{{w.name}} </option>
+                    </select>
+
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="battalion">Season Term<span class="required">*</span></label>
+                    <select type="text" class="form-control" formControlName="sessionTerm">
+                        <option value="" selected hidden disabled>Select</option>
+                        <option *ngFor="let s of seasonTerms" [value]="s.name">{{s.name}} </option>
+                    </select>
+                    <span class="validation_msg" *ngIf="f.sessionTerm.errors && f.sessionTerm.errors.required && isError" >Please Select Season Term</span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="battalion">Year<span class="required">*</span></label>
+                    <input id="number" type="number" [min]="currentYear" class="form-control" formControlName="year">
+                    <span class="validation_msg" *ngIf="f.year.errors && isError" >Please Enter a Valid Year</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="battalion">Description <span class="char-count" >({{descriptionLength}}/500) </span><span class="required">*</span></label>
+                    <textarea class="form-control" maxlength="500" id="message" formControlName="description"  (input)="charCount($event,'desc')"
+                        placeholder="(Maximum 500 Characters)"></textarea>
+                        <span class="validation_msg" *ngIf="f.description.errors && f.description.errors.required && isError" >Please Enter Description</span>  
+                </div>
+            </div>
+   
+
+            <div class="form-group">
+                <label class="form-label">Document<span class="required">*</span></label>
+                  <input type="file" #inputFile accept=".pdf,.doc,.docx,,.xls,.xlsx" (change)="onSelectDoc($event)" id="image">
+                  
+                  <mat-icon *ngIf="docUrl" class="document_icon" (click)="openDoc()" >description</mat-icon>
+                  
+                  <span class="note">Max File Size 100 MB. (Only pdf,doc and excel format.)</span>
+                  <span class="validation_msg" *ngIf="!isDoc" >Document is required</span>
+              </div>
+
+              <!-- <div class="row">
+                <div class="form-group col-md-12">
+                 <label for="isGcLec">  <input type="checkbox" formControlName="isGcLec" name="" id="isGcLec"> Is for C Lec </label> 
+                 </div>
+              </div> -->
+
+            <!-- <div class="form-group">      
+          <input type="file" #inputFile accept=".pdf,.doc,.docx,.jpg" (change)="onSelectDoc($event)" id="image"> 
+          <mat-icon *ngIf="docUrl" (click)="openDoc()" >description</mat-icon>
+          <span>Max File Size 5 MB. (Only pdf and doc format.)</span>
+        </div> -->
+
+            <div class="row">
+
+                <div class="form-group col-md-6">
+                    <label for="battalion">Status<span class="required">*</span></label>
+                    <select class="form-control" formControlName="status">
+                        <option value="" selected hidden disabled>Status</option>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+                    <span class="validation_msg" *ngIf="f.status.errors && f.status.errors.required && isError" >Please Select Status</span>
+                      
+                </div>
+
+            </div>
+
+            <button *ngIf="!id" mat-raised-button  (click)="addForecast()">Add Forecast</button>
+            <button *ngIf="id" mat-raised-button (click)="updateForecast()">Update Forecast</button>
+
+        </form>
+    </div>
+</mat-card>

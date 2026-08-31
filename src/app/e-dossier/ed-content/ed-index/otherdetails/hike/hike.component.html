@@ -1,0 +1,162 @@
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="mat-heading">
+        <div id="top-bar" class="">
+          <h2 class="backbtn"><button mat-icon-button (click)="goBack()">
+            <mat-icon>chevron_left</mat-icon>
+          </button>E-Dossier <span class="sub-menu1">
+            > HIKE</span></h2>
+      </div>
+      </div>
+          <div class="mat-card mat-focus-indicator">
+            <div class="service-id mb-2">
+                <!-- <div class="input_id col-md-6">
+                    <b> Service Id :</b> <input type="text" disabled id="hikeServiceID" class="form-control mt-2">
+                </div>
+                <div class="input_id col-md-6">
+                    <b> Name :</b> <input type="text" disabled id="hikeName" class="form-control mt-2">
+                </div> -->
+                <form class="ng-untouched ng-pristine ng-invalid">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label for="rank">IMA No.</label>
+                        <input placeholder="No"  type="text" disabled id="hikeServiceID" class="form-control ng-untouched ng-pristine ng-invalid">
+                      </div>
+                    </div>  
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label for="rank">Rank</label>
+                        <input placeholder="Rank"  type="text" disabled id="hikerk" class="form-control ng-untouched ng-pristine ng-invalid">
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label for="rank">Name</label>
+                        <input placeholder="Name"  type="text" disabled id="hikeName" class="form-control ng-untouched ng-pristine ng-invalid">
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label for="rank">Term</label>
+                        <input placeholder="Term"  type="text" disabled id="hiketName" class="form-control ng-untouched ng-pristine ng-invalid">
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label for="rank">Bn</label>
+                        <input placeholder="Bn"  type="text" disabled id="hikeBn" class="form-control ng-untouched ng-pristine ng-invalid">
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label for="rank">Coy</label>
+                        <input placeholder="Coy"  type="text" disabled id="hikeComp" class="form-control ng-untouched ng-pristine ng-invalid">
+                      </div>
+                    </div>
+                    
+                  </div>
+                </form>
+            </div>
+        
+      
+        <div class="hike">
+            <div class="mat-card mat-focus-indicator">
+                <div class="ng-star-inserted">
+                    <div class="mat-new mb-3">
+                        <h4 class="card-heading">ADVENTURE TRG/MID TERM HIKE</h4>
+                    </div>
+                </div>
+                <table class="tg">
+                    <thead>
+                      <tr>
+                        <th class="tg-cjmp">TERM</th>
+                        <th class="tg-ratz">HIKE</th>
+                        <th class="tg-ratz">LOC</th>
+                        <th class="tg-ratz">REMARKS</th>
+                        <th class="tg-ratz">SUBMISSION</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr [formGroup]="hikeDetailsFormI" [ngClass]="termId != 1 ? 'hide' : ''">
+                        <td class="tg-0pky">I TERM</td>
+                        <td class="tg-0pky"><textarea type="text" class="form-control" maxlength="1500"
+                          formControlName="hike"></textarea></td>
+                        <td class="tg-0pky"><input type="text" class="form-control" formControlName="loc"></td>
+                        <td class="tg-0pky"><textarea type="text" class="form-control" maxlength="1500"
+                          formControlName="remarks"></textarea></td>
+                        <td class="tg-0pky"><button class="btn btn-color" (click)="addHikesubmit1()">Submit</button></td>
+                      </tr>
+                      <tr [formGroup]="hikeDetailsFormII" [ngClass]="(termId != 2 && termId != 7) ? 'hide' : ''">
+                        <td class="tg-0pky">II TERM/ II TECH</td>
+                        <td class="tg-0pky"><textarea type="text" class="form-control" maxlength="1500"
+                          formControlName="hike"></textarea></td>
+                        <td class="tg-0pky"><input type="text" class="form-control" formControlName="loc"></td>
+                        <td class="tg-0pky"><textarea type="text" class="form-control" maxlength="1500"
+                          formControlName="remarks"></textarea></td>
+                        <td class="tg-0pky"><button class="btn btn-color" (click)="addHikesubmit2()">Submit</button></td>
+                      </tr>
+                      <tr [formGroup]="hikeDetailsFormIII" [ngClass]="(termId != 3 && termId != 8) ? 'hide' : ''">
+                        <td class="tg-0pky">III TERM/ III TECH</td>
+                        <td class="tg-0pky"><textarea type="text" class="form-control" maxlength="1500"
+                          formControlName="hike"></textarea></td>
+                        <td class="tg-0pky"><input type="text" class="form-control" formControlName="loc"></td>
+                        <td class="tg-0pky"><textarea type="text" class="form-control" maxlength="1500"
+                    formControlName="remarks"></textarea></td>
+                        <td class="tg-0pky"><button class="btn btn-color" (click)="addHikesubmit3()">Submit</button></td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="detention">
+            <div class="mat-card mat-focus-indicator">
+                <div class="ng-star-inserted">
+                <div class="mat-new mb-3">
+                    <h4 class="card-heading">RECORD OF DETENTION DURING MID TERM/ TERM BREAK</h4>
+                </div>
+            </div>
+                <table class="tg">
+                    <thead>
+                      <tr>
+                        <th class="tg-cjmp">TERM</th>
+                        <th class="tg-ratz">W.E.F</th>
+                        <th class="tg-ratz">REASON</th>
+                        <th class="tg-ratz">PROGRESS</th>
+                        <th class="tg-ratz">SUBMISSION</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr [formGroup]="recordDetailsFormI" [ngClass]="termId != 1 ? 'hide' : ''">
+                        <td class="tg-0pky">I TERM</td>
+                        <td class="tg-0pky"><input type="date" min="{{minDate}}" class="form-control" formControlName="wef"></td>
+                        <td class="tg-0pky"><textarea type="text" class="form-control" maxlength="1500"
+                          formControlName="reason"></textarea></td>
+                        <td class="tg-0pky"><textarea type="text" class="form-control" maxlength="1500"
+                          formControlName="progress"></textarea></td>
+                        <td class="tg-0pky"><button class="btn btn-color" (click)="addRecordsubmit1()">Submit</button></td>
+                      </tr>
+                      <tr [formGroup]="recordDetailsFormII" [ngClass]="(termId != 2 && termId != 7) ? 'hide' : ''">
+                        <td class="tg-0pky">II TERM/ II TECH</td>
+                        <td class="tg-0pky"><input type="date" min="{{minDate}}" class="form-control" formControlName="wef"></td>
+                        <td class="tg-0pky"><textarea type="text" class="form-control" maxlength="1500"
+                          formControlName="reason"></textarea></td>
+                        <td class="tg-0pky"><textarea type="text" class="form-control" maxlength="1500"
+                          formControlName="progress"></textarea></td>
+                        <td class="tg-0pky"><button class="btn btn-color" (click)="addRecordsubmit2()">Submit</button></td>
+                      </tr>
+                      <tr [formGroup]="recordDetailsFormIII" [ngClass]="(termId != 3 && termId != 8) ? 'hide' : ''">
+                        <td class="tg-0pky">III TERM/ III TECH</td>
+                        <td class="tg-0pky"><input type="date" min="{{minDate}}" class="form-control" formControlName="wef"></td>
+                        <td class="tg-0pky"><textarea type="text" class="form-control" maxlength="1500"
+                          formControlName="reason"></textarea></td>
+                        <td class="tg-0pky"><textarea type="text" class="form-control" maxlength="1500"
+                          formControlName="progress"></textarea></td>
+                        <td class="tg-0pky"><button class="btn btn-color" (click)="addRecordsubmit3()">Submit</button></td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>	
+</div>

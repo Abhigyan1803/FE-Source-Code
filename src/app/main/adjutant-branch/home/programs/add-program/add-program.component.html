@@ -1,0 +1,119 @@
+<div class="mat-new">
+  <h4 class="card-heading"> <button mat-icon-button (click)="goBack()" > <mat-icon>chevron_left</mat-icon>  </button> Home <span class="sub-menu1"> > Daily PGME </span> <span class="sub-menu1"> > {{pageName}}</span> </h4>
+</div>
+
+<mat-card>
+  <div class="top-br">
+    <form [formGroup]="addProgramForm"  >
+      <div class="row">
+
+        <div class="form-group col-md-6" >
+          <label for="date">Date <span class="required">*</span></label>
+          <input id="date" #scheduleDate  type="date" [min]="minDate" [max]="maxDate" class="form-control"
+           (change)="onSelectDate($event)" formControlName="scheduledDate" >
+          <span class="validation_msg" *ngIf="f['scheduledDate'].errors && isError && f['scheduledDate'].invalid" >*Please Select Date</span>
+        </div>
+        <!-- <div class="form-group col-md-3" >
+          <label for="hours">Hours<span class="required">*</span></label>
+          <select type="date" id="hours" #scheduleHours [disabled]="!date_time" class="form-control" (change)="hoursSelected($event)"  >
+            <option value="" selected hidden disabled >00</option>
+            <option *ngFor="let h of hours" [value]="h" [disabled]="minHours>h" >{{h}}</option>
+          </select>
+        </div>
+        <div class="form-group col-md-3" >
+          <label for="minutes">Minutes<span class="required">*</span></label>
+          <select id="minutes" #scheduleMinutes class="form-control" [disabled]="!date_time" (change)="minutesSelected($event)"  >
+            <option value="" selected hidden disabled >00</option>
+            <option *ngFor="let m of minutes" [value]="m" [disabled]="minMinutes>m" >{{m}} </option>
+          </select>
+       </div> -->
+      </div>
+
+
+      <div class="row">
+        <div class="form-group col-md-3">
+          <label for="hours">Start Hours<span class="required">*</span></label>
+          <select type="date" id="hours" #startHours class="form-control" [disabled]="!f.scheduledDate.value"
+            (change)="startHoursSelected($event)">
+            <option value="" selected disabled hidden>--</option>
+            <option *ngFor="let h of hours" [value]="h" [disabled]="min_s_hrs>h">{{h}}</option>
+          </select>
+          <span class="validation_msg" *ngIf="f.startTime.errors && f.startTime.errors.required && isError">Please Select
+            Start Time</span>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="minutes">Start Minutes<span class="required">*</span></label>
+          <select id="minutes" #startMinutes class="form-control" [disabled]="!f.scheduledDate.value"
+            (change)="startMinutesSelected($event)">
+            <option value="" selected disabled hidden>--</option>
+            <option *ngFor="let m of minutes" [value]="m" [disabled]="min_s_mnts>m">{{m}} </option>
+          </select>
+          <!-- <span class="validation_msg" *ngIf="f.username.errors && f.username.errors.required && isError" >Login Id is required</span> -->
+        </div>
+      
+      
+        <div class="form-group col-md-3">
+          <label for="hours">End Hours<span class="required">*</span></label>
+          <select type="date" #endHours id="hours" class="form-control" [disabled]="!f.startTime.value"
+            (change)="endHoursSelected($event)">
+            <option value="" selected disabled hidden>--</option>
+            <option *ngFor="let h of hours" [value]="h" [disabled]="min_e_hrs>h">{{h}}</option>
+          </select>
+          <span class="validation_msg" *ngIf="f.endTime.errors && f.endTime.errors.required && isError">Please Select End
+            Time</span>
+          <!-- <span class="validation_msg" *ngIf="f.username.errors && f.username.errors.required && isError" >Login Id is required</span> -->
+        </div>
+        <div class="form-group col-md-3">
+          <label for="minutes">End Minutes<span class="required">*</span></label>
+          <select id="minutes" #endMinutes class="form-control" [disabled]="!f.startTime.value"
+            (change)="endMinutesSelected($event)">
+            <option value="" selected disabled hidden>--</option>
+            <option *ngFor="let m of minutes" [value]="m" [disabled]="min_e_mnts>m">{{m}} </option>
+          </select>
+          <!-- <span class="validation_msg" *ngIf="f.username.errors && f.username.errors.required && isError" >Login Id is required</span> -->
+        </div>
+      
+      </div>
+
+
+
+      <div class="row">
+        
+        <div class="form-group col-md-6">
+          <label for="title">Programme <span class="char-count" >   ({{titleLength}}/100)  </span> <span class="required">*</span></label>
+          <input type="text" id="title" class="form-control"  maxlength="100" placeholder="Maximum 100 Characters"  formControlName="title" (input)="charCount($event,'title')">
+          <span class="validation_msg" *ngIf="f.title.touched && f.title.invalid" >*Please Enter Title</span> 
+          <!-- <span class="validation_msg" *ngIf="f.username.errors && f.username.errors.required && isError" >Login Id is required</span> -->
+        </div>
+        <div class="form-group col-md-6">
+          <label for="venue">Venue<span class="char-count" >   ({{venueLength}}/100)  </span>  <span class="required">*</span></label>
+          <input type="text" id="venue" class="form-control"  maxlength="100" placeholder="Maximum 100 Characters"  formControlName="venue" (input)="charCount($event,'venue')">
+          <span class="validation_msg" *ngIf="f.venue.touched && f.venue.invalid" >*Please Enter Venue</span> 
+          <!-- <span class="validation_msg" *ngIf="f.username.errors && f.username.errors.required && isError" >Login Id is required</span> -->
+        </div>
+      </div>
+
+      <!-- <div class="row">
+        <div class="form-group col-md-12">
+          <textarea class="form-control" id="message" placeholder="Schedule"  formControlName="schedule"></textarea>
+        </div>
+      </div> -->
+
+      <!-- <div class="row">
+
+        <div class="form-group col-md-6">
+          <select name="" id="" class="form-control ">
+            <option value="">Active</option>
+            <option value="">Inactive</option>
+          </select>
+        </div>
+      </div> -->
+
+      
+      <button  mat-raised-button *ngIf="pageName == 'Add PGME'" (click)="addProgram()"  >Add PGME</button>
+      <button  mat-raised-button *ngIf="pageName == 'View PGME'" (click)="updateProgram()"  >Update PGME</button> 
+     
+
+    </form>
+  </div>
+</mat-card>

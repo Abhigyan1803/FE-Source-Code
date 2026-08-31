@@ -1,0 +1,165 @@
+<div class="mat-new">
+    <h4 class="card-heading"> Dashboard <span class="sub-menu1">> Organisation Chart </span> </h4>
+
+</div>
+
+<mat-card>
+    <div class="conta-box" style="margin: 0px auto 0;width: 1000px;display: table;">	
+        <ul>
+            <span class="photu"><img [src]="IP+brigTrg.image" (error)="noImg($event)" class="org_img"></span>
+            <li class="director">
+                <a href="javascript:void(0)"> <b>BRIG TRG</b>  <br> <span> {{brigTrg?.rank || '-'}} {{brigTrg?.name || '-'}}</span></a>
+            </li>
+        
+            <div class="space"></div>
+            <span class="photu"><img [src]="IP+colgsTrg.image" (error)="noImg($event)" class="org_img "></span>
+            <li class="director">
+                <a href="javascript:void(0)"><b>COL GS (TRG)</b>  <br> <span>{{colgsTrg?.rank || '-'}} {{colgsTrg?.name || '-'}} </span></a>
+            </li>
+        </ul>
+        <div class="space-parent">
+        <div class="space2"></div>
+        <div class="space3"></div>
+        </div>
+        <ul class="two-sec">
+            <div class="left_new">
+                <span class="photu"><img [src]="IP+gso2trg.image" (error)="noImg($event)"  class="org_img "></span>
+            <li class="director">
+                <a href="javascript:void(0)"><b> GSO-2 (TRG)</b> <br> <span> {{gso2trg?.rank || '-'}} {{gso2trg?.name || '-'}}</span></a>
+            </li>
+            <div class="verticle">
+                <div class="spaceverti"></div>
+            </div>
+            <span class="photu"><img [src]="IP+_2xdemocoy.image" (error)="noImg($event)" class="org_img "></span>
+            <li class="director sing">
+                <a href="javascript:void(0)"><b>O2 x demo Coy</b>  <br> <span> {{_2xdemocoy?.rank || '-'}} {{_2xdemocoy?.name || '-'}}</span> </a>
+            </li>
+            <div class="verticle">
+                <div class="spaceverti"></div>
+            </div>
+            <span class="photu"><img [src]="IP+methodsec.image" (error)="noImg($event)"  class="org_img "></span>
+            <li class="director sing">
+                <a href="javascript:void(0)"><b>METHOD SEC </b> <br> <span>{{methodsec?.rank || '-'}} {{methodsec?.name || '-'}}</span></a>
+            </li>
+            <div class="verticle">
+                <div class="spaceverti"></div>
+            </div>
+            <span class="photu"><img [src]="IP+tac.image" (error)="noImg($event)" class="org_img "></span>
+            <li class="director sing">
+                <a href="javascript:void(0)"> <b>TAC SEC</b>  <br> <span>{{tac?.rank || '-'}} {{tac?.name || '-'}}</span></a>
+            </li>
+            <div class="verticle">
+                <div class="spaceverti"></div>
+            </div>
+            </div>
+            <div class="right_new">
+                
+                <span class="photu"><img [src]="IP+gso1trg.image" (error)="noImg($event)"  class="org_img "></span>
+            <li class="director">
+                <a href="javascript:void(0)"><b>GSO-1 (TRG)</b>  <br> <span> {{gso1trg?.rank || '-'}} {{gso1trg?.name || '-'}}</span></a>
+            </li>
+            <div class="verticle_right">
+                <div class="spacevertir"></div>
+            </div>
+            <span class="photu"><img [src]="IP+gso2assmt.image" (error)="noImg($event)"  class="org_img "></span>
+            <li class="director">
+                <a href="javascript:void(0)"><b>GSO-2 </b> (ASSEMENT) <br> <span> {{gso2assmt?.rank || '-'}} {{gso2assmt?.name || '-'}}</span></a>
+            </li>
+            <div class="verticle_right">
+                <div class="spacevertir"></div>
+            </div>
+            <span class="photu"><img [src]="IP+gso2pgme.image" (error)="noImg($event)"  class="org_img "></span>
+            <li class="director">
+                <a href="javascript:void(0)"><b>GSO-2 (PGME) </b> <br> <span> {{gso2pgme?.rank || '-'}} {{gso2pgme?.name || '-'}}</span></a>
+            </li>
+            <div class="verticle_right">
+                <div class="spacevertir"></div>
+            </div>
+           
+            <span class="photu"><img [src]="IP+_2xloafghan.image" (error)="noImg($event)"  class="org_img "></span>
+            <li class="director">
+                <a href="javascript:void(0)"><b>O2 x LO, Afghan</b>  <br> <span> {{_2xloafghan?.rank || '-'}} {{_2xloafghan?.name || '-'}}</span></a>
+            </li>
+    
+            <div class="verticle_right">
+                <div class="spacevertir"></div>
+            </div>
+            </div>
+        </ul>
+        <div class="align">
+            <div class="top_border">
+                <div class="space4"></div>
+                <div class="space5"></div>
+            </div>
+            <ul class="three">
+                <li>
+                        <div class="space"></div>
+        
+            <span class="photu"><img [src]="IP+pto.image" (error)="noImg($event)"  class="org_img "></span>
+            <div class="director">
+                <a href="javascript:void(0)"><b>PT SEC</b>  <br><span>PTO</span> <br> <span>{{pto?.rank || '-'}} {{pto?.name || '-'}}</span> </a>
+                <a class="top-bod" href="javascript:void(0)">APTO <br> <span>{{apto?.rank || '-'}} {{apto?.name || '-'}}</span> </a>
+            </div>
+           </li>
+            <li>
+                    <div class="space"></div>
+            <span class="photu"><img [src]="IP+wto.image" (error)="noImg($event)"  class="org_img "></span>
+            <div class="director">
+                <a href="javascript:void(0)"><b>WT SEC</b>  <br><span>WTO</span> <br> <span> {{wto?.rank || '-'}} {{wto?.name || '-'}}</span> </a>
+                <a class="top-bod" href="javascript:void(0)">AWTO <br> <span>{{awto?.rank || '-'}} {{awto?.name || '-'}}</span> </a>
+            </div>
+           </li>
+           <li>
+                   <div class="space"></div>
+            <span class="photu" style=" z-index: 999 !important;"><img [src]="IP+_2xdemocoy.image" (error)="noImg($event)"  class="org_img "></span>
+            <div class="director last-of" style="z-index: 9;position: relative;">
+                <a href="javascript:void(0)"><b>EQTN SEC</b>   </a>
+                <a href="javascript:void(0)"><b>EQTN OFFICER</b>  <br> <span>{{eqtn?.rank || '-'}} {{eqtn?.name || '-'}}</span> </a>
+            </div>
+           </li>
+        </ul>
+            <ul class="three">
+            <li>
+                   <div class="space"></div>
+                   <div class="paraa"><div class="ert-sa"></div></div>
+            <span class="photu"><img [src]="IP+adventureCell.image" (error)="noImg($event)"  class="org_img "></span>
+            <div class="director">
+                <a href="javascript:void(0)"><b>Adventure Cell (OIC)</b>  <br> <span> {{adventureCell?.rank || '-'}} {{adventureCell?.name || '-'}}</span></a>
+            </div>
+          
+
+           </li>
+           <li>
+                   <div class="space" style="background: #fff !important;"></div>
+                   <div class="paraa"><div class="ert-sa2"></div></div>
+            <span class="photu"><img [src]="IP+fe.image" (error)="noImg($event)"  class="org_img "></span>
+            <div class="director singiii">
+                <a href="javascript:void(0)"><b>FE SEC</b>  <br> <span>{{fe?.rank || '-'}} {{fe?.name || '-'}}</span> </a>
+            </div>
+           
+           </li>
+           <li>
+                   <div class="space" style="background: #fff !important;"></div>
+                   <div class="paraa"><div class="ert-sa2"></div></div>
+            <span class="photu"><img [src]="IP+fc.image" (error)="noImg($event)"  class="org_img "></span>
+            <div class="director singiii">
+                <a href="javascript:void(0)"><b>FC SEC </b> <br> <span>{{fc?.rank || '-'}} {{fc?.name || '-'}} </span> </a>
+            </div>
+            
+           </li>
+           <li>
+            <div class="space" style="background: #fff !important;"></div>
+            <div class="paraa"><div class="ert-sa2"></div></div>
+            <div class="paraa"><div class="ert-sa3"></div></div>
+            <span class="photu"><img [src]="IP+sig.image" (error)="noImg($event)"  class="org_img "></span>
+            <div class="director singiii">
+                <a href="javascript:void(0)"><b>SIG SEC </b> <br><span>{{sig?.rank || '-'}} {{sig?.name || '-'}}</span></a>
+            </div>
+           
+            
+           </li>
+        
+        </ul>
+        </div>
+        </div>
+</mat-card>

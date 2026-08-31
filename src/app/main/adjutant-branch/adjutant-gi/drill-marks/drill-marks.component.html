@@ -1,0 +1,71 @@
+<div class="mat-new">
+    <div class="mat-heading">
+        <div id="top-bar" class="">
+          <h2>ADJUTANT BRANCH <span class="sub-menu1">
+            > General Instruction > Drill Competition > Drill Marks</span></h2>
+      </div>
+    </div>
+    
+</div>
+
+<mat-card>
+    <form [formGroup]="drillMarkForm">
+        <div class="row ima_clas">
+            <div class="form-group col-md-5">
+                <label class="form-label">IMA No. <span class="not_cls">(Please enter IMA number to fetch data)</span>
+                </label>
+                <div class="common_cls">
+                    <input type="text" maxlength="100" (change)="onChangesubmit($event.target.value)" value="" #player
+                        class="form-control">
+                    <button (click)="onSubmit()" mat-raised-button>Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label class="form-label">Ser.No </label>
+                <input type="text" formControlName="serialNo" disabled="!player" maxlength="100" class="form-control">
+            </div>
+            <div class="form-group col-md-3">
+                <label class="form-label">Batallion </label>
+                <input type="text" formControlName="battalian" disabled="!player" maxlength="100" class="form-control">
+            </div>
+            <div class="form-group col-md-3">
+                <label class="form-label">Name</label>
+                <input type="text" formControlName="username" disabled="!player" maxlength="100" class="form-control">
+            </div>
+            <div class="form-group col-md-3">
+                <label class="form-label">CoY. </label>
+                <input type="text" formControlName="company" disabled="!player" maxlength="100" class="form-control">
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label class="form-label">Term Season </label>
+                <input type="text" formControlName="termSession" disabled="!player" maxlength="100"
+                    class="form-control">
+
+            </div>
+
+            <div class="form-group col-md-3">
+                <label class="form-label">Year </label>
+                <input type="text" formControlName="year" disabled="!player" maxlength="100" class="form-control">
+
+            </div>
+
+            <div class="form-group col-md-3">
+                <label class="form-label">Course </label>
+                <input type="text" formControlName="course" disabled="!player" maxlength="100" class="form-control">
+            </div>
+            <div class="form-group col-md-3">
+                <label class="form-label">Term</label>
+                <input type="text" formControlName="term" disabled="!player" maxlength="100" class="form-control">
+            </div>
+
+        </div>
+      
+        <button mat-raised-button (click)="next()" [disabled]="drillMarkForm.invalid" class="next-button">Next</button>
+    </form>

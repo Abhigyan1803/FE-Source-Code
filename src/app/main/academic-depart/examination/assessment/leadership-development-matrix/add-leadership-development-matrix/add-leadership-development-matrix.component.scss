@@ -1,0 +1,77 @@
+.row.ima_clas {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 12px;
+    background: #eee;
+    margin-top: -12px;
+    padding-top: 10px;
+}
+
+.common_cls button {
+    margin: 0px 10px;
+    padding: 0px 12px;
+    width: 100px;
+}
+.common_cls {
+    display: flex;
+}
+.next-button{
+    float: right;
+}
+span.not_cls {
+    font-size: 12px;
+    color: #333;
+    font-weight: 600;
+}
+span.col-md-12.not_msg {
+    font-weight: 600;
+    color: #afabab !important;
+    margin-bottom: 9px;
+    font-size: 13px;
+    letter-spacing: .3px;
+}
+
+.remarkdiv{
+    flex:9%;
+    margin-top: 15px;
+}
+
+.submitbutton{
+    float: right;
+    margin: 9px;
+     margin-right: 1%;
+}
+.tab-newcls table {
+    border: 1px solid #ccc;
+}
+.row234.new-cls {
+    border: 1px solid #ccc;
+    padding: 15px 0px;
+    box-shadow: 2px 2px 5px 2px #ccc;
+    background: #fafafa;
+}
+
+// table {
+//     width:100%;
+//   }
+//   table {
+//     font-family: arial, sans-serif;
+//     border-collapse: collapse;
+//     width: 100%;
+//   }
+  
+//   td, th {
+//     border: 1px solid #dddddd;
+//     text-align: left;
+//     padding: 8px;
+//   }
+  
+//   tr:nth-child(even) {
+//     background-color: #dddddd;
+//   }
+.tab-newcls.ng-untouched.ng-pristine.ng-valid.ng-star-inserted {
+    padding: 0 15px;
+}
+table td {
+    padding: 10px 15px !important;
+    vertical-align: middle !important;
+}

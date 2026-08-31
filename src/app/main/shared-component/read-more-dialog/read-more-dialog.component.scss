@@ -1,0 +1,60 @@
+.demo23 {
+    width: 100%;
+    float: left;
+    position: relative;
+}
+.demo23 h4 {
+    font-size: 18px;
+    text-align: left;
+    color: #721a0c;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 0px;
+    padding: 0px 15px;
+}
+button.event_close {
+    padding: 0px;
+    width: 40px;
+    height: 40px;
+    background: #721a0c;
+    color: #fff;
+    position: absolute;
+    border: 0;
+    z-index: 9;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 50px;
+    right: 0;
+    top: 0;
+}
+.event_cross {
+    position: relative;
+    z-index: 9;
+
+}
+.set_fix {
+    position: fixed;
+}
+p.event-heading {
+    background: #721a0c;
+    padding: 10px 15px;
+    margin: 0px 0 0 0 !important;
+    font-weight: 600;
+    color: #fff;
+    display: flex;
+    width: 800px;
+}
+button.event_close i {
+    margin: 0px;
+}
+button.event_close:focus {
+    outline: none !important;
+}
+.demo23 p {
+    margin: 20px 25px;
+    font-size: 16px;
+    text-align: justify;
+    margin-top: 60px;
+}
+
+

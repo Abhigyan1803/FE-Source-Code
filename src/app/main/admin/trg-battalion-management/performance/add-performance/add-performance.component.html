@@ -1,0 +1,86 @@
+  <div class="mat-new">
+    <h4 class="card-heading"> <button mat-icon-button (click)="goBack()"> <mat-icon>chevron_left</mat-icon> </button> TRG Battalion <span class="sub-menu1"> > Performance of Highlight </span> <span class="sub-menu1"> > {{pageTitle}}</span> </h4>
+  </div>
+  
+  <mat-card>
+    <div class="top-br">
+      <form [formGroup]="addPerformanceForm">
+        <!-- <div class="row">
+          <div class="form-group col-md-6">
+            <label for="rank">Rank<span class="required">*</span></label>
+            <input type="text" id="rank" class="form-control"  maxlength="100" formControlName="rank" placeholder="Rank">
+            <span class="val_msg" *ngIf="f.rank.errors && f.rank.errors.required && isError" >*Please Enter Officer's Rank</span>
+
+          </div>
+          <div class="form-group col-md-6">
+            <label for="name">Name<span class="required">*</span></label>
+            <input type="text" id="name" class="form-control"  maxlength="100" formControlName="name" placeholder="Name">
+            <span class="val_msg" *ngIf="f.name.errors && f.name.errors.required && isError" >*Please Enter Officer's Name</span>
+
+          </div>
+        </div> -->
+
+        <div class="row">
+
+          <div class="form-group col-md-6">
+            <label for="battalion">Battalion<span class="required">*</span></label>
+            <select (change)="battalionSelected($event.target.value)" id="battalion" formControlName="battalion" class="form-control" >
+              <option value="" selected hidden disabled >Select</option>
+              <option *ngFor = "let b of battalionList" [value]="b.id" > {{b.shortName}} Bn </option>
+            </select>
+            <span class="val_msg" *ngIf="f.battalion.errors && f.battalion.errors.required && isError" >*Please Select Battalion</span>
+
+          </div>
+          <div class="form-group col-md-6">
+            <label for="company">Company<span class="required">*</span></label>
+            <select id="company" formControlName="company" class="form-control" >
+              <option value="" selected hidden disabled >Select</option>
+              <option *ngFor = "let c of companyList" [value]="c.id" > {{c.name}} </option>
+            </select>
+            <span class="val_msg" *ngIf="f.company.errors && f.company.errors.required && isError" >*Please Select Company</span>
+
+          </div>
+
+      
+        </div>
+
+        <div class="row">
+          <div class="form-group col-md-12">
+              <label for="awards">Description <span class="char-count" >   ({{descLength}}/1500)  </span> <span class="required">*</span></label>
+              <!-- <input type="text" id="awards" class="form-control"  maxlength="100" formControlName="awards" placeholder="Awards"> -->
+              <textarea matInput placeholder="Maximum 1500 Characters" class="form-control"   maxlength="1500" (input)="charCount($event)"
+              formControlName="description"></textarea>
+              <span class="val_msg" *ngIf="f.description.errors && f.description.errors.required && isError" >*Please Enter history</span>
+
+             </div>
+        </div> 
+
+
+      
+        <!-- <div class="form-group">
+          <label class="form-label">Image</label>
+          <input type="file" id="image" accept="image/*" (change)="onSelectImage($event)"> (Optional)
+          <span  class="size_info">Max Image Size 5 MB. (Image size must be  65px * 65px)</span>
+          <div *ngIf="previewImg" class="preview_image"> <img class="img" [src]="previewImg" alt=""></div> 
+
+        </div> -->
+  
+        <div class="row">
+            <div class="form-group col-md-6">
+              <label for="status">Status<span class="required">*</span></label>
+              <select id="status" formControlName="status" class="form-control" >
+                <option value="" selected hidden disabled >Select</option>
+                <option value="1">Active</option>
+                <option value="0">Inactive</option>
+              </select>
+              
+            <span class="val_msg" *ngIf="f.status.errors && f.status.errors.required && isError" >*Please Select Status</span>
+
+            </div>
+        </div>  
+        <button *ngIf="pageTitle == 'Add Performance'" mat-raised-button (click)="addPerformance()">Add Performance of Highlight</button>
+        <button *ngIf="pageTitle == 'View Performance'" mat-raised-button (click)="updatePerformance()"  >Update Performance of Highlight</button>
+  
+      </form>
+    </div>
+  </mat-card>
