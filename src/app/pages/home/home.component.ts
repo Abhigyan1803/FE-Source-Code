@@ -373,7 +373,7 @@ this.getpcht();
     this.dialog.open(DialogComponent, {
       width: '1300px', height: '650px',
       data: {
-        type: 'document', title: 'GC Document', url: e.document
+        type: 'document', title: 'OC Document', url: e.document
       }
     });
   }

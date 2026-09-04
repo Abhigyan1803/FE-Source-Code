@@ -1,5 +1,5 @@
 <div class="mat-new">
-    <h4 class="card-heading">TRG Battalion > <span class="sub-menu1">GC Database  </span> </h4>
+    <h4 class="card-heading">TRG Battalion > <span class="sub-menu1">OC Database  </span> </h4>
 </div>
 
 <mat-card>
@@ -59,7 +59,7 @@
 
                 <!-- Image and Name Cell Column -->
                 <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef > GC Name </th>
+                    <th mat-header-cell *matHeaderCellDef > OC Name </th>
                     <td mat-cell *matCellDef="let c"> 
                     <img [src]="c.profileImg" (error)="noImg($event)" width="30" height="30" class="img-fluid img-circle" alt="User Image">
                     {{c.name}}

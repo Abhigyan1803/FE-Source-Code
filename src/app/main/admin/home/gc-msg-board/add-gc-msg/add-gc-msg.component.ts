@@ -89,12 +89,12 @@ export class AddGcMsgComponent implements OnInit {
 
     this.spinner.show();
     if (this.router.url.includes('view-gcMsg')) {
-      this.pageName = "View GC MSG";
+      this.pageName = "View OC MSG";
       this.id = this.route.snapshot.queryParamMap.get('id');
       this.service.getMESSAGEBOARDByID(this.id).subscribe(
         res => {
           if (res.status == 'OK') {
-console.log(res,"======GC MSG==");
+console.log(res,"======OC MSG==");
 
             this.addProgramForm.patchValue({
              
@@ -139,7 +139,7 @@ console.log(this.addProgramForm,"addProgramForm===");
 
     }
     else if (this.router.url.includes('add-gcMsg')) {
-      this.pageName = "Add GC MSG"
+      this.pageName = "Add OC MSG"
       this.spinner.hide()
     }
   }

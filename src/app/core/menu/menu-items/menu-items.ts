@@ -60,7 +60,7 @@ const AdminMenus = [
       { state: 'announcement', name: 'Announcements', type: 'link' },
       // { state: 'social-list', name: 'Social List', type: 'link' },
       { state: 'section-hospital', name: 'Section Hospital', type: 'link' },
-      { state: 'gc-msg', name: 'GC Message Board', type: 'link' },
+      { state: 'gc-msg', name: 'OC Message Board', type: 'link' },
 
       {
         state: 'hall-of-fame', name: 'Hall of Fame', type: 'sub', children: [
@@ -194,10 +194,10 @@ const AdminMenus = [
     ]
   },
 
-  { state: 'main/admin/trg-battalion/gc-database', name: 'GC Database', type: 'link' },
+  { state: 'main/admin/trg-battalion/gc-database', name: 'OC Database', type: 'link' },
   {
     state: 'main/admin/gc-term',
-    name: 'GC Term Update',
+    name: 'OC Term Update',
     type: 'link',
   },
   { state: 'main/admin/record', name: 'Record of Service', type: 'link' },
@@ -209,11 +209,11 @@ const AdminMenus = [
     // icon: 'map',
     children: [
       { state: 'members', name: 'Members', type: 'link' },
-      // { state: 'gc-database', name: 'GC Database', type: 'link' },
+      // { state: 'gc-database', name: 'OC Database', type: 'link' },
       { state: 'history', name: 'History of Battalion', type: 'link' },
       { state: 'gallantry', name: 'Gallantry Awardees', type: 'link' },
       { state: 'performance', name: 'Performance Highlights', type: 'link' },
-      // { state: 'gc-activities', name: 'GC Activities', type: 'link' },
+      // { state: 'gc-activities', name: 'OC Activities', type: 'link' },
       // { state: 'bro', name: 'BRO', type: 'link' },
       // { state: 'bdo', name: 'BDO', type: 'link' },
       // { state: 'assignment-of-duties', name: 'Assignments of Duties', type: 'link' },
@@ -921,7 +921,7 @@ const TRG_TEAM_MENU = [
             state: 'sops', type: 'link', name: 'SOPs'
           },
           {
-            state: 'nominal', type: 'link', name: 'GC Nominal Roll'
+            state: 'nominal', type: 'link', name: 'OC Nominal Roll'
           },
 
         ]
@@ -1244,7 +1244,7 @@ const TRG_TEAM_MENU = [
     type: 'sub',
     children:[
       {
-        state: 'it', name: 'GC-IT', type: 'link'
+        state: 'it', name: 'OC-IT', type: 'link'
       },
     ]
     // icon: ''
@@ -1275,7 +1275,7 @@ const TRG_TEAM_MENU = [
       { state: 'announcement', name: 'Announcements', type: 'link' },
       // { state: 'social-list', name: 'Social List', type: 'link' },
       { state: 'section-hospital', name: 'Section Hospital', type: 'link' },
-      { state: 'gc-msg', name: 'GC Message Board', type: 'link' },
+      { state: 'gc-msg', name: 'OC Message Board', type: 'link' },
 
       {
         state: 'hall-of-fame', name: 'Hall of Fame', type: 'sub', children: [
@@ -1318,7 +1318,7 @@ const TRGBattalionMenus = [
   {
     id: 16,
     state: 'main/trg-battalion/gc-database',
-    name: 'GC Database',
+    name: 'OC Database',
     type: 'link',
   },
   {
@@ -1473,13 +1473,13 @@ const TRGBattalionMenus = [
     type: 'sub',
     children:[
       {
-        state: 'mes', type: 'link', name: 'GC-MES',
+        state: 'mes', type: 'link', name: 'OC-MES',
       },
       {
-        state: 'personal-kit-items', type: 'link', name: 'GC-Personal Kit',
+        state: 'personal-kit-items', type: 'link', name: 'OC-Personal Kit',
       },
       {
-        state: 'additional-items', type: 'link', name: 'GC-Additional Items',
+        state: 'additional-items', type: 'link', name: 'OC-Additional Items',
       },
     ]
   },
@@ -1824,7 +1824,7 @@ const ADJUTANT_MENU = [
       { state: 'announcement', name: 'Announcements', type: 'link' },
       // { state: 'social-list', name: 'Social List', type: 'link' },
       { state: 'section-hospital', name: 'Section Hospital', type: 'link' },
-      { state: 'gc-msg', name: 'GC Message Board', type: 'link' },
+      { state: 'gc-msg', name: 'OC Message Board', type: 'link' },
 
       {
         state: 'hall-of-fame', name: 'Hall of Fame', type: 'sub', children: [
@@ -1859,7 +1859,7 @@ const ADJUTANT_MENU = [
   //     { state: 'adjutant orders', name: 'Adjutant orders', type: 'link' },
   //     { state: 'officers I-card', name: 'Officers I-card', type: 'link' },
   //     { state: 'drill Marks', name: 'drill Marks', type: 'link' },
-  //     { state: 'GC database', name: 'GC Database', type: 'link' },
+  //     { state: 'OC database', name: 'OC Database', type: 'link' },
   //   ]
   // },
   {
@@ -1920,7 +1920,7 @@ const GS_BRANCH_MENUS = [
       { state: 'announcement', name: 'Announcements', type: 'link' },
       // { state: 'social-list', name: 'Social List', type: 'link' },
       { state: 'section-hospital', name: 'Section Hospital', type: 'link' },
-      { state: 'gc-msg', name: 'GC Message Board', type: 'link' },
+      { state: 'gc-msg', name: 'OC Message Board', type: 'link' },
 
       {
         state: 'hall-of-fame', name: 'Hall of Fame', type: 'sub', children: [
@@ -2067,7 +2067,7 @@ const GS_BRANCH_MENUS = [
       // },
       {
         state: 'complaints-requirements', name: 'Complaints / Requirements', type: 'sub', children: [
-          { state: 'it-gcComplaint', name: 'GC IT Complaint', type: 'link'},
+          { state: 'it-gcComplaint', name: 'OC IT Complaint', type: 'link'},
           { state: 'it', name: 'IT', type: 'link'},
           { state: 'communication', name: 'Communication', type: 'link' },
         ]
@@ -3069,7 +3069,7 @@ const ACADEMIC_DEPARTMENT = [
         state: 'sops', type: 'link', name: 'SOPs'
       },
       {
-        state: 'nominal', type: 'link', name: 'GC Nominal Roll'
+        state: 'nominal', type: 'link', name: 'OC Nominal Roll'
       },
 
     ]

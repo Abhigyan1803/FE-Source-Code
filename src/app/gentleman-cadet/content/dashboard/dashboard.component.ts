@@ -106,7 +106,7 @@ export class DashboardComponent implements OnInit {
   getUpcomingEvent() {
     this.service.getUpcomingEvent(true).subscribe(
       (res) => {
-        // console.log("Upcoming Events for GC: ", res)
+        // console.log("Upcoming Events for OC: ", res)
         // console.log("===============UPCOMING EVENTS===================");
         // console.log(res)
         // console.log("=======================================");

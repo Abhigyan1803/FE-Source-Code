@@ -2,7 +2,7 @@
   <div class="container">
     <div class="ng-star-inserted">
         <div class="mat-new">
-          <h4 class="card-heading">Admin > <span class="sub-menu1">GC Term Update</span> </h4>
+          <h4 class="card-heading">Admin > <span class="sub-menu1">OC Term Update</span> </h4>
         </div>
       </div>
     <div class="mat-card mat-focus-indicator">
@@ -68,7 +68,7 @@
                     <td class="tg-baqh"><input class="selectall" (change)="checkOne($event)" [(ngModel)]="i.ischecked" type="checkbox" id="check1" name="option1" value="{{i.id}}" ></td>
                     <td class="tg-baqh">{{i.serviceId}}</td>
                     <td class="tg-baqh">
-                      <a  *ngIf="i.nationality=='India'">GC</a>
+                      <a  *ngIf="i.nationality=='India'">OC</a>
                       <a  *ngIf="i.nationality !='India'">FGC</a>
                     </td>
                     <td class="tg-baqh"><a>{{i.name}}</a></td>

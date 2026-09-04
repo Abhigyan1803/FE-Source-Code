@@ -99,7 +99,7 @@ console.log(res,"=================");
       {
         width: '1300px', height: '650px',
         data: {
-          type: 'document',title:"GC MSG ", url: e.document
+          type: 'document',title:"OC MSG ", url: e.document
         }
       }
       )
